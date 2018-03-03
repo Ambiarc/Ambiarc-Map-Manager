@@ -1,0 +1,59 @@
+<html>
+
+<head>
+  <title>Ambiarc</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" media="all" href="../TemplateData/css/bootstrap.min.css" />
+  <link rel="stylesheet" media="all" href="../css/demo-ui.css" />
+  <script src="../TemplateData/js/jquery-2.2.4.min.js"></script>
+  <script src="../TemplateData/js/bootstrap.min.js"></script>
+  <script src="../js/BootstrapMenu.min.js"></script>
+  <script src="../js/demo-ui.js "></script>
+</head>
+
+<body style="pointer-events: none">
+  <div id="bootstrap" hidden>
+    <div class="container-fluid" style="z-index:100;">
+      <div class="row">
+        <div style="pointer-events: all">
+
+          <div class="panel panel-default ui-item poi-container">
+            <!-- Default panel contents -->
+            <div class="panel-heading">Points of Interest</div>
+            <div class="panel-body">
+              <p>Right click the map to add a point of interest.</p>
+            </div>
+            <!-- List group -->
+            <ul id="listPoiContainer" class="list-group">
+            </ul>
+          </div>
+          <div id="levels-dropdown" class="dropdown floor-selector">
+            <button id="#levels-dropdown-button" onclick="dropdownClicked();" class="btn btn-default dropdown-toggle ui-item" type="button" aria-haspopup="true" aria-expanded="true">
+              <p  id="currentFloor">Select Floor</p>
+              <span class="caret"></span>
+            </button>
+            <ul  id="floorContainer" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <li id="listPoiTemplate" class="list-group-item invisible">
+      <span class="poiName btn">Point ...n</span>
+      <span class="pull-right poiExit btn" aria-hidden="true">&times;</span>
+    </li>
+
+    <li id="floorListTemplate" class="invisible" >
+      <a class="floorName" href="#">First Floor</a>
+    </li>
+
+  </div>
+  <iframe src="map.html" id="ambiarcIframe" style="width:100%; height:100%; border:none; top:
+    0; z-index:-1; position:fixed; pointer-events: all;">
+    Your browser doesn't support iframes
+  </iframe>
+</body>
+
+</html>

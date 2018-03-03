@@ -1,0 +1,50 @@
+ body {
+     padding-top: 20px;
+ }
+
+ .ui-item {
+     margin: 10px;
+     max-width: 200px;
+ }
+
+ .affix-top, .affix {
+     position: static;
+ }
+
+ .bootstrapMenu {
+    pointer-events: all;
+ }
+
+ .poiName {
+    padding: 0px !important;
+ }
+
+ .poiExit {
+     padding: 0px !important;
+ }
+
+ @media (min-width: 992px) {
+     #sidebar.affix-top {
+         position: static;
+         margin-top: 30px;
+         width: 228px;
+     }
+     #sidebar.affix {
+         position: fixed;
+         top: 70px;
+         width: 228px;
+     }
+ }
+.ui-row
+{
+  display: inline-block;
+}
+
+.floor-selector
+{
+  float:left;
+}
+ .poi-container
+ {
+   float:left;
+ }
