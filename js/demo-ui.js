@@ -86,8 +86,10 @@
    addElementToPoiList(labelId, labelName);
    console.log("Added: " + labelId);
  }
+
 // HTML floor selector clicked action, this method will place the map into floor selector mode when the HTML is active
  var dropdownClicked = function() {
+
    if (!isFloorSelectorEnabled) {
      $("#levels-dropdown").addClass('open');
      $("#levels-dropdown-button").attr('aria-expanded', true);
@@ -133,6 +135,7 @@
  }
 // creates the right-click menu over the map
  var onRightMouseDown = function(event) {
+
    $(poiMenuSelector).css('top', $(window).height() - event.detail.pixelY + "px");
    $(poiMenuSelector).css('left', event.detail.pixelX + "px");
    if (!isFloorSelectorEnabled) {

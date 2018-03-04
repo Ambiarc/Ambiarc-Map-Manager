@@ -1,50 +1,45 @@
- body {
-     padding-top: 20px;
- }
+html {
+    overflow-y: hidden;
+}
 
- .ui-item {
-     margin: 10px;
-     max-width: 200px;
- }
+.affix-top, .affix {
+    position: static;
+}
 
- .affix-top, .affix {
-     position: static;
- }
-
- .bootstrapMenu {
+.bootstrapMenu {
     pointer-events: all;
- }
+}
 
- .poiName {
+.poiName {
     padding: 0px !important;
- }
-
- .poiExit {
-     padding: 0px !important;
- }
-
- @media (min-width: 992px) {
-     #sidebar.affix-top {
-         position: static;
-         margin-top: 30px;
-         width: 228px;
-     }
-     #sidebar.affix {
-         position: fixed;
-         top: 70px;
-         width: 228px;
-     }
- }
-.ui-row
-{
-  display: inline-block;
 }
 
-.floor-selector
-{
-  float:left;
+.poiExit {
+    padding: 0px !important;
 }
- .poi-container
- {
-   float:left;
- }
+
+@media (min-width: 992px) {
+    #sidebar.affix-top {
+        position: static;
+        margin-top: 30px;
+        width: 228px;
+    }
+
+    #sidebar.affix {
+        position: fixed;
+        top: 70px;
+        width: 228px;
+    }
+}
+
+.ui-row {
+    display: inline-block;
+}
+
+.floor-selector {
+    float: left;
+}
+
+.poi-container {
+    float: left;
+}

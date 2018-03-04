@@ -1,0 +1,109 @@
+.panel-section {
+    max-width: 250px;
+    margin-left: 30px;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.panel-section .separate-block.row {
+    margin-top: 30px;
+}
+
+.panel-body-row {
+    flex: 1;
+    height: 100%;
+}
+
+.panel-section .buttons_row {
+    max-width: 210px;
+}
+
+.imp-exp-new ul {
+    padding-left: 0;
+    list-style: none;
+    text-align: center;
+    font-size: 0.8em;
+    font-weight: normal;
+    display: flex;
+}
+
+.imp-exp-btn {
+    background-color: #fcfefe;
+    color: #2c7dca;
+    border: 1px solid lightgrey;
+    padding: 2px;
+    font-weight: 500;
+    font-size: 11px;
+}
+
+.imp-exp-btn.col-sm {
+    padding-left: 5px;
+    padding-right: 5px;
+    text-align: center;
+}
+
+.imp-exp-btn.select_wrapper {
+    display: flex;
+    padding: 0;
+    flex: 2;
+}
+
+.imp-exp-btn select {
+    padding: 0;
+    border: 0px;
+    width: 100%;
+}
+
+.imp-exp-btn.map_view {
+    color: #7d7d7e;
+}
+
+.ui-item {
+    max-width: 270px;
+}
+
+#main-panel .btn {
+    font-size: 1.5em;
+}
+
+.panel.panel-default.poi-container {
+    width: 100%;
+}
+
+.panel-body {
+    font-size: 1.4em;
+}
+
+#controls-section {
+    position: absolute;
+    right: 0;
+    bottom: 20px;
+    right: 20px;
+}
+
+#controls-section ul {
+    list-style: none;
+}
+
+.controls-btn {
+    font-size: 40px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    box-shadow: 0px 2px darkgrey;
+    margin: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+.controls-btn.ctrl-rotate-left {
+    margin-left: -30px;
+}
+
+.controls-btn.ctrl-rotate-right {
+    margin-left: 20px;
+}
