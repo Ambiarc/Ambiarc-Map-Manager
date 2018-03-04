@@ -38,13 +38,21 @@ $(document).ready(function() {
     poiMenuSelector = menu.$menu[0];
 
 
-    $('.header-button').on('click', function(){
-
-        console.log("CLICKED HEADER BUTTON!");
-
+    $('.poi-list-panel').find('.header-button').on('click', function(){
         $('.header-button').removeClass('selected').removeClass('btn-primary').removeClass('btn-selected');
         $(this).addClass('btn-primary').addClass('btn-selected');
-    })
+    });
+
+    $('.poi-details-panel').find('.back-to-list').on('click', function(){
+
+      console.log("back to list!!");
+        $('.poi-details-panel').addClass('invisible');
+        $('.poi-list-panel').removeClass('invisible');
+    });
+
+
+
+
 
     $('#import-btn').on('click', importData);
     $('#export-btn').on('click', exportData);
@@ -242,6 +250,10 @@ var addElementToPoiList = function(mapLabelId, mapLabelName, mapLabelInfo) {
     $(item).on('click', function(){
         var ambiarc = $("#ambiarcIframe")[0].contentWindow.Ambiarc;
         ambiarc.focusOnMapLabel(mapLabelId, mapLabelId);
+
+        $('.poi-list-panel').addClass('invisible');
+        $('.poi-details-panel').removeClass('invisible');
+
     });
 
     // var item = $("#listPoiTemplate").clone().removeClass("invisible").attr('id', mapLabelId).appendTo($("#listPoiContainer"));
