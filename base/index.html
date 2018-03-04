@@ -12,26 +12,25 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="../js/BootstrapMenu.min.js"></script>
-    <script src="../js/demo-ui.js "></script>
+    <script src="../js/panel-ui.js "></script>
 </head>
 
 <body style="pointer-events: none">
 <div id="bootstrap" hidden>
 
     <div class="container-fluid" style="z-index:100;">
-
         <div class="panel-section">
 
             <div class="separate-block row buttons_row">
-                <div class="col-sm imp-exp-btn">
+                <div id="import-btn" class="col-sm imp-exp-btn">
                     Import
                 </div>
 
-                <div class="col-sm imp-exp-btn">
+                <div id="export-btn" class="col-sm imp-exp-btn">
                     Export
                 </div>
 
-                <div class="col-sm imp-exp-btn">
+                <div id="new-scene-btn" class="col-sm imp-exp-btn">
                     New scene
                 </div>
             </div>
@@ -53,27 +52,40 @@
 
             <div id="main-panel" class="separate-block row" style="pointer-events: all">
 
-                <div class="col-sm btn btn-primary">
+                <div class="header-button col-sm btn btn-default btn-primary btn-selected">
                     Points of Interest
                 </div>
 
-                <div class="col-sm btn btn-default">
+                <div class="header-button col-sm btn btn-default">
                     Map Colors
                 </div>
             </div>
 
             <div class="row panel-body-row">
-                    <div class="panel-body panel panel-default poi-container">
+                <div class="panel-body panel panel-default poi-container">
 
-                        <p>Right click the map to add a point of interest.</p
+                    <p>Right click the map to add a point of interest.</p
 
-                        <ul>
+                    <ul>
+                    </ul>
 
-                        </ul>
+                    <ul id="listPoiContainer" class="list-group">
+                    </ul>
+                </div>
 
-                        <ul id="listPoiContainer" class="list-group">
-                        </ul>
-                    </div>
+                <div id="listPoiTemplate">
+                    <li class="poi-list-item row">
+                        <div class="col-sm1 list-icon-wrapper">
+                            <span class="glyphicon list-poi-icon"></span>
+                        </div>
+                        <div class="col-sm">
+                            <label class="list-poi-label"></label>
+                            <span class="list-poi-bldg"></span>
+                            <span class="list-poi-floor"></span>
+                            <p class="list-poi-dtime"></p>
+                        </div>
+                    </li>
+                </div>
 
             </div>
         </div>

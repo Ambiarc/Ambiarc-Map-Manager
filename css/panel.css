@@ -4,6 +4,7 @@
     min-height: 100%;
     display: flex;
     flex-direction: column;
+    pointer-events: all
 }
 
 .panel-section .separate-block.row {
@@ -35,6 +36,7 @@
     padding: 2px;
     font-weight: 500;
     font-size: 11px;
+    cursor: pointer;
 }
 
 .imp-exp-btn.col-sm {
@@ -73,6 +75,8 @@
 
 .panel-body {
     font-size: 1.4em;
+    position: relative;
+    overflow-y: auto;
 }
 
 #controls-section {
@@ -106,4 +110,58 @@
 
 .controls-btn.ctrl-rotate-right {
     margin-left: 20px;
+}
+
+.btn-primary {
+    color: #fff!important;
+    background-color: #007bff!important;
+    border-color: #007bff!important;
+}
+
+#listPoiContainer {
+    list-style: none;
+}
+
+.poi-list-item {
+    width: 100%;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    border: 1px solid lightgrey;
+    padding: 10px;
+    cursor: pointer;
+}
+
+#listPoiTemplate {
+    display: none!important;
+}
+
+.list-icon-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.poi-list-item.row {
+    margin: 2px;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.list-poi-icon {
+    font-size: 1.6em;
+}
+
+.list-poi-label {
+    margin: 0;
+    font-weight: 400;
+    display: block;
+    line-height: 100%;
+}
+
+.list-poi-bldg,
+.list-poi-floor,
+.list-poi-dtime {
+    color: #cacaca;
+    font-size: 0.9em;
+    line-height: 100%;
+    margin: 0;
 }
