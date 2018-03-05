@@ -66,12 +66,9 @@
 
             <div class="row panel-body-row poi-list-panel">
                 <div class="panel-body panel panel-default poi-container">
-
-                    <p>Right click the map to add a point of interest.</p
-
-                    <ul>
-                    </ul>
-
+                     <div class="col-sm">
+                        <p>Right click the map to add a point of interest.</p>
+                     </div>
                     <ul id="listPoiContainer" class="list-group">
                     </ul>
                 </div>
@@ -83,120 +80,138 @@
             <div id="details-panel" class="separate-block row poi-details-panel invisible" style="pointer-events: all">
 
                 <!-- poi list view -->
-                <div class="header-button col-sm btn btn-default btn-success back-to-list">
-                    Back to list
+                <div id="details-header" class="row">
+                    <div class="header-button col-sm-4 btn btn-default btn-success back-to-list">
+                        <span class="glyphicon glyphicon-question-sign"></span>
+                        <span>Back to list</span>
+                    </div>
+
+                    <div class="header-button col-sm-4 btn btn-basic">
+                        <span class="glyphicon glyphicon-question-sign"></span>
+                        <span>Undo</span>
+                    </div>
+
+                    <div class="btn col-sm header-button pull-right saved-btn">
+                        <span>Saved</span>
+                    </div>
+
                 </div>
 
-                <div class="header-button col-sm btn btn-basic">
-                    Undo
-                </div>
-
-                <label class="col-sm">
-                    Saved
-                </label>
             </div>
 
             <div class="row panel-body-row poi-details-panel invisible">
                 <div class="panel-body panel panel-default poi-container">
 
                     <div class="row">
-                        <input type="text" class="poi-details-name poi-details-input" />
+                        <div class="col-sm">
+                            <input type="text" class="poi-details-name poi-details-input form-control" />
+                        </div>
                     </div>
 
                     <div class="row">
-                        <label class="poi-details-label">POI Type</label>
-                        <select class="poi-details-select">
-                            <option value="text">Text only</option>
-                            <option value="icon">Icon only</option>
-                            <option value="both">Both</option>
-                        </select>
+                        <div class="form-group col-sm-6">
+                            <label class="poi-details-label">POI Type</label>
+                            <select class="poi-details-select form-control">
+                                <option value="text">Text only</option>
+                                <option value="icon">Icon only</option>
+                                <option value="both">Both</option>
+                            </select>
+                        </div>
                     </div>
 
                     <div class="row">
-                        <label class="poi-details-label">Font Size</label>
-                        <input type="text" class="poi-details-input" />
+                        <div class="form-group col-sm-6">
+                            <label class="poi-details-label">Font Size</label>
+                            <input type="text" class="poi-details-input form-control" />
+                        </div>
                     </div>
 
                     <div class="row">
-                        <div class="sm-col2">
+                        <div class="form-group col-sm-6">
                             <label class="poi-details-label">Building ID</label>
-                            <input type="text" class="poi-details-input" />
+                            <input type="text" class="poi-details-input form-control" />
                         </div>
-                        <div class="sm-col2">
+                        <div class="form-group col-sm-6">
                             <label class="poi-details-label">Floor ID</label>
-                            <input type="text" class="poi-details-input" />
+                            <input type="text" class="poi-details-input form-control" />
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="sm-col2">
+                        <div class="form-group col-sm-6">
                             <label class="poi-details-label">Latitude</label>
-                            <input type="text" class="poi-details-input" />
+                            <input type="text" class="poi-details-input form-control" />
                         </div>
-                        <div class="sm-col2">
+                        <div class="form-group col-sm-6">
                             <label class="poi-details-label">Longitude</label>
-                            <input type="text" class="poi-details-input" />
+                            <input type="text" class="poi-details-input form-control" />
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-sm btn btn-default btn-primary">
-                            Reposition
+                        <div class="col-sm-4">
+                            <div class="btn btn-primary">
+                                Reposition
+                            </div>
                         </div>
                     </div>
 
                     <div class="row">
+                        <div class="form-group col-sm">
+                            <input class="" type="checkbox">
+                            <span class="">Tooltip Callout</span>
+                            <span class="glyphicon glyphicon-question-sign"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm form-group">
+                            <label class="poi-details-label">Tootltip title</label>
+                            <input type="text" class="poi-details-input form-control" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm form-group">
+                            <label class="poi-details-label">Tootltip body</label>
+                            <textarea class="tooltip-body poi-details-textares"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-5 form-group">
+                            <label class="poi-details-label">Key</label>
+                            <input type="text" class="poi-details-input form-control" />
+                        </div>
+                        <div class="sm-col-3 form-group">
+                            <label class="poi-details-label">Value</label>
+                            <input type="text" class="poi-details-input form-control" />
+                        </div>
+                        <div class="sm-co3">
+                            <span class="glyphicon glyphicon-question-sign"></span>
+                            <span class="glyphicon glyphicon-question-sign"></span>
+                            <span class="glyphicon glyphicon-question-sign"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="btn btn-default btn-primary">
+                                Add New Pair
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row last-row">
                         <div class="col-sm">
                             <input type="checkbox">
-                            <span>Tooltip Callout</span>
+                            <span>Show On Creation</span>
                             <span class="glyphicon glyphicon-question-sign"></span>
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="sm-col">
-                            <label class="poi-details-label">Tootltip title</label>
-                            <input type="text" class="poi-details-input" />
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="sm-col">
-                            <label class="poi-details-label">Tootltip body</label>
-                            <textarea class="poi-details-textares"></textarea>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="sm-col3">
-                            <label class="poi-details-label">Key</label>
-                            <input type="text" class="poi-details-input" />
-                        </div>
-                        <div class="sm-col3">
-                            <label class="poi-details-label">Value</label>
-                            <input type="text" class="poi-details-input" />
-                        </div>
-                        <div class="sm-col3">
-                            <span class="glyphicon glyphicon-question-sign"></span>
-                            <span class="glyphicon glyphicon-question-sign"></span>
-                            <span class="glyphicon glyphicon-question-sign"></span>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-sm btn btn-default btn-primary">
-                            Add New Pair
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <input type="checkbox">
-                        <span>Show On Creation</span>
-                        <span class="glyphicon glyphicon-question-sign"></span>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-sm btn btn-default btn-danger">
+                    <div class="row" id="delete-point-section">
+                        <div class="col-sm-4 btn btn-danger center-block">
                             Delete POI
                         </div>
                     </div>

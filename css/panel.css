@@ -32,7 +32,7 @@
 .imp-exp-btn {
     background-color: #fcfefe;
     color: #2c7dca;
-    border: 1px solid lightgrey;
+    border: 1px solid #D3D3D3;
     padding: 2px;
     font-weight: 500;
     font-size: 11px;
@@ -77,6 +77,10 @@
     font-size: 1.4em;
     position: relative;
     overflow-y: auto;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    padding-left: 0px!important;
+    padding-right: 0px!important;
 }
 
 #controls-section {
@@ -97,7 +101,7 @@
     width: 40px;
     height: 40px;
     text-align: center;
-    box-shadow: 0px 2px darkgrey;
+    box-shadow: 0px 2px #A9A9A9;
     margin: 5px;
     font-weight: bold;
     cursor: pointer;
@@ -168,4 +172,84 @@
 
 .invisible {
     display: none!important;
+}
+
+#details-panel {
+    background-color: #ffffff;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+#details-panel .row {
+    margin-top: 5px;
+    margin-tobbom: 5px;
+    margin-left: 0!important;
+    margin-right: 0!important;
+}
+
+#details-header {
+    padding-bottom: 5px;
+    padding-top: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 100%;
+}
+
+.poi-details-panel .row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.poi-details-panel input,
+.poi-details-panel select {
+    height: 20px;
+}
+
+.poi-details-panel label {
+    color: #cacaca;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.poi-details-name {
+    width: 100%;
+    margin-bottom: 20px;
+    height: 25px;
+}
+
+.btn-basic {
+    background-color: #808080;
+    color: #FFFFFF;
+}
+
+.saved-btn {
+    text-align: right;
+    color: #28a745;
+}
+
+#details-panel .header-button {
+    margin-right: 5px;
+}
+
+.btn-success {
+    backgroundd-color: #5eb861!important;
+}
+
+.btn-primary {
+    background-color: #1175d3!important;
+}
+
+.last-row {
+    height: 70px;
+    border-bottom: 1px solid #D3D3D3;
+
+}
+
+#delete-point-section {
+    padding-top: 5px;
+}
+
+.tooltip-body {
+    display: block;
+    width: 100%;
 }
