@@ -238,7 +238,7 @@ var addElementToPoiList = function(mapLabelId, mapLabelName, mapLabelInfo) {
 
     var fullDate = year+'/'+month+'/'+day;
     var fullTime = hours+'/'+minutes;
-    var icon = mapLabelInfo.type == 'text' ? 'glyphicon-envelope' : 'glyphicon-text-width';
+    var icon = mapLabelInfo.type == 'text' ? 'poi-icon poi-text' : 'poi-icon poi-envelope';
 
 
     $(item).find('.list-poi-icon').addClass(icon);

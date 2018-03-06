@@ -7,6 +7,11 @@
     pointer-events: all
 }
 
+.panel-group {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
 .panel-section .separate-block.row {
     margin-top: 30px;
 }
@@ -180,6 +185,14 @@
     border-top-right-radius: 4px;
 }
 
+.poi-details-panel .form-group {
+    margin-bottom: 0.5rem!important;
+}
+
+.poi-details-panel .form-group label {
+    margin-bottom: .2rem!important;
+}
+
 #details-panel .row {
     margin-top: 5px;
     margin-tobbom: 5px;
@@ -205,16 +218,31 @@
     height: 20px;
 }
 
+.poi-details-panel select {
+    height: 20px!important;
+    padding: 0;
+}
+
 .poi-details-panel label {
-    color: #cacaca;
+    color: #9f9e9e;
     font-size: 12px;
-    font-weight: 500;
+    font-weight: 400;
+}
+
+.poi-details-panel span {
+    color: #9f9e9e;
+    font-size: 12px;
+    font-weight: 400;
 }
 
 .poi-details-name {
     width: 100%;
-    margin-bottom: 20px;
-    height: 25px;
+    height: 30px;
+}
+
+.poi-details-select {
+    padding: 0;
+    height: 20px;
 }
 
 .btn-basic {
@@ -229,6 +257,10 @@
 
 #details-panel .header-button {
     margin-right: 5px;
+}
+
+.header-button span {
+    color: #FFFFFF;
 }
 
 .btn-success {
@@ -252,4 +284,13 @@
 .tooltip-body {
     display: block;
     width: 100%;
+}
+
+.form-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.no-right-padding {
+    padding-right: 0!important;
 }

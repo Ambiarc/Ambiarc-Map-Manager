@@ -6,6 +6,7 @@
     <link rel="stylesheet" media="all" href="../TemplateData/css/bootstrap.min.css"/>
     <link rel="stylesheet" media="all" href="../css/demo-ui.css"/>
     <link rel="stylesheet" media="all" href="../css/panel.css"/>
+    <link rel="stylesheet" media="all" href="../css/icons.css"/>
     <script src="../TemplateData/js/jquery-2.2.4.min.js"></script>
     <script src="../TemplateData/js/bootstrap.min.js"></script>
 
@@ -108,105 +109,136 @@
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="form-group col-sm-6">
-                            <label class="poi-details-label">POI Type</label>
-                            <select class="poi-details-select form-control">
-                                <option value="text">Text only</option>
-                                <option value="icon">Icon only</option>
-                                <option value="both">Both</option>
-                            </select>
+                    <div class="panel-group">
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label class="poi-details-label">POI Type</label>
+                                <select class="poi-details-select form-control">
+                                    <option value="text">Text only</option>
+                                    <option value="icon">Icon only</option>
+                                    <option value="both">Both</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="form-group col-sm-6">
-                            <label class="poi-details-label">Font Size</label>
-                            <input type="text" class="poi-details-input form-control" />
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="form-group col-sm-6">
-                            <label class="poi-details-label">Building ID</label>
-                            <input type="text" class="poi-details-input form-control" />
-                        </div>
-                        <div class="form-group col-sm-6">
-                            <label class="poi-details-label">Floor ID</label>
-                            <input type="text" class="poi-details-input form-control" />
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="form-group col-sm-6">
-                            <label class="poi-details-label">Latitude</label>
-                            <input type="text" class="poi-details-input form-control" />
-                        </div>
-                        <div class="form-group col-sm-6">
-                            <label class="poi-details-label">Longitude</label>
-                            <input type="text" class="poi-details-input form-control" />
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <div class="btn btn-primary">
-                                Reposition
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label class="poi-details-label">Font Size</label>
+                                <input type="text" class="poi-details-input form-control" />
                             </div>
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="form-group col-sm">
-                            <input class="" type="checkbox">
-                            <span class="">Tooltip Callout</span>
-                            <span class="glyphicon glyphicon-question-sign"></span>
-                        </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-sm form-group">
-                            <label class="poi-details-label">Tootltip title</label>
-                            <input type="text" class="poi-details-input form-control" />
+                    <div class="panel-group">
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label class="poi-details-label">Building ID</label>
+                                <input type="text" class="poi-details-input form-control" />
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label class="poi-details-label">Floor ID</label>
+                                <input type="text" class="poi-details-input form-control" />
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-sm form-group">
-                            <label class="poi-details-label">Tootltip body</label>
-                            <textarea class="tooltip-body poi-details-textares"></textarea>
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label class="poi-details-label">Latitude</label>
+                                <input type="text" class="poi-details-input form-control" />
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label class="poi-details-label">Longitude</label>
+                                <input type="text" class="poi-details-input form-control" />
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-sm-5 form-group">
-                            <label class="poi-details-label">Key</label>
-                            <input type="text" class="poi-details-input form-control" />
-                        </div>
-                        <div class="sm-col-3 form-group">
-                            <label class="poi-details-label">Value</label>
-                            <input type="text" class="poi-details-input form-control" />
-                        </div>
-                        <div class="sm-co3">
-                            <span class="glyphicon glyphicon-question-sign"></span>
-                            <span class="glyphicon glyphicon-question-sign"></span>
-                            <span class="glyphicon glyphicon-question-sign"></span>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <div class="btn btn-default btn-primary">
-                                Add New Pair
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="btn btn-primary">
+                                    Reposition
+                                </div>
                             </div>
                         </div>
                     </div>
+
+
+                    <div class="panel-group">
+                        <div class="row">
+                            <div class="form-group col-sm">
+                                <input class="align-bottom" type="checkbox">
+                                <span class="">Tooltip Callout</span>
+                                <div class="poi-icon help-icon poi-question"></div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm form-group">
+                                <label class="poi-details-label">Tooltip title</label>
+                                <input type="text" class="poi-details-input form-control" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm form-group">
+                                <label class="poi-details-label">Tootltip body</label>
+                                <textarea class="tooltip-body form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--<div class="row">-->
+                        <!--<div class="col-sm-5 form-group">-->
+                            <!--<label class="poi-details-label">Key</label>-->
+                            <!--<input type="text" class="poi-details-input form-control" />-->
+                        <!--</div>-->
+
+                        <!--<div class="col-sm-3 form-group">-->
+                            <!--<label class="poi-details-label">Value</label>-->
+                            <!--<input type="text" class="poi-details-input form-control" />-->
+
+                        <!--</div>-->
+
+                        <!--<div class="col-sm1 list-icon-wrapper form-icon">-->
+                            <!--<span class="poi-icon poi-hashtag input-icon form-control-feedback"></span>-->
+                            <!--<span class="poi-icon poi-quotes input-icon form-control-feedback"></span>-->
+                            <!--<span class="poi-icon poi-trashcan"></span>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                    <div class="panel-group">
+                        <div class="row">
+                            <div class="col-sm-4 form-group">
+                                <label class="poi-details-label">Key</label>
+                                <input type="text" class="poi-details-input form-control">
+                            </div>
+
+                            <div class="col-sm-4 form-group no-right-padding">
+                                <label class="poi-details-label">Value</label>
+                                <input type="text" class="poi-details-input form-control">
+                            </div>
+
+                            <div class="col-sm-4 list-icon-wrapper form-icon align-bottom row" style="height: 60px;padding: 0;">
+                                <img class="poi-icon poi-hashtag input-icon align-bottom" style="">
+                                <img class="poi-icon poi-quotes input-icon align-bottom" style="">
+                                <img class="poi-icon poi-trashcan align-bottom" style="width: 20px;height: 20px;margin-left: 5px;"></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="btn btn-default btn-primary">
+                                    Add New Pair
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
 
                     <div class="row last-row">
                         <div class="col-sm">
-                            <input type="checkbox">
+                            <input type="checkbox" class="align-bottom">
                             <span>Show On Creation</span>
-                            <span class="glyphicon glyphicon-question-sign"></span>
+                            <div class="poi-icon help-icon poi-question"></div>
                         </div>
                     </div>
 
