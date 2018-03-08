@@ -100,16 +100,17 @@
 }
 
 .controls-btn {
-    font-size: 40px;
+    font-size: 25px;
     background-color: #ffffff;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     text-align: center;
     box-shadow: 0px 2px #A9A9A9;
     margin: 5px;
-    font-weight: bold;
     cursor: pointer;
+    font-weight: 100;
+    padding: 4px;
 }
 
 
@@ -250,17 +251,28 @@
     color: #FFFFFF;
 }
 
-.saved-btn {
+.saved-btn span{
     text-align: right;
-    color: #28a745;
+    color: #28a745!important;
 }
 
 #details-panel .header-button {
-    margin-right: 5px;
+    /*margin-right: 5px;*/
 }
 
 .header-button span {
     color: #FFFFFF;
+}
+
+.header-button .poi-icon {
+    width: 20px;
+    height: 20px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    display: inline-block;
+    float: left;
 }
 
 .btn-success {

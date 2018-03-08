@@ -42,13 +42,13 @@
     background-image: url('icons/ic_question.png');
 }
 
-/*.poi-envelope {*/
-    /*background-image: url('icons/ic_admin_mail.png');*/
-/*}*/
+.poi-undo {
+    background-image: url('icons/ic_undo.png');
+}
 
-/*.poi-envelope {*/
-    /*background-image: url('icons/ic_admin_mail.png');*/
-/*}*/
+.poi-menu-left {
+    background-image: url('icons/ic_menu_left.png');
+}
 
 /*.poi-envelope {*/
     /*background-image: url('icons/ic_admin_mail.png');*/
