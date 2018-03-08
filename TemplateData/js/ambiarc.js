@@ -10,6 +10,10 @@
 			BuildingSelected: 'BuildingSelected',
 			CameraMotionStarted: 'CameraMotionStarted',
 			CameraMotionCompleted: 'CameraMotionCompleted',
+			CameraRotateStarted: 'CameraRotateStarted',
+			CameraRotateCompleted: 'CameraRotateCompleted',
+			CameraZoomStarted: 'CameraZoomStarted',
+			CameraZoomCompleted: 'CameraZoomCompleted',
 			AmbiarcAppInitialized: 'AmbiarcAppInitialized',
 			RightMouseDown: 'RightMouseDown'
 		};
@@ -98,16 +102,24 @@
 			var json = JSON.stringify({latitude: latitude, longitude: longitude});
 			gameInstance.SendMessage('Ambiarc', 'SetGPSCoordinatesOrigin', json);
 		};
-		this.createHeatmap = function(coordinates, config) {
-			var json = JSON.stringify({coordinates: coordinates, config: config});
+		this.createHeatmap = function(heatmapPoints) {
+			var json = JSON.stringify(heatmapPoints);
 			gameInstance.SendMessage('Ambiarc', 'CreateHeatmap', json);
 		};
-		this.updateHeatmap = function(coordinates, config) {
-			var json = JSON.stringify({coordinates: coordinates, config: config});
+		this.updateHeatmap = function(heatmapPoints) {
+			var json = JSON.stringify(heatmapPoints);
 			gameInstance.SendMessage('Ambiarc', 'UpdateHeatmap', json);
 		};
 		this.destroyHeatmap = function() {
 			gameInstance.SendMessage('Ambiarc', 'DestroyHeatmap');
+		};
+		this.rotateCamera = function(rotationAmountInDegrees, duration) {
+			var json = JSON.stringify({degrees: rotationAmountInDegrees, duration: duration});
+			gameInstance.SendMessage('Ambiarc', 'RotateCamera', json);
+		}
+		this.zoomCamera = function(normalizedZoomIncrement, duration) {
+			var json = JSON.stringify({zoomIncrement: normalizedZoomIncrement, duration: duration});
+			gameInstance.SendMessage('Ambiarc', 'ZoomCamera', json);
 		}
 		this.registerForEvent = function(eventLabel, cb) {
 			var validLabel = this.eventLabel.hasOwnProperty(eventLabel);
