@@ -7,7 +7,7 @@ var isFloorSelectorEnabled = false;
 // tracked references to POI's
 var poisInScene = [];
 // global lobal state indicating the current sleected floor
-var currentFloorId;
+var currentFloorId, ambiarc;
 
 // Creating the right-click menu
 $(document).ready(function() {
@@ -63,13 +63,20 @@ $(document).ready(function() {
 
 // Creates a Text MapLabel on the map where the current mouse position is
 var createTextLabel = function() {
-    var ambiarc = $("#ambiarcIframe")[0].contentWindow.Ambiarc;
+    // var ambiarc = $("#ambiarcIframe")[0].contentWindow.Ambiarc;
     // getMapPositionAtCursor is a convenience method that return a map world position where the mouse is on screen XY
-    ambiarc.getMapPositionAtCursor((vector3) => {
+
+    // ambiarc.getMapPositionAtCursor((vector3) => {
+    ambiarc.getMapPositionAtCursor(ambiarc.coordType.gps, (latlon) => {
+        console.log("latlon:");
+        console.log(latlon);
+
         var mapLabelInfo = {
             buildingId: mainBldgID,
             floorId: currentFloorId,
-            scenePosition: vector3,
+            // scenePosition: vector3,
+            latitude: latlon.lat,
+            longitude:latlon.lon,
             label: 'Ambiarc Text Label: ' + poisInScene.length,
             fontSize: 24,
             category: 'Label',
@@ -86,12 +93,19 @@ var createTextLabel = function() {
 
 // Creates an Icon MapLabel on the map where the current mouse position is
 var createIconLabel = function() {
-    var ambiarc = $("#ambiarcIframe")[0].contentWindow.Ambiarc;
-    ambiarc.getMapPositionAtCursor((vector3) => {
+    // var ambiarc = $("#ambiarcIframe")[0].contentWindow.Ambiarc;
+
+    // ambiarc.getMapPositionAtCursor((vector3) => {
+    ambiarc.getMapPositionAtCursor(ambiarc.coordType.gps, (latlon) => {
+
+        console.log("latlon:");
+        console.log(latlon);
         var mapLabelInfo = {
             buildingId: mainBldgID,
             floorId: currentFloorId,
-            scenePosition: vector3,
+            // scenePosition: vector3,
+            latitude: latlon.lat,
+            longitude:latlon.lon,
             category: 'Label',
             location: 'Default',
             partialPath: 'Information',
@@ -108,7 +122,10 @@ var createIconLabel = function() {
 var mapLabelCreatedCallback = function(labelId, labelName, mapLabelInfo) {
     // push reference of POI to list
     poisInScene.push(labelId);
+
+    ambiarc.poiList[labelId] = mapLabelInfo;
     addElementToPoiList(labelId, labelName, mapLabelInfo);
+
     console.log("Added: " + labelId);
 }
 
@@ -125,7 +142,7 @@ var dropdownClicked = function() {
         isFloorSelectorEnabled = false;
         $("#currentFloor").text("Exterior");
     }
-    var ambiarc = $("#ambiarcIframe")[0].contentWindow.Ambiarc;
+    // var ambiarc = $("#ambiarcIframe")[0].contentWindow.Ambiarc;
     //calling viewFloorSelector when in floor selector mode will exit floor selector mode
     ambiarc.viewFloorSelector(mainBldgID);
 };
@@ -138,13 +155,20 @@ var iframeLoaded = function() {
 }
 // once Ambiarc is loaded, we can use the ambiarc object to call SDK functions
 var onAmbiarcLoaded = function() {
-    var ambiarc = $("#ambiarcIframe")[0].contentWindow.Ambiarc;
+    ambiarc = $("#ambiarcIframe")[0].contentWindow.Ambiarc;
     // Subscribe to various events needed for this application
     ambiarc.registerForEvent(ambiarc.eventLabel.RightMouseDown, onRightMouseDown);
     ambiarc.registerForEvent(ambiarc.eventLabel.FloorSelected, onFloorSelected);
     ambiarc.registerForEvent(ambiarc.eventLabel.FloorSelectorEnabled, onEnteredFloorSelector);
     ambiarc.registerForEvent(ambiarc.eventLabel.FloorSelectorDisabled, onExitedFloorSelector);
     ambiarc.registerForEvent(ambiarc.eventLabel.FloorSelectorFloorFocusChanged, onFloorSelectorFocusChanged);
+    ambiarc.registerForEvent(ambiarc.eventLabel.MapLabelSelected, mapLabelClickHandler);
+
+
+
+
+
+    ambiarc.poiList = {};
 
     // Create our floor selector menu with data fromt the SDK
     ambiarc.getAllBuildings((bldgs) => {
@@ -207,9 +231,37 @@ var onFloorSelectorFocusChanged = function(event) {
         " and a new floorId of " + event.detail.newFloorId + " coming from a floor with the id of " + event.detail.oldFloorId);
 }
 
+
+var mapLabelClickHandler = function(event) {
+    console.log("THIS IS MAP LABEL EVENT HANDLER...");
+    console.log(event);
+
+    var mapLabelInfo = ambiarc.poiList[event.detail];
+
+    fillDetails(mapLabelInfo);
+    ambiarc.focusOnMapLabel(event.detail, event.detail);
+
+    $('.poi-list-panel').addClass('invisible');
+    $('.poi-details-panel').removeClass('invisible');
+
+}
+
+
 // this is called when the user deletes a POI from the list men
+
+    var firstFloorSelected = function(pId) {
+        var ambiarc = $("#ambiarcIframe")[0].contentWindow.Ambiarc;
+        ambiarc.focusOnFloor(mainBldgID, 'L002');
+    };
+
+    var secondFloorSelected = function(pId) {
+        var ambiarc = $("#ambiarcIframe")[0].contentWindow.Ambiarc;
+        ambiarc.focusOnFloor(mainBldgID, 'L003');
+    };
+
+
 var listPoiClosed = function(mapLabelId) {
-    var ambiarc = $("#ambiarcIframe")[0].contentWindow.Ambiarc;
+    // var ambiarc = $("#ambiarcIframe")[0].contentWindow.Ambiarc;
     // destroys the map label removing it from the map
     ambiarc.destroyMapLabel(mapLabelId);
     // remove the POI from our list
@@ -248,7 +300,10 @@ var addElementToPoiList = function(mapLabelId, mapLabelName, mapLabelInfo) {
     $(item).find('.list-poi-dtime').html('Added '+fullDate+' at '+fullTime);
 
     $(item).on('click', function(){
-        var ambiarc = $("#ambiarcIframe")[0].contentWindow.Ambiarc;
+        // var ambiarc = $("#ambiarcIframe")[0].contentWindow.Ambiarc;
+
+        fillDetails(mapLabelInfo);
+
         ambiarc.focusOnMapLabel(mapLabelId, mapLabelId);
 
         $('.poi-list-panel').addClass('invisible');
@@ -272,7 +327,7 @@ var addElementToPoiList = function(mapLabelId, mapLabelName, mapLabelInfo) {
 var addFloorToFloor = function(fID, bID, name) {
     var item = $("#floorListTemplate").clone().removeClass("invisible").appendTo($("#floorContainer"));
     item.children("a.floorName").text("" + name).on("click", function() {
-        var ambiarc = $("#ambiarcIframe")[0].contentWindow.Ambiarc;
+        // var ambiarc = $("#ambiarcIframe")[0].contentWindow.Ambiarc;
         // clicking on the floor selector list item will tell Ambiarc to isolate that floor
         if (fID != undefined) {
             ambiarc.focusOnFloor(bID, fID);
@@ -283,6 +338,29 @@ var addFloorToFloor = function(fID, bID, name) {
         }
     });
 };
+
+var fillDetails = function(mapLabelInfo){
+    console.log("MAP LABEL INFO:");
+    console.log(mapLabelInfo);
+    console.log(mapLabelInfo.type);
+
+    if(mapLabelInfo.type == 'text' || mapLabelInfo.type == 'both'){
+        $('#poi-title').val(mapLabelInfo.label);
+        $('#poi-font-size').val(mapLabelInfo.fontSize);
+        $('#poi-title').attr("disabled", false);
+    }
+    else {
+        $('#poi-title').val('');
+        $('#poi-font-size').val('');
+        $('#poi-title').attr("disabled", true);
+        $('#poi-font-size').attr("disabled", true);
+    }
+
+    $('#poi-type').val(mapLabelInfo.type);
+    $('#poi-bulding-id').val(mapLabelInfo.buildingId);
+    $('#poi-floor-id').val(mapLabelInfo.floorId);
+
+}
 
 var importData = function(){
     console.log("Import data");

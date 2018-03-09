@@ -25,9 +25,13 @@
 			dark: "dark",
 			light: "light"
 		}
-		this.getMapPositionAtCursor = function(callback) {
+		this.coordType = {
+			gps: "LatLon",
+			world: "World"
+		}
+		this.getMapPositionAtCursor = function(coordType, callback) {
 			this.messageQueue.push(callback);
-			gameInstance.SendMessage('Ambiarc', 'GetMapPositionAtCursor');
+			gameInstance.SendMessage('Ambiarc', 'GetMapPositionAtCursor', coordType);
 		};
 		this.createMapLabel = function(mapLabelType, mabelLabelInfo, idCallback) {
 			this.messageQueue.push(idCallback);
