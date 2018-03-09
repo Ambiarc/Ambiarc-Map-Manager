@@ -114,9 +114,9 @@
                             <div class="form-group col-sm-6">
                                 <label class="poi-details-label">POI Type</label>
                                 <select id="poi-type" class="poi-details-select form-control">
-                                    <option value="text">Text only</option>
-                                    <option value="icon">Icon only</option>
-                                    <option value="both">Both</option>
+                                    <option value="Text">Text only</option>
+                                    <option value="Icon">Icon only</option>
+                                    <option value="TextIcon">Both</option>
                                 </select>
                             </div>
                         </div>
@@ -137,19 +137,19 @@
                                 <input id="poi-bulding-id" type="text" class="poi-details-input form-control" />
                             </div>
                             <div class="form-group col-sm-6">
-                                <label id="poi-floor-id" class="poi-details-label">Floor ID</label>
-                                <input type="text" class="poi-details-input form-control" />
+                                <label class="poi-details-label">Floor ID</label>
+                                <input id="poi-floor-id" type="text" class="poi-details-input form-control" />
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="form-group col-sm-6">
                                 <label class="poi-details-label">Latitude</label>
-                                <input type="text" class="poi-details-input form-control" />
+                                <input id="poi-label-latitude" type="text" class="poi-details-input form-control" />
                             </div>
                             <div class="form-group col-sm-6">
                                 <label class="poi-details-label">Longitude</label>
-                                <input type="text" class="poi-details-input form-control" />
+                                <input id="poi-label-longitude" type="text" class="poi-details-input form-control" />
                             </div>
                         </div>
 
@@ -166,7 +166,7 @@
                     <div class="panel-group">
                         <div class="row">
                             <div class="form-group col-sm">
-                                <input class="align-bottom" type="checkbox">
+                                <input id="poi-tooltips-toggle" class="align-bottom" type="checkbox">
                                 <span class="">Tooltip Callout</span>
                                 <div class="poi-icon help-icon poi-question"></div>
                             </div>
@@ -175,7 +175,7 @@
                         <div class="row">
                             <div class="col-sm form-group">
                                 <label class="poi-details-label">Tooltip title</label>
-                                <input type="text" class="poi-details-input form-control" />
+                                <input id="poi-tooltip-title" type="text" class="poi-details-input form-control" />
                             </div>
                         </div>
 
@@ -236,7 +236,7 @@
 
                     <div class="row last-row">
                         <div class="col-sm">
-                            <input type="checkbox" class="align-bottom">
+                            <input id="poi-creation-show" type="checkbox" class="align-bottom">
                             <span>Show On Creation</span>
                             <div class="poi-icon help-icon poi-question"></div>
                         </div>

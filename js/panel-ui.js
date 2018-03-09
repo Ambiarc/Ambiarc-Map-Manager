@@ -7,7 +7,7 @@ var isFloorSelectorEnabled = false;
 // tracked references to POI's
 var poisInScene = [];
 // global lobal state indicating the current sleected floor
-var currentFloorId, ambiarc;
+var currentFloorId, currentLabelId, ambiarc;
 
 // Creating the right-click menu
 $(document).ready(function() {
@@ -48,17 +48,20 @@ $(document).ready(function() {
       console.log("back to list!!");
         $('.poi-details-panel').addClass('invisible');
         $('.poi-list-panel').removeClass('invisible');
+
+        currentLabelId = undefined;
+
     });
-
-
-
-
 
     $('#import-btn').on('click', importData);
     $('#export-btn').on('click', exportData);
     $('#new-scene-btn').on('click', newScene);
 
 
+    //UPDATE POI DATA HANDLERS
+
+    $('#poi-title').on('change', function(){
+        updatePoiDetails('label', $(this).val())})
 });
 
 // Creates a Text MapLabel on the map where the current mouse position is
@@ -68,8 +71,6 @@ var createTextLabel = function() {
 
     // ambiarc.getMapPositionAtCursor((vector3) => {
     ambiarc.getMapPositionAtCursor(ambiarc.coordType.gps, (latlon) => {
-        console.log("latlon:");
-        console.log(latlon);
 
         var mapLabelInfo = {
             buildingId: mainBldgID,
@@ -81,8 +82,9 @@ var createTextLabel = function() {
             fontSize: 24,
             category: 'Label',
             showOnCreation: true,
-            type: 'text'
+            type: 'Text'
         };
+
     // Add the map label to the map
     ambiarc.createMapLabel(ambiarc.mapLabel.Text, mapLabelInfo, (labelId) => {
         // Callback triggered once the label is added
@@ -98,8 +100,6 @@ var createIconLabel = function() {
     // ambiarc.getMapPositionAtCursor((vector3) => {
     ambiarc.getMapPositionAtCursor(ambiarc.coordType.gps, (latlon) => {
 
-        console.log("latlon:");
-        console.log(latlon);
         var mapLabelInfo = {
             buildingId: mainBldgID,
             floorId: currentFloorId,
@@ -125,8 +125,6 @@ var mapLabelCreatedCallback = function(labelId, labelName, mapLabelInfo) {
 
     ambiarc.poiList[labelId] = mapLabelInfo;
     addElementToPoiList(labelId, labelName, mapLabelInfo);
-
-    console.log("Added: " + labelId);
 }
 
 // HTML floor selector clicked action, this method will place the map into floor selector mode when the HTML is active
@@ -163,10 +161,6 @@ var onAmbiarcLoaded = function() {
     ambiarc.registerForEvent(ambiarc.eventLabel.FloorSelectorDisabled, onExitedFloorSelector);
     ambiarc.registerForEvent(ambiarc.eventLabel.FloorSelectorFloorFocusChanged, onFloorSelectorFocusChanged);
     ambiarc.registerForEvent(ambiarc.eventLabel.MapLabelSelected, mapLabelClickHandler);
-
-
-
-
 
     ambiarc.poiList = {};
 
@@ -233,9 +227,7 @@ var onFloorSelectorFocusChanged = function(event) {
 
 
 var mapLabelClickHandler = function(event) {
-    console.log("THIS IS MAP LABEL EVENT HANDLER...");
-    console.log(event);
-
+    currentLabelId = event.detail;
     var mapLabelInfo = ambiarc.poiList[event.detail];
 
     fillDetails(mapLabelInfo);
@@ -290,7 +282,7 @@ var addElementToPoiList = function(mapLabelId, mapLabelName, mapLabelInfo) {
 
     var fullDate = year+'/'+month+'/'+day;
     var fullTime = hours+'/'+minutes;
-    var icon = mapLabelInfo.type == 'text' ? 'poi-icon poi-text' : 'poi-icon poi-envelope';
+    var icon = mapLabelInfo.type == 'Text' ? 'poi-icon poi-text' : 'poi-icon poi-envelope';
 
 
     $(item).find('.list-poi-icon').addClass(icon);
@@ -300,7 +292,7 @@ var addElementToPoiList = function(mapLabelId, mapLabelName, mapLabelInfo) {
     $(item).find('.list-poi-dtime').html('Added '+fullDate+' at '+fullTime);
 
     $(item).on('click', function(){
-        // var ambiarc = $("#ambiarcIframe")[0].contentWindow.Ambiarc;
+        currentLabelId = mapLabelId;
 
         fillDetails(mapLabelInfo);
 
@@ -310,18 +302,6 @@ var addElementToPoiList = function(mapLabelId, mapLabelName, mapLabelInfo) {
         $('.poi-details-panel').removeClass('invisible');
 
     });
-
-    // var item = $("#listPoiTemplate").clone().removeClass("invisible").attr('id', mapLabelId).appendTo($("#listPoiContainer"));
-    // add a click action
-    //  item.children("span.poiName").text("" + mapLabelName).on("click", function() {
-    //    var ambiarc = $("#ambiarcIframe")[0].contentWindow.Ambiarc;
-    //    // clicking on the POI from the HTM menu will bring the view to it
-    //    ambiarc.focusOnMapLabel(mapLabelId, mapLabelId);
-    //  });
-    // add an exit action that will remove the POI from the map and UI
-    // item.children("span.poiExit").on("click", function() {
-    //   listPoiClosed(mapLabelId)
-    // });
 };
 // adds a floor to the HTML floor selector
 var addFloorToFloor = function(fID, bID, name) {
@@ -340,14 +320,12 @@ var addFloorToFloor = function(fID, bID, name) {
 };
 
 var fillDetails = function(mapLabelInfo){
-    console.log("MAP LABEL INFO:");
-    console.log(mapLabelInfo);
-    console.log(mapLabelInfo.type);
 
-    if(mapLabelInfo.type == 'text' || mapLabelInfo.type == 'both'){
+    if(mapLabelInfo.type == 'Text' || mapLabelInfo.type == 'TextIcon'){
         $('#poi-title').val(mapLabelInfo.label);
         $('#poi-font-size').val(mapLabelInfo.fontSize);
         $('#poi-title').attr("disabled", false);
+        $('#poi-font-size').attr("disabled", false);
     }
     else {
         $('#poi-title').val('');
@@ -358,9 +336,79 @@ var fillDetails = function(mapLabelInfo){
 
     $('#poi-type').val(mapLabelInfo.type);
     $('#poi-bulding-id').val(mapLabelInfo.buildingId);
+    $('#poi-label-latitude').val(mapLabelInfo.latitude);
+    $('#poi-label-longitude').val(mapLabelInfo.longitude);
+
     $('#poi-floor-id').val(mapLabelInfo.floorId);
 
 }
+
+var labelTypeObj = function(labelString){
+
+    switch (labelString) {
+        case 'Text':
+            return ambiarc.mapLabel.Text;
+
+        case 'Icon':
+            return ambiarc.mapLabel.Icon;
+
+        case 'TextIcon':
+            return ambiarc.mapLabel.TextIxon;
+    }
+}
+
+
+var collectPoiData = function(){
+
+    var MapLabelType = labelTypeObj($('#poi-type').val()),
+        buildingId = $('#poi-bulding-id').val(),
+        floorId = $('#poi-floor-id').val(),
+        latitude = parseFloat($('#poi-label-latitude').val()),
+        longitude = parseFloat($('#poi-label-longitude').val()),
+        showOnCreation = $('#poi-creation-show').is(':checked'),
+        showToolTip = $('#poi-tooltips-toggle').is(':checked'),
+        tooltipTitle = $('#poi-tooltip-title').val(),
+        fontSize = parseInt($('#poi-font-size').val()),
+        label = $('#poi-title').val();
+
+    var MapLabelProperties = {
+        buildingId: buildingId,
+        floorId: floorId,
+        latitude: latitude,
+        longitude: longitude,
+        showOnCreation: showOnCreation,
+        // showToolTip: showToolTip,
+        // tooltipTitle: tooltipTitle,
+        fontSize: fontSize,
+        label: label,
+        category: 'Label',
+        type: MapLabelType
+    }
+
+    return {
+        MapLabelProperties: MapLabelProperties,
+        MapLabelType: MapLabelType,
+    };
+
+}
+
+
+var updatePoiDetails = function(changedKey, changedValue){
+
+    var MapLabelData = collectPoiData();
+    var labelProperties = MapLabelData.MapLabelProperties;
+
+    ambiarc.updateMapLabel(currentLabelId, MapLabelData.MapLabelType, labelProperties);
+
+    //applying changed value to ambiarc.poiList object for current label
+    ambiarc.poiList[currentLabelId][changedKey] = changedValue;
+
+    var listItem = $('#'+currentLabelId);
+    $(listItem).find('.list-poi-label').html(labelProperties.label);
+    $(listItem).find('.list-poi-bldg').html('Building '+labelProperties.buildingId);
+    $(listItem).find('.list-poi-floor').html('Floor '+labelProperties.floorId);
+}
+
 
 var importData = function(){
     console.log("Import data");
