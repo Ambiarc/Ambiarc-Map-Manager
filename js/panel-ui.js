@@ -162,6 +162,8 @@ var onAmbiarcLoaded = function() {
     ambiarc.registerForEvent(ambiarc.eventLabel.FloorSelectorFloorFocusChanged, onFloorSelectorFocusChanged);
     ambiarc.registerForEvent(ambiarc.eventLabel.MapLabelSelected, mapLabelClickHandler);
 
+    // autoSelectFloor();
+
     ambiarc.poiList = {};
 
     // Create our floor selector menu with data fromt the SDK
@@ -186,6 +188,23 @@ var onRightMouseDown = function(event) {
     }
     console.log("Ambiarc received a RightMouseDown event");
 }
+
+var autoSelectFloor = function(){
+
+    console.log("AUTO SELECTING FLOOR...");
+
+    if(mainBldgID){
+        console.log("MAIN BUILDING ID DEFINED!");
+        ambiarc.getAllFloors(mainBldgID, function(floors){
+            currentFloorId = floors[0].id;
+            ambiarc.registerForEvent(ambiarc.eventLabel.FloorSelected, mainBldgID, floors[0].id);
+        })
+    }
+    else {
+        console.log("main building id undefiend....");
+    }
+}
+
 // closes the floor menu when a floor was selected
 var onFloorSelected = function(event) {
     var floorInfo = event.detail;
