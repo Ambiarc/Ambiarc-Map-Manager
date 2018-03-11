@@ -159,14 +159,15 @@ var createIconLabel = function() {
         var mapLabelInfo = {
             buildingId: mainBldgID,
             floorId: currentFloorId,
-            // scenePosition: vector3,
             latitude: latlon.lat,
             longitude:latlon.lon,
             category: 'Label',
             location: 'Default',
             partialPath: 'Information',
             showOnCreation: true,
-            type: 'icon'
+            type: 'Icon',
+            showToolTip: false,
+            tooltipTitle: ''
         };
     ambiarc.createMapLabel(ambiarc.mapLabel.Icon, mapLabelInfo, (labelId) => {
         var mapLabelName = 'Ambiarc Icon Label: ' + poisInScene.length;
@@ -304,8 +305,11 @@ var mapLabelClickHandler = function(event) {
     currentLabelId = event.detail;
     var mapLabelInfo = ambiarc.poiList[event.detail];
 
+    console.log("map label click handler:");
+    console.log(mapLabelInfo);
+
     fillDetails(mapLabelInfo);
-    ambiarc.focusOnMapLabel(event.detail, event.detail);
+    // ambiarc.focusOnMapLabel(event.detail, event.detail);
 
     $('.poi-list-panel').addClass('invisible');
     $('.poi-details-panel').removeClass('invisible');
@@ -344,7 +348,6 @@ var addElementToPoiList = function(mapLabelId, mapLabelName, mapLabelInfo) {
     var item = $("#listPoiTemplate").clone().attr('id', mapLabelId).appendTo($("#listPoiContainer"));
     var bldg = 'Building 1';
     var floorNum = 'Floor 1';
-
     var timestamp = Date.now(),
         date = new Date(timestamp),
         year = date.getFullYear(),
@@ -454,7 +457,7 @@ var collectPoiData = function(){
         showOnCreation = $('#poi-creation-show').is(':checked'),
         showToolTip = $('#poi-tooltips-toggle').is(':checked'),
         tooltipTitle = $('#poi-tooltip-title').val(),
-        fontSize = parseInt($('#poi-font-size').val()),
+        fontSize = parseInt($('#poi-font-size').val()) || 24, //if no font set, set default value to 24
         label = $('#poi-title').val();
 
     var MapLabelProperties = {
@@ -557,9 +560,16 @@ var updatePoiDetails = function(changedKey, changedValue){
     var labelProperties = MapLabelData.MapLabelProperties;
     var bldgId = $('#poi-bulding-id').val();
     var floorId = $("[data-bldgId="+bldgId+"]").val();
-
     labelProperties.floorId = floorId;
 
+    if($('#poi-type').val() == 'Icon'){
+        $('#poi-title').attr("disabled", true);
+        $('#poi-font-size').attr("disabled", true);
+    }
+    else {
+        $('#poi-title').attr("disabled", false);
+        $('#poi-font-size').attr("disabled", false);
+    }
 
     //updating map label
     ambiarc.updateMapLabel(currentLabelId, MapLabelData.MapLabelType, labelProperties);
