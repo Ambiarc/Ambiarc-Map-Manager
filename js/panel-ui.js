@@ -49,17 +49,17 @@ $(document).ready(function() {
 
 
 
-    //PANEL ELEMENT HANDLERS
+    //PANEL ELEMENTS HANDLERS
     $('.poi-list-panel').find('.header-button').on('click', function(){
         $('.header-button').removeClass('selected').removeClass('btn-primary').removeClass('btn-selected');
         $(this).addClass('btn-primary').addClass('btn-selected');
     });
 
-
     $('.poi-details-panel').find('.back-to-list').on('click', showPoiList);
     $('#import-btn').on('click', importData);
     $('#export-btn').on('click', exportData);
     $('#new-scene-btn').on('click', newScene);
+
 
 
     //UPDATE POI DATA HANDLERS
@@ -96,6 +96,10 @@ $(document).ready(function() {
         updatePoiDetails('tooltipTitle', $(this).val())
     });
 
+    $('#poi-tooltips-toggle').on('change', function(){
+        updatePoiDetails('showToolTip', $(this).is(':checked'));
+    });
+
     $('#poi-delete').on('click', function(){
 
         ambiarc.destroyMapLabel(currentLabelId);
@@ -126,14 +130,15 @@ var createTextLabel = function() {
         var mapLabelInfo = {
             buildingId: mainBldgID,
             floorId: currentFloorId,
-            // scenePosition: vector3,
             latitude: latlon.lat,
             longitude:latlon.lon,
             label: 'Ambiarc Text Label: ' + poisInScene.length,
             fontSize: 24,
             category: 'Label',
             showOnCreation: true,
-            type: 'Text'
+            type: 'Text',
+            showToolTip: false,
+            tooltipTitle: ''
         };
 
     // Add the map label to the map
@@ -173,7 +178,6 @@ var createIconLabel = function() {
 var mapLabelCreatedCallback = function(labelId, labelName, mapLabelInfo) {
     // push reference of POI to list
     poisInScene.push(labelId);
-
     ambiarc.poiList[labelId] = mapLabelInfo;
     addElementToPoiList(labelId, labelName, mapLabelInfo);
 }
@@ -417,10 +421,11 @@ var fillDetails = function(mapLabelInfo){
 
     $('#poi-type').val(mapLabelInfo.type);
     $('#poi-bulding-id').val(mapLabelInfo.buildingId);
+    $('#poi-floor-id').val(mapLabelInfo.floorId);
     $('#poi-label-latitude').val(mapLabelInfo.latitude);
     $('#poi-label-longitude').val(mapLabelInfo.longitude);
-
-    $('#poi-floor-id').val(mapLabelInfo.floorId);
+    $('#poi-tooltips-toggle').prop('checked', mapLabelInfo.showToolTip);
+    $('#poi-tooltip-title').val(mapLabelInfo.tooltipTitle);
 
 }
 
@@ -477,8 +482,6 @@ var collectPoiData = function(){
 
 var fillBuildingsList = function(){
 
-    console.log("FILL BUILDINGS LIST FUNCTION");
-
     ambiarc.getAllBuildings(function(buildings){
         $.each(buildings, function(id, bldgValue){
 
@@ -489,7 +492,7 @@ var fillBuildingsList = function(){
 
             var floorList = document.createElement('select');
                 floorList.className = 'poi-floor-id poi-details-input form-control';
-                floorList.setAttribute('data', 'bldgId',bldgValue);
+                floorList.setAttribute('data-bldgId', bldgValue);
 
             $('#poi-bulding-id').append(bldgListItem);
             $('#poi-floor-lists').append(floorList);
@@ -523,8 +526,6 @@ var fillBuildingsList = function(){
     })
 }
 
-var fillFloorsList = function(){}
-
 
 var deletePoiData = function(){
     delete ambiarc.poiList[currentLabelId];
@@ -554,6 +555,11 @@ var updatePoiDetails = function(changedKey, changedValue){
     //collecting poi details
     var MapLabelData = collectPoiData();
     var labelProperties = MapLabelData.MapLabelProperties;
+    var bldgId = $('#poi-bulding-id').val();
+    var floorId = $("[data-bldgId="+bldgId+"]").val();
+
+    labelProperties.floorId = floorId;
+
 
     //updating map label
     ambiarc.updateMapLabel(currentLabelId, MapLabelData.MapLabelType, labelProperties);
@@ -562,9 +568,9 @@ var updatePoiDetails = function(changedKey, changedValue){
     ambiarc.poiList[currentLabelId][changedKey] = changedValue;
 
     var listItem = $('#'+currentLabelId);
-    $(listItem).find('.list-poi-label').html(labelProperties.label);
-    $(listItem).find('.list-poi-bldg').html('Building '+labelProperties.buildingId);
-    $(listItem).find('.list-poi-floor').html('Floor '+labelProperties.floorId);
+        $(listItem).find('.list-poi-label').html(labelProperties.label);
+        $(listItem).find('.list-poi-bldg').html('Building '+labelProperties.buildingId);
+        $(listItem).find('.list-poi-floor').html('Floor '+labelProperties.floorId);
 }
 
 
