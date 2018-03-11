@@ -178,6 +178,7 @@
 
 .invisible {
     display: none!important;
+    transition: all 1s;
 }
 
 #details-panel {
@@ -234,6 +235,11 @@
     color: #9f9e9e;
     font-size: 12px;
     font-weight: 400;
+}
+
+.poi-details-panel,
+.poi-list-panel {
+    transition: display 0.5s;
 }
 
 .poi-details-name {

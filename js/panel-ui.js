@@ -43,15 +43,8 @@ $(document).ready(function() {
         $(this).addClass('btn-primary').addClass('btn-selected');
     });
 
-    $('.poi-details-panel').find('.back-to-list').on('click', function(){
 
-      console.log("back to list!!");
-        $('.poi-details-panel').addClass('invisible');
-        $('.poi-list-panel').removeClass('invisible');
-
-        currentLabelId = undefined;
-
-    });
+    $('.poi-details-panel').find('.back-to-list').on('click', showPoiList);
 
     $('#import-btn').on('click', importData);
     $('#export-btn').on('click', exportData);
@@ -89,9 +82,23 @@ $(document).ready(function() {
         updatePoiDetails('longitude', $(this).val())
     });
 
+    $('#poi-delete').on('click', function(){
 
-
+        ambiarc.destroyMapLabel(currentLabelId);
+        deletePoiData(currentLabelId);
+        updatePoiList();
+        showPoiList();
+    });
 });
+
+
+var showPoiList = function(){
+    $('.poi-details-panel').addClass('invisible');
+    $('.poi-list-panel').removeClass('invisible');
+
+    currentLabelId = undefined;
+}
+
 
 // Creates a Text MapLabel on the map where the current mouse position is
 var createTextLabel = function() {
@@ -315,7 +322,6 @@ var listPoiClosed = function(mapLabelId) {
 // adds a POI to the HTML list
 var addElementToPoiList = function(mapLabelId, mapLabelName, mapLabelInfo) {
 
-
     var item = $("#listPoiTemplate").clone().attr('id', mapLabelId).appendTo($("#listPoiContainer"));
     var bldg = 'Building 1';
     var floorNum = 'Floor 1';
@@ -332,25 +338,35 @@ var addElementToPoiList = function(mapLabelId, mapLabelName, mapLabelInfo) {
     var fullTime = hours+'/'+minutes;
     var icon = mapLabelInfo.type == 'Text' ? 'poi-icon poi-text' : 'poi-icon poi-envelope';
 
-
     $(item).find('.list-poi-icon').addClass(icon);
     $(item).find('.list-poi-label').html(mapLabelName);
     $(item).find('.list-poi-bldg').html(bldg);
     $(item).find('.list-poi-floor').html(floorNum);
     $(item).find('.list-poi-dtime').html('Added '+fullDate+' at '+fullTime);
 
+
+    //setting list item click handler
     $(item).on('click', function(){
         currentLabelId = mapLabelId;
 
         fillDetails(mapLabelInfo);
-
         ambiarc.focusOnMapLabel(mapLabelId, mapLabelId);
 
         $('.poi-list-panel').addClass('invisible');
         $('.poi-details-panel').removeClass('invisible');
-
     });
 };
+
+
+//refreshing poi list items
+var updatePoiList = function(){
+
+    $('#listPoiContainer').html('');
+
+    $.each(ambiarc.poiList, function(id, poiData){
+        addElementToPoiList(id, poiData.label, poiData);
+    });
+}
 // adds a floor to the HTML floor selector
 var addFloorToFloor = function(fID, bID, name) {
     var item = $("#floorListTemplate").clone().removeClass("invisible").appendTo($("#floorContainer"));
@@ -437,6 +453,20 @@ var collectPoiData = function(){
         MapLabelProperties: MapLabelProperties,
         MapLabelType: MapLabelType,
     };
+
+}
+
+
+var deletePoiData = function(){
+    delete ambiarc.poiList[currentLabelId];
+
+    $('#poi-title').val('');
+    $('#poi-font-size').val('');
+    $('#poi-type').val('Text');
+    $('#poi-bulding-id').val('');
+    $('#poi-label-latitude').val('');
+    $('#poi-label-longitude').val('');
+    $('#poi-floor-id').val('');
 
 }
 
