@@ -26,8 +26,8 @@
 			light: "light"
 		}
 		this.coordType = {
-			gps: "LatLon",
-			world: "World"
+			gps: "gps",
+			world: "world"
 		}
 		this.getMapPositionAtCursor = function(coordType, callback) {
 			this.messageQueue.push(callback);
