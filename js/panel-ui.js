@@ -58,10 +58,39 @@ $(document).ready(function() {
     $('#new-scene-btn').on('click', newScene);
 
 
+
     //UPDATE POI DATA HANDLERS
 
     $('#poi-title').on('change', function(){
-        updatePoiDetails('label', $(this).val())})
+        updatePoiDetails('label', $(this).val())
+    });
+
+    $('#poi-type').on('change', function(){
+        updatePoiDetails('type', $(this).val())
+    });
+
+    $('#poi-font-size').on('change', function(){
+        updatePoiDetails('fontSize', $(this).val())
+    });
+
+    $('#poi-bulding-id').on('change', function(){
+        updatePoiDetails('buildingId', $(this).val())
+    });
+
+    $('#poi-floor-id').on('change', function(){
+        updatePoiDetails('floorId', $(this).val())
+    });
+
+    $('#poi-label-latitude').on('change', function(){
+        updatePoiDetails('latitude', $(this).val())
+    });
+
+    $('#poi-label-longitude').on('change', function(){
+        updatePoiDetails('longitude', $(this).val())
+    });
+
+
+
 });
 
 // Creates a Text MapLabel on the map where the current mouse position is
@@ -191,10 +220,10 @@ var onRightMouseDown = function(event) {
 
 var autoSelectFloor = function(){
 
-    console.log("AUTO SELECTING FLOOR...");
+    // console.log("AUTO SELECTING FLOOR...");
 
     if(mainBldgID){
-        console.log("MAIN BUILDING ID DEFINED!");
+        // console.log("MAIN BUILDING ID DEFINED!");
         ambiarc.getAllFloors(mainBldgID, function(floors){
             currentFloorId = floors[0].id;
             ambiarc.registerForEvent(ambiarc.eventLabel.FloorSelected, mainBldgID, floors[0].id);
@@ -414,9 +443,12 @@ var collectPoiData = function(){
 
 var updatePoiDetails = function(changedKey, changedValue){
 
+    //collecting poi details
     var MapLabelData = collectPoiData();
     var labelProperties = MapLabelData.MapLabelProperties;
 
+
+    //updating map label
     ambiarc.updateMapLabel(currentLabelId, MapLabelData.MapLabelType, labelProperties);
 
     //applying changed value to ambiarc.poiList object for current label
