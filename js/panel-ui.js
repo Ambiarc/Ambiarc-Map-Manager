@@ -82,6 +82,10 @@ $(document).ready(function() {
         updatePoiDetails('longitude', $(this).val())
     });
 
+    $('#poi-tooltip-title').on('change', function(){
+        updatePoiDetails('tooltipTitle', $(this).val())
+    });
+
     $('#poi-delete').on('click', function(){
 
         ambiarc.destroyMapLabel(currentLabelId);
@@ -93,6 +97,7 @@ $(document).ready(function() {
 
 
 var showPoiList = function(){
+    emptyDetailsData();
     $('.poi-details-panel').addClass('invisible');
     $('.poi-list-panel').removeClass('invisible');
 
@@ -385,6 +390,8 @@ var addFloorToFloor = function(fID, bID, name) {
 
 var fillDetails = function(mapLabelInfo){
 
+    emptyDetailsData();
+
     if(mapLabelInfo.type == 'Text' || mapLabelInfo.type == 'TextIcon'){
         $('#poi-title').val(mapLabelInfo.label);
         $('#poi-font-size').val(mapLabelInfo.fontSize);
@@ -441,25 +448,30 @@ var collectPoiData = function(){
         latitude: latitude,
         longitude: longitude,
         showOnCreation: showOnCreation,
-        // showToolTip: showToolTip,
-        // tooltipTitle: tooltipTitle,
+        showToolTip: showToolTip,
+        tooltipTitle: tooltipTitle,
         fontSize: fontSize,
         label: label,
         category: 'Label',
-        type: MapLabelType
+        type: MapLabelType,
+        location: 'Default',
+        partialPath: 'Information'
     }
 
     return {
         MapLabelProperties: MapLabelProperties,
         MapLabelType: MapLabelType,
     };
-
 }
 
 
 var deletePoiData = function(){
     delete ambiarc.poiList[currentLabelId];
+    emptyDetailsData();
+}
 
+
+var emptyDetailsData = function(){
     $('#poi-title').val('');
     $('#poi-font-size').val('');
     $('#poi-type').val('Text');
@@ -467,16 +479,25 @@ var deletePoiData = function(){
     $('#poi-label-latitude').val('');
     $('#poi-label-longitude').val('');
     $('#poi-floor-id').val('');
-
+    $('#poi-tooltip-title').val('');
+    $('#poi-tooltip-body').val('');
+    $('#poi-new-key').val('');
+    $('#poi-new-value').val('');
+    $('#poi-creation-show').prop('checked', true);
+    $('#poi-tooltips-toggle').prop('checked', false);
 }
 
 
 var updatePoiDetails = function(changedKey, changedValue){
 
+    console.log("UPDATEING POI DETAILS FUNCTION...");
+
     //collecting poi details
     var MapLabelData = collectPoiData();
     var labelProperties = MapLabelData.MapLabelProperties;
 
+    console.log("label properties:");
+    console.log(labelProperties);
 
     //updating map label
     ambiarc.updateMapLabel(currentLabelId, MapLabelData.MapLabelType, labelProperties);
