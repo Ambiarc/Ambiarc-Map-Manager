@@ -38,6 +38,18 @@ $(document).ready(function() {
     poiMenuSelector = menu.$menu[0];
 
 
+    $('#bldg-floor-select').on('change', function(){
+
+        var parsedValue = $(this).val().split('::');
+        var buildingId = parsedValue[0];
+        var floorId = parsedValue[1];
+
+        ambiarc.focusOnFloor(buildingId, floorId)
+    });
+
+
+
+    //PANEL ELEMENT HANDLERS
     $('.poi-list-panel').find('.header-button').on('click', function(){
         $('.header-button').removeClass('selected').removeClass('btn-primary').removeClass('btn-selected');
         $(this).addClass('btn-primary').addClass('btn-selected');
@@ -45,11 +57,9 @@ $(document).ready(function() {
 
 
     $('.poi-details-panel').find('.back-to-list').on('click', showPoiList);
-
     $('#import-btn').on('click', importData);
     $('#export-btn').on('click', exportData);
     $('#new-scene-btn').on('click', newScene);
-
 
 
     //UPDATE POI DATA HANDLERS
@@ -471,8 +481,6 @@ var fillBuildingsList = function(){
 
     ambiarc.getAllBuildings(function(buildings){
         $.each(buildings, function(id, bldgValue){
-            console.log("each building!");
-            console.log(bldgValue);
 
             var bldgListItem = document.createElement('option');
                 bldgListItem.clasName = 'bldg-list-item';
@@ -487,12 +495,7 @@ var fillBuildingsList = function(){
             $('#poi-floor-lists').append(floorList);
 
             ambiarc.getAllFloors(bldgValue, function(floors){
-                console.log("all building floors:");
-                console.log(floors);
                 $.each(floors, function(i, floorValue){
-
-                    console.log("FLOOR VALUE:");
-                    console.log(floorValue);
 
                     //poi details panel floor dropdown
                     var floorItem = document.createElement('option');
@@ -506,18 +509,14 @@ var fillBuildingsList = function(){
                     // main building-floor dropdown
                     var listItem = document.createElement('option');
                         listItem.clasName = 'bldg-floor-item';
-                        listItem.value = bldgValue+'::'+floorValue;
+                        listItem.value = bldgValue+'::'+floorValue.id;
                         listItem.textContent = bldgValue+': '+floorValue.id;
 
                     $('#bldg-floor-select').append(listItem);
 
-                        console.log("LIST ITEM:");
-                        console.log(listItem);
                 });
 
                 //To do: add display/hide list conditioning when more than 1 building....
-
-
 
             });
         })
@@ -552,14 +551,9 @@ var emptyDetailsData = function(){
 
 var updatePoiDetails = function(changedKey, changedValue){
 
-    console.log("UPDATEING POI DETAILS FUNCTION...");
-
     //collecting poi details
     var MapLabelData = collectPoiData();
     var labelProperties = MapLabelData.MapLabelProperties;
-
-    console.log("label properties:");
-    console.log(labelProperties);
 
     //updating map label
     ambiarc.updateMapLabel(currentLabelId, MapLabelData.MapLabelType, labelProperties);
