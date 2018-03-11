@@ -202,10 +202,10 @@ var onAmbiarcLoaded = function() {
     ambiarc.registerForEvent(ambiarc.eventLabel.FloorSelectorDisabled, onExitedFloorSelector);
     ambiarc.registerForEvent(ambiarc.eventLabel.FloorSelectorFloorFocusChanged, onFloorSelectorFocusChanged);
     ambiarc.registerForEvent(ambiarc.eventLabel.MapLabelSelected, mapLabelClickHandler);
-
-    // autoSelectFloor();
-
     ambiarc.poiList = {};
+
+    fillBuildingsList();
+
 
     // Create our floor selector menu with data fromt the SDK
     ambiarc.getAllBuildings((bldgs) => {
@@ -463,6 +463,68 @@ var collectPoiData = function(){
         MapLabelType: MapLabelType,
     };
 }
+
+
+var fillBuildingsList = function(){
+
+    console.log("FILL BUILDINGS LIST FUNCTION");
+
+    ambiarc.getAllBuildings(function(buildings){
+        $.each(buildings, function(id, bldgValue){
+            console.log("each building!");
+            console.log(bldgValue);
+
+            var bldgListItem = document.createElement('option');
+                bldgListItem.clasName = 'bldg-list-item';
+                bldgListItem.value = bldgValue;
+                bldgListItem.textContent = bldgValue;
+
+            var floorList = document.createElement('select');
+                floorList.className = 'poi-floor-id poi-details-input form-control';
+                floorList.setAttribute('data', 'bldgId',bldgValue);
+
+            $('#poi-bulding-id').append(bldgListItem);
+            $('#poi-floor-lists').append(floorList);
+
+            ambiarc.getAllFloors(bldgValue, function(floors){
+                console.log("all building floors:");
+                console.log(floors);
+                $.each(floors, function(i, floorValue){
+
+                    console.log("FLOOR VALUE:");
+                    console.log(floorValue);
+
+                    //poi details panel floor dropdown
+                    var floorItem = document.createElement('option');
+                        floorItem.clasName = 'floor-item';
+                        floorItem.value = floorValue.id;
+                        floorItem.textContent = floorValue.id;
+
+                    $(floorList).append(floorItem);
+
+
+                    // main building-floor dropdown
+                    var listItem = document.createElement('option');
+                        listItem.clasName = 'bldg-floor-item';
+                        listItem.value = bldgValue+'::'+floorValue;
+                        listItem.textContent = bldgValue+': '+floorValue.id;
+
+                    $('#bldg-floor-select').append(listItem);
+
+                        console.log("LIST ITEM:");
+                        console.log(listItem);
+                });
+
+                //To do: add display/hide list conditioning when more than 1 building....
+
+
+
+            });
+        })
+    })
+}
+
+var fillFloorsList = function(){}
 
 
 var deletePoiData = function(){
