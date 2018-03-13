@@ -56,6 +56,23 @@ $(document).ready(function() {
     });
 
     $('.poi-details-panel').find('.back-to-list').on('click', showPoiList);
+
+    $('#undo-actions').on('click', function(){
+
+        if(ambiarc.history.length > 1) {
+            var historyLastOp = ambiarc.history.length - 1;
+            // ambiarc.poiList[currentLabelId] = ambiarc.history[historyLastOp - 1];
+            ambiarc.poiList[currentLabelId] = jQuery.extend({}, ambiarc.history[historyLastOp - 1]);
+            ambiarc.history = ambiarc.history.slice(0, -1);
+        }
+
+        fillDetails(ambiarc.poiList[currentLabelId]);
+
+        //updating map label
+        ambiarc.updateMapLabel(currentLabelId, ambiarc.poiList[currentLabelId].type, ambiarc.poiList[currentLabelId]);
+    });
+
+
     $('#import-btn').on('click', importData);
     $('#export-btn').on('click', exportData);
     $('#new-scene-btn').on('click', newScene);
@@ -302,11 +319,18 @@ var onFloorSelectorFocusChanged = function(event) {
 
 
 var mapLabelClickHandler = function(event) {
+
+    if(event.detail == currentLabelId){
+        return;
+    }
     currentLabelId = event.detail;
     var mapLabelInfo = ambiarc.poiList[event.detail];
 
-    console.log("map label click handler:");
-    console.log(mapLabelInfo);
+
+    //creating clone of mapLabelInfo object - storing operations for undo
+    var initialObj = jQuery.extend({}, mapLabelInfo);
+    ambiarc.history = [];
+    ambiarc.history.push(initialObj);
 
     fillDetails(mapLabelInfo);
     // ambiarc.focusOnMapLabel(event.detail, event.detail);
@@ -370,6 +394,10 @@ var addElementToPoiList = function(mapLabelId, mapLabelName, mapLabelInfo) {
     //setting list item click handler
     $(item).on('click', function(){
         currentLabelId = mapLabelId;
+
+        var initState = jQuery.extend({}, ambiarc.poiList[currentLabelId]);
+        ambiarc.history = [];
+        ambiarc.history.push(initState);
 
         fillDetails(mapLabelInfo);
         ambiarc.focusOnMapLabel(mapLabelId, mapLabelId);
@@ -550,6 +578,8 @@ var emptyDetailsData = function(){
     $('#poi-new-value').val('');
     $('#poi-creation-show').prop('checked', true);
     $('#poi-tooltips-toggle').prop('checked', false);
+
+
 }
 
 
@@ -561,6 +591,11 @@ var updatePoiDetails = function(changedKey, changedValue){
     var bldgId = $('#poi-bulding-id').val();
     var floorId = $("[data-bldgId="+bldgId+"]").val();
     labelProperties.floorId = floorId;
+
+
+    //storing object clone for undo functionality
+    var cloneObj = jQuery.extend({}, labelProperties);
+    ambiarc.history.push(cloneObj);
 
     if($('#poi-type').val() == 'Icon'){
         $('#poi-title').attr("disabled", true);
