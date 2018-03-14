@@ -7,7 +7,7 @@ var isFloorSelectorEnabled = false;
 // tracked references to POI's
 var poisInScene = [];
 // global lobal state indicating the current sleected floor
-var currentFloorId, currentLabelId, ambiarc;
+var currentFloorId, currentLabelId, ambiarc, fr, parsedJson;
 
 // Creating the right-click menu
 $(document).ready(function() {
@@ -50,6 +50,9 @@ $(document).ready(function() {
 
 
     //PANEL ELEMENTS HANDLERS
+
+    $('#import-file').on('change', importFileHandler);
+
     $('.poi-list-panel').find('.header-button').on('click', function(){
         $('.header-button').removeClass('selected').removeClass('btn-primary').removeClass('btn-selected');
         $(this).addClass('btn-primary').addClass('btn-selected');
@@ -595,15 +598,12 @@ var emptyDetailsData = function(){
 
 var updatePoiDetails = function(changedKey, changedValue){
 
-    console.log("update poi details");
-
     //collecting poi details
     var MapLabelData = collectPoiData();
     var labelProperties = MapLabelData.MapLabelProperties;
     var bldgId = $('#poi-bulding-id').val();
     var floorId = $("[data-bldgId="+bldgId+"]").val();
     labelProperties.floorId = floorId;
-
 
     //storing object clone for undo functionality
     var cloneObj = jQuery.extend({}, labelProperties);
@@ -635,11 +635,15 @@ var updatePoiDetails = function(changedKey, changedValue){
 
 var importData = function(){
     console.log("Import data");
+
+    $('#import-file').click();
 }
+
 
 var exportData = function(){
     console.log("Export data");
 }
+
 
 var newScene = function(){
 
@@ -650,6 +654,7 @@ var newScene = function(){
     }
 };
 
+
 var toggleSaveButton = function(){
 
     $('.saved-btn').removeClass('invisible');
@@ -657,6 +662,7 @@ var toggleSaveButton = function(){
         $('.saved-btn').addClass('invisible');
     }, 3000);
 };
+
 
 var destroyAllLabels = function(){
 
@@ -670,3 +676,52 @@ var destroyAllLabels = function(){
     updatePoiList();
     showPoiList();
 };
+
+
+var importFileHandler = function(evt){
+
+    if(!input){
+        var input = $('#import-file')[0];
+    }
+    var file;
+
+    if (typeof window.FileReader !== 'function') return;
+
+    else if (!input.files) {
+        console.log("This browser doesn't seem to support the `files` property of file inputs.");
+    }
+    else {
+
+        file = input.files[0];
+        fr = new FileReader();
+        fr.onload = function(test){
+
+            var base64result = fr.result.split(',')[1];
+
+            try {
+                parsedJson = JSON.parse(window.atob(base64result));
+                fillGeoData(parsedJson);
+            }
+            catch(e){
+                alert("Please select valid json file");
+                return;
+            }
+        }
+
+        fr.readAsDataURL(file);
+    }
+}
+
+
+var fillGeoData = function(properties){
+
+    $.each(properties.features, function(i, feature){
+        var mapLabelInfo = feature.properties;
+        mapLabelInfo.longitude = feature.geometry.coordinates[0];
+        mapLabelInfo.latitude = feature.geometry.coordinates[1];
+
+        ambiarc.createMapLabel(mapLabelInfo.type, mapLabelInfo,(labelId) => {
+            mapLabelCreatedCallback(labelId, mapLabelInfo.label, mapLabelInfo);
+        })
+    })
+}

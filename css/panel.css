@@ -318,3 +318,7 @@
 .no-right-padding {
     padding-right: 0!important;
 }
+
+.import-poi-file {
+    display: none!important;
+}

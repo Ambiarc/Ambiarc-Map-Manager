@@ -1,0 +1,49 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+		"buildingId": "B00001",
+		"category": "Label",
+		"floorId": "L002",
+		"location": "Default",
+		"partialPath": "Information",
+		"showOnCreation": "true",
+		"showToolTip": "false",
+		"tooltipTitle": "",
+		"type": "Icon"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.41079307499996,
+          37.811249030000056
+        ]
+      }
+    },
+	{
+      "type": "Feature",
+      "properties": {
+		"label": "Test POI",
+        "buildingId": "B00001",
+		"category": "Label",
+		"floorId": "L003",
+		"location": "Default",
+		"partialPath": "Information",
+		"showOnCreation": "true",
+		"showToolTip": "true",
+		"tooltipTitle": "Test tooltip",
+		"type": "Text",
+		"fontSize": 24
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.41079307499996,
+          37.811549030000056
+        ]
+      }
+    }
+  ]
+}
