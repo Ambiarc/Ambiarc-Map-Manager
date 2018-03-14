@@ -257,6 +257,11 @@
     color: #FFFFFF;
 }
 
+.saved-btn {
+    display: none;
+    transition: all 0.5s;
+}
+
 .saved-btn span{
     text-align: right;
     color: #28a745!important;

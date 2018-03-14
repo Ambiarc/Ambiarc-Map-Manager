@@ -627,6 +627,8 @@ var updatePoiDetails = function(changedKey, changedValue){
         $(listItem).find('.list-poi-label').html(labelProperties.label);
         $(listItem).find('.list-poi-bldg').html('Building '+labelProperties.buildingId);
         $(listItem).find('.list-poi-floor').html('Floor '+labelProperties.floorId);
+
+    toggleSaveButton();
 }
 
 
@@ -640,4 +642,12 @@ var exportData = function(){
 
 var newScene = function(){
     console.log("New scene");
+}
+
+var toggleSaveButton = function(){
+
+    $('.saved-btn').removeClass('invisible');
+    setTimeout(function(){
+        $('.saved-btn').addClass('invisible');
+    }, 3000);
 }
