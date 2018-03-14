@@ -258,6 +258,7 @@ var onAmbiarcLoaded = function() {
     $('#bootstrap').removeAttr('hidden');
 });
 });
+    $('#controls-section').fadeIn();
 }
 // creates the right-click menu over the map
 var onRightMouseDown = function(event) {
@@ -641,8 +642,13 @@ var exportData = function(){
 }
 
 var newScene = function(){
-    console.log("New scene");
-}
+
+    var r = confirm("Creating new scene will remove all points of interest from map and panel!");
+    if (r == true) {
+        console.log("confirmed!");
+        destroyAllLabels();
+    }
+};
 
 var toggleSaveButton = function(){
 
@@ -650,4 +656,17 @@ var toggleSaveButton = function(){
     setTimeout(function(){
         $('.saved-btn').addClass('invisible');
     }, 3000);
-}
+};
+
+var destroyAllLabels = function(){
+
+     $.each(ambiarc.poiList, function(MapLabelID, a){
+         ambiarc.destroyMapLabel(parseInt(MapLabelID));
+     });
+
+     ambiarc.poiList = {};
+     poisInScene = [];
+
+    updatePoiList();
+    showPoiList();
+};
