@@ -458,9 +458,10 @@ var fillDetails = function(mapLabelInfo){
         $('#poi-font-size').attr("disabled", true);
     }
 
+
     $('#poi-type').val(mapLabelInfo.type);
     $('#poi-bulding-id').val(mapLabelInfo.buildingId);
-    $('#poi-floor-id').val(mapLabelInfo.floorId);
+    $('.poi-floor-id[data-bldgid = "'+mapLabelInfo.buildingId+'"]').val(mapLabelInfo.floorId);
     $('#poi-label-latitude').val(mapLabelInfo.latitude);
     $('#poi-label-longitude').val(mapLabelInfo.longitude);
     $('#poi-tooltips-toggle').prop('checked', mapLabelInfo.showToolTip);
