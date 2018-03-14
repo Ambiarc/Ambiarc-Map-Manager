@@ -634,14 +634,50 @@ var updatePoiDetails = function(changedKey, changedValue){
 
 
 var importData = function(){
-    console.log("Import data");
-
     $('#import-file').click();
 }
 
 
 var exportData = function(){
-    console.log("Export data");
+
+    var exportData = {
+        type: "FeatureCollection",
+        features: []
+    };
+
+    $.each(ambiarc.poiList, function(i, labelInfo){
+
+        var properties = {
+            buildingId: labelInfo.buildingId,
+            category: labelInfo.category,
+            floorId: labelInfo.floorId,
+            showOnCreation: labelInfo.showOnCreation,
+            showToolTip: labelInfo.showToolTip,
+            type: labelInfo.type
+        };
+
+        var geometry = {
+            type: "Point",
+            coordinates: [
+                labelInfo.longitude,
+                labelInfo.latitude
+            ]
+        };
+
+        if(properties.category !== 'Icon'){
+            properties.fontSize = labelInfo.fontSize;
+            properties.label = labelInfo.label;
+        }
+
+        var feature = {
+            type: "Feature",
+            properties: properties,
+            geometry: geometry
+        };
+        exportData.features.push(feature);
+    });
+
+    downloadObjectAsJson(exportData, 'geoJSON_'+Date.now());
 }
 
 
@@ -710,7 +746,7 @@ var importFileHandler = function(evt){
 
         fr.readAsDataURL(file);
     }
-}
+};
 
 
 var fillGeoData = function(properties){
@@ -724,4 +760,14 @@ var fillGeoData = function(properties){
             mapLabelCreatedCallback(labelId, mapLabelInfo.label, mapLabelInfo);
         })
     })
-}
+};
+
+
+var downloadObjectAsJson = function (exportObj, exportName){
+    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj));
+    var downloadAnchorNode = document.createElement('a');
+    downloadAnchorNode.setAttribute("href",     dataStr);
+    downloadAnchorNode.setAttribute("download", exportName + ".json");
+    downloadAnchorNode.click();
+    downloadAnchorNode.remove();
+};
