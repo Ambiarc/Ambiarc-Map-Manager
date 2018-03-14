@@ -117,6 +117,14 @@ $(document).ready(function() {
         updatePoiDetails('showToolTip', $(this).is(':checked'));
     });
 
+    $('body').on('change', '.poi-floor-id', function(){
+        updatePoiDetails('floorId', $(this).val());
+    })
+
+    $('body').on('change', '#poi-bulding-id', function(){
+        updatePoiDetails('floorId', $(this).val());
+    })
+
     $('#poi-delete').on('click', function(){
 
         ambiarc.destroyMapLabel(currentLabelId);
@@ -584,6 +592,8 @@ var emptyDetailsData = function(){
 
 
 var updatePoiDetails = function(changedKey, changedValue){
+
+    console.log("update poi details");
 
     //collecting poi details
     var MapLabelData = collectPoiData();
