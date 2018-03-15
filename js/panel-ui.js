@@ -268,6 +268,14 @@ var onRightMouseDown = function(event) {
 
     $(poiMenuSelector).css('top', $(window).height() - event.detail.pixelY + "px");
     $(poiMenuSelector).css('left', event.detail.pixelX + "px");
+
+    if(currentLabelId){
+
+
+        repositionLabel();
+        return;
+    }
+
     if (!isFloorSelectorEnabled) {
         $('#bootstrap').trigger('contextmenu');
     }
@@ -621,8 +629,18 @@ var updatePoiDetails = function(changedKey, changedValue){
     //updating map label
     ambiarc.updateMapLabel(currentLabelId, MapLabelData.MapLabelType, labelProperties);
 
-    //applying changed value to ambiarc.poiList object for current label
-    ambiarc.poiList[currentLabelId][changedKey] = changedValue;
+    // If it's pair (longitude and latitude)
+    if (typeof changedKey == 'object') {
+
+        for(var i=0; i<changedKey.length; i++){
+            ambiarc.poiList[currentLabelId][changedKey[i]] = changedValue[i];
+        }
+    }
+    else {
+        //applying changed value to ambiarc.poiList object for current label
+        ambiarc.poiList[currentLabelId][changedKey] = changedValue;
+    }
+
 
     var listItem = $('#'+currentLabelId);
         $(listItem).find('.list-poi-label').html(labelProperties.label);
@@ -685,7 +703,6 @@ var newScene = function(){
 
     var r = confirm("Creating new scene will remove all points of interest from map and panel!");
     if (r == true) {
-        console.log("confirmed!");
         destroyAllLabels();
     }
 };
@@ -771,3 +788,15 @@ var downloadObjectAsJson = function (exportObj, exportName){
     downloadAnchorNode.click();
     downloadAnchorNode.remove();
 };
+
+
+var repositionLabel = function(){
+
+    ambiarc.getMapPositionAtCursor(ambiarc.coordType.gps, (latlon) => {
+
+        $('#poi-label-latitude').val(latlon.lat);
+        $('#poi-label-longitude').val(latlon.lon);
+
+        updatePoiDetails(['longitude', 'latitude'], [latlon.lat, latlon.lon]);
+    });
+}
