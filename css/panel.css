@@ -298,7 +298,6 @@
 .last-row {
     height: 70px;
     border-bottom: 1px solid #D3D3D3;
-
 }
 
 #delete-point-section {
@@ -321,4 +320,55 @@
 
 .import-poi-file {
     display: none!important;
+}
+
+#con-file-hidden {
+    display: none!important;
+}
+
+#poi-browse-text {
+    white-space: nowrap;
+    width: 50px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#poi-browse-icons {
+    height: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#poi-browse-icons button {
+    font-size: 12px!important;
+    text-align: center;
+    padding: 0;
+}
+
+.poi-icon-image {
+    width: 20px;
+    height: 20px;
+}
+
+#poi-select-icon {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.centered-label {
+    margin: auto;
+    text-align: center;
+}
+
+#icon-file-hidden {
+    display: none!important;
+}
+
+#poi-icon-image {
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: auto;
 }
