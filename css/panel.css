@@ -372,3 +372,28 @@
     background-repeat: no-repeat;
     margin: auto;
 }
+
+.icon-sample {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.icons-list-panel {
+
+}
+
+.icons-list-panel .row {
+    margin: 0;
+}
+
+.selected-icon {
+    background-color: #5db860;
+}
+
+.panel-body-row.icons-list-panel {
+    height: 100%;
+    overflow: auto;
+}

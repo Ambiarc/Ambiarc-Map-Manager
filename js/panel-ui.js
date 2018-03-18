@@ -77,16 +77,18 @@ $(document).ready(function() {
     });
 
 
+    $('#poi-select-button').on('click', showIconsPanel);
+
+
     $('#import-btn').on('click', importData);
     $('#export-btn').on('click', exportData);
     $('#new-scene-btn').on('click', newScene);
 
     $('#poi-browse-icons').on('click', function(){
-
-        console.log("click...");
-
         $('#icon-file-hidden').trigger('click');
     });
+
+    $('.icon-sample').on('click', iconImageHandler);
 
     $('#icon-file-hidden').on('change', importIconHandler);
 
@@ -752,9 +754,16 @@ var destroyAllLabels = function(){
 };
 
 
-var importIconHandler = function(){
-    console.log("icon selected!!!");
+var iconImageHandler = function(){
 
+    console.log("icon image handler!");
+    $('.selected-icon').removeClass('selected-icon');
+    $(this).addClass('selected-icon');
+
+}
+
+
+var importIconHandler = function(){
 
     $('#poi-browse-text').html();
 
@@ -776,16 +785,18 @@ var importIconHandler = function(){
             console.log(image);
             var imagePath = $('#icon-file-hidden').val();
             var imageName = imagePath.split('fakepath\\')[1];
-            console.log("image name:");
-            console.log(imageName);
 
             $('#poi-browse-text').html(imageName);
-
         }
-
         fr.readAsDataURL(file);
     }
+}
 
+
+var showIconsPanel = function(){
+    $('.poi-list-panel').addClass('invisible');
+    $('.poi-details-panel').addClass('invisible');
+    $('.icons-list-panel').removeClass('invisible');
 }
 
 
