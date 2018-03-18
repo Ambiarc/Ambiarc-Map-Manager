@@ -116,6 +116,10 @@ $(document).ready(function() {
         updatePoiDetails('tooltipTitle', $(this).val())
     });
 
+    $('#poi-tooltip-body').on('change', function(){
+        updatePoiDetails('tooltipBody', $(this).val())
+    });
+
     $('#poi-tooltips-toggle').on('change', function(){
         updatePoiDetails('showToolTip', $(this).is(':checked'));
     });
@@ -166,7 +170,8 @@ var createTextLabel = function() {
             showOnCreation: true,
             type: 'Text',
             showToolTip: false,
-            tooltipTitle: ''
+            tooltipTitle: '',
+            tooltipBody: ''
         };
 
     // Add the map label to the map
@@ -195,7 +200,8 @@ var createIconLabel = function() {
             showOnCreation: true,
             type: 'Icon',
             showToolTip: false,
-            tooltipTitle: ''
+            tooltipTitle: '',
+            tooltipBody: ''
         };
     ambiarc.createMapLabel(ambiarc.mapLabel.Icon, mapLabelInfo, (labelId) => {
         var mapLabelName = 'Ambiarc Icon Label: ' + poisInScene.length;
@@ -478,6 +484,7 @@ var fillDetails = function(mapLabelInfo){
     $('#poi-label-longitude').val(mapLabelInfo.longitude);
     $('#poi-tooltips-toggle').prop('checked', mapLabelInfo.showToolTip);
     $('#poi-tooltip-title').val(mapLabelInfo.tooltipTitle);
+    $('#poi-tooltip-body').val(mapLabelInfo.tooltipBody);
 
 }
 
@@ -506,6 +513,7 @@ var collectPoiData = function(){
         showOnCreation = $('#poi-creation-show').is(':checked'),
         showToolTip = $('#poi-tooltips-toggle').is(':checked'),
         tooltipTitle = $('#poi-tooltip-title').val(),
+        tooltipBody = $('#poi-tooltip-body').val(),
         fontSize = parseInt($('#poi-font-size').val()) || 24, //if no font set, set default value to 24
         label = $('#poi-title').val();
 
@@ -517,6 +525,7 @@ var collectPoiData = function(){
         showOnCreation: showOnCreation,
         showToolTip: showToolTip,
         tooltipTitle: tooltipTitle,
+        tooltipBody: tooltipBody,
         fontSize: fontSize,
         label: label,
         category: 'Label',
