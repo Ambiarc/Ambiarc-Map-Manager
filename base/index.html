@@ -127,7 +127,7 @@
                         </div>
 
 
-                        <div class="panel-group">
+                        <div id="select-icon-group" class="panel-group">
                             <div class="row">
                                 <div id="poi-select-icon" class="form-inline input-group col-sm-8">
                                     <div class="col-sm-4">
@@ -179,13 +179,13 @@
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <div class="btn btn-primary">
-                                    Reposition
-                                </div>
-                            </div>
-                        </div>
+                        <!--<div class="row">-->
+                            <!--<div class="col-sm-4">-->
+                                <!--<div class="btn btn-primary">-->
+                                    <!--Reposition-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
                     </div>
 
 
@@ -281,15 +281,22 @@
             <!-- icons panel -->
             <div id="icons-panel" class="separate-block row icons-list-panel invisible" style="pointer-events: all">
 
-                <!-- poi list view -->
-                <div class="header-button col-sm btn btn-default btn-primary btn-selected">
-                    Points of Interest
-                </div>
 
-                <div class="header-button col-sm btn btn-default">
-                    Map Colors
+                <div id="icons-list-header" class="row">
+
+                    <div class="col-sm-6">
+                        <div class="header-button btn btn-success col-10">Save</div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div id="cancel-icon-select" class="header-button col-10 btn btn-basic">Cancel</div>
+                    </div>
+
                 </div>
             </div>
+
+
+
+
 
             <div class="row panel-body-row icons-list-panel invisible">
                 <div class="panel-body panel panel-default icons-container">

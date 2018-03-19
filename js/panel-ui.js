@@ -653,10 +653,17 @@ var updatePoiDetails = function(changedKey, changedValue){
     if($('#poi-type').val() == 'Icon'){
         $('#poi-title').attr("disabled", true);
         $('#poi-font-size').attr("disabled", true);
+        $('#select-icon-group').fadeIn();
     }
-    else {
+    if($('#poi-type').val() == 'TextIcon'){
+        $('#select-icon-group').fadeIn();
         $('#poi-title').attr("disabled", false);
         $('#poi-font-size').attr("disabled", false);
+    }
+    if($('#poi-type').val() == 'Text'){
+        $('#poi-title').attr("disabled", false);
+        $('#poi-font-size').attr("disabled", false);
+        $('#select-icon-group').fadeOut();
     }
 
     //updating map label

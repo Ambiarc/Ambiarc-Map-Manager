@@ -198,12 +198,20 @@
 
 #details-panel .row {
     margin-top: 5px;
-    margin-tobbom: 5px;
+    margin-bottom: 5px;
     margin-left: 0!important;
     margin-right: 0!important;
 }
 
 #details-header {
+    padding-bottom: 5px;
+    padding-top: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 100%;
+}
+
+#icons-list-header {
     padding-bottom: 5px;
     padding-top: 5px;
     padding-left: 15px;
