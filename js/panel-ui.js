@@ -152,6 +152,10 @@ $(document).ready(function() {
         showPoiList();
     });
 
+    $('#cancel-icon-select').on('click', showPoiDetails);
+
+    $('#save-icon-select').on('click', saveNewIcon);
+
     iconDefault = $('.selected-icon').attr('src');
     console.log("defautl icon set!!");
     console.log(iconDefault);
@@ -772,26 +776,9 @@ var destroyAllLabels = function(){
 
 
 var iconImageHandler = function(){
-
-    console.log("icon image handler!");
-    var imgSrc = $(this).attr('src');
-    var image = document.createElement('img');
-        image.src = imgSrc;
-    console.log("image:");
-    console.log(image);
     $('.selected-icon').removeClass('selected-icon');
     $(this).addClass('selected-icon');
-    var base64String = getBase64Image(image);
-    console.log("base 64:");
-    console.log(base64String);
-
-    ambiarc.poiList[currentLabelId].base64 = base64String;
-
-    $('#poi-icon-image').css('background-image','url("'+base64String+'")');
-
-    updatePoiDetails('base64', base64String);
-
-}
+};
 
 
 var getBase64Image = function(img) {
@@ -810,7 +797,7 @@ var getBase64Image = function(img) {
     var dataURL = canvas.toDataURL();
     // return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
     return dataURL;
-}
+};
 
 
 var importIconHandler = function(){
@@ -840,14 +827,35 @@ var importIconHandler = function(){
         }
         fr.readAsDataURL(file);
     }
-}
+};
 
 
 var showIconsPanel = function(){
     $('.poi-list-panel').addClass('invisible');
     $('.poi-details-panel').addClass('invisible');
     $('.icons-list-panel').removeClass('invisible');
-}
+};
+
+
+var showPoiDetails = function(){
+    $('.poi-details-panel').removeClass('invisible');
+    $('.poi-list-panel').addClass('invisible');
+    $('.icons-list-panel').addClass('invisible');
+};
+
+var saveNewIcon = function(){
+
+    var imgSrc = $('.selected-icon').attr('src');
+    var image = document.createElement('img');
+        image.src = imgSrc;
+    var base64String = getBase64Image(image);
+
+    ambiarc.poiList[currentLabelId].base64 = base64String;
+    $('#poi-icon-image').css('background-image','url("'+base64String+'")');
+
+    updatePoiDetails('base64', base64String);
+    showPoiDetails();
+};
 
 
 var importFileHandler = function(evt){

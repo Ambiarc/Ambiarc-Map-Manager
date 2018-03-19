@@ -188,6 +188,10 @@
     border-top-right-radius: 4px;
 }
 
+#icons-panel {
+    background-color: #ffffff;
+}
+
 .poi-details-panel .form-group {
     margin-bottom: 0.5rem!important;
 }
@@ -203,7 +207,15 @@
     margin-right: 0!important;
 }
 
-#details-header {
+#icons-panel .row {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 0!important;
+    margin-right: 0!important;
+}
+
+#details-header,
+#icons-list-header {
     padding-bottom: 5px;
     padding-top: 5px;
     padding-left: 15px;
@@ -211,12 +223,8 @@
     width: 100%;
 }
 
-#icons-list-header {
-    padding-bottom: 5px;
-    padding-top: 5px;
-    padding-left: 15px;
-    padding-right: 15px;
-    width: 100%;
+#icons-list-header .btn {
+    font-size: 12px;
 }
 
 .poi-details-panel .row {
@@ -277,7 +285,7 @@
 }
 
 #details-panel .header-button {
-    /*margin-right: 5px;*/
+    height: 30px;
 }
 
 .header-button span {
