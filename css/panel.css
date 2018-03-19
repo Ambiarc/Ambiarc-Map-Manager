@@ -348,8 +348,8 @@
 }
 
 .poi-icon-image {
-    width: 20px;
-    height: 20px;
+    width: 35px;
+    height: 35px;
 }
 
 #poi-select-icon {
@@ -396,4 +396,9 @@
 .panel-body-row.icons-list-panel {
     height: 100%;
     overflow: auto;
+}
+
+.icon-btn-wrapper {
+    margin-top: auto;
+    margin-bottom: auto;
 }
