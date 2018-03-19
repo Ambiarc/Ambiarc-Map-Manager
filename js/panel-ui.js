@@ -818,12 +818,20 @@ var importIconHandler = function(){
         file = input.files[0];
         fr = new FileReader();
         fr.onload = function(image){
+
             console.log("image loaded!");
-            console.log(image);
+            console.log(image.srcElement.result);
+
             var imagePath = $('#icon-file-hidden').val();
             var imageName = imagePath.split('fakepath\\')[1];
+            var base64String = image.srcElement.result;
 
             $('#poi-browse-text').html(imageName);
+            $('#poi-icon-image').css('background-image','url("'+base64String+'")');
+            ambiarc.poiList[currentLabelId].base64 = base64String;
+
+            updatePoiDetails('base64', base64String);
+            showPoiDetails();
         }
         fr.readAsDataURL(file);
     }
