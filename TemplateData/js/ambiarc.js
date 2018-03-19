@@ -119,11 +119,12 @@
 		};
 		this.rotateCamera = function(rotationAmountInDegrees, duration) {
 			var json = JSON.stringify({degrees: rotationAmountInDegrees, duration: duration});
-			gameInstance.SendMessage('Ambiarc', 'RotateCamera', json);
+						console.log(json)
+			gameInstance.SendMessage('Ambiarc', 'TweenRotateCamera', json);
 		}
 		this.zoomCamera = function(normalizedZoomIncrement, duration) {
 			var json = JSON.stringify({zoomIncrement: normalizedZoomIncrement, duration: duration});
-			gameInstance.SendMessage('Ambiarc', 'ZoomCamera', json);
+			gameInstance.SendMessage('Ambiarc', 'TweenZoomCamera', json);
 		}
 		this.registerForEvent = function(eventLabel, cb) {
 			var validLabel = this.eventLabel.hasOwnProperty(eventLabel);
