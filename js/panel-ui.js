@@ -8,7 +8,8 @@ var isFloorSelectorEnabled = false;
 // tracked references to POI's
 var poisInScene = [];
 // global lobal state indicating the current sleected floor
-var currentFloorId, currentLabelId, ambiarc, fr, parsedJson;
+var currentFloorId = 'L002';
+var currentLabelId, ambiarc, fr, parsedJson;
 
 // Creating the right-click menu
 $(document).ready(function() {
@@ -300,7 +301,6 @@ var onRightMouseDown = function(event) {
 
     if(currentLabelId){
 
-
         repositionLabel();
         return;
     }
@@ -380,6 +380,8 @@ var mapLabelClickHandler = function(event) {
     }
     currentLabelId = event.detail;
     var mapLabelInfo = ambiarc.poiList[event.detail];
+
+    console.log(mapLabelInfo);
 
 
     //creating clone of mapLabelInfo object - storing operations for undo
@@ -533,6 +535,8 @@ var labelTypeObj = function(labelString){
 
 var collectPoiData = function(){
 
+    console.log("collect poi data");
+
     var MapLabelType = labelTypeObj($('#poi-type').val()),
         buildingId = $('#poi-bulding-id').val(),
         floorId = $('#poi-floor-id').val(),
@@ -544,6 +548,7 @@ var collectPoiData = function(){
         tooltipBody = $('#poi-tooltip-body').val(),
         fontSize = parseInt($('#poi-font-size').val()) || 24, //if no font set, set default value to 24
         label = $('#poi-title').val();
+
 
     var MapLabelProperties = {
         buildingId: buildingId,
@@ -558,8 +563,12 @@ var collectPoiData = function(){
         label: label,
         category: 'Label',
         type: MapLabelType,
-        location: 'Default',
-        partialPath: 'Information'
+        location: 'Default'
+    };
+
+    var icon = $('#poi-icon-image').attr('data-image');
+    if(icon && typeof icon !== 'undefined'){
+        MapLabelProperties.partialPath = icon;
     }
 
     return {
@@ -643,8 +652,13 @@ var emptyDetailsData = function(){
 
 var updatePoiDetails = function(changedKey, changedValue){
 
+
+
     //collecting poi details
     var MapLabelData = collectPoiData();
+
+    console.log("data collected");
+
     var labelProperties = MapLabelData.MapLabelProperties;
     var bldgId = $('#poi-bulding-id').val();
     var floorId = $("[data-bldgId="+bldgId+"]").val();
@@ -670,8 +684,9 @@ var updatePoiDetails = function(changedKey, changedValue){
         $('#select-icon-group').fadeOut();
     }
 
-    //updating map label
-    ambiarc.updateMapLabel(currentLabelId, MapLabelData.MapLabelType, labelProperties);
+    console.log("UPDATING MAP LABEL:");
+    console.log(labelProperties);
+
 
     // If it's pair (longitude and latitude)
     if (typeof changedKey == 'object') {
@@ -682,8 +697,22 @@ var updatePoiDetails = function(changedKey, changedValue){
     }
     else {
         //applying changed value to ambiarc.poiList object for current label
+
+        console.log("applying changed values:");
+
+        console.log("change key:");
+        console.log(changedKey);
+        console.log("changedValue");
+        console.log(changedValue);
+
         ambiarc.poiList[currentLabelId][changedKey] = changedValue;
     }
+
+    //updating map label
+
+
+
+    ambiarc.updateMapLabel(currentLabelId, MapLabelData.MapLabelType, labelProperties);
 
 
     var listItem = $('#'+currentLabelId);
@@ -828,7 +857,9 @@ var importIconHandler = function(){
 
             $('#poi-browse-text').html(imageName);
             $('#poi-icon-image').css('background-image','url("'+base64String+'")');
+            $('#poi-icon-image').removeAttr('data-image');
             ambiarc.poiList[currentLabelId].base64 = base64String;
+            ambiarc.poiList[currentLabelId].partialPath = '';
 
             updatePoiDetails('base64', base64String);
             showPoiDetails();
@@ -854,14 +885,19 @@ var showPoiDetails = function(){
 var saveNewIcon = function(){
 
     var imgSrc = $('.selected-icon').attr('src');
+    var imgIcon = $('.selected-icon').attr('data-image');
+    console.log("imgIcon:");
+    console.log(imgIcon);
     var image = document.createElement('img');
         image.src = imgSrc;
     var base64String = getBase64Image(image);
 
     ambiarc.poiList[currentLabelId].base64 = base64String;
+    ambiarc.poiList[currentLabelId].partialPath = imgIcon;
     $('#poi-icon-image').css('background-image','url("'+base64String+'")');
+    $('#poi-icon-image').attr('data-image',imgIcon);
 
-    updatePoiDetails('base64', base64String);
+    updatePoiDetails('partialPath', imgIcon);
     showPoiDetails();
 };
 
@@ -927,10 +963,15 @@ var downloadObjectAsJson = function (exportObj, exportName){
 
 var repositionLabel = function(){
 
+    console.log("reposition label:");
+
+
     ambiarc.getMapPositionAtCursor(ambiarc.coordType.gps, (latlon) => {
 
         $('#poi-label-latitude').val(latlon.lat);
         $('#poi-label-longitude').val(latlon.lon);
+
+        console.log(latlon)
 
         updatePoiDetails(['longitude', 'latitude'], [latlon.lat, latlon.lon]);
     });

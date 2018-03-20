@@ -39,6 +39,10 @@
 			gameInstance.SendMessage('Ambiarc', 'CreateMapLabel', json);
 		};
 		this.updateMapLabel = function(mapLabelId, mapLabelType, mapLabelInfo) {
+
+			console.log("function updatemaplabel!!");
+			console.log(mapLabelInfo);
+
 			var json = JSON.stringify({ mapLabelId: mapLabelId, mapLabelType: mapLabelType, mapLabelInfo: mapLabelInfo });
 			gameInstance.SendMessage('Ambiarc', 'UpdateMapLabel', json);
 		};
