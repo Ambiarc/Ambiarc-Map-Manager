@@ -140,6 +140,7 @@
     border: 1px solid lightgrey;
     padding: 10px;
     cursor: pointer;
+    min-height: 75px;
 }
 
 #listPoiTemplate {

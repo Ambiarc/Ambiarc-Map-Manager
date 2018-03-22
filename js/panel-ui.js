@@ -428,7 +428,10 @@ var listPoiClosed = function(mapLabelId) {
 // adds a POI to the HTML list
 var addElementToPoiList = function(mapLabelId, mapLabelName, mapLabelInfo) {
 
-    var item = $("#listPoiTemplate").clone().attr('id', mapLabelId).appendTo($("#listPoiContainer"));
+    var item = $("#listPoiTemplate").clone();
+        $(item).attr('id', mapLabelId);
+        $(item).addClass('poi-item-wrapper');
+        $(item).appendTo($("#listPoiContainer"));
     var bldg = 'Building 1';
     var floorNum = 'Floor 1';
     var timestamp = Date.now(),
@@ -441,9 +444,21 @@ var addElementToPoiList = function(mapLabelId, mapLabelName, mapLabelInfo) {
 
     var fullDate = year+'/'+month+'/'+day;
     var fullTime = hours+'/'+minutes;
-    var icon = mapLabelInfo.type == 'Text' ? 'poi-icon poi-text' : 'poi-icon poi-envelope';
 
-    $(item).find('.list-poi-icon').addClass(icon);
+    // checking if set url64 image, if not set default behavior
+    if(typeof mapLabelInfo.base64 !== 'undefined'){
+        if(mapLabelInfo.base64 !== ''){
+            var iconSrc = mapLabelInfo.base64;
+        }else {
+            var iconSrc = mapLabelInfo.type == 'Text' ? '../css/icons/ic_text_field.png' : '../css/icons/ic_admin_mail.png';
+        }
+    }
+    else {
+        var iconSrc = mapLabelInfo.type == 'Text' ? '../css/icons/ic_text_field.png' : '../css/icons/ic_admin_mail.png';
+    }
+
+    $(item).find('.list-poi-icon').css('background-image','url(\''+iconSrc+'\')');
+    $(item).find('.list-poi-icon').addClass('poi-icon');
     $(item).find('.list-poi-label').html(mapLabelName);
     $(item).find('.list-poi-bldg').html(bldg);
     $(item).find('.list-poi-floor').html(floorNum);
@@ -518,7 +533,6 @@ var fillDetails = function(mapLabelInfo){
         $('#poi-font-size').attr("disabled", true);
     }
 
-
     $('#poi-type').val(mapLabelInfo.type);
     $('#poi-bulding-id').val(mapLabelInfo.buildingId);
     $('.poi-floor-id[data-bldgid = "'+mapLabelInfo.buildingId+'"]').val(mapLabelInfo.floorId);
@@ -528,8 +542,17 @@ var fillDetails = function(mapLabelInfo){
     $('#poi-tooltip-title').val(mapLabelInfo.tooltipTitle);
     $('#poi-tooltip-body').val(mapLabelInfo.tooltipBody);
     $('#poi-icon-image').css('background-image', 'url("'+mapLabelInfo.base64+'")');
-    $('#'+currentLabelId).find('.list-poi-icon').css('background-image', 'url("'+mapLabelInfo.base64+'")');
 
+    if(mapLabelInfo.type !== 'Text'){
+        $('#select-icon-group').show();
+    }
+    else {
+        $('#select-icon-group').hide();
+    }
+
+    // if(mapLabelInfo.type !== 'Text'){
+    //     $('#'+currentLabelId).find('.list-poi-icon').css('background-image', 'url("'+mapLabelInfo.base64+'")');
+    // }
 
 }
 
@@ -698,19 +721,9 @@ var updatePoiDetails = function(changedKey, changedValue){
         ambiarc.poiList[currentLabelId][changedKey] = changedValue;
     }
 
-
-
-
-    //collecting poi details
-    // var MapLabelData = collectPoiData();
-    // var MapLabelData =
-
     console.log("data collected");
 
     var labelProperties = ambiarc.poiList[currentLabelId];
-    // var bldgId = $('#poi-bulding-id').val();
-    // var floorId = $("[data-bldgId="+bldgId+"]").val();
-    // labelProperties.floorId = floorId;
 
     //storing object clone for undo functionality
     var cloneObj = jQuery.extend({}, labelProperties);
@@ -745,7 +758,10 @@ var updatePoiDetails = function(changedKey, changedValue){
         $(listItem).find('.list-poi-bldg').html('Building '+labelProperties.buildingId);
         $(listItem).find('.list-poi-floor').html('Floor '+labelProperties.floorId);
 
+
+    updatePoiList();
     toggleSaveButton();
+
 }
 
 
@@ -911,6 +927,13 @@ var showPoiDetails = function(){
     $('.poi-details-panel').removeClass('invisible');
     $('.poi-list-panel').addClass('invisible');
     $('.icons-list-panel').addClass('invisible');
+
+    if(ambiarc.poiList[currentLabelId].type !== 'Text'){
+        $('#select-icon-group').show();
+    }
+    else {
+        $('#select-icon-group').hide();
+    }
 };
 
 var saveNewIcon = function(){
