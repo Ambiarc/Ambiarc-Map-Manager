@@ -190,6 +190,8 @@ var createTextLabel = function() {
             label: 'Ambiarc Text Label: ' + poisInScene.length,
             fontSize: 24,
             category: 'Label',
+            location: 'Default',
+            partialPath: 'Information',
             showOnCreation: true,
             type: 'Text',
             showToolTip: false,
@@ -207,9 +209,6 @@ var createTextLabel = function() {
 
 // Creates an Icon MapLabel on the map where the current mouse position is
 var createIconLabel = function() {
-    // var ambiarc = $("#ambiarcIframe")[0].contentWindow.Ambiarc;
-
-    // ambiarc.getMapPositionAtCursor((vector3) => {
     ambiarc.getMapPositionAtCursor(ambiarc.coordType.gps, (latlon) => {
 
         var mapLabelInfo = {
@@ -233,6 +232,7 @@ var createIconLabel = function() {
 });
 });
 }
+
 // Callback thats updates the UI after a POI is created
 var mapLabelCreatedCallback = function(labelId, labelName, mapLabelInfo) {
     // push reference of POI to list
@@ -370,6 +370,8 @@ var onFloorSelectorFocusChanged = function(event) {
 var mapLabelClickHandler = function(event) {
 
     console.log("mab label click handler");
+    console.log("event:");
+    console.log(event);
 
     $('.poi-list-panel').addClass('invisible');
     $('.icons-list-panel').addClass('invisible');
@@ -566,9 +568,14 @@ var collectPoiData = function(){
         location: 'Default'
     };
 
+    console.log("adding partialpath in collect data section:");
     var icon = $('#poi-icon-image').attr('data-image');
     if(icon && typeof icon !== 'undefined'){
+        console.log("ADED!!");
         MapLabelProperties.partialPath = icon;
+    }
+    else {
+        console.log("NOT FOUND :(");
     }
 
     return {
@@ -653,40 +660,10 @@ var emptyDetailsData = function(){
 var updatePoiDetails = function(changedKey, changedValue){
 
 
-
-    //collecting poi details
-    var MapLabelData = collectPoiData();
-
-    console.log("data collected");
-
-    var labelProperties = MapLabelData.MapLabelProperties;
-    var bldgId = $('#poi-bulding-id').val();
-    var floorId = $("[data-bldgId="+bldgId+"]").val();
-    labelProperties.floorId = floorId;
-
-    //storing object clone for undo functionality
-    var cloneObj = jQuery.extend({}, labelProperties);
-    ambiarc.history.push(cloneObj);
-
-    if($('#poi-type').val() == 'Icon'){
-        $('#poi-title').attr("disabled", true);
-        $('#poi-font-size').attr("disabled", true);
-        $('#select-icon-group').fadeIn();
-    }
-    if($('#poi-type').val() == 'TextIcon'){
-        $('#select-icon-group').fadeIn();
-        $('#poi-title').attr("disabled", false);
-        $('#poi-font-size').attr("disabled", false);
-    }
-    if($('#poi-type').val() == 'Text'){
-        $('#poi-title').attr("disabled", false);
-        $('#poi-font-size').attr("disabled", false);
-        $('#select-icon-group').fadeOut();
-    }
-
-    console.log("UPDATING MAP LABEL:");
-    console.log(labelProperties);
-
+    console.log("changed key:");
+    console.log(changedKey);
+    console.log("changed value:");
+    console.log(changedValue);
 
     // If it's pair (longitude and latitude)
     if (typeof changedKey == 'object') {
@@ -708,12 +685,47 @@ var updatePoiDetails = function(changedKey, changedValue){
         ambiarc.poiList[currentLabelId][changedKey] = changedValue;
     }
 
-    //updating map label
 
 
 
-    ambiarc.updateMapLabel(currentLabelId, MapLabelData.MapLabelType, labelProperties);
+    //collecting poi details
+    // var MapLabelData = collectPoiData();
+    // var MapLabelData =
 
+    console.log("data collected");
+
+    var labelProperties = ambiarc.poiList[currentLabelId];
+    // var bldgId = $('#poi-bulding-id').val();
+    // var floorId = $("[data-bldgId="+bldgId+"]").val();
+    // labelProperties.floorId = floorId;
+
+    //storing object clone for undo functionality
+    var cloneObj = jQuery.extend({}, labelProperties);
+    ambiarc.history.push(cloneObj);
+
+    if($('#poi-type').val() == 'Icon'){
+        $('#poi-title').attr("disabled", true);
+        $('#poi-font-size').attr("disabled", true);
+        $('#select-icon-group').fadeIn();
+    }
+    if($('#poi-type').val() == 'TextIcon'){
+        $('#select-icon-group').fadeIn();
+        $('#poi-title').attr("disabled", false);
+        $('#poi-font-size').attr("disabled", false);
+    }
+    if($('#poi-type').val() == 'Text'){
+        $('#poi-title').attr("disabled", false);
+        $('#poi-font-size').attr("disabled", false);
+        $('#select-icon-group').fadeOut();
+    }
+
+
+    console.log("UPDATING MAP LABEL:");
+    console.log(labelProperties);
+
+    ambiarc.updateMapLabel(currentLabelId, labelProperties.type, labelProperties);
+
+    console.log("updated!!");
 
     var listItem = $('#'+currentLabelId);
         $(listItem).find('.list-poi-label').html(labelProperties.label);
@@ -849,19 +861,26 @@ var importIconHandler = function(){
         fr.onload = function(image){
 
             console.log("image loaded!");
-            console.log(image.srcElement.result);
+            // console.log(image.srcElement.result);
 
             var imagePath = $('#icon-file-hidden').val();
             var imageName = imagePath.split('fakepath\\')[1];
             var base64String = image.srcElement.result;
+            var trimmedBase64String = image.srcElement.result.replace(/^data:image\/(png|jpeg);base64,/, "");
+
+            console.log("BASE64!");
+            console.log(base64String);
+            console.log("trimmed 64!");
+            console.log(trimmedBase64String);
 
             $('#poi-browse-text').html(imageName);
             $('#poi-icon-image').css('background-image','url("'+base64String+'")');
             $('#poi-icon-image').removeAttr('data-image');
-            ambiarc.poiList[currentLabelId].base64 = base64String;
-            ambiarc.poiList[currentLabelId].partialPath = '';
 
-            updatePoiDetails('base64', base64String);
+            ambiarc.poiList[currentLabelId].partialPath = trimmedBase64String;
+            ambiarc.poiList[currentLabelId].location = 'Base64';
+
+            updatePoiDetails('base64', trimmedBase64String);
             showPoiDetails();
         }
         fr.readAsDataURL(file);
@@ -894,8 +913,11 @@ var saveNewIcon = function(){
 
     ambiarc.poiList[currentLabelId].base64 = base64String;
     ambiarc.poiList[currentLabelId].partialPath = imgIcon;
+    ambiarc.poiList[currentLabelId].location = 'Default';
     $('#poi-icon-image').css('background-image','url("'+base64String+'")');
     $('#poi-icon-image').attr('data-image',imgIcon);
+    $('#icon-file-hidden').val('');
+    $('#poi-browse-text').html('');
 
     updatePoiDetails('partialPath', imgIcon);
     showPoiDetails();
@@ -973,6 +995,6 @@ var repositionLabel = function(){
 
         console.log(latlon)
 
-        updatePoiDetails(['longitude', 'latitude'], [latlon.lat, latlon.lon]);
+        updatePoiDetails(['longitude', 'latitude'], [latlon.lon, latlon.lat]);
     });
 }

@@ -34,6 +34,10 @@
 			gameInstance.SendMessage('Ambiarc', 'GetMapPositionAtCursor', coordType);
 		};
 		this.createMapLabel = function(mapLabelType, mabelLabelInfo, idCallback) {
+
+			console.log("DTA IN CREATEMAPLABEL FUNCTION:");
+			console.log(mabelLabelInfo);
+
 			this.messageQueue.push(idCallback);
 			var json = JSON.stringify({ mapLabelType: mapLabelType, mapLabelInfo: mabelLabelInfo });
 			gameInstance.SendMessage('Ambiarc', 'CreateMapLabel', json);
