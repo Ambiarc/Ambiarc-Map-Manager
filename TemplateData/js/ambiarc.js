@@ -51,6 +51,10 @@
 			gameInstance.SendMessage('Ambiarc', 'UpdateMapLabel', json);
 		};
 		this.destroyMapLabel = function(mapLabelId) {
+
+			console.log("DESTROY MAP LABEL!!:");
+			console.log(mapLabelId);
+
 			gameInstance.SendMessage('Ambiarc', 'DestroyMapLabel', mapLabelId);
 		};
 		this.showMapLabel = function(mapLabelId, immediate) {

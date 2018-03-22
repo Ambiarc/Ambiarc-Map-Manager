@@ -296,6 +296,9 @@ var onAmbiarcLoaded = function() {
 // creates the right-click menu over the map
 var onRightMouseDown = function(event) {
 
+    console.log("event details:");
+    console.log(event);
+
     $(poiMenuSelector).css('top', $(window).height() - event.detail.pixelY + "px");
     $(poiMenuSelector).css('left', event.detail.pixelX + "px");
 
@@ -832,7 +835,7 @@ var getBase64Image = function(img) {
     canvas.width = img.width;
     canvas.height = img.height;
     canvas.id='test_canvas';
-    $('body').append(canvas);
+    // $('body').append(canvas);
     var ctx = canvas.getContext("2d");
     ctx.drawImage(img, 0, 0);
     var dataURL = canvas.toDataURL();
