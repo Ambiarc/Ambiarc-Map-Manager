@@ -384,7 +384,7 @@ var mapLabelClickHandler = function(event) {
         return;
     }
     currentLabelId = event.detail;
-    var mapLabelInfo = ambiarc.poiList[event.detail];
+    var mapLabelInfo = ambiarc.poiList[currentLabelId];
 
     console.log(mapLabelInfo);
 
@@ -454,9 +454,15 @@ var addElementToPoiList = function(mapLabelId, mapLabelName, mapLabelInfo) {
     $(item).on('click', function(){
         currentLabelId = mapLabelId;
 
+        console.log("CLICKED ITEM!!");
+        console.log(ambiarc.poiList[currentLabelId]);
+
         var initState = jQuery.extend({}, ambiarc.poiList[currentLabelId]);
         ambiarc.history = [];
         ambiarc.history.push(initState);
+
+        console.log("mapLabelInfo:");
+        console.log(mapLabelInfo);
 
         fillDetails(mapLabelInfo);
         ambiarc.focusOnMapLabel(mapLabelId, mapLabelId);
@@ -497,6 +503,8 @@ var fillDetails = function(mapLabelInfo){
 
     emptyDetailsData();
 
+    var mapLabelInfo = ambiarc.poiList[currentLabelId];
+
     if(mapLabelInfo.type == 'Text' || mapLabelInfo.type == 'TextIcon'){
         $('#poi-title').val(mapLabelInfo.label);
         $('#poi-font-size').val(mapLabelInfo.fontSize);
@@ -520,6 +528,8 @@ var fillDetails = function(mapLabelInfo){
     $('#poi-tooltip-title').val(mapLabelInfo.tooltipTitle);
     $('#poi-tooltip-body').val(mapLabelInfo.tooltipBody);
     $('#poi-icon-image').css('background-image', 'url("'+mapLabelInfo.base64+'")');
+    $('#'+currentLabelId).find('.list-poi-icon').css('background-image', 'url("'+mapLabelInfo.base64+'")');
+
 
 }
 
@@ -827,10 +837,6 @@ var iconImageHandler = function(){
 
 var getBase64Image = function(img) {
     var canvas = document.createElement("canvas");
-    console.log("width:");
-    console.log(img.width);
-    console.log("height:");
-    console.log(img.height);
 
     canvas.width = img.width;
     canvas.height = img.height;
@@ -869,7 +875,7 @@ var importIconHandler = function(){
             var imagePath = $('#icon-file-hidden').val();
             var imageName = imagePath.split('fakepath\\')[1];
             var base64String = image.srcElement.result;
-            var trimmedBase64String = image.srcElement.result.replace(/^data:image\/(png|jpeg);base64,/, "");
+            var trimmedBase64String = image.srcElement.result.replace(/^data:image\/(png|jpeg|jpg);base64,/, "");
 
             console.log("BASE64!");
             console.log(base64String);
@@ -879,11 +885,14 @@ var importIconHandler = function(){
             $('#poi-browse-text').html(imageName);
             $('#poi-icon-image').css('background-image','url("'+base64String+'")');
             $('#poi-icon-image').removeAttr('data-image');
+            $('#'+currentLabelId).find('.list-poi-icon').css('background-image', 'url("'+base64String+'")');
+
 
             ambiarc.poiList[currentLabelId].partialPath = trimmedBase64String;
+            ambiarc.poiList[currentLabelId].base64 = base64String;
             ambiarc.poiList[currentLabelId].location = 'Base64';
 
-            updatePoiDetails('base64', trimmedBase64String);
+            updatePoiDetails('partialPath', trimmedBase64String);
             showPoiDetails();
         }
         fr.readAsDataURL(file);
@@ -921,6 +930,7 @@ var saveNewIcon = function(){
     $('#poi-icon-image').attr('data-image',imgIcon);
     $('#icon-file-hidden').val('');
     $('#poi-browse-text').html('');
+    $('#'+currentLabelId).find('.list-poi-icon').css('background-image', 'url("'+base64String+'")');
 
     updatePoiDetails('partialPath', imgIcon);
     showPoiDetails();
