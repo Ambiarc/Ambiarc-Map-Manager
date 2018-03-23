@@ -113,9 +113,10 @@ $(document).ready(function() {
         updatePoiDetails('buildingId', $(this).val())
     });
 
-    $('#poi-floor-id').on('change', function(){
-        updatePoiDetails('floorId', $(this).val())
-    });
+    // $('#poi-floor-id').on('change', function(){
+    //     // updatePoiDetails('floorId', $(this).val())
+    //
+    // });
 
     $('#poi-label-latitude').on('change', function(){
         updatePoiDetails('latitude', $(this).val())
@@ -138,7 +139,8 @@ $(document).ready(function() {
     });
 
     $('body').on('change', '.poi-floor-id', function(){
-        updatePoiDetails('floorId', $(this).val());
+        // updatePoiDetails('floorId', $(this).val());
+        updateFloorId($(this).val());
     })
 
     $('body').on('change', '#poi-bulding-id', function(){
@@ -275,6 +277,7 @@ var onAmbiarcLoaded = function() {
     ambiarc.registerForEvent(ambiarc.eventLabel.FloorSelectorDisabled, onExitedFloorSelector);
     ambiarc.registerForEvent(ambiarc.eventLabel.FloorSelectorFloorFocusChanged, onFloorSelectorFocusChanged);
     ambiarc.registerForEvent(ambiarc.eventLabel.MapLabelSelected, mapLabelClickHandler);
+
     ambiarc.poiList = {};
 
     fillBuildingsList();
@@ -332,6 +335,9 @@ var autoSelectFloor = function(){
 
 // closes the floor menu when a floor was selected
 var onFloorSelected = function(event) {
+
+    console.log("FLOOR IS SELECTED!!!!!!!!!!!");
+
     var floorInfo = event.detail;
     currentFloorId = floorInfo.floorId;
     if (isFloorSelectorEnabled) {
@@ -343,6 +349,9 @@ var onFloorSelected = function(event) {
 }
 // expands the floor menu when the map enter Floor Selector mode
 var onEnteredFloorSelector = function(event) {
+
+    console.log("ENTERED FLOOR!!");
+
     var buildingId = event.detail;
     currentFloorId = undefined;
     if (!isFloorSelectorEnabled) {
@@ -671,6 +680,15 @@ var fillBuildingsList = function(){
 var deletePoiData = function(){
     delete ambiarc.poiList[currentLabelId];
     emptyDetailsData();
+
+    if(poisInScene.indexOf(currentLabelId) >-1){
+        console.log("FOUND ELEMENT IN POISINSCENE!!");
+        var elIndex = poisInScene.indexOf(currentLabelId);
+        console.log("deleting....");
+        poisInScene.splice(elIndex, 1);
+    }
+
+    // currentLabelId = undefined;
 }
 
 
@@ -695,7 +713,6 @@ var emptyDetailsData = function(){
 
 var updatePoiDetails = function(changedKey, changedValue){
 
-
     console.log("changed key:");
     console.log(changedKey);
     console.log("changed value:");
@@ -710,9 +727,7 @@ var updatePoiDetails = function(changedKey, changedValue){
     }
     else {
         //applying changed value to ambiarc.poiList object for current label
-
         console.log("applying changed values:");
-
         console.log("change key:");
         console.log(changedKey);
         console.log("changedValue");
@@ -745,24 +760,46 @@ var updatePoiDetails = function(changedKey, changedValue){
         $('#select-icon-group').fadeOut();
     }
 
-
-    console.log("UPDATING MAP LABEL:");
-    console.log(labelProperties);
-
     ambiarc.updateMapLabel(currentLabelId, labelProperties.type, labelProperties);
-
-    console.log("updated!!");
 
     var listItem = $('#'+currentLabelId);
         $(listItem).find('.list-poi-label').html(labelProperties.label);
         $(listItem).find('.list-poi-bldg').html('Building '+labelProperties.buildingId);
         $(listItem).find('.list-poi-floor').html('Floor '+labelProperties.floorId);
 
-
     updatePoiList();
     toggleSaveButton();
+};
 
-}
+
+var updateFloorId = function(floorId){
+
+    var newLabel = ambiarc.poiList[currentLabelId];
+        newLabel.floorId = floorId;
+
+    ambiarc.destroyMapLabel(currentLabelId);
+    ambiarc.registerForEvent(ambiarc.eventLabel.CameraMotionCompleted, cameraCompletedHandler);
+    ambiarc.focusOnFloor(newLabel.buildingId, newLabel.floorId, 1000);
+};
+
+
+var cameraCompletedHandler = function(event){
+
+    var newLabel = ambiarc.poiList[currentLabelId];
+
+    //1000 is mark for updating floor id camera movement
+    if(event.detail == 1000){
+        ambiarc.unregisterEvent(ambiarc.eventLabel.CameraMotionCompleted, cameraCompletedHandler);
+
+        ambiarc.createMapLabel(newLabel.type, newLabel, function(labelId){
+            mapLabelCreatedCallback(labelId, newLabel.label, newLabel);
+            deletePoiData(currentLabelId);
+            currentLabelId = labelId;
+            fillDetails(newLabel);
+            updatePoiList();
+        });
+    }
+};
 
 
 var importData = function(){
@@ -801,11 +838,16 @@ var exportData = function(){
             properties.label = labelInfo.label;
         }
 
+        if(labelInfo.base64){
+            properties.icon = labelInfo.base64;
+        }
+
         var feature = {
             type: "Feature",
             properties: properties,
             geometry: geometry
         };
+
         exportData.features.push(feature);
     });
 
