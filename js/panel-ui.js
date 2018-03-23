@@ -529,7 +529,7 @@ var fillDetails = function(mapLabelInfo){
 
     var mapLabelInfo = ambiarc.poiList[currentLabelId];
 
-    if(mapLabelInfo.type == 'Text' || mapLabelInfo.type == 'TextIcon'){
+    if(mapLabelInfo.type == 'Text' || mapLabelInfo.type == 'IconWithText'){
         $('#poi-title').val(mapLabelInfo.label);
         $('#poi-font-size').val(mapLabelInfo.fontSize);
         $('#poi-title').attr("disabled", false);
@@ -574,8 +574,8 @@ var labelTypeObj = function(labelString){
         case 'Icon':
             return ambiarc.mapLabel.Icon;
 
-        case 'TextIcon':
-            return ambiarc.mapLabel.TextIxon;
+        case 'IconWithText':
+            return ambiarc.mapLabel.IconWithText;
     }
 }
 
@@ -749,7 +749,7 @@ var updatePoiDetails = function(changedKey, changedValue){
         $('#poi-font-size').attr("disabled", true);
         $('#select-icon-group').fadeIn();
     }
-    if($('#poi-type').val() == 'TextIcon'){
+    if($('#poi-type').val() == 'IconWithText'){
         $('#select-icon-group').fadeIn();
         $('#poi-title').attr("disabled", false);
         $('#poi-font-size').attr("disabled", false);
