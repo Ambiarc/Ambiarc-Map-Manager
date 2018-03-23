@@ -778,8 +778,20 @@ var updateFloorId = function(floorId){
         newLabel.floorId = floorId;
 
     ambiarc.destroyMapLabel(currentLabelId);
-    ambiarc.registerForEvent(ambiarc.eventLabel.CameraMotionCompleted, cameraCompletedHandler);
-    ambiarc.focusOnFloor(newLabel.buildingId, newLabel.floorId, 1000);
+
+    if(currentFloorId !== floorId){
+        ambiarc.registerForEvent(ambiarc.eventLabel.CameraMotionCompleted, cameraCompletedHandler);
+        ambiarc.focusOnFloor(newLabel.buildingId, newLabel.floorId, 1000);
+    }
+    else {
+        ambiarc.createMapLabel(newLabel.type, newLabel, function(labelId){
+            mapLabelCreatedCallback(labelId, newLabel.label, newLabel);
+            deletePoiData(currentLabelId);
+            currentLabelId = labelId;
+            fillDetails(newLabel);
+            updatePoiList();
+        });
+    }
 };
 
 
@@ -790,6 +802,12 @@ var cameraCompletedHandler = function(event){
     //1000 is mark for updating floor id camera movement
     if(event.detail == 1000){
         ambiarc.unregisterEvent(ambiarc.eventLabel.CameraMotionCompleted, cameraCompletedHandler);
+        var buildingId = newLabel.buildingId;
+        var floorId = newLabel.floorId;
+        var buildingFloorValue = buildingId+'::'+floorId;
+        $('#bldg-floor-select').val(buildingFloorValue);
+        console.log("BLDG - FLOOR VALUE:");
+        console.log(buildingFloorValue);
 
         ambiarc.createMapLabel(newLabel.type, newLabel, function(labelId){
             mapLabelCreatedCallback(labelId, newLabel.label, newLabel);
