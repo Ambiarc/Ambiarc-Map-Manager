@@ -1,0 +1,13 @@
+{
+"companyName": "Ambiarc",
+"productName": "Ambiarc",
+"dataUrl": "59e931016ddb8c836abc1ccd39dc88a2.unityweb",
+"asmCodeUrl": "1e2e477e7aeff752d22fd3061723c837.unityweb",
+"asmMemoryUrl": "27b60ec1c50214ae34bf6c9b64e9859c.unityweb",
+"asmFrameworkUrl": "8c2bc5e0da4a58a98c0b6f3c5ca74e05.unityweb",
+"TOTAL_MEMORY": 134217728,
+"graphicsAPI": ["WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20"
+}
