@@ -143,7 +143,8 @@
     min-height: 75px;
 }
 
-#listPoiTemplate {
+#listPoiTemplate,
+#pairKeyValueTemplate {
     display: none!important;
 }
 
@@ -418,4 +419,22 @@
 .icon-btn-wrapper {
     margin-top: auto;
     margin-bottom: auto;
+}
+
+#poi-key-value-list {
+    list-style: none;
+    padding: 0;
+}
+
+.pair-key-row {
+    width: 100%;
+}
+
+.pair-key-row .list-icon-wrapper {
+    padding: 0;
+    padding-top: 30px;
+}
+
+.pair-type {
+    font-size: 8px!important;
 }

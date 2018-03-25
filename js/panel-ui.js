@@ -10,6 +10,8 @@ var poisInScene = [];
 // global lobal state indicating the current sleected floor
 var currentFloorId = 'L002';
 var currentLabelId, ambiarc, fr, parsedJson;
+// key vlue on input field click
+var pairFocusKey;
 
 // Creating the right-click menu
 $(document).ready(function() {
@@ -138,14 +140,32 @@ $(document).ready(function() {
         updatePoiDetails('showToolTip', $(this).is(':checked'));
     });
 
+    $('body').on('focusin', '.poi-new-key', function(e){
+        console.log("FOCUS ON KEY...");
+        pairFocusKey = $(this).val();
+        console.log(pairFocusKey);
+    });
+
+
+    $('#poi-add-pair').on('click', addNewPair);
+
+
+    $('body').on('change', '.poi-new-key', updatePairKey);
+    $('body').on('change', '.poi-new-value', updatePairValue);
+    $('body').on('click', '.delete-pair', deletePairValue);
+
+    $('body').on('click', '.value-to-number', valueToNumber);
+    $('body').on('click', '.value-to-string', valueToString);
+
+
     $('body').on('change', '.poi-floor-id', function(){
         // updatePoiDetails('floorId', $(this).val());
         updateFloorId($(this).val());
-    })
+    });
 
     $('body').on('change', '#poi-bulding-id', function(){
         updatePoiDetails('floorId', $(this).val());
-    })
+    });
 
     $('#poi-delete').on('click', function(){
 
@@ -770,6 +790,86 @@ var updatePoiDetails = function(changedKey, changedValue){
     updatePoiList();
     toggleSaveButton();
 };
+
+
+var addNewPair = function(){
+    console.log("CLICKED ADD NEW PAIR!");
+
+    var item = $("#pairKeyValueTemplate").find('li').clone()
+        $(item).appendTo($("#poi-key-value-list"));
+
+}
+
+
+var updatePairKey =  function(e){
+
+    console.log("VALUE CHANGED!!");
+    console.log("e:");
+    console.log(e);
+
+    var pairItem = $(this).closest('.pair-key-row');
+    var key = $(pairItem).find('.poi-new-key').val();
+    var value = $(pairItem).find('.poi-new-value').val();
+
+    if(key == '' || value == ''){
+        return;
+    }
+
+    if(pairFocusKey != '') {
+        delete ambiarc.poiList[currentLabelId][pairFocusKey];
+    }
+
+    ambiarc.poiList[currentLabelId][key] = value;
+
+    console.log("new poi values:");
+    console.log(ambiarc.poiList[currentLabelId]);
+};
+
+
+var updatePairValue =  function(e){
+
+    console.log("KEY CHANGED!!");
+    console.log("e:");
+    console.log(e);
+
+    var pairItem = $(this).closest('.pair-key-row');
+    var key = $(pairItem).find('.poi-new-key').val();
+    var value = $(pairItem).find('.poi-new-value').val();
+
+    if(key == '' || value == ''){
+        return;
+    }
+
+    ambiarc.poiList[currentLabelId][key] = value;
+
+    console.log("changing value!!");
+
+};
+
+
+var deletePairValue = function(){
+    console.log("DELETE PAIR VALUE");
+
+    var pairItem = $(this).closest('.pair-key-row');
+    var keyName = $(pairItem).find('.poi-new-key').val();
+
+    delete ambiarc.poiList[currentLabelId][keyName];
+    $(pairItem).remove();
+}
+
+
+var valueToNumber = function(){
+    var pairItem = $(this).closest('.pair-key-row');
+    $(pairItem).find('.poi-new-value').attr('data-type','number');
+    $(pairItem).find('.pair-type').html('(number)');
+}
+
+
+var valueToString = function(){
+    var pairItem = $(this).closest('.pair-key-row');
+    $(pairItem).find('.poi-new-value').attr('data-type','string');
+    $(pairItem).find('.pair-type').html('(string)');
+}
 
 
 var updateFloorId = function(floorId){

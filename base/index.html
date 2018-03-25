@@ -164,7 +164,6 @@
                             </div>
                             <div id="poi-floor-lists" class="form-group col-sm-6">
                                 <label class="poi-details-label">Floor ID</label>
-                                <!--<select type="text" class="poi-details-input form-control poi-floor-id"></select>--> <!-- select is added dynamicay -->
                             </div>
                         </div>
 
@@ -178,14 +177,6 @@
                                 <input id="poi-label-longitude" type="text" class="poi-details-input form-control" />
                             </div>
                         </div>
-
-                        <!--<div class="row">-->
-                            <!--<div class="col-sm-4">-->
-                                <!--<div class="btn btn-primary">-->
-                                    <!--Reposition-->
-                                <!--</div>-->
-                            <!--</div>-->
-                        <!--</div>-->
                     </div>
 
 
@@ -214,46 +205,47 @@
                         </div>
                     </div>
 
-                    <!--<div class="row">-->
-                        <!--<div class="col-sm-5 form-group">-->
-                            <!--<label class="poi-details-label">Key</label>-->
-                            <!--<input type="text" class="poi-details-input form-control" />-->
-                        <!--</div>-->
-
-                        <!--<div class="col-sm-3 form-group">-->
-                            <!--<label class="poi-details-label">Value</label>-->
-                            <!--<input type="text" class="poi-details-input form-control" />-->
-
-                        <!--</div>-->
-
-                        <!--<div class="col-sm1 list-icon-wrapper form-icon">-->
-                            <!--<span class="poi-icon poi-hashtag input-icon form-control-feedback"></span>-->
-                            <!--<span class="poi-icon poi-quotes input-icon form-control-feedback"></span>-->
-                            <!--<span class="poi-icon poi-trashcan"></span>-->
-                        <!--</div>-->
-                    <!--</div>-->
-
                     <div class="panel-group">
                         <div class="row">
-                            <div class="col-sm-4 form-group">
-                                <label class="poi-details-label">Key</label>
-                                <input id="poi-new-key" type="text" class="poi-details-input form-control">
-                            </div>
+                            <!--<div class="col-sm-4 form-group">-->
+                                <!--<label class="poi-details-label">Key</label>-->
+                                <!--<input id="poi-new-key" type="text" class="poi-details-input form-control">-->
+                            <!--</div>-->
 
-                            <div class="col-sm-4 form-group no-right-padding">
-                                <label class="poi-details-label">Value</label>
-                                <input id="poi-new-value" type="text" class="poi-details-input form-control">
-                            </div>
+                            <!--<div class="col-sm-4 form-group no-right-padding">-->
+                                <!--<label class="poi-details-label">Value</label>-->
+                                <!--<input id="poi-new-value" type="text" class="poi-details-input form-control">-->
+                            <!--</div>-->
 
-                            <div class="col-sm-4 list-icon-wrapper form-icon align-bottom row" style="height: 60px;padding: 0;">
-                                <img class="poi-icon poi-hashtag input-icon align-bottom" style="">
-                                <img class="poi-icon poi-quotes input-icon align-bottom" style="">
-                                <img class="poi-icon poi-trashcan align-bottom" style="width: 20px;height: 20px;margin-left: 5px;"></div>
+                            <!--<div class="col-sm-4 list-icon-wrapper form-icon align-bottom row" style="height: 60px;padding: 0;">-->
+                                <!--<img class="poi-icon poi-hashtag input-icon align-bottom" style="">-->
+                                <!--<img class="poi-icon poi-quotes input-icon align-bottom" style="">-->
+                                <!--<img class="poi-icon poi-trashcan align-bottom" style="width: 20px;height: 20px;margin-left: 5px;"></div>-->
+                        </div>
+
+                        <div class="row">
+                            <ul id="poi-key-value-list">
+                                <li class="row pair-key-row">
+                                    <div class="col-sm-4 form-group">
+                                        <label class="poi-details-label">Key</label>
+                                        <input type="text" class="poi-details-input form-control poi-new-key">
+                                    </div>
+                                    <div class="col-sm-4 form-group no-right-padding">
+                                        <label class="poi-details-label">Value <span class="pair-type">(string)</span></label>
+                                        <input type="text" data-type="string" class="poi-details-input form-control poi-new-value">
+                                    </div>
+                                    <div class="col-sm-4 list-icon-wrapper form-icon align-bottom row">
+                                        <img class="poi-icon poi-hashtag input-icon align-bottom value-to-number">
+                                        <img class="poi-icon poi-quotes input-icon align-bottom value-to-string">
+                                        <img class="poi-icon poi-trashcan delete-pair align-bottom" style="width: 20px;height: 20px;margin-left: 5px;">
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
 
                         <div class="row">
                             <div class="col-sm-4">
-                                <div class="btn btn-default btn-primary">
+                                <div id="poi-add-pair" class="btn btn-default btn-primary">
                                     Add New Pair
                                 </div>
                             </div>
@@ -295,99 +287,9 @@
             </div>
 
 
-
-
-
             <div class="row panel-body-row icons-list-panel invisible">
                 <div class="panel-body panel panel-default icons-container">
                     <div class="row">
-
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>-->
-
 
                         <div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>
                         <div class="col-sm-4"><img data-image="Bicycle" class="icon-sample" src="../css/icons/ic_admin_bicycle.png"></div>
@@ -443,7 +345,7 @@
     </div>
 
 
-    <!-- points of interest ist element template -->
+    <!-- points of interest list element template -->
     <div id="listPoiTemplate">
         <li class="poi-list-item row">
             <div class="col-sm1 list-icon-wrapper">
@@ -457,6 +359,26 @@
             </div>
         </li>
     </div>
+
+
+<div id="pairKeyValueTemplate">
+    <li class="row pair-key-row">
+        <div class="col-sm-4 form-group">
+            <label class="poi-details-label">Key</label>
+            <input type="text" class="poi-details-input form-control poi-new-key">
+        </div>
+        <div class="col-sm-4 form-group no-right-padding">
+            <label class="poi-details-label">Value <span class="pair-type">(string)</span></label>
+            <input type="text" data-type="string" class="poi-details-input form-control poi-new-value">
+        </div>
+        <div class="col-sm-4 list-icon-wrapper form-icon align-bottom row">
+            <img class="poi-icon poi-hashtag input-icon align-bottom value-to-number">
+            <img class="poi-icon poi-quotes input-icon align-bottom value-to-string">
+            <img class="poi-icon poi-trashcan delete-pair align-bottom" style="width: 20px;height: 20px;margin-left: 5px;">
+        </div>
+    </li>
+</div>
+
 
 
 
