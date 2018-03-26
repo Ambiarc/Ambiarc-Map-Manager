@@ -396,14 +396,9 @@ var autoSelectFloor = function(){
 
 // closes the floor menu when a floor was selected
 var onFloorSelected = function(event) {
-
-    console.log("FLOOR IS SELECTED!!!!!!!!!!!");
-
+    
     var floorInfo = event.detail;
     currentFloorId = floorInfo.floorId;
-
-    console.log("AAAAAAAAAAAAAA");
-    console.log(currentBuildingId+'::'+currentFloorId);
 
     $('#bldg-floor-select').val(currentBuildingId+'::'+currentFloorId);
     if (isFloorSelectorEnabled) {
@@ -779,7 +774,7 @@ var fillBuildingsList = function(){
     ambiarc.getAllBuildings(function(buildings){
         mainBldgID = buildings[0];
         currentBuildingId = buildings[0];
-        currentFloorId = 'Eterior';
+        currentFloorId = 'Exterior';
         $.each(buildings, function(id, bldgValue){
 
             var bldgListItem = document.createElement('option');
