@@ -259,8 +259,8 @@ var createTextLabel = function() {
         var mapLabelInfo = {
             buildingId: mainBldgID,
             floorId: currentFloorId,
-            latitude: toFixed(parseFloat(latlon.lat), 4),
-            longitude: toFixed(parseFloat(latlon.lon), 4),
+            latitude: parseFloat(toFixed(latlon.lat, 4)),
+            longitude: parseFloat(toFixed(latlon.lon, 4)),
             label: 'Ambiarc Text Label: ' + poisInScene.length,
             fontSize: 26,
             category: 'Label',
@@ -288,8 +288,8 @@ var createIconLabel = function() {
         var mapLabelInfo = {
             buildingId: mainBldgID,
             floorId: currentFloorId,
-            latitude: toFixed(parseFloat(latlon.lat), 4),
-            longitude: toFixed(parseFloat(latlon.lon), 4),
+            latitude: parseFloat(toFixed(latlon.lat, 4)),
+            longitude: parseFloat(toFixed(latlon.lon, 4)),
             label: '',
             category: 'Label',
             location: 'Default',
@@ -633,8 +633,8 @@ var fillDetails = function(mapLabelInfo){
     $('#poi-type').val(mapLabelInfo.type);
     $('#poi-bulding-id').val(mapLabelInfo.buildingId);
     $('.poi-floor-id[data-bldgid = "'+mapLabelInfo.buildingId+'"]').val(mapLabelInfo.floorId);
-    $('#poi-label-latitude').val(toFixed(mapLabelInfo.latitude, 4));
-    $('#poi-label-longitude').val(toFixed(mapLabelInfo.longitude, 4));
+    $('#poi-label-latitude').val(mapLabelInfo.latitude);
+    $('#poi-label-longitude').val(mapLabelInfo.longitude);
     $('#poi-tooltips-toggle').prop('checked', mapLabelInfo.showToolTip);
     $('#poi-tooltip-title').val(mapLabelInfo.tooltipTitle);
     $('#poi-tooltip-body').val(mapLabelInfo.tooltipBody);
@@ -680,8 +680,8 @@ var collectPoiData = function(){
     var MapLabelType = labelTypeObj($('#poi-type').val()),
         buildingId = $('#poi-bulding-id').val(),
         floorId = $('#poi-floor-id').val(),
-        latitude = toFixed(parseFloat($('#poi-label-latitude').val()), 4),
-        longitude = toFixed(parseFloat($('#poi-label-longitude').val()),4),
+        latitude = parseFloat($('#poi-label-latitude').val()),
+        longitude = parseFloat($('#poi-label-longitude').val()),
         showOnCreation = $('#poi-creation-show').is(':checked'),
         showToolTip = $('#poi-tooltips-toggle').is(':checked'),
         tooltipTitle = $('#poi-tooltip-title').val(),
@@ -1028,43 +1028,32 @@ var exportData = function(){
 
     $.each(ambiarc.poiList, function(i, labelInfo){
 
-        var properties = {
-            buildingId: labelInfo.buildingId,
-            category: labelInfo.category,
-            floorId: labelInfo.floorId,
-            showOnCreation: labelInfo.showOnCreation,
-            showToolTip: labelInfo.showToolTip,
-            type: labelInfo.type
-        };
-
+        var properties = {};
         var geometry = {
-            type: "Point",
-            coordinates: [
-                toFixed(parseFloat(labelInfo.longitude), 4),
-                toFixed(parseFloat(labelInfo.latitude), 4)
-            ]
+            type: 'Point',
+            coordinates: []
         };
 
-        if(properties.category !== 'Icon'){
-            properties.fontSize = labelInfo.fontSize;
-            properties.label = labelInfo.label;
-        }
+        $.each(labelInfo, function(key, value){
 
-        if(labelInfo.base64){
-            properties.icon = labelInfo.base64;
-        }
-        if(labelInfo.location){
-            properties.location = labelInfo.location;
-        }
-        if(labelInfo.partialPath){
-            properties.partialPath = labelInfo.partialPath;
-        }
-        if(labelInfo.tooltipBody){
-            properties.tooltipBody = labelInfo.tooltipBody;
-        }
-        if(labelInfo.tooltipTitle){
-            properties.tooltipTitle = labelInfo.tooltipTitle;
-        }
+            if(key == 'longitude'){
+
+                console.log("this is longitude:");
+                console.log(value);
+
+                geometry.coordinates[0] = parseFloat(value);
+            }
+            else if(key == 'latitude'){
+                geometry.coordinates[1] = parseFloat(value);
+            }
+            else {
+                properties[key] = value;
+            }
+        });
+
+        console.log("propertiesssss!");
+        console.log(properties);
+
 
         var feature = {
             type: "Feature",
@@ -1074,6 +1063,9 @@ var exportData = function(){
 
         exportData.features.push(feature);
     });
+
+    console.log("exported json:");
+    console.log(exportData);
 
     downloadObjectAsJson(exportData, 'geoJSON_'+Date.now());
 }
@@ -1297,8 +1289,6 @@ var sortByTime = function(){
 
 var importFileHandler = function(evt){
 
-    console.log("import file handler!!");
-
     if(!input){
         var input = $('#import-file')[0];
     }
@@ -1314,10 +1304,6 @@ var importFileHandler = function(evt){
         file = input.files[0];
         fr = new FileReader();
         fr.onload = function(test){
-
-            console.log("fr loaded!!");
-            console.log("test:");
-            console.log(test);
 
             var base64result = fr.result.split(',')[1];
 
@@ -1338,22 +1324,10 @@ var importFileHandler = function(evt){
 
 var fillGeoData = function(properties){
 
-    console.log("fill geo data!!");
-    console.log(properties);
-
     $.each(properties.features, function(i, feature){
-
-        console.log("each key:");
-        console.log(i);
-
-        console.log("each feature:");
-        console.log(feature);
-
         var mapLabelInfo = feature.properties;
-        mapLabelInfo.longitude = toFixed(parseFloat(feature.geometry.coordinates[0]), 4);
-        mapLabelInfo.latitude = toFixed(parseFloat(feature.geometry.coordinates[1]), 4);
-
-        console.log("creating map label...");
+        mapLabelInfo.longitude = parseFloat(feature.geometry.coordinates[0]);
+        mapLabelInfo.latitude = parseFloat(feature.geometry.coordinates[1]);
 
         ambiarc.createMapLabel(mapLabelInfo.type, mapLabelInfo,(labelId) => {
             mapLabelCreatedCallback(labelId, mapLabelInfo.label, mapLabelInfo);
@@ -1381,8 +1355,8 @@ var repositionLabel = function(){
 
     ambiarc.getMapPositionAtCursor(ambiarc.coordType.gps, (latlon) => {
 
-        var latitude = toFixed(parseFloat(latlon.lat), 4);
-        var longitude = toFixed(parseFloat(latlon.lon), 4);
+        var latitude = parseFloat(toFixed(latlon.lat, 4));
+        var longitude = parseFloat(toFixed(latlon.lon, 4));
 
         $('#poi-label-latitude').val(latitude);
         $('#poi-label-longitude').val(longitude);
