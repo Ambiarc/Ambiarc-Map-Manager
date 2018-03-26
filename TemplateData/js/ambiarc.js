@@ -48,9 +48,6 @@
     };
     this.updateMapLabel = function(mapLabelId, mapLabelType, mapLabelInfo) {
 
-      console.log("updateMapLabel function");
-      console.log(mapLabelInfo);
-
       var json = JSON.stringify({
         mapLabelId: mapLabelId,
         mapLabelType: mapLabelType,

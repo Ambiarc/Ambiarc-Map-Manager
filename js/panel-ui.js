@@ -1108,6 +1108,10 @@ var destroyAllLabels = function(){
 var iconImageHandler = function(){
     $('.selected-icon').removeClass('selected-icon');
     $(this).addClass('selected-icon');
+
+    var cloneObj = jQuery.extend({}, ambiarc.poiList[currentLabelId]);
+
+    showTempIcon(cloneObj);
 };
 
 
@@ -1184,6 +1188,9 @@ var showIconsPanel = function(){
 
 
 var showPoiDetails = function(){
+
+    ambiarc.updateMapLabel(currentLabelId, ambiarc.poiList[currentLabelId].type, ambiarc.poiList[currentLabelId]);
+
     $('.poi-details-panel').removeClass('invisible');
     $('.poi-list-panel').addClass('invisible');
     $('.icons-list-panel').addClass('invisible');
@@ -1217,6 +1224,26 @@ var saveNewIcon = function(){
 
     updatePoiDetails('partialPath', imgIcon);
     showPoiDetails();
+};
+
+
+var showTempIcon = function(clonedObj){
+
+    console.log("SHOW TEMP ICON!");
+
+    var imgSrc = $('.selected-icon').attr('src');
+    var imgIcon = $('.selected-icon').attr('data-image');
+    console.log("imgIcon:");
+    console.log(imgIcon);
+    var image = document.createElement('img');
+    image.src = imgSrc;
+    var base64String = getBase64Image(image);
+
+    clonedObj.base64 = base64String;
+    clonedObj.partialPath = imgIcon;
+    clonedObj.location = 'Default';
+
+    ambiarc.updateMapLabel(currentLabelId, clonedObj.type, clonedObj);
 };
 
 
@@ -1346,9 +1373,6 @@ var downloadObjectAsJson = function (exportObj, exportName){
 
 var repositionLabel = function(){
 
-    console.log("reposition label:");
-
-
     ambiarc.getMapPositionAtCursor(ambiarc.coordType.gps, (latlon) => {
 
         var latitude = toFixed(parseFloat(latlon.lat), 4);
@@ -1356,8 +1380,6 @@ var repositionLabel = function(){
 
         $('#poi-label-latitude').val(latitude);
         $('#poi-label-longitude').val(longitude);
-
-        console.log(latlon)
 
         updatePoiDetails(['longitude', 'latitude'], [longitude, latitude]);
     });
