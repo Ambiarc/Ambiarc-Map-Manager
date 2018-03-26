@@ -246,7 +246,7 @@ var createTextLabel = function() {
             latitude: latlon.lat,
             longitude:latlon.lon,
             label: 'Ambiarc Text Label: ' + poisInScene.length,
-            fontSize: 24,
+            fontSize: 26,
             category: 'Label',
             location: 'Default',
             partialPath: 'Information',
@@ -696,7 +696,7 @@ var collectPoiData = function(){
         showToolTip = $('#poi-tooltips-toggle').is(':checked'),
         tooltipTitle = $('#poi-tooltip-title').val(),
         tooltipBody = $('#poi-tooltip-body').val(),
-        fontSize = parseInt($('#poi-font-size').val()) || 24, //if no font set, set default value to 24
+        fontSize = parseInt($('#poi-font-size').val()) || 26, //if no font set, set default value to 26
         label = $('#poi-title').val();
 
 
