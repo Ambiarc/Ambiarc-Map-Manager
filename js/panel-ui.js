@@ -63,6 +63,17 @@ $(document).ready(function() {
 
     $('#bldg-floor-select').on('change', function(){
 
+        console.log("selected option:");
+        console.log($(this).val());
+
+        if($(this).val() == 'Exterior'){
+
+            console.log("focusing on floor selector");
+            console.log(mainBldgID);
+            ambiarc.viewFloorSelector(mainBldgID);
+            return;
+        }
+
         var parsedValue = $(this).val().split('::');
         var buildingId = parsedValue[0];
         var floorId = parsedValue[1];
@@ -343,27 +354,15 @@ var onAmbiarcLoaded = function() {
     ambiarc.poiList = {};
 
     fillBuildingsList();
-
-
-    // Create our floor selector menu with data fromt the SDK
-    ambiarc.getAllBuildings((bldgs) => {
-        mainBldgID = bldgs[0];
-        currentBuildingId = bldgs[0];
-    ambiarc.getAllFloors(mainBldgID, (floors) => {
-        addFloorToFloor(null, mainBldgID, "Exterior");
-    for (f in floors) {
-        addFloorToFloor(floors[f].id, mainBldgID, floors[f].positionName);
-    }
     $('#bootstrap').removeAttr('hidden');
-});
-});
     $('#controls-section').fadeIn();
 }
 // creates the right-click menu over the map
 var onRightMouseDown = function(event) {
 
-    console.log("event details:");
-    console.log(event);
+    if(isFloorSelectorEnabled || currentFloorId == 'Exterior'){
+        return;
+    }
 
     $(poiMenuSelector).css('top', $(window).height() - event.detail.pixelY + "px");
     $(poiMenuSelector).css('left', event.detail.pixelX + "px");
@@ -374,9 +373,8 @@ var onRightMouseDown = function(event) {
         return;
     }
 
-    if (!isFloorSelectorEnabled) {
-        $('#bootstrap').trigger('contextmenu');
-    }
+    $('#bootstrap').trigger('contextmenu');
+
     console.log("Ambiarc received a RightMouseDown event");
 }
 
@@ -403,6 +401,9 @@ var onFloorSelected = function(event) {
 
     var floorInfo = event.detail;
     currentFloorId = floorInfo.floorId;
+
+    console.log("AAAAAAAAAAAAAA");
+    console.log(currentBuildingId+'::'+currentFloorId);
 
     $('#bldg-floor-select').val(currentBuildingId+'::'+currentFloorId);
     if (isFloorSelectorEnabled) {
@@ -761,12 +762,24 @@ var collectPoiData = function(){
         MapLabelProperties: MapLabelProperties,
         MapLabelType: MapLabelType,
     };
-}
+};
 
 
 var fillBuildingsList = function(){
 
+    var bldgListItem = document.createElement('option');
+        bldgListItem.clasName = 'bldg-list-item';
+        bldgListItem.value = 'Exterior';
+        bldgListItem.textContent = 'Exterior';
+
+    $('#poi-bulding-id').append(bldgListItem);
+    $('#bldg-floor-select').append(bldgListItem);
+
+
     ambiarc.getAllBuildings(function(buildings){
+        mainBldgID = buildings[0];
+        currentBuildingId = buildings[0];
+        currentFloorId = 'Eterior';
         $.each(buildings, function(id, bldgValue){
 
             var bldgListItem = document.createElement('option');
