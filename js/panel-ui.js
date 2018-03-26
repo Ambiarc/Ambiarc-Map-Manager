@@ -63,13 +63,7 @@ $(document).ready(function() {
 
     $('#bldg-floor-select').on('change', function(){
 
-        console.log("selected option:");
-        console.log($(this).val());
-
         if($(this).val() == 'Exterior'){
-
-            console.log("focusing on floor selector");
-            console.log(mainBldgID);
             ambiarc.viewFloorSelector(mainBldgID);
             return;
         }
@@ -101,7 +95,6 @@ $(document).ready(function() {
 
     $('.sort-button').on('click', function(){
 
-        console.log("clicked sort button!");
         $('.sort-button').removeClass('selected').removeClass('btn-primary').removeClass('btn-selected');
         $(this).addClass('btn-primary').addClass('btn-selected');
     });
@@ -123,7 +116,6 @@ $(document).ready(function() {
         ambiarc.updateMapLabel(currentLabelId, ambiarc.poiList[currentLabelId].type, ambiarc.poiList[currentLabelId]);
 
         if(ambiarc.poiList[currentLabelId].floorId != currentFloorId){
-            console.log("FOCUSING!!");
             ambiarc.focusOnFloor(ambiarc.poiList[currentLabelId].buildingId, ambiarc.poiList[currentLabelId].floorId);
         }
     });
@@ -186,9 +178,7 @@ $(document).ready(function() {
     });
 
     $('body').on('focusin', '.poi-new-key', function(e){
-        console.log("FOCUS ON KEY...");
         pairFocusKey = $(this).val();
-        console.log(pairFocusKey);
     });
 
 
@@ -213,10 +203,6 @@ $(document).ready(function() {
     });
 
     $('#poi-delete').on('click', function(){
-
-        console.log("CURRENT LABEL ID:");
-        console.log(currentLabelId);
-
         ambiarc.destroyMapLabel(currentLabelId);
         deletePoiData(currentLabelId);
         updatePoiList();
@@ -224,13 +210,9 @@ $(document).ready(function() {
     });
 
     $('#cancel-icon-select').on('click', showPoiDetails);
-
     $('#save-icon-select').on('click', saveNewIcon);
 
     iconDefault = $('.selected-icon').attr('src');
-    console.log("defautl icon set!!");
-    console.log(iconDefault);
-
 });
 
 
@@ -377,7 +359,6 @@ var onRightMouseDown = function(event) {
 var autoSelectFloor = function(){
 
     if(mainBldgID){
-        // console.log("MAIN BUILDING ID DEFINED!");
         ambiarc.getAllFloors(mainBldgID, function(floors){
             currentFloorId = floors[0].id;
             ambiarc.registerForEvent(ambiarc.eventLabel.FloorSelected, mainBldgID, floors[0].id);
@@ -528,11 +509,11 @@ var addElementToPoiList = function(mapLabelId, mapLabelName, mapLabelInfo, times
             if(mapLabelInfo.base64 !== ''){
                 var iconSrc = mapLabelInfo.base64;
             }else {
-                var iconSrc = mapLabelInfo.type == 'Text' ? '../css/icons/ic_text_field.png' : '../css/icons/ic_admin_mail.png';
+                var iconSrc = mapLabelInfo.type == 'Text' ? '../css/icons/ic_text_field.png' : '../css/icons/ic_admin_info_v2.png';
             }
         }
         else {
-            var iconSrc = mapLabelInfo.type == 'Text' ? '../css/icons/ic_text_field.png' : '../css/icons/ic_admin_mail.png';
+            var iconSrc = mapLabelInfo.type == 'Text' ? '../css/icons/ic_text_field.png' : '../css/icons/ic_admin_info_v2.png';
         }
     }
 
@@ -671,8 +652,6 @@ var labelTypeObj = function(labelString){
 
 var collectPoiData = function(){
 
-    console.log("collect poi data");
-
     var MapLabelType = labelTypeObj($('#poi-type').val()),
         buildingId = $('#poi-bulding-id').val(),
         floorId = $('#poi-floor-id').val(),
@@ -704,11 +683,7 @@ var collectPoiData = function(){
     console.log("adding partialpath in collect data section:");
     var icon = $('#poi-icon-image').attr('data-image');
     if(icon && typeof icon !== 'undefined'){
-        console.log("ADED!!");
         MapLabelProperties.partialPath = icon;
-    }
-    else {
-        console.log("NOT FOUND :(");
     }
 
     return {
@@ -782,13 +757,10 @@ var deletePoiData = function(){
     emptyDetailsData();
 
     if(poisInScene.indexOf(currentLabelId) >-1){
-        console.log("FOUND ELEMENT IN POISINSCENE!!");
         var elIndex = poisInScene.indexOf(currentLabelId);
-        console.log("deleting....");
+
         poisInScene.splice(elIndex, 1);
     }
-
-    // currentLabelId = undefined;
 }
 
 
@@ -807,15 +779,12 @@ var emptyDetailsData = function(){
     $('#poi-creation-show').prop('checked', true);
     $('#poi-tooltips-toggle').prop('checked', false);
     $('#poi-key-value-list').html('');
+    $('#icon-file-hidden').val('');
+    $('#poi-browse-text').val('');
 }
 
 
 var updatePoiDetails = function(changedKey, changedValue){
-
-    console.log("changed key:");
-    console.log(changedKey);
-    console.log("changed value:");
-    console.log(changedValue);
 
     // If it's pair (longitude and latitude)
     if (typeof changedKey == 'object') {
@@ -826,16 +795,8 @@ var updatePoiDetails = function(changedKey, changedValue){
     }
     else {
         //applying changed value to ambiarc.poiList object for current label
-        console.log("applying changed values:");
-        console.log("change key:");
-        console.log(changedKey);
-        console.log("changedValue");
-        console.log(changedValue);
-
         ambiarc.poiList[currentLabelId][changedKey] = changedValue;
     }
-
-    console.log("data collected");
 
     var labelProperties = ambiarc.poiList[currentLabelId];
 
@@ -878,7 +839,6 @@ var updatePoiDetails = function(changedKey, changedValue){
 
 
 var addNewPair = function(key, value){
-    console.log("ADDING NEW PAIR...");
 
     var item = $("#pairKeyValueTemplate").find('li').clone()
         $(item).appendTo($("#poi-key-value-list"));
@@ -891,10 +851,6 @@ var addNewPair = function(key, value){
 
 
 var updatePairKey =  function(e){
-
-    console.log("VALUE CHANGED!!");
-    console.log("e:");
-    console.log(e);
 
     var pairItem = $(this).closest('.pair-key-row');
     var key = $(pairItem).find('.poi-new-key').val();
@@ -909,17 +865,10 @@ var updatePairKey =  function(e){
     }
 
     ambiarc.poiList[currentLabelId][key] = value;
-
-    console.log("new poi values:");
-    console.log(ambiarc.poiList[currentLabelId]);
 };
 
 
 var updatePairValue =  function(e){
-
-    console.log("KEY CHANGED!!");
-    console.log("e:");
-    console.log(e);
 
     var pairItem = $(this).closest('.pair-key-row');
     var key = $(pairItem).find('.poi-new-key').val();
@@ -930,14 +879,10 @@ var updatePairValue =  function(e){
     }
 
     ambiarc.poiList[currentLabelId][key] = value;
-
-    console.log("changing value!!");
-
 };
 
 
 var deletePairValue = function(){
-    console.log("DELETE PAIR VALUE");
 
     var pairItem = $(this).closest('.pair-key-row');
     var keyName = $(pairItem).find('.poi-new-key').val();
@@ -995,8 +940,6 @@ var cameraCompletedHandler = function(event){
         var floorId = newLabel.floorId;
         var buildingFloorValue = buildingId+'::'+floorId;
         $('#bldg-floor-select').val(buildingFloorValue);
-        console.log("BLDG - FLOOR VALUE:");
-        console.log(buildingFloorValue);
 
         ambiarc.createMapLabel(newLabel.type, newLabel, function(labelId){
             mapLabelCreatedCallback(labelId, newLabel.label, newLabel);
@@ -1041,13 +984,13 @@ var exportData = function(){
             else if(key == 'latitude'){
                 geometry.coordinates[1] = parseFloat(value);
             }
+            else if (key == 'base64'){
+                properties.base64 = value;
+            }
             else {
                 properties[key] = value;
             }
         });
-
-        console.log("propertiesssss!");
-        console.log(properties);
 
 
         var feature = {
@@ -1059,9 +1002,8 @@ var exportData = function(){
         exportData.features.push(feature);
     });
 
-    console.log("exported json:");
+    console.log("exported data:");
     console.log(exportData);
-
     downloadObjectAsJson(exportData, 'geoJSON_'+Date.now());
 }
 
@@ -1126,7 +1068,7 @@ var getBase64Image = function(img) {
 
 var importIconHandler = function(){
 
-    $('#poi-browse-text').html();
+    $('#poi-browse-text').html('');
 
     if(!input){
         var input = $('#icon-file-hidden')[0];
@@ -1143,24 +1085,15 @@ var importIconHandler = function(){
         fr = new FileReader();
         fr.onload = function(image){
 
-            console.log("image loaded!");
-            // console.log(image.srcElement.result);
-
             var imagePath = $('#icon-file-hidden').val();
             var imageName = imagePath.split('fakepath\\')[1];
             var base64String = image.srcElement.result;
             var trimmedBase64String = image.srcElement.result.replace(/^data:image\/(png|jpeg|jpg);base64,/, "");
 
-            console.log("BASE64!");
-            console.log(base64String);
-            console.log("trimmed 64!");
-            console.log(trimmedBase64String);
-
             $('#poi-browse-text').html(imageName);
             $('#poi-icon-image').css('background-image','url("'+base64String+'")');
             $('#poi-icon-image').removeAttr('data-image');
             $('#'+currentLabelId).find('.list-poi-icon').css('background-image', 'url("'+base64String+'")');
-
 
             ambiarc.poiList[currentLabelId].partialPath = trimmedBase64String;
             ambiarc.poiList[currentLabelId].base64 = base64String;
@@ -1201,8 +1134,6 @@ var saveNewIcon = function(){
 
     var imgSrc = $('.selected-icon').attr('src');
     var imgIcon = $('.selected-icon').attr('data-image');
-    console.log("imgIcon:");
-    console.log(imgIcon);
     var image = document.createElement('img');
         image.src = imgSrc;
     var base64String = getBase64Image(image);
@@ -1223,14 +1154,10 @@ var saveNewIcon = function(){
 
 var showTempIcon = function(clonedObj){
 
-    console.log("SHOW TEMP ICON!");
-
     var imgSrc = $('.selected-icon').attr('src');
     var imgIcon = $('.selected-icon').attr('data-image');
-    console.log("imgIcon:");
-    console.log(imgIcon);
     var image = document.createElement('img');
-    image.src = imgSrc;
+        image.src = imgSrc;
     var base64String = getBase64Image(image);
 
     clonedObj.base64 = base64String;
