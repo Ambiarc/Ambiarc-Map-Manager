@@ -13,6 +13,24 @@ var currentLabelId, ambiarc, fr, parsedJson;
 // key vlue on input field click
 var pairFocusKey;
 
+var regularFeatures = [
+    'label',
+    'fontSize',
+    'base64',
+    'buildingId',
+    'category',
+    'floorId',
+    'latitude',
+    'longitude',
+    'location',
+    'partialPath',
+    'showOnCreation',
+    'showToolTip',
+    'tooltipBody',
+    'tooltipTitle',
+    'type'
+];
+
 // Creating the right-click menu
 $(document).ready(function() {
 
@@ -55,10 +73,28 @@ $(document).ready(function() {
 
     //PANEL ELEMENTS HANDLERS
 
+    $('.filter-by-location').on('click', function(){
+        console.log("filter by location!");
+
+    });
+
+
+    $('.filter-by-name').on('click', sortByName);
+
+    $('.filter-by-time').on('click', sortByTime);
+
+
     $('#import-file').on('change', importFileHandler);
 
     $('.poi-list-panel').find('.header-button').on('click', function(){
         $('.header-button').removeClass('selected').removeClass('btn-primary').removeClass('btn-selected');
+        $(this).addClass('btn-primary').addClass('btn-selected');
+    });
+
+    $('.sort-button').on('click', function(){
+
+        console.log("clicked sort button!");
+        $('.sort-button').removeClass('selected').removeClass('btn-primary').removeClass('btn-selected');
         $(this).addClass('btn-primary').addClass('btn-selected');
     });
 
@@ -238,6 +274,7 @@ var createIconLabel = function() {
             floorId: currentFloorId,
             latitude: latlon.lat,
             longitude:latlon.lon,
+            label: '',
             category: 'Label',
             location: 'Default',
             partialPath: 'Information',
@@ -455,7 +492,7 @@ var listPoiClosed = function(mapLabelId) {
     });
 };
 // adds a POI to the HTML list
-var addElementToPoiList = function(mapLabelId, mapLabelName, mapLabelInfo) {
+var addElementToPoiList = function(mapLabelId, mapLabelName, mapLabelInfo, timestamp) {
 
     var item = $("#listPoiTemplate").clone();
         $(item).attr('id', mapLabelId);
@@ -463,8 +500,13 @@ var addElementToPoiList = function(mapLabelId, mapLabelName, mapLabelInfo) {
         $(item).appendTo($("#listPoiContainer"));
     var bldg = 'Building 1';
     var floorNum = 'Floor 1';
-    var timestamp = Date.now(),
-        date = new Date(timestamp),
+
+    //if no timestamps, take current timestamp. Otherwise, use initial timestamps
+    if(!timestamp){
+        var timestamp = Date.now();
+    };
+
+    var date = new Date(parseInt(timestamp)),
         year = date.getFullYear(),
         month = date.getMonth()+1,
         day = date.getDate(),
@@ -491,7 +533,7 @@ var addElementToPoiList = function(mapLabelId, mapLabelName, mapLabelInfo) {
     $(item).find('.list-poi-label').html(mapLabelName);
     $(item).find('.list-poi-bldg').html(bldg);
     $(item).find('.list-poi-floor').html(floorNum);
-    $(item).find('.list-poi-dtime').html('Added '+fullDate+' at '+fullTime);
+    $(item).find('.list-poi-dtime').html('Added <span date-timestamp="'+timestamp+'" class="addedDate">'+fullDate+'</span> at '+fullTime);
 
 
     //setting list item click handler
@@ -527,6 +569,21 @@ var updatePoiList = function(){
         addElementToPoiList(id, poiData.label, poiData);
     });
 }
+
+//sorting poi list by name, date or location
+var sortPoiList = function(array){
+
+    $('#listPoiContainer').html('');
+
+    $.each(array, function(i, el){
+        console.log("each sortpoiitem:");
+        console.log(i);
+        console.log(el);
+        addElementToPoiList(el.id, el.label, el, el.date);
+    });
+};
+
+
 // adds a floor to the HTML floor selector
 var addFloorToFloor = function(fID, bID, name) {
     var item = $("#floorListTemplate").clone().removeClass("invisible").appendTo($("#floorContainer"));
@@ -548,6 +605,10 @@ var fillDetails = function(mapLabelInfo){
     emptyDetailsData();
 
     var mapLabelInfo = ambiarc.poiList[currentLabelId];
+
+    console.log("fill details function...");
+    console.log("map label info:");
+    console.log(mapLabelInfo)
 
     if(mapLabelInfo.type == 'Text' || mapLabelInfo.type == 'IconWithText'){
         $('#poi-title').val(mapLabelInfo.label);
@@ -571,6 +632,28 @@ var fillDetails = function(mapLabelInfo){
     $('#poi-tooltip-title').val(mapLabelInfo.tooltipTitle);
     $('#poi-tooltip-body').val(mapLabelInfo.tooltipBody);
     $('#poi-icon-image').css('background-image', 'url("'+mapLabelInfo.base64+'")');
+
+
+
+    //Fill key/value list
+    $.each(mapLabelInfo, function(key, val){
+        console.log("each mapabel key:");
+        console.log(key);
+        console.log("each maplabel val:");
+        console.log(val);
+
+        if(regularFeatures.indexOf(key) == -1){
+            console.log("NO KEYY!!!!!!!!!!!!!!!");
+            addNewPair(key, val);
+        }
+        else {
+            console.log("key found......");
+        }
+
+    });
+
+    console.log("check!!!!!!:");
+    console.log(regularFeatures);
 
     if(mapLabelInfo.type !== 'Text'){
         $('#select-icon-group').show();
@@ -792,12 +875,16 @@ var updatePoiDetails = function(changedKey, changedValue){
 };
 
 
-var addNewPair = function(){
-    console.log("CLICKED ADD NEW PAIR!");
+var addNewPair = function(key, value){
+    console.log("ADDING NEW PAIR...");
 
     var item = $("#pairKeyValueTemplate").find('li').clone()
         $(item).appendTo($("#poi-key-value-list"));
 
+    if(key && value){
+        $(item).find('.poi-new-key').val(key);
+        $(item).find('.poi-new-value').val(value);
+    }
 }
 
 
@@ -958,6 +1045,18 @@ var exportData = function(){
 
         if(labelInfo.base64){
             properties.icon = labelInfo.base64;
+        }
+        if(labelInfo.location){
+            properties.location = labelInfo.location;
+        }
+        if(labelInfo.partialPath){
+            properties.partialPath = labelInfo.partialPath;
+        }
+        if(labelInfo.tooltipBody){
+            properties.tooltipBody = labelInfo.tooltipBody;
+        }
+        if(labelInfo.tooltipTitle){
+            properties.tooltipTitle = labelInfo.tooltipTitle;
         }
 
         var feature = {
@@ -1120,7 +1219,51 @@ var saveNewIcon = function(){
 };
 
 
+var sortByName = function(){
+
+    var sortingArray = [];
+
+    $.each(ambiarc.poiList,function(i, el){
+        var cloneObj = jQuery.extend({}, el);
+        cloneObj.date = $('#'+i).find('.addedDate').attr('date-timestamp');
+        cloneObj.id = i;
+
+        sortingArray.push(cloneObj);
+    });
+
+    sortingArray = sortingArray.sort(function(a,b){
+        if(a.label < b.label) return -1;
+        if(a.label > b.label) return 1;
+    });
+
+    sortPoiList(sortingArray);
+};
+
+
+var sortByTime = function(){
+
+    var sortingArray = [];
+
+    $.each(ambiarc.poiList,function(i, el){
+        var cloneObj = jQuery.extend({}, el);
+        cloneObj.date = $('#'+i).find('.addedDate').attr('date-timestamp');
+        cloneObj.id = i;
+
+        sortingArray.push(cloneObj);
+    });
+
+    sortingArray = sortingArray.sort(function(a,b){
+        if(a.date < b.date) return -1;
+        if(a.date > b.date) return 1;
+    });
+
+    sortPoiList(sortingArray);
+};
+
+
 var importFileHandler = function(evt){
+
+    console.log("import file handler!!");
 
     if(!input){
         var input = $('#import-file')[0];
@@ -1137,6 +1280,10 @@ var importFileHandler = function(evt){
         file = input.files[0];
         fr = new FileReader();
         fr.onload = function(test){
+
+            console.log("fr loaded!!");
+            console.log("test:");
+            console.log(test);
 
             var base64result = fr.result.split(',')[1];
 
@@ -1157,10 +1304,22 @@ var importFileHandler = function(evt){
 
 var fillGeoData = function(properties){
 
+    console.log("fill geo data!!");
+    console.log(properties);
+
     $.each(properties.features, function(i, feature){
+
+        console.log("each key:");
+        console.log(i);
+
+        console.log("each feature:");
+        console.log(feature);
+
         var mapLabelInfo = feature.properties;
         mapLabelInfo.longitude = feature.geometry.coordinates[0];
         mapLabelInfo.latitude = feature.geometry.coordinates[1];
+
+        console.log("creating map label...");
 
         ambiarc.createMapLabel(mapLabelInfo.type, mapLabelInfo,(labelId) => {
             mapLabelCreatedCallback(labelId, mapLabelInfo.label, mapLabelInfo);

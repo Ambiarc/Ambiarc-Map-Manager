@@ -68,6 +68,30 @@
                      <div class="col-sm">
                         <p>Right click the map to add a point of interest.</p>
                      </div>
+                    <div class="row" style="text-align: center; margin: 0;">
+                        <div class="col-sm-12">
+                            <label class="poi-details-label">Sort by:</label>
+                        </div>
+                    </div>
+
+                    <div class="row" style="text-align: center; margin: 0;">
+
+                        <!-- poi list view -->
+                        <div style="width: 80%;margin: auto;">
+                            <div class="filter-by-name sort-button col-sm-4 btn btn-default">
+                                Name
+                            </div>
+
+                            <div class="filter-by-location sort-button col-sm-4 btn btn-default">
+                                Location
+                            </div>
+
+                            <div class="filter-by-time sort-button col-sm-4 btn btn-default btn-primary btn-selected">
+                                Time Added
+                            </div>
+                        </div>
+
+                    </div>
                     <ul id="listPoiContainer" class="list-group">
                     </ul>
                 </div>
@@ -225,21 +249,21 @@
 
                         <div class="row">
                             <ul id="poi-key-value-list">
-                                <li class="row pair-key-row">
-                                    <div class="col-sm-4 form-group">
-                                        <label class="poi-details-label">Key</label>
-                                        <input type="text" class="poi-details-input form-control poi-new-key">
-                                    </div>
-                                    <div class="col-sm-4 form-group no-right-padding">
-                                        <label class="poi-details-label">Value <span class="pair-type">(string)</span></label>
-                                        <input type="text" data-type="string" class="poi-details-input form-control poi-new-value">
-                                    </div>
-                                    <div class="col-sm-4 list-icon-wrapper form-icon align-bottom row">
-                                        <img class="poi-icon poi-hashtag input-icon align-bottom value-to-number">
-                                        <img class="poi-icon poi-quotes input-icon align-bottom value-to-string">
-                                        <img class="poi-icon poi-trashcan delete-pair align-bottom" style="width: 20px;height: 20px;margin-left: 5px;">
-                                    </div>
-                                </li>
+                                <!--<li class="row pair-key-row">-->
+                                    <!--<div class="col-sm-4 form-group">-->
+                                        <!--<label class="poi-details-label">Key</label>-->
+                                        <!--<input type="text" class="poi-details-input form-control poi-new-key">-->
+                                    <!--</div>-->
+                                    <!--<div class="col-sm-4 form-group no-right-padding">-->
+                                        <!--<label class="poi-details-label">Value <span class="pair-type">(string)</span></label>-->
+                                        <!--<input type="text" data-type="string" class="poi-details-input form-control poi-new-value">-->
+                                    <!--</div>-->
+                                    <!--<div class="col-sm-4 list-icon-wrapper form-icon align-bottom row">-->
+                                        <!--<img class="poi-icon poi-hashtag input-icon align-bottom value-to-number">-->
+                                        <!--<img class="poi-icon poi-quotes input-icon align-bottom value-to-string">-->
+                                        <!--<img class="poi-icon poi-trashcan delete-pair align-bottom" style="width: 20px;height: 20px;margin-left: 5px;">-->
+                                    <!--</div>-->
+                                <!--</li>-->
                             </ul>
                         </div>
 
