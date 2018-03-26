@@ -438,3 +438,7 @@
 .pair-type {
     font-size: 8px!important;
 }
+
+.sorting-section {
+    display: none;
+}

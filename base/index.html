@@ -65,33 +65,36 @@
 
             <div class="row panel-body-row poi-list-panel">
                 <div class="panel-body panel panel-default poi-container">
-                     <div class="col-sm">
+                     <div class="init-poi-text col-sm">
                         <p>Right click the map to add a point of interest.</p>
                      </div>
-                    <div class="row" style="text-align: center; margin: 0;">
-                        <div class="col-sm-12">
-                            <label class="poi-details-label">Sort by:</label>
-                        </div>
-                    </div>
-
-                    <div class="row" style="text-align: center; margin: 0;">
-
-                        <!-- poi list view -->
-                        <div style="width: 80%;margin: auto;">
-                            <div class="filter-by-name sort-button col-sm-4 btn btn-default">
-                                Name
-                            </div>
-
-                            <div class="filter-by-location sort-button col-sm-4 btn btn-default">
-                                Location
-                            </div>
-
-                            <div class="filter-by-time sort-button col-sm-4 btn btn-default btn-primary btn-selected">
-                                Time Added
+                    <div class="sorting-section">
+                        <div class="row" style="text-align: center; margin: 0;">
+                            <div class="col-sm-12">
+                                <label class="poi-details-label">Sort by:</label>
                             </div>
                         </div>
 
+                        <div class="row" style="text-align: center; margin: 0;">
+
+                            <!-- poi list view -->
+                            <div style="width: 80%;margin: auto;">
+                                <div class="filter-by-name sort-button col-sm-4 btn btn-default">
+                                    Name
+                                </div>
+
+                                <div class="filter-by-location sort-button col-sm-4 btn btn-default">
+                                    Location
+                                </div>
+
+                                <div class="filter-by-time sort-button col-sm-4 btn btn-default btn-primary btn-selected">
+                                    Time Added
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
+
                     <ul id="listPoiContainer" class="list-group">
                     </ul>
                 </div>

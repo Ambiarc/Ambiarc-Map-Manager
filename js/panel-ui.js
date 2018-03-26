@@ -207,6 +207,9 @@ $(document).ready(function() {
 
     $('#poi-delete').on('click', function(){
 
+        console.log("CURRENT LABEL ID:");
+        console.log(currentLabelId);
+
         ambiarc.destroyMapLabel(currentLabelId);
         deletePoiData(currentLabelId);
         updatePoiList();
@@ -454,7 +457,7 @@ var mapLabelClickHandler = function(event) {
     if(event.detail == currentLabelId){
         return;
     }
-    currentLabelId = event.detail;
+    currentLabelId = parseInt(event.detail);
     var mapLabelInfo = ambiarc.poiList[currentLabelId];
 
     console.log(mapLabelInfo);
@@ -498,6 +501,15 @@ var listPoiClosed = function(mapLabelId) {
 };
 // adds a POI to the HTML list
 var addElementToPoiList = function(mapLabelId, mapLabelName, mapLabelInfo, timestamp) {
+
+    if(Object.keys(ambiarc.poiList).length > 0){
+        $('.init-poi-text').hide();
+        $('.sorting-section').show();
+    }
+    else {
+        $('.init-poi-text').show();
+        $('.sorting-section').hide();
+    }
 
     var item = $("#listPoiTemplate").clone();
         $(item).attr('id', mapLabelId);
@@ -543,7 +555,7 @@ var addElementToPoiList = function(mapLabelId, mapLabelName, mapLabelInfo, times
 
     //setting list item click handler
     $(item).on('click', function(){
-        currentLabelId = mapLabelId;
+        currentLabelId = parseInt(mapLabelId);
 
         console.log("CLICKED ITEM!!");
         console.log(ambiarc.poiList[currentLabelId]);
@@ -568,11 +580,25 @@ var addElementToPoiList = function(mapLabelId, mapLabelName, mapLabelInfo, times
 //refreshing poi list items
 var updatePoiList = function(){
 
+    console.log("UPDATE POI LIST!!");
+
     $('#listPoiContainer').html('');
+
+
 
     $.each(ambiarc.poiList, function(id, poiData){
         addElementToPoiList(id, poiData.label, poiData);
     });
+
+    if(Object.keys(ambiarc.poiList).length > 0){
+        $('.init-poi-text').hide();
+        $('.sorting-section').show();
+    }
+    else {
+        $('.init-poi-text').show();
+        $('.sorting-section').hide();
+    }
+
 }
 
 //sorting poi list by name, date or location
@@ -985,7 +1011,7 @@ var updateFloorId = function(floorId){
         ambiarc.createMapLabel(newLabel.type, newLabel, function(labelId){
             mapLabelCreatedCallback(labelId, newLabel.label, newLabel);
             deletePoiData(currentLabelId);
-            currentLabelId = labelId;
+            currentLabelId = parseInt(labelId);
             fillDetails(newLabel);
             updatePoiList();
         });
@@ -1010,7 +1036,7 @@ var cameraCompletedHandler = function(event){
         ambiarc.createMapLabel(newLabel.type, newLabel, function(labelId){
             mapLabelCreatedCallback(labelId, newLabel.label, newLabel);
             deletePoiData(currentLabelId);
-            currentLabelId = labelId;
+            currentLabelId = parseInt(labelId);
             fillDetails(newLabel);
             updatePoiList();
         });
