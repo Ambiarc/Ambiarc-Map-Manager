@@ -85,11 +85,7 @@ $(document).ready(function() {
 
     //PANEL ELEMENTS HANDLERS
 
-    $('.filter-by-location').on('click', function(){
-        console.log("filter by location!");
-
-    });
-
+    $('.filter-by-location').on('click', sortByLocation);
 
     $('.filter-by-name').on('click', sortByName);
 
@@ -1243,6 +1239,29 @@ var showTempIcon = function(clonedObj){
 
     ambiarc.updateMapLabel(currentLabelId, clonedObj.type, clonedObj);
 };
+
+var sortByLocation = function(){
+
+    var sortingArray = [];
+
+    $.each(ambiarc.poiList,function(i, el){
+        var cloneObj = jQuery.extend({}, el);
+        cloneObj.id = i;
+        sortingArray.push(cloneObj);
+    });
+
+    sortingArray = sortingArray.sort(function(a,b){
+        if(a.buildingId < b.buildingId) return -1;
+        if(a.buildingId > b.buildingId) return 1;
+
+        if(a.floorId < b.floorId) return -1;
+        if(a.floorId > b.floorId) return 1;
+
+        return 0;
+    });
+
+    sortPoiList(sortingArray);
+}
 
 
 var sortByName = function(){
