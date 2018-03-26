@@ -523,15 +523,21 @@ var addElementToPoiList = function(mapLabelId, mapLabelName, mapLabelInfo, times
     var fullTime = hours+':'+minutes;
 
     // checking if set url64 image, if not set default behavior
-    if(typeof mapLabelInfo.base64 !== 'undefined'){
-        if(mapLabelInfo.base64 !== ''){
-            var iconSrc = mapLabelInfo.base64;
-        }else {
+
+    if(mapLabelInfo.type == 'Text'){
+        var iconSrc = '../css/icons/ic_text_field.png';
+    }
+    else{
+        if(typeof mapLabelInfo.base64 !== 'undefined'){
+            if(mapLabelInfo.base64 !== ''){
+                var iconSrc = mapLabelInfo.base64;
+            }else {
+                var iconSrc = mapLabelInfo.type == 'Text' ? '../css/icons/ic_text_field.png' : '../css/icons/ic_admin_mail.png';
+            }
+        }
+        else {
             var iconSrc = mapLabelInfo.type == 'Text' ? '../css/icons/ic_text_field.png' : '../css/icons/ic_admin_mail.png';
         }
-    }
-    else {
-        var iconSrc = mapLabelInfo.type == 'Text' ? '../css/icons/ic_text_field.png' : '../css/icons/ic_admin_mail.png';
     }
 
     $(item).find('.list-poi-icon').css('background-image','url(\''+iconSrc+'\')');
