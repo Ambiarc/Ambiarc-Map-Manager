@@ -8,10 +8,11 @@ var isFloorSelectorEnabled = false;
 // tracked references to POI's
 var poisInScene = [];
 // global lobal state indicating the current sleected floor
-var currentFloorId = 'L002';
+// var currentFloorId = 'L002';
 var currentLabelId, ambiarc, fr, parsedJson;
 // key vlue on input field click
 var pairFocusKey;
+var currentBuildingId;
 
 var regularFeatures = [
     'label',
@@ -113,6 +114,11 @@ $(document).ready(function() {
 
         //updating map label
         ambiarc.updateMapLabel(currentLabelId, ambiarc.poiList[currentLabelId].type, ambiarc.poiList[currentLabelId]);
+
+        if(ambiarc.poiList[currentLabelId].floorId != currentFloorId){
+            console.log("FOCUSING!!");
+            ambiarc.focusOnFloor(ambiarc.poiList[currentLabelId].buildingId, ambiarc.poiList[currentLabelId].floorId);
+        }
     });
 
 
@@ -151,10 +157,6 @@ $(document).ready(function() {
         updatePoiDetails('buildingId', $(this).val())
     });
 
-    // $('#poi-floor-id').on('change', function(){
-    //     // updatePoiDetails('floorId', $(this).val())
-    //
-    // });
 
     $('#poi-label-latitude').on('change', function(){
         updatePoiDetails('latitude', $(this).val())
@@ -195,8 +197,8 @@ $(document).ready(function() {
 
 
     $('body').on('change', '.poi-floor-id', function(){
-        // updatePoiDetails('floorId', $(this).val());
-        updateFloorId($(this).val());
+        updatePoiDetails('floorId', $(this).val());
+        // updateFloorId($(this).val());
     });
 
     $('body').on('change', '#poi-bulding-id', function(){
@@ -343,6 +345,7 @@ var onAmbiarcLoaded = function() {
     // Create our floor selector menu with data fromt the SDK
     ambiarc.getAllBuildings((bldgs) => {
         mainBldgID = bldgs[0];
+        currentBuildingId = bldgs[0];
     ambiarc.getAllFloors(mainBldgID, (floors) => {
         addFloorToFloor(null, mainBldgID, "Exterior");
     for (f in floors) {
@@ -397,6 +400,8 @@ var onFloorSelected = function(event) {
 
     var floorInfo = event.detail;
     currentFloorId = floorInfo.floorId;
+
+    $('#bldg-floor-select').val(currentBuildingId+'::'+currentFloorId);
     if (isFloorSelectorEnabled) {
         $("#levels-dropdown").removeClass('open');
         $("#levels-dropdown-button").attr('aria-expanded', false);
@@ -872,6 +877,12 @@ var updatePoiDetails = function(changedKey, changedValue){
 
     updatePoiList();
     toggleSaveButton();
+
+    if(ambiarc.poiList[currentLabelId].floorId != currentFloorId){
+        console.log("FOCUSING!!");
+        ambiarc.focusOnFloor(ambiarc.poiList[currentLabelId].buildingId, ambiarc.poiList[currentLabelId].floorId);
+    }
+
 };
 
 
