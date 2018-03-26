@@ -810,8 +810,7 @@ var emptyDetailsData = function(){
     $('#poi-new-value').val('');
     $('#poi-creation-show').prop('checked', true);
     $('#poi-tooltips-toggle').prop('checked', false);
-
-
+    $('#poi-key-value-list').html('');
 }
 
 
@@ -1076,6 +1075,7 @@ var newScene = function(){
     var r = confirm("Creating new scene will remove all points of interest from map and panel!");
     if (r == true) {
         destroyAllLabels();
+        emptyDetailsData();
     }
 };
 
@@ -1315,6 +1315,7 @@ var importFileHandler = function(evt){
                 alert("Please select valid json file");
                 return;
             }
+            $('#import-file').val('');
         }
 
         fr.readAsDataURL(file);
