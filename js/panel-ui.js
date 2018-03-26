@@ -259,8 +259,8 @@ var createTextLabel = function() {
         var mapLabelInfo = {
             buildingId: mainBldgID,
             floorId: currentFloorId,
-            latitude: latlon.lat,
-            longitude:latlon.lon,
+            latitude: toFixed(parseFloat(latlon.lat), 4),
+            longitude: toFixed(parseFloat(latlon.lon), 4),
             label: 'Ambiarc Text Label: ' + poisInScene.length,
             fontSize: 26,
             category: 'Label',
@@ -288,8 +288,8 @@ var createIconLabel = function() {
         var mapLabelInfo = {
             buildingId: mainBldgID,
             floorId: currentFloorId,
-            latitude: latlon.lat,
-            longitude:latlon.lon,
+            latitude: toFixed(parseFloat(latlon.lat), 4),
+            longitude: toFixed(parseFloat(latlon.lon), 4),
             label: '',
             category: 'Label',
             location: 'Default',
@@ -627,8 +627,8 @@ var fillDetails = function(mapLabelInfo){
     $('#poi-type').val(mapLabelInfo.type);
     $('#poi-bulding-id').val(mapLabelInfo.buildingId);
     $('.poi-floor-id[data-bldgid = "'+mapLabelInfo.buildingId+'"]').val(mapLabelInfo.floorId);
-    $('#poi-label-latitude').val(mapLabelInfo.latitude);
-    $('#poi-label-longitude').val(mapLabelInfo.longitude);
+    $('#poi-label-latitude').val(toFixed(mapLabelInfo.latitude, 4));
+    $('#poi-label-longitude').val(toFixed(mapLabelInfo.longitude, 4));
     $('#poi-tooltips-toggle').prop('checked', mapLabelInfo.showToolTip);
     $('#poi-tooltip-title').val(mapLabelInfo.tooltipTitle);
     $('#poi-tooltip-body').val(mapLabelInfo.tooltipBody);
@@ -674,8 +674,8 @@ var collectPoiData = function(){
     var MapLabelType = labelTypeObj($('#poi-type').val()),
         buildingId = $('#poi-bulding-id').val(),
         floorId = $('#poi-floor-id').val(),
-        latitude = parseFloat($('#poi-label-latitude').val()),
-        longitude = parseFloat($('#poi-label-longitude').val()),
+        latitude = toFixed(parseFloat($('#poi-label-latitude').val()), 4),
+        longitude = toFixed(parseFloat($('#poi-label-longitude').val()),4),
         showOnCreation = $('#poi-creation-show').is(':checked'),
         showToolTip = $('#poi-tooltips-toggle').is(':checked'),
         tooltipTitle = $('#poi-tooltip-title').val(),
@@ -1034,8 +1034,8 @@ var exportData = function(){
         var geometry = {
             type: "Point",
             coordinates: [
-                labelInfo.longitude,
-                labelInfo.latitude
+                toFixed(parseFloat(labelInfo.longitude), 4),
+                toFixed(parseFloat(labelInfo.latitude), 4)
             ]
         };
 
@@ -1317,8 +1317,8 @@ var fillGeoData = function(properties){
         console.log(feature);
 
         var mapLabelInfo = feature.properties;
-        mapLabelInfo.longitude = feature.geometry.coordinates[0];
-        mapLabelInfo.latitude = feature.geometry.coordinates[1];
+        mapLabelInfo.longitude = toFixed(parseFloat(feature.geometry.coordinates[0]), 4);
+        mapLabelInfo.latitude = toFixed(parseFloat(feature.geometry.coordinates[1]), 4);
 
         console.log("creating map label...");
 
@@ -1328,6 +1328,11 @@ var fillGeoData = function(properties){
     })
 };
 
+// function for setting number of decimal places (longitude and latitude)
+var toFixed = function(num, fixed) {
+    var re = new RegExp('^-?\\d+(?:\.\\d{0,' + (fixed || -1) + '})?');
+    return num.toString().match(re)[0];
+}
 
 var downloadObjectAsJson = function (exportObj, exportName){
     var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj));
@@ -1346,11 +1351,14 @@ var repositionLabel = function(){
 
     ambiarc.getMapPositionAtCursor(ambiarc.coordType.gps, (latlon) => {
 
-        $('#poi-label-latitude').val(latlon.lat);
-        $('#poi-label-longitude').val(latlon.lon);
+        var latitude = toFixed(parseFloat(latlon.lat), 4);
+        var longitude = toFixed(parseFloat(latlon.lon), 4);
+
+        $('#poi-label-latitude').val(latitude);
+        $('#poi-label-longitude').val(longitude);
 
         console.log(latlon)
 
-        updatePoiDetails(['longitude', 'latitude'], [latlon.lon, latlon.lat]);
+        updatePoiDetails(['longitude', 'latitude'], [longitude, latitude]);
     });
 }
