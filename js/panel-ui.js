@@ -380,8 +380,6 @@ var onRightMouseDown = function(event) {
 
 var autoSelectFloor = function(){
 
-    // console.log("AUTO SELECTING FLOOR...");
-
     if(mainBldgID){
         // console.log("MAIN BUILDING ID DEFINED!");
         ambiarc.getAllFloors(mainBldgID, function(floors){
@@ -396,7 +394,7 @@ var autoSelectFloor = function(){
 
 // closes the floor menu when a floor was selected
 var onFloorSelected = function(event) {
-    
+
     var floorInfo = event.detail;
     currentFloorId = floorInfo.floorId;
 
@@ -410,8 +408,6 @@ var onFloorSelected = function(event) {
 }
 // expands the floor menu when the map enter Floor Selector mode
 var onEnteredFloorSelector = function(event) {
-
-    console.log("ENTERED FLOOR!!");
 
     var buildingId = event.detail;
     currentFloorId = undefined;
@@ -442,9 +438,9 @@ var onFloorSelectorFocusChanged = function(event) {
 
 var mapLabelClickHandler = function(event) {
 
-    console.log("mab label click handler");
-    console.log("event:");
-    console.log(event);
+    if(!ambiarc.poiList[event.detail]){
+        return;
+    }
 
     $('.poi-list-panel').addClass('invisible');
     $('.icons-list-panel').addClass('invisible');
@@ -456,17 +452,12 @@ var mapLabelClickHandler = function(event) {
     currentLabelId = parseInt(event.detail);
     var mapLabelInfo = ambiarc.poiList[currentLabelId];
 
-    console.log(mapLabelInfo);
-
-
     //creating clone of mapLabelInfo object - storing operations for undo
     var initialObj = jQuery.extend({}, mapLabelInfo);
     ambiarc.history = [];
     ambiarc.history.push(initialObj);
 
     fillDetails(mapLabelInfo);
-    // ambiarc.focusOnMapLabel(event.detail, event.detail);
-
 }
 
 
@@ -495,6 +486,8 @@ var listPoiClosed = function(mapLabelId) {
         $("#" + mapLabelId).remove();
     });
 };
+
+
 // adds a POI to the HTML list
 var addElementToPoiList = function(mapLabelId, mapLabelName, mapLabelInfo, timestamp) {
 
@@ -527,7 +520,7 @@ var addElementToPoiList = function(mapLabelId, mapLabelName, mapLabelInfo, times
         minutes = date.getMinutes();
 
     var fullDate = year+'/'+month+'/'+day;
-    var fullTime = hours+'/'+minutes;
+    var fullTime = hours+':'+minutes;
 
     // checking if set url64 image, if not set default behavior
     if(typeof mapLabelInfo.base64 !== 'undefined'){
@@ -552,16 +545,9 @@ var addElementToPoiList = function(mapLabelId, mapLabelName, mapLabelInfo, times
     //setting list item click handler
     $(item).on('click', function(){
         currentLabelId = parseInt(mapLabelId);
-
-        console.log("CLICKED ITEM!!");
-        console.log(ambiarc.poiList[currentLabelId]);
-
         var initState = jQuery.extend({}, ambiarc.poiList[currentLabelId]);
         ambiarc.history = [];
         ambiarc.history.push(initState);
-
-        console.log("mapLabelInfo:");
-        console.log(mapLabelInfo);
 
         fillDetails(mapLabelInfo);
         ambiarc.focusOnMapLabel(mapLabelId, mapLabelId);
@@ -576,11 +562,7 @@ var addElementToPoiList = function(mapLabelId, mapLabelName, mapLabelInfo, times
 //refreshing poi list items
 var updatePoiList = function(){
 
-    console.log("UPDATE POI LIST!!");
-
     $('#listPoiContainer').html('');
-
-
 
     $.each(ambiarc.poiList, function(id, poiData){
         addElementToPoiList(id, poiData.label, poiData);
@@ -594,18 +576,14 @@ var updatePoiList = function(){
         $('.init-poi-text').show();
         $('.sorting-section').hide();
     }
-
-}
+};
 
 //sorting poi list by name, date or location
 var sortPoiList = function(array){
 
     $('#listPoiContainer').html('');
 
-    $.each(array, function(i, el){
-        console.log("each sortpoiitem:");
-        console.log(i);
-        console.log(el);
+    $.each(array, function(i, el){;
         addElementToPoiList(el.id, el.label, el, el.date);
     });
 };
@@ -633,10 +611,6 @@ var fillDetails = function(mapLabelInfo){
 
     var mapLabelInfo = ambiarc.poiList[currentLabelId];
 
-    console.log("fill details function...");
-    console.log("map label info:");
-    console.log(mapLabelInfo)
-
     if(mapLabelInfo.type == 'Text' || mapLabelInfo.type == 'IconWithText'){
         $('#poi-title').val(mapLabelInfo.label);
         $('#poi-font-size').val(mapLabelInfo.fontSize);
@@ -661,26 +635,13 @@ var fillDetails = function(mapLabelInfo){
     $('#poi-icon-image').css('background-image', 'url("'+mapLabelInfo.base64+'")');
 
 
-
     //Fill key/value list
     $.each(mapLabelInfo, function(key, val){
-        console.log("each mapabel key:");
-        console.log(key);
-        console.log("each maplabel val:");
-        console.log(val);
 
         if(regularFeatures.indexOf(key) == -1){
-            console.log("NO KEYY!!!!!!!!!!!!!!!");
             addNewPair(key, val);
         }
-        else {
-            console.log("key found......");
-        }
-
     });
-
-    console.log("check!!!!!!:");
-    console.log(regularFeatures);
 
     if(mapLabelInfo.type !== 'Text'){
         $('#select-icon-group').show();
@@ -688,12 +649,8 @@ var fillDetails = function(mapLabelInfo){
     else {
         $('#select-icon-group').hide();
     }
+};
 
-    // if(mapLabelInfo.type !== 'Text'){
-    //     $('#'+currentLabelId).find('.list-poi-icon').css('background-image', 'url("'+mapLabelInfo.base64+'")');
-    // }
-
-}
 
 var labelTypeObj = function(labelString){
 
@@ -707,7 +664,7 @@ var labelTypeObj = function(labelString){
         case 'IconWithText':
             return ambiarc.mapLabel.IconWithText;
     }
-}
+};
 
 
 var collectPoiData = function(){
@@ -725,7 +682,6 @@ var collectPoiData = function(){
         tooltipBody = $('#poi-tooltip-body').val(),
         fontSize = parseInt($('#poi-font-size').val()) || 26, //if no font set, set default value to 26
         label = $('#poi-title').val();
-
 
     var MapLabelProperties = {
         buildingId: buildingId,
