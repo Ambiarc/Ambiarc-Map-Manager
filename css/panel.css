@@ -445,4 +445,16 @@
 
 .sorting-section {
     display: none;
+    margin-bottom: 15px;
+}
+
+.sort-label {
+    color: #9f9e9e;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.notification-text {
+    color: #7ac7e5;
+    font-size: 10px;
 }
