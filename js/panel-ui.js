@@ -500,8 +500,8 @@ var addElementToPoiList = function(mapLabelId, mapLabelName, mapLabelInfo, times
         $(item).attr('id', mapLabelId);
         $(item).addClass('poi-item-wrapper');
         $(item).appendTo($("#listPoiContainer"));
-    var bldg = 'Building 1';
-    var floorNum = 'Floor 1';
+    var bldg = mapLabelInfo.buildingId;
+    var floorNum = mapLabelInfo.floorId;
 
     //if no timestamps, take current timestamp. Otherwise, use initial timestamps
     if(!timestamp){
@@ -1247,6 +1247,7 @@ var sortByLocation = function(){
     $.each(ambiarc.poiList,function(i, el){
         var cloneObj = jQuery.extend({}, el);
         cloneObj.id = i;
+        cloneObj.date = $('#'+i).find('.addedDate').attr('date-timestamp');
         sortingArray.push(cloneObj);
     });
 
