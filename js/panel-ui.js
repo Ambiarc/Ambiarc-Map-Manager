@@ -38,24 +38,35 @@ $(document).ready(function() {
     var $body = $(document.body);
 
     var menu = new BootstrapMenu('#bootstrap', {
-        actions: [{
-            name: 'Label',
-            onClick: function() {
-                createTextLabel();
-                menu.close();
+        actions: [
+            {
+                name: 'Label',
+                onClick: function () {
+                    createTextLabel();
+                    menu.close();
+                }
+            },
+            {
+                name: 'Icon',
+                onClick: function () {
+                    createIconLabel();
+                    menu.close();
+                }
+            },
+            {
+                name: 'Label + Icon',
+                onClick: function () {
+                    createTextIcon();
+                    menu.close();
+                }
+            },
+            {
+                name: 'Cancel',
+                onClick: function () {
+                    menu.close();
+                }
             }
-        }, {
-            name: 'Icon',
-            onClick: function() {
-                createIconLabel();
-                menu.close();
-            }
-        }, {
-            name: 'Cancel',
-            onClick: function() {
-                menu.close();
-            }
-        }],
+        ],
         menuEvent: 'right-click'
     });
     poiMenuSelector = menu.$menu[0];
@@ -227,7 +238,7 @@ var showPoiList = function(){
 
 
 // Creates a Text MapLabel on the map where the current mouse position is
-var createTextLabel = function() {
+var createTextLabel = function () {
     // var ambiarc = $("#ambiarcIframe")[0].contentWindow.Ambiarc;
     // getMapPositionAtCursor is a convenience method that return a map world position where the mouse is on screen XY
 
@@ -245,22 +256,23 @@ var createTextLabel = function() {
             location: 'Default',
             partialPath: 'Information',
             showOnCreation: true,
-            type: 'Text',
+            type: ambiarc.mapLabel.Text,
             showToolTip: false,
             tooltipTitle: '',
             tooltipBody: ''
         };
 
-    // Add the map label to the map
-    ambiarc.createMapLabel(ambiarc.mapLabel.Text, mapLabelInfo, (labelId) => {
-        // Callback triggered once the label is added
-        mapLabelCreatedCallback(labelId, mapLabelInfo.label, mapLabelInfo);
-});
-});
+        // Add the map label to the map
+        ambiarc.createMapLabel(ambiarc.mapLabel.Text, mapLabelInfo, (labelId) => {
+            // Callback triggered once the label is added
+            mapLabelCreatedCallback(labelId, mapLabelInfo.label, mapLabelInfo);
+        });
+    });
 }
 
+
 // Creates an Icon MapLabel on the map where the current mouse position is
-var createIconLabel = function() {
+var createIconLabel = function () {
     ambiarc.getMapPositionAtCursor(ambiarc.coordType.gps, (latlon) => {
 
         var mapLabelInfo = {
@@ -273,18 +285,47 @@ var createIconLabel = function() {
             location: 'Default',
             partialPath: 'Information',
             showOnCreation: true,
-            type: 'Icon',
+            type: ambiarc.mapLabel.Icon,
             showToolTip: false,
             tooltipTitle: '',
             tooltipBody: '',
             base64: iconDefault
         };
-    ambiarc.createMapLabel(ambiarc.mapLabel.Icon, mapLabelInfo, (labelId) => {
-        var mapLabelName = 'Ambiarc Icon Label: ' + poisInScene.length;
-    mapLabelCreatedCallback(labelId, mapLabelName, mapLabelInfo);
-});
-});
-}
+        ambiarc.createMapLabel(ambiarc.mapLabel.Icon, mapLabelInfo, (labelId) => {
+            var mapLabelName = 'Ambiarc Icon Label: ' + poisInScene.length;
+            mapLabelCreatedCallback(labelId, mapLabelName, mapLabelInfo);
+        });
+    });
+};
+
+
+// Creates an Text + Icon on the map where the current mouse position is
+var createTextIcon = function () {
+    ambiarc.getMapPositionAtCursor(ambiarc.coordType.gps, (latlon) => {
+
+        var mapLabelInfo = {
+            buildingId: mainBldgID,
+            floorId: currentFloorId,
+            latitude: parseFloat(toFixed(latlon.lat, 4)),
+            longitude: parseFloat(toFixed(latlon.lon, 4)),
+            label: 'Ambiarc Icon-Text Label: ' + poisInScene.length,
+            fontSize: 26,
+            category: 'Label',
+            location: 'Default',
+            partialPath: 'Information',
+            showOnCreation: true,
+            type: ambiarc.mapLabel.IconWithText,
+            showToolTip: false,
+            tooltipTitle: '',
+            tooltipBody: '',
+            base64: iconDefault
+        };
+        ambiarc.createMapLabel(ambiarc.mapLabel.IconWithText, mapLabelInfo, (labelId) => {
+            mapLabelCreatedCallback(labelId, mapLabelInfo.label, mapLabelInfo);
+        });
+    });
+};
+
 
 // Callback thats updates the UI after a POI is created
 var mapLabelCreatedCallback = function(labelId, labelName, mapLabelInfo) {
