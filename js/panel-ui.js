@@ -1054,6 +1054,8 @@ var newScene = function(){
     if (r == true) {
         destroyAllLabels();
         emptyDetailsData();
+        $('#bldg-floor-select').val('Exterior');
+        ambiarc.viewFloorSelector(mainBldgID);
     }
 };
 
