@@ -289,7 +289,7 @@ var createIconLabel = function () {
             floorId: currentFloorId,
             latitude: parseFloat(toFixed(latlon.lat, 4)),
             longitude: parseFloat(toFixed(latlon.lon, 4)),
-            label: '',
+            label: 'Information ',
             category: 'Label',
             location: 'Default',
             partialPath: 'Information',
@@ -301,8 +301,7 @@ var createIconLabel = function () {
             base64: iconDefault
         };
         ambiarc.createMapLabel(ambiarc.mapLabel.Icon, mapLabelInfo, (labelId) => {
-            var mapLabelName = 'Ambiarc Icon Label: ' + poisInScene.length;
-            mapLabelCreatedCallback(labelId, mapLabelName, mapLabelInfo);
+            mapLabelCreatedCallback(labelId, mapLabelInfo.label, mapLabelInfo);
         });
     });
 };
@@ -317,7 +316,7 @@ var createTextIcon = function () {
             floorId: currentFloorId,
             latitude: parseFloat(toFixed(latlon.lat, 4)),
             longitude: parseFloat(toFixed(latlon.lon, 4)),
-            label: 'Ambiarc Icon-Text Label: ' + poisInScene.length,
+            label: 'Information',
             fontSize: 26,
             category: 'Label',
             location: 'Default',
@@ -1182,6 +1181,7 @@ var saveNewIcon = function(){
     ambiarc.poiList[currentLabelId].base64 = base64String;
     ambiarc.poiList[currentLabelId].partialPath = imgIcon;
     ambiarc.poiList[currentLabelId].location = 'Default';
+    ambiarc.poiList[currentLabelId].label = imgIcon;
     $('#poi-icon-image').css('background-image','url("'+base64String+'")');
     $('#poi-icon-image').attr('data-image',imgIcon);
     $('#icon-file-hidden').val('');
