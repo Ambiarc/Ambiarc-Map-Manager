@@ -188,6 +188,13 @@ $(document).ready(function() {
         updatePoiDetails('showToolTip', $(this).is(':checked'));
     });
 
+    $('#poi-creation-show').on('change', function(){
+       // console.log("clicked showOnCreation!!");
+       // console.log($(this).is(':checked'));
+        updatePoiDetails('showOnCreation', $(this).is(':checked'));
+    });
+
+
     $('body').on('focusin', '.poi-new-key', function(e){
         pairFocusKey = $(this).val();
     });
@@ -232,6 +239,8 @@ var showPoiList = function(){
     $('.poi-details-panel').addClass('invisible');
     $('.icons-list-panel').addClass('invisible');
     $('.poi-list-panel').removeClass('invisible');
+
+    showInactivePoints();
 
     currentLabelId = undefined;
 }
@@ -369,6 +378,7 @@ var onAmbiarcLoaded = function() {
     ambiarc.registerForEvent(ambiarc.eventLabel.FloorSelectorDisabled, onExitedFloorSelector);
     ambiarc.registerForEvent(ambiarc.eventLabel.FloorSelectorFloorFocusChanged, onFloorSelectorFocusChanged);
     ambiarc.registerForEvent(ambiarc.eventLabel.MapLabelSelected, mapLabelClickHandler);
+    ambiarc.registerForEvent(ambiarc.eventLabel.CameraMotionCompleted, cameraCompletedHandler);
 
     ambiarc.poiList = {};
 
@@ -468,6 +478,7 @@ var mapLabelClickHandler = function(event) {
         return;
     }
     currentLabelId = parseInt(event.detail);
+
     var mapLabelInfo = ambiarc.poiList[currentLabelId];
 
     //creating clone of mapLabelInfo object - storing operations for undo
@@ -475,6 +486,7 @@ var mapLabelClickHandler = function(event) {
     ambiarc.history = [];
     ambiarc.history.push(initialObj);
 
+    hideInactivePoints();
     fillDetails(mapLabelInfo);
 }
 
@@ -970,25 +982,13 @@ var updateFloorId = function(floorId){
 };
 
 
-var cameraCompletedHandler = function(event){
+var cameraCompletedHandler = function(){
 
-    var newLabel = ambiarc.poiList[currentLabelId];
-
-    //1000 is mark for updating floor id camera movement
-    if(event.detail == 1000){
-        ambiarc.unregisterEvent(ambiarc.eventLabel.CameraMotionCompleted, cameraCompletedHandler);
-        var buildingId = newLabel.buildingId;
-        var floorId = newLabel.floorId;
-        var buildingFloorValue = buildingId+'::'+floorId;
-        $('#bldg-floor-select').val(buildingFloorValue);
-
-        ambiarc.createMapLabel(newLabel.type, newLabel, function(labelId){
-            mapLabelCreatedCallback(labelId, newLabel.label, newLabel);
-            deletePoiData(currentLabelId);
-            currentLabelId = parseInt(labelId);
-            fillDetails(newLabel);
-            updatePoiList();
-        });
+    if(typeof currentLabelId !== 'undefined'){
+        hideInactivePoints(true);
+    }
+    else {
+        showInactivePoints();
     }
 };
 
@@ -1351,5 +1351,24 @@ var repositionLabel = function(){
         $('#poi-label-longitude').val(longitude);
 
         updatePoiDetails(['longitude', 'latitude'], [longitude, latitude]);
+    });
+}
+
+
+var hideInactivePoints = function(immediate){
+if(!immediate)var immediate = false;
+    $.each(ambiarc.poiList, function(id, obj){
+        if(id != currentLabelId) {
+            ambiarc.hideMapLabel(id, immediate);
+        }
+    })
+}
+
+
+var showInactivePoints = function(){
+    $.each(ambiarc.poiList, function(id, obj){
+        if(obj.floorId == currentFloorId){
+            ambiarc.showMapLabel(id, false);
+        }
     });
 }
