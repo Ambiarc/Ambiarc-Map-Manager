@@ -12,6 +12,19 @@ var poisInScene = [];
 var currentLabelId, ambiarc, fr, parsedJson;
 // key vlue on input field click
 var pairFocusKey;
+
+var colorsInScene = {
+    'Wall' : '#01abba',
+    'Room' : '#01abba',
+    'Restroom' : '#01abba',
+    'Walkway' : '#01abba',
+    'Stair' : '#01abba',
+    'Elevator' : '#01abba',
+    'Escalator' : '#01abba',
+    'Ramp' : '#01abba',
+    'Non-Public' : '#01abba'
+};
+
 var currentBuildingId;
 var movingMouse;
 
@@ -67,7 +80,7 @@ $(document).ready(function() {
             },
             {
                 name: 'Cancel',
-                onClick: function () {
+                onClick: function (){
                     menu.close();
                 }
             }
@@ -97,6 +110,26 @@ $(document).ready(function() {
 
     //PANEL ELEMENTS HANDLERS
 
+    $('.colorpicker_value').on('change', function(){
+
+        var item = $(this).closest('.row');
+
+        console.log("this:");
+        console.log($(this));
+
+        console.log("item:");
+        console.log(item);
+        var key = $(item).attr('data-key');
+        var value = $(this).val();
+
+        console.log("key:");
+        console.log(key);
+        console.log("value:");
+        console.log(value);
+
+        ambiarc.setColorByCategory(key, value);
+    });
+
     $('.color-sample').on('click', function(){
         console.log("triggering click!!");
         var item = $(this).closest('.colorpicker-element');
@@ -112,6 +145,8 @@ $(document).ready(function() {
     $('.dark-theme-btn').on('click', setDarkTheme);
 
     $('.light-theme-btn').on('click', setLightTheme);
+
+    $('.custom-theme-btn').on('click', setCustomTheme);
 
     $('#import-file').on('change', importFileHandler);
 
@@ -531,6 +566,7 @@ var mapLabelClickHandler = function(event) {
 
     $('.poi-list-panel').addClass('invisible');
     $('.icons-list-panel').addClass('invisible');
+    $('.icons-list-body').addClass('invisible');
     $('.colors-panel').addClass('invisible');
     $('.poi-details-panel').removeClass('invisible');
 
@@ -1405,13 +1441,29 @@ var sortByTime = function(){
 
 
 var setDarkTheme = function(){
+    $('#custom-theme-list').addClass('invisible');
     ambiarc.setMapTheme(ambiarc.mapTheme.dark);
 };
 
 
 var setLightTheme = function(){
+    $('#custom-theme-list').addClass('invisible');
     ambiarc.setMapTheme(ambiarc.mapTheme.light);
 };
+
+
+var setCustomTheme = function(){
+    $('#custom-theme-list').removeClass('invisible');
+
+    $.each(colorsInScene, function(key, value){
+        console.log("each color in scene:");
+        console.log(key);
+        console.log("value:");
+        console.log(value);
+        ambiarc.setColorByCategory(key, value);
+    });
+
+}
 
 
 var importFileHandler = function(evt){
