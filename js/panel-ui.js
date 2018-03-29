@@ -13,7 +13,17 @@ var currentLabelId, ambiarc, fr, parsedJson;
 // key vlue on input field click
 var pairFocusKey;
 
-var colorsInScene = {};
+var colorsInScene = {
+    'Wall' : '#01abba',
+    'Room' : '#01abba',
+    'Restroom' : '#01abba',
+    'Walkway' : '#01abba',
+    'Stairs' : '#01abba',
+    'Elevator' : '#01abba',
+    'Escalator' : '#01abba',
+    'Ramp' : '#01abba',
+    'Non-Public' : '#01abba'
+};
 
 var currentBuildingId;
 
@@ -102,23 +112,10 @@ $(document).ready(function() {
     $('.colorpicker_value').on('change', function(){
 
         var item = $(this).closest('.row');
-
-        console.log("this:");
-        console.log($(this));
-
-        console.log("item:");
-        console.log(item);
         var key = $(item).attr('data-key');
         var value = $(this).val();
 
-        console.log("key:");
-        console.log(key);
-        console.log("value:");
-        console.log(value);
-
-        console.log("changing this key:");
-        console.log(colorsInScene[currentBuildingId].floors[currentFloorId][key]);
-        colorsInScene[currentBuildingId].floors[currentFloorId][key] = value;
+        colorsInScene[key] = value;
 
         ambiarc.setColorByCategory(key, value);
     });
@@ -839,23 +836,6 @@ var collectPoiData = function(){
 };
 
 
-var fillDefaultColorValues = function(){
-
-    return {
-        'Wall' : '#01abba',
-        'Room' : '#01abba',
-        'Restroom' : '#01abba',
-        'Walkway' : '#01abba',
-        'Stairs' : '#01abba',
-        'Elevator' : '#01abba',
-        'Escalator' : '#01abba',
-        'Ramp' : '#01abba',
-        'Non-Public' : '#01abba'
-    }
-
-}
-
-
 var fillBuildingsList = function(){
 
     var bldgListItem = document.createElement('option');
@@ -872,11 +852,6 @@ var fillBuildingsList = function(){
         currentFloorId = 'Exterior';
         $.each(buildings, function(id, bldgValue){
 
-            colorsInScene[bldgValue] = {
-                    floors: {}
-                };
-
-
             var bldgListItem = document.createElement('option');
                 bldgListItem.clasName = 'bldg-list-item';
                 bldgListItem.value = bldgValue;
@@ -891,8 +866,6 @@ var fillBuildingsList = function(){
 
             ambiarc.getAllFloors(bldgValue, function(floors){
                 $.each(floors, function(i, floorValue){
-
-                    colorsInScene[bldgValue].floors[floorValue.id] = fillDefaultColorValues();
 
                     //poi details panel floor dropdown
                     var floorItem = document.createElement('option');
@@ -1478,36 +1451,13 @@ var setCustomTheme = function(){
 
     $('#custom-theme-list').removeClass('invisible');
 
-    if(currentFloorId == 'Exterior'){
-        console.log("EXTARIOR!!");
-        $.each(colorsInScene, function(buildingId, buildingObj){
-            $.each(buildingObj, function(propertyName, floors){
-                $.each(floors, function(floorId, floorValue){
-                    $.each(floorValue, function(floorKey, floorValue){
-                        console.log("each floorkey:");
-                        console.log(floorKey);
-                        console.log("each floorvalue:");
-                        console.log(floorValue);
-
-                        ambiarc.setColorByCategory(floorKey, floorValue);
-                    })
-                })
-            })
-        });
-    }
-    else if(currentFloorId !== '' && typeof currentFloorId !== undefined){
-
-        console.log("SPECIFIC FLOOR!!");
-
-        $.each(colorsInScene[currentBuildingId].floors[currentFloorId], function(floorKey, floorValue){
-            console.log("each floorkey:");
-            console.log(floorKey);
-            console.log("each floorvalue:");
-            console.log(floorValue);
-            ambiarc.setColorByCategory(floorKey, floorValue);
-        })
-    }
+    $.each(colorsInScene, function(key, value){
+        ambiarc.setColorByCategory(key, value);
+    });
 }
+
+
+
 
 
 var importFileHandler = function(evt){
