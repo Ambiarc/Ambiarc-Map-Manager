@@ -18,7 +18,7 @@ var colorsInScene = {
     'Room' : '#01abba',
     'Restroom' : '#01abba',
     'Walkway' : '#01abba',
-    'Stair' : '#01abba',
+    'Stairs' : '#01abba',
     'Elevator' : '#01abba',
     'Escalator' : '#01abba',
     'Ramp' : '#01abba',
