@@ -1347,6 +1347,8 @@ var sortByTime = function(){
         if(a.date > b.date) return 1;
     });
 
+    sortingArray = sortingArray.reverse();
+
     sortPoiList(sortingArray);
 };
 
