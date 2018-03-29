@@ -13,6 +13,11 @@ var currentLabelId, ambiarc, fr, parsedJson;
 // key vlue on input field click
 var pairFocusKey;
 var currentBuildingId;
+var movingMouse;
+
+$('#ambiarcIframe').on('mousedown', function(){
+    console.log("mouse down!!");
+});
 
 var regularFeatures = [
     'label',
@@ -71,6 +76,8 @@ $(document).ready(function() {
     });
     poiMenuSelector = menu.$menu[0];
 
+    initColorPickers();
+
 
     $('#bldg-floor-select').on('change', function(){
 
@@ -90,17 +97,34 @@ $(document).ready(function() {
 
     //PANEL ELEMENTS HANDLERS
 
+    $('.color-sample').on('click', function(){
+        console.log("triggering click!!");
+        var item = $(this).closest('.colorpicker-element');
+        $(item).find('.colorpicker_field').trigger('click');
+    });
+
     $('.filter-by-location').on('click', sortByLocation);
 
     $('.filter-by-name').on('click', sortByName);
 
     $('.filter-by-time').on('click', sortByTime);
 
+    $('.dark-theme-btn').on('click', setDarkTheme);
+
+    $('.light-theme-btn').on('click', setLightTheme);
 
     $('#import-file').on('change', importFileHandler);
 
     $('.poi-list-panel').find('.header-button').on('click', function(){
-        $('.header-button').removeClass('selected').removeClass('btn-primary').removeClass('btn-selected');
+
+        if($(this).attr('id') == 'colors-section-button'){
+            showColorsPanel();
+        }
+        else if($(this).attr('id') == 'points-section-button'){
+            showPoiList();
+        }
+
+        $('.poi-list-panel').find('.header-button').removeClass('selected').removeClass('btn-primary').removeClass('btn-selected');
         $(this).addClass('btn-primary').addClass('btn-selected');
     });
 
@@ -253,11 +277,25 @@ $(document).ready(function() {
 });
 
 
+var showColorsPanel = function(){
+    console.log("SHOW COLORS PANEL!!");
+    $('.poi-details-panel').addClass('invisible');
+    $('.icons-list-panel').addClass('invisible');
+    $('.poi-list-body').addClass('invisible');
+    $('.colors-panel').removeClass('invisible');
+}
+
+
 var showPoiList = function(){
+    console.log("SHO POI LIST!");
     emptyDetailsData();
     $('.poi-details-panel').addClass('invisible');
     $('.icons-list-panel').addClass('invisible');
+    $('.colors-panel').addClass('invisible');
     $('.poi-list-panel').removeClass('invisible');
+    $('.poi-list-body').removeClass('invisible');
+    $('.poi-list-panel').find('.btn-selected').removeClass('btn-selected').removeClass('btn-primary');
+    $('.poi-list-panel').find('#points-section-button').addClass('btn-selected').addClass('btn-primary');
 
     showInactivePoints();
 
@@ -484,12 +522,16 @@ var onFloorSelectorFocusChanged = function(event) {
 
 var mapLabelClickHandler = function(event) {
 
+    console.log("map label clicked event:");
+    console.log(event);
+
     if(!ambiarc.poiList[event.detail]){
         return;
     }
 
     $('.poi-list-panel').addClass('invisible');
     $('.icons-list-panel').addClass('invisible');
+    $('.colors-panel').addClass('invisible');
     $('.poi-details-panel').removeClass('invisible');
 
     if(event.detail == currentLabelId){
@@ -606,9 +648,13 @@ var addElementToPoiList = function(mapLabelId, mapLabelName, mapLabelInfo, times
         fillDetails(mapLabelInfo);
         ambiarc.focusOnMapLabel(mapLabelId, mapLabelId);
 
-        $('.poi-list-panel').addClass('invisible');
-        $('.icons-list-panel').addClass('invisible');
-        $('.poi-details-panel').removeClass('invisible');
+        // $('.poi-list-panel').addClass('invisible');
+        // $('.poi-list-panel').addClass('invisible');
+        // $('.poi-list-body').addClass('invisible');
+        // $('.colors-panel').addClass('invisible');
+        // $('.poi-details-panel').removeClass('invisible');
+
+        showPoiDetails();
     });
 };
 
@@ -1052,6 +1098,8 @@ var updateFloorId = function(floorId){
 
 var cameraCompletedHandler = function(){
 
+    console.log("CAMERA MOTION COMPLETED!!");
+
     if(typeof currentLabelId !== 'undefined'){
         hideInactivePoints(true);
     }
@@ -1226,6 +1274,7 @@ var importIconHandler = function(){
 var showIconsPanel = function(){
     $('.poi-list-panel').addClass('invisible');
     $('.poi-details-panel').addClass('invisible');
+    $('.colors-panel').addClass('invisible');
     $('.icons-list-panel').removeClass('invisible');
 };
 
@@ -1236,6 +1285,8 @@ var showPoiDetails = function(){
 
     $('.poi-details-panel').removeClass('invisible');
     $('.poi-list-panel').addClass('invisible');
+    $('.poi-list-body').addClass('invisible');
+    $('.colors-panel').addClass('invisible');
     $('.icons-list-panel').addClass('invisible');
 
     if(ambiarc.poiList[currentLabelId].type !== 'Text'){
@@ -1353,6 +1404,16 @@ var sortByTime = function(){
 };
 
 
+var setDarkTheme = function(){
+    ambiarc.setMapTheme(ambiarc.mapTheme.dark);
+};
+
+
+var setLightTheme = function(){
+    ambiarc.setMapTheme(ambiarc.mapTheme.light);
+};
+
+
 var importFileHandler = function(evt){
 
     if(!input){
@@ -1455,4 +1516,15 @@ var showInactivePoints = function(){
             ambiarc.showMapLabel(id, false);
         }
     });
+}
+
+var initColorPickers = function(){
+    $('.colorpicker_field').each(function(i, el){
+        console.log("each colorpicker:");
+        console.log(i);
+        console.log(el);
+
+        $(el).colorpicker();
+
+    })
 }

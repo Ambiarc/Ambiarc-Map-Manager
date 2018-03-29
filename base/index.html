@@ -3,15 +3,22 @@
 <head>
     <title>Ambiarc</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" media="all" href="../TemplateData/css/bootstrap.min.css"/>
-    <link rel="stylesheet" media="all" href="../css/demo-ui.css"/>
-    <link rel="stylesheet" media="all" href="../css/panel.css"/>
-    <link rel="stylesheet" media="all" href="../css/icons.css"/>
+
+    <!--bootstrap resources-->
     <script src="../TemplateData/js/jquery-2.2.4.min.js"></script>
     <script src="../TemplateData/js/bootstrap.min.js"></script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!--colorpicker resources-->
+    <link rel="stylesheet" media="all" href="../TemplateData/css/bootstrap-colorpicker.css">
+    <script src="../TemplateData/js/bootstrap-colorpicker.js"></script>
+
+    <link rel="stylesheet" media="all" href="../TemplateData/css/bootstrap.min.css"/>
+    <link rel="stylesheet" media="all" href="../css/demo-ui.css"/>
+    <link rel="stylesheet" media="all" href="../css/panel.css"/>
+    <link rel="stylesheet" media="all" href="../css/icons.css"/>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -57,16 +64,16 @@
             <div id="main-panel" class="separate-block row poi-list-panel" style="pointer-events: all">
 
                 <!-- poi list view -->
-                <div class="header-button col-sm btn btn-default btn-primary btn-selected">
+                <div id="points-section-button" class="header-button col-sm btn btn-default btn-primary btn-selected">
                     Points of Interest
                 </div>
 
-                <div class="header-button col-sm btn btn-default">
+                <div id="colors-section-button" class="header-button col-sm btn btn-default">
                     Map Colors
                 </div>
             </div>
 
-            <div class="row panel-body-row poi-list-panel">
+            <div class="row panel-body-row poi-list-body">
                 <div class="panel-body panel panel-default poi-container">
                      <div class="init-poi-text col-sm">
                         <p>Right click the map to add a point of interest.</p>
@@ -81,7 +88,7 @@
                         <div class="row" style="text-align: center; margin: 0;">
 
                             <!-- poi list view -->
-                            <div style="width: 80%;margin: auto;">
+                            <div style="width: 90%;margin: auto;">
                                 <div class="filter-by-name sort-button col-sm-4 btn btn-default">
                                     Name
                                 </div>
@@ -100,6 +107,136 @@
 
                     <ul id="listPoiContainer" class="list-group">
                     </ul>
+                </div>
+
+            </div>
+
+
+            <!--colors panel-->
+            <div class="row panel-body-row colors-panel invisible" style="pointer-events: all">
+                <div class="panel-body panel panel-default poi-container">
+
+                    <div class="themes-section">
+                        <div class="row" style="text-align: center; margin: 0;">
+                            <div class="col-sm-12">
+                                <label class="sort-label">Theme:</label>
+                            </div>
+                        </div>
+
+                        <div class="row" style="text-align: center; margin: 0;">
+
+                            <!-- colors view -->
+                            <div style="width: 90%;margin: auto;">
+                                <div class="light-theme-btn sort-button col-sm-4 btn btn-default">
+                                    Light
+                                </div>
+
+                                <div class="dark-theme-btn sort-button col-sm-4 btn btn-default">
+                                    Dark
+                                </div>
+
+                                <div class="custom-theme-btn sort-button col-sm-4 btn btn-default btn-primary btn-selected">
+                                    Custom
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <ul id="custom-theme-list" class="list-group">
+
+                        <li class="custom-theme-list row colorpicker-element" data-colorpicker-id="1">
+                            <div class="form-group">
+                                <p class="col-sm-4 col-form-label">Wall</p>
+                                <div class="input-group colorpicker-component colorpicker_field col-sm-8" title="Using horizontal option">
+                                    <input type="text" class="form-control input-lg" value="#01abba"/>
+                                    <span class="input-group-addon"><i></i></span>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="custom-theme-list row colorpicker-element" data-colorpicker-id="2">
+                            <div class="form-group">
+                                <p class="col-sm-4 col-form-label">Room</p>
+                                <div class="input-group colorpicker-component colorpicker_field col-sm-8" title="Using horizontal option">
+                                    <input type="text" class="form-control input-lg" value="#01abba"/>
+                                    <span class="input-group-addon"><i></i></span>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="custom-theme-list row colorpicker-element" data-colorpicker-id="3">
+                            <div class="form-group">
+                                <p class="col-sm-4 col-form-label">Restroom</p>
+                                <div class="input-group colorpicker-component colorpicker_field col-sm-8" title="Using horizontal option">
+                                    <input type="text" class="form-control input-lg" value="#01abba"/>
+                                    <span class="input-group-addon"><i></i></span>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="custom-theme-list row colorpicker-element" data-colorpicker-id="4">
+                            <div class="form-group">
+                                <p class="col-sm-4 col-form-label">Walkway</p>
+                                <div class="input-group colorpicker-component colorpicker_field col-sm-8" title="Using horizontal option">
+                                    <input type="text" class="form-control input-lg" value="#01abba"/>
+                                    <span class="input-group-addon"><i></i></span>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="custom-theme-list row colorpicker-element" data-colorpicker-id="5">
+                            <div class="form-group">
+                                <p class="col-sm-4 col-form-label">Stair</p>
+                                <div class="input-group colorpicker-component colorpicker_field col-sm-8" title="Using horizontal option">
+                                    <input type="text" class="form-control input-lg" value="#01abba"/>
+                                    <span class="input-group-addon"><i></i></span>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="custom-theme-list row colorpicker-element" data-colorpicker-id="6">
+                            <div class="form-group">
+                                <p class="col-sm-4 col-form-label">Elevator</p>
+                                <div class="input-group colorpicker-component colorpicker_field col-sm-8" title="Using horizontal option">
+                                    <input type="text" class="form-control input-lg" value="#01abba"/>
+                                    <span class="input-group-addon"><i></i></span>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="custom-theme-list row colorpicker-element" data-colorpicker-id="7">
+                            <div class="form-group">
+                                <p class="col-sm-4 col-form-label">Escalator</p>
+                                <div class="input-group colorpicker-component colorpicker_field col-sm-8" title="Using horizontal option">
+                                    <input type="text" class="form-control input-lg" value="#01abba"/>
+                                    <span class="input-group-addon"><i></i></span>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="custom-theme-list row colorpicker-element" data-colorpicker-id="8">
+                            <div class="form-group">
+                                <p class="col-sm-4 col-form-label">Ramp</p>
+                                <div class="input-group colorpicker-component colorpicker_field col-sm-8" title="Using horizontal option">
+                                    <input type="text" class="form-control input-lg" value="#01abba"/>
+                                    <span class="input-group-addon"><i></i></span>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="custom-theme-list row colorpicker-element" data-colorpicker-id="9">
+                            <div class="form-group">
+                                <p class="col-sm-4 col-form-label">Non-Public</p>
+                                <div class="input-group colorpicker-component colorpicker_field col-sm-8" title="Using horizontal option">
+                                    <input type="text" class="form-control input-lg" value="#01abba"/>
+                                    <span class="input-group-addon"><i></i></span>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+
                 </div>
 
             </div>
@@ -178,8 +315,8 @@
 
                             <div class="row">
                                 <div id="poi-browse-icons" class="input-group col-sm-8">
-                                    <button class="input-group-addon col-sm-4">Browse</button>
-                                    <div id="poi-browse-text" class="form-control" name="msg" placeholder="Additional Info" style="height: 25px;"></div>
+                                    <button class="browse-button input-group-addon col-sm-4">Browse</button>
+                                    <div id="poi-browse-text" class="form-control col-sm-8" name="msg" placeholder="Additional Info" style="height: 25px;"></div>
                                 </div>
                                 <input type="file" id="icon-file-hidden" class="custom-file-input">
                             </div>
@@ -323,7 +460,6 @@
                 </div>
             </div>
 
-
             <div class="row panel-body-row icons-list-panel invisible">
                 <div class="panel-body panel panel-default icons-container">
                     <div class="row">
@@ -377,6 +513,8 @@
                     </div>
                 </div>
             </div>
+
+
             </div>
         </div>
     </div>

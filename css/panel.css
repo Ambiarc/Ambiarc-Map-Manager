@@ -1,3 +1,16 @@
+input {
+    height: 25px;
+}
+
+.form-control {
+    font-size: 1rem;
+    height: 2rem;
+}
+
+.btn {
+    font-size: 1rem;
+}
+
 .panel-section {
     max-width: 250px;
     margin-left: 30px;
@@ -22,14 +35,14 @@
 }
 
 .panel-section .buttons_row {
-    max-width: 210px;
+    max-width: 95%;
 }
 
 .imp-exp-new ul {
     padding-left: 0;
     list-style: none;
     text-align: center;
-    font-size: 0.8em;
+    font-size: 0.8rem;
     font-weight: normal;
     display: flex;
 }
@@ -40,7 +53,7 @@
     border: 1px solid #D3D3D3;
     padding: 2px;
     font-weight: 500;
-    font-size: 11px;
+    font-size: 1.2rem;
     cursor: pointer;
 }
 
@@ -71,7 +84,7 @@
 }
 
 #main-panel .btn {
-    font-size: 1.5em;
+    font-size: 1.4rem;
 }
 
 .panel.panel-default.poi-container {
@@ -79,7 +92,7 @@
 }
 
 .panel-body {
-    font-size: 1.4em;
+    font-size: 1.1rem;
     position: relative;
     overflow-y: auto;
     border-top-right-radius: 0;
@@ -157,14 +170,26 @@
     align-items: center;
 }
 
-.poi-list-item.row {
+.poi-list-item.row,
+.custom-theme-list.row {
     margin: 2px;
     margin-left: 0;
     margin-right: 0;
 }
 
+.custom-theme-list {
+    width: 100%;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 10px;
+    cursor: pointer;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    font-size: 1.3rem;
+}
+
 .list-poi-icon {
-    font-size: 1.6em;
+    font-size: 1.6rem;
 }
 
 .list-poi-label {
@@ -172,13 +197,14 @@
     font-weight: 400;
     display: block;
     line-height: 100%;
+    font-size: 1.3rem;
 }
 
 .list-poi-bldg,
 .list-poi-floor,
 .list-poi-dtime {
     color: #cacaca;
-    font-size: 0.9em;
+    font-size: 1.1rem;
     line-height: 100%;
     margin: 0;
 }
@@ -221,7 +247,8 @@
 }
 
 #details-header,
-#icons-list-header {
+#icons-list-header,
+#colors-list-header {
     padding-bottom: 5px;
     padding-top: 5px;
     padding-left: 15px;
@@ -240,12 +267,12 @@
 
 .poi-details-panel input,
 .poi-details-panel select {
-    height: 20px;
+    height: 25px;
 }
 
 .poi-details-panel select {
-    height: 20px!important;
-    padding: 0;
+    /*height: 20px!important;*/
+    /*padding: 0;*/
 }
 
 .poi-details-panel label {
@@ -350,7 +377,6 @@
 
 #poi-browse-text {
     white-space: nowrap;
-    width: 50px;
     overflow: hidden;
     text-overflow: ellipsis;
 }
@@ -361,12 +387,14 @@
     margin-right: auto;
     margin-top: 10px;
     margin-bottom: 10px;
+    width: 50px;
 }
 
 #poi-browse-icons button {
-    font-size: 12px!important;
+    font-size: 1.1rem!important;
     text-align: center;
     padding: 0;
+
 }
 
 .poi-icon-image {
@@ -403,9 +431,6 @@
     padding: 5px;
 }
 
-.icons-list-panel {
-
-}
 
 .icons-list-panel .row {
     margin: 0;
@@ -436,7 +461,7 @@
 
 .pair-key-row .list-icon-wrapper {
     padding: 0;
-    padding-top: 30px;
+    padding-top: 31px;
 }
 
 .pair-type {
@@ -446,6 +471,18 @@
 .sorting-section {
     display: none;
     margin-bottom: 15px;
+}
+
+.sorting-section .btn{
+    border: 1px solid #D3D3D3;
+}
+
+.themes-section {
+    margin-bottom: 15px;
+}
+
+.themes-section .btn {
+    border: 1px solid #D3D3D3;
 }
 
 .sort-label {
@@ -464,8 +501,10 @@
     color: #000000;
     padding: 4px;
     margin: 1px;
-    font-size: 13px!important;
+    font-size: 15px!important;
     cursor: pointer;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .delete-pair {
@@ -477,4 +516,30 @@
 .selected-value-type {
     background-color: #1a78d7;
     color: #FFFFFF;
+}
+
+.colorpicker_field {
+    width: 100%;
+}
+
+.colorpicker {
+    pointer-events: all;
+}
+
+.color-sample {
+    background-color: #4bcdff
+}
+
+.input-group-addon {
+    padding-top: 3px;
+    padding-bottom: 2px;
+}
+
+.colorpicker-element p{
+    font-size: 1rem;
+}
+
+.browse-button {
+    width: 50px;
+    height: 25px;
 }
