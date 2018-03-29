@@ -458,3 +458,23 @@
     color: #7ac7e5;
     font-size: 10px;
 }
+
+.key-value-icon {
+    background-color: #D3D3D3;
+    color: #000000;
+    padding: 4px;
+    margin: 1px;
+    font-size: 13px!important;
+    cursor: pointer;
+}
+
+.delete-pair {
+    color: #FFFFFF;
+    background-color: #d75253;
+    margin-left: 10px;
+}
+
+.selected-value-type {
+    background-color: #1a78d7;
+    color: #FFFFFF;
+}

@@ -202,6 +202,25 @@ $(document).ready(function() {
 
     $('#poi-add-pair').on('click', addNewPair);
 
+    $('body').on('keyup', '.poi-new-value', function(e){
+        console.log("key up!!");
+        console.log($(this).val());
+        var item = $(this).closest('.pair-key-row');
+        var inputVal = $(this).val();
+
+        if($.isNumeric(inputVal) || inputVal == ''){
+            $(item).find('.value-to-number').fadeIn();
+            $(item).find('.value-to-string').fadeIn();
+        }
+        else {
+            $(item).find('.value-to-number').fadeOut();
+            $(item).find('.value-to-string').fadeOut();
+            $(item).find('.selected-value-type').removeClass('selected-value-type');
+            $(item).find('.value-to-string').addClass('selected-value-type');
+            $(item).find('.poi-new-value').attr('data-type','string');
+        }
+    });
+
 
     $('body').on('change', '.poi-new-key', updatePairKey);
     $('body').on('change', '.poi-new-value', updatePairValue);
@@ -907,15 +926,22 @@ var updatePairKey =  function(e){
     var pairItem = $(this).closest('.pair-key-row');
     var key = $(pairItem).find('.poi-new-key').val();
     var value = $(pairItem).find('.poi-new-value').val();
+    var dataType = $(pairItem).find('.poi-new-value').attr('data-type');
 
-    if(key == '' || value == ''){
+    delete ambiarc.poiList[currentLabelId][pairFocusKey];
+
+    if(key == ''){
         return;
     }
 
-    if(pairFocusKey != '') {
-        delete ambiarc.poiList[currentLabelId][pairFocusKey];
-    }
 
+
+    if(dataType == 'number'){
+        value = parseFloat(value);
+    }
+    else {
+        value = value.toString();
+    }
     ambiarc.poiList[currentLabelId][key] = value;
 };
 
@@ -925,9 +951,17 @@ var updatePairValue =  function(e){
     var pairItem = $(this).closest('.pair-key-row');
     var key = $(pairItem).find('.poi-new-key').val();
     var value = $(pairItem).find('.poi-new-value').val();
+    var dataType = $(pairItem).find('.poi-new-value').attr('data-type');
 
-    if(key == '' || value == ''){
+    if(key == ''){
         return;
+    }
+
+    if(dataType == 'number'){
+        value = parseFloat(value);
+    }
+    else {
+        value = value.toString();
     }
 
     ambiarc.poiList[currentLabelId][key] = value;
@@ -948,6 +982,16 @@ var valueToNumber = function(){
     var pairItem = $(this).closest('.pair-key-row');
     $(pairItem).find('.poi-new-value').attr('data-type','number');
     $(pairItem).find('.pair-type').html('(number)');
+    $(pairItem).find('.selected-value-type').removeClass('selected-value-type');
+    $(this).addClass('selected-value-type');
+    var key = $(pairItem).find('.poi-new-key').val();
+    var value = $(pairItem).find('.poi-new-value').val();
+
+    if(key == '' || value == ''){
+        return;
+    }
+
+    ambiarc.poiList[currentLabelId][key] = parseFloat(value);
 }
 
 
@@ -955,6 +999,16 @@ var valueToString = function(){
     var pairItem = $(this).closest('.pair-key-row');
     $(pairItem).find('.poi-new-value').attr('data-type','string');
     $(pairItem).find('.pair-type').html('(string)');
+    $(pairItem).find('.selected-value-type').removeClass('selected-value-type');
+    $(this).addClass('selected-value-type');
+    var key = $(pairItem).find('.poi-new-key').val();
+    var value = $(pairItem).find('.poi-new-value').val();
+
+    if(key == '' || value == ''){
+        return;
+    }
+
+    ambiarc.poiList[currentLabelId][key] = value.toString();
 }
 
 
