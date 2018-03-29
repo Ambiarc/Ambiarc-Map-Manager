@@ -911,12 +911,27 @@ var updatePoiDetails = function(changedKey, changedValue){
 
 var addNewPair = function(key, value){
 
-    var item = $("#pairKeyValueTemplate").find('li').clone()
+    var item = $("#pairKeyValueTemplate").find('li').clone();
         $(item).appendTo($("#poi-key-value-list"));
 
     if(key && value){
         $(item).find('.poi-new-key').val(key);
         $(item).find('.poi-new-value').val(value);
+        $(item).find('.selected-value-type').removeClass('selected-value-type');
+
+        //if value is number
+        if(typeof value == 'number'){
+            $(item).find('.value-to-number').addClass('selected-value-type');
+            $(item).find('.poi-new-value').attr('data-type', 'number');
+            $(item).find('.pair-type').html('(number)');
+        }
+
+        //value is string
+        else {
+            $(item).find('.value-to-string').addClass('selected-value-type');
+            $(item).find('.poi-new-value').attr('data-type', 'string');
+            $(item).find('.pair-type').html('(string)');
+        }
     }
 }
 
@@ -1061,6 +1076,7 @@ var exportData = function(){
     $.each(ambiarc.poiList, function(i, labelInfo){
 
         var properties = {};
+        var user_properties = {};
         var geometry = {
             type: 'Point',
             coordinates: []
@@ -1081,8 +1097,11 @@ var exportData = function(){
             else if (key == 'base64'){
                 properties.base64 = value;
             }
-            else {
+            else if(regularFeatures.indexOf(key) > -1){
                 properties[key] = value;
+            }
+            else {
+                user_properties[key] = value;
             }
         });
 
@@ -1090,7 +1109,8 @@ var exportData = function(){
         var feature = {
             type: "Feature",
             properties: properties,
-            geometry: geometry
+            geometry: geometry,
+            user_properties: user_properties
         };
 
         exportData.features.push(feature);
@@ -1373,6 +1393,12 @@ var fillGeoData = function(properties){
         var mapLabelInfo = feature.properties;
         mapLabelInfo.longitude = parseFloat(feature.geometry.coordinates[0]);
         mapLabelInfo.latitude = parseFloat(feature.geometry.coordinates[1]);
+        $.each(feature.user_properties, function(prop, val){
+            mapLabelInfo[prop] = val;
+        });
+
+        console.log("READY FOR IMPORT:");
+        console.log(mapLabelInfo);
 
         ambiarc.createMapLabel(mapLabelInfo.type, mapLabelInfo,(labelId) => {
             mapLabelCreatedCallback(labelId, mapLabelInfo.label, mapLabelInfo);
