@@ -555,10 +555,11 @@ var mapLabelClickHandler = function(event) {
     }
 
     $('.poi-list-panel').addClass('invisible');
-    $('.icons-list-panel').addClass('invisible');
     $('.icons-list-body').addClass('invisible');
     $('.colors-panel').addClass('invisible');
     $('.poi-details-panel').removeClass('invisible');
+    $('.poi-list-body').addClass('invisible');
+    $('.icons-list-panel').addClass('invisible');
 
     if(event.detail == currentLabelId){
         return;
