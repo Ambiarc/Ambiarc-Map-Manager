@@ -1,3 +1,7 @@
+#main_container {
+    height: 100%;
+}
+
 input {
     height: 25px;
 }
