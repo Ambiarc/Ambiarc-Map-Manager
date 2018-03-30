@@ -8,7 +8,11 @@ input {
 }
 
 .btn {
-    font-size: 1rem;
+    font-size: 1.1rem;
+}
+
+input[type='checkbox'] {
+    height: auto!important;
 }
 
 .panel-section {
@@ -287,7 +291,7 @@ input {
 
 .poi-details-panel span {
     color: #9f9e9e;
-    font-size: 12px;
+    font-size: 1.1rem;
     font-weight: 400;
 }
 
@@ -404,8 +408,8 @@ input {
 }
 
 .poi-icon-image {
-    width: 28px;
-    height: 28px;
+    width: 3rem;
+    height: 3rem;
 }
 
 #poi-select-icon {
@@ -548,4 +552,11 @@ input {
 .browse-button {
     width: 50px;
     height: 25px;
+}
+
+.back-to-list,
+#undo-actions {
+    padding: 0;
+    vertical-align: middle;
+    line-height: 3rem;
 }
