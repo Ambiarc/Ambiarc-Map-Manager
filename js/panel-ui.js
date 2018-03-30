@@ -180,7 +180,7 @@ $(document).ready(function() {
 
     $('#import-btn').on('click', importData);
     $('#export-btn').on('click', exportData);
-    $('#new-scene-btn').on('click', newScene);
+    $('.confirm-delete-scene').on('click', newScene);
 
     $('#poi-browse-icons').on('click', function(){
         $('#icon-file-hidden').trigger('click');
@@ -1196,27 +1196,25 @@ var exportData = function(){
 
 var newScene = function(){
 
-    var r = confirm("Creating new scene will remove all points of interest from map and panel!");
-    if (r == true) {
-        destroyAllLabels();
-        emptyDetailsData();
+    $('#exampleModal').modal('hide')
 
-        $.each(colorsInScene, function(key, value){
-            ambiarc.setColorByCategory(key, value);
+    destroyAllLabels();
+    emptyDetailsData();
 
-            $('.colorpicker-element[data-key="'+key+'"]')
-                .find('.colorpicker_value')
-                .val(value)
-                .trigger('change');
-        });
+    $.each(colorsInScene, function(key, value){
+        ambiarc.setColorByCategory(key, value);
 
-        setLightTheme();
-        $('#bldg-floor-select').val('Exterior');
+        $('.colorpicker-element[data-key="'+key+'"]')
+            .find('.colorpicker_value')
+            .val(value)
+            .trigger('change');
+    });
 
-        //1000 is id for setting focus to exterior
-        ambiarc.viewFloorSelector(mainBldgID, 1000);
+    setLightTheme();
+    $('#bldg-floor-select').val('Exterior');
 
-    }
+    //1000 is id for setting focus to exterior
+    ambiarc.viewFloorSelector(mainBldgID, 1000);
 };
 
 
