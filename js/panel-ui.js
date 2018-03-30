@@ -461,6 +461,11 @@ var onAmbiarcLoaded = function() {
     fillBuildingsList();
     $('#bootstrap').removeAttr('hidden');
     $('#controls-section').fadeIn();
+    $('.panel-section').removeClass('invisible');
+
+    document.addEventListener("contextmenu", function(e){
+        e.preventDefault();
+    }, false);
 }
 // creates the right-click menu over the map
 var onRightMouseDown = function(event) {
