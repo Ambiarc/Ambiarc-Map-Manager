@@ -710,8 +710,8 @@ var sortPoiList = function(array){
 var addFloorToFloor = function(fID, bID, name) {
     var item = $("#floorListTemplate").clone().removeClass("invisible").appendTo($("#floorContainer"));
     item.children("a.floorName").text("" + name).on("click", function() {
-        // var ambiarc = $("#ambiarcIframe")[0].contentWindow.Ambiarc;
-        // clicking on the floor selector list item will tell Ambiarc to isolate that floor
+        var ambiarc = $("#ambiarcIframe")[0].contentWindow.Ambiarc;
+        console.log( $("#currentFloor"));
         if (fID != undefined) {
             ambiarc.focusOnFloor(bID, fID);
             $("#currentFloor").text(name);
@@ -721,6 +721,7 @@ var addFloorToFloor = function(fID, bID, name) {
         }
     });
 };
+
 
 var fillDetails = function(mapLabelInfo){
 
@@ -916,6 +917,8 @@ var emptyDetailsData = function(){
     $('#poi-key-value-list').html('');
     $('#icon-file-hidden').val('');
     $('#poi-browse-text').val('');
+
+
 }
 
 
@@ -1114,9 +1117,12 @@ var updateFloorId = function(floorId){
 };
 
 
-var cameraCompletedHandler = function(){
+var cameraCompletedHandler = function(event){
 
-    console.log("CAMERA MOTION COMPLETED!!");
+    if(event.detail == 1000){
+        ambiarc.focusOnFloor(mainBldgID);
+        return;
+    }
 
     if(typeof currentLabelId !== 'undefined'){
         hideInactivePoints(true);
@@ -1194,8 +1200,22 @@ var newScene = function(){
     if (r == true) {
         destroyAllLabels();
         emptyDetailsData();
+
+        $.each(colorsInScene, function(key, value){
+            ambiarc.setColorByCategory(key, value);
+
+            $('.colorpicker-element[data-key="'+key+'"]')
+                .find('.colorpicker_value')
+                .val(value)
+                .trigger('change');
+        });
+
+        setLightTheme();
         $('#bldg-floor-select').val('Exterior');
-        ambiarc.viewFloorSelector(mainBldgID);
+
+        //1000 is id for setting focus to exterior
+        ambiarc.viewFloorSelector(mainBldgID, 1000);
+
     }
 };
 
@@ -1217,6 +1237,17 @@ var destroyAllLabels = function(){
 
      ambiarc.poiList = {};
      poisInScene = [];
+     colorsInScene = {
+        'Wall' : '#01abba',
+        'Room' : '#01abba',
+        'Restroom' : '#01abba',
+        'Walkway' : '#01abba',
+        'Stairs' : '#01abba',
+        'Elevator' : '#01abba',
+        'Escalator' : '#01abba',
+        'Ramp' : '#01abba',
+        'Non-Public' : '#01abba'
+    };
 
     updatePoiList();
     showPoiList();
