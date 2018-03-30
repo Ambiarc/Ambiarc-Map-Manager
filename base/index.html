@@ -307,12 +307,14 @@
                             </div>
 
                             <div class="row">
-                                <div id="poi-browse-icons" class="input-group col-sm-8">
+                                <div id="poi-browse-icons" class="form-inline justify-content-center col-sm-8">
                                     <button class="browse-button input-group-addon col-sm-4">Browse</button>
-                                    <div id="poi-browse-text" class="form-control col-sm-8" name="msg" placeholder="Additional Info" style="height: 25px;"></div>
+                                    <div id="poi-browse-text" class="form-control col-sm-6" name="msg" placeholder="Additional Info" style="height: 25px;"></div>
+                                    <div class="poi-icon help-icon poi-question" data-toggle="tooltip" title="Icons should be designed and uploaded at 128px by 128px as transparent or non-transparent PNG format only."></div>
                                 </div>
                                 <input type="file" id="icon-file-hidden" class="custom-file-input">
                             </div>
+
                         </div>
                     </div>
 
@@ -347,10 +349,10 @@
 
                     <div class="panel-group">
                         <div class="row">
-                            <div class="form-group col-sm">
-                                <input id="poi-tooltips-toggle" class="align-bottom" type="checkbox">
+                            <div class="form-group form-inline col-sm">
+                                <input id="poi-tooltips-toggle" class="" type="checkbox">
                                 <span class="">Tooltip Callout</span>
-                                <div class="poi-icon help-icon poi-question"></div>
+                                <div id="tooltip_hint" class="poi-icon help-icon poi-question" data-toggle="tooltip" title="Callouts are areas of information that may expand out of an icon or label."></div>
                             </div>
                         </div>
 
@@ -385,10 +387,10 @@
                     </div>
 
                     <div class="row last-row">
-                        <div class="col-sm">
-                            <input id="poi-creation-show" type="checkbox" class="align-bottom">
+                        <div class="col-sm form-group form-inline">
+                            <input id="poi-creation-show" type="checkbox" class="">
                             <span>Show On Creation</span>
-                            <div class="poi-icon help-icon poi-question"></div>
+                            <div data-toggle="tooltip" title="If selected this map label will instantly appear after the map loads. Otherwise, this map label will remain in a hidden state until activated!" class="poi-icon help-icon poi-question"></div>
                         </div>
                     </div>
 

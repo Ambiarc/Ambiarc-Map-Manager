@@ -52,6 +52,9 @@ var regularFeatures = [
 // Creating the right-click menu
 $(document).ready(function() {
 
+
+    $('[data-toggle="tooltip"]').tooltip();
+
     var $body = $(document.body);
 
     var menu = new BootstrapMenu('#bootstrap', {
@@ -182,7 +185,7 @@ $(document).ready(function() {
     $('#export-btn').on('click', exportData);
     $('.confirm-delete-scene').on('click', newScene);
 
-    $('#poi-browse-icons').on('click', function(){
+    $('.browse-button,#poi-browse-text').on('click', function(){
         $('#icon-file-hidden').trigger('click');
     });
 

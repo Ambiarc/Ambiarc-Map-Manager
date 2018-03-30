@@ -379,6 +379,8 @@ input {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
 }
 
 #poi-browse-icons {
@@ -398,8 +400,8 @@ input {
 }
 
 .poi-icon-image {
-    width: 35px;
-    height: 35px;
+    width: 28px;
+    height: 28px;
 }
 
 #poi-select-icon {
