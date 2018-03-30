@@ -120,12 +120,6 @@ $(document).ready(function() {
         ambiarc.setColorByCategory(key, value);
     });
 
-    $('.color-sample').on('click', function(){
-        console.log("triggering click!!");
-        var item = $(this).closest('.colorpicker-element');
-        $(item).find('.colorpicker_field').trigger('click');
-    });
-
     $('.filter-by-location').on('click', sortByLocation);
 
     $('.filter-by-name').on('click', sortByName);
@@ -238,8 +232,6 @@ $(document).ready(function() {
     });
 
     $('#poi-creation-show').on('change', function(){
-       // console.log("clicked showOnCreation!!");
-       // console.log($(this).is(':checked'));
         updatePoiDetails('showOnCreation', $(this).is(':checked'));
     });
 
@@ -339,8 +331,8 @@ var createTextLabel = function () {
         var mapLabelInfo = {
             buildingId: mainBldgID,
             floorId: currentFloorId,
-            latitude: parseFloat(toFixed(latlon.lat, 4)),
-            longitude: parseFloat(toFixed(latlon.lon, 4)),
+            latitude: parseFloat(latlon.lat),
+            longitude: parseFloat(latlon.lon),
             label: 'Ambiarc Text Label: ' + poisInScene.length,
             fontSize: 26,
             category: 'Label',
@@ -369,8 +361,8 @@ var createIconLabel = function () {
         var mapLabelInfo = {
             buildingId: mainBldgID,
             floorId: currentFloorId,
-            latitude: parseFloat(toFixed(latlon.lat, 4)),
-            longitude: parseFloat(toFixed(latlon.lon, 4)),
+            latitude: parseFloat(latlon.lat),
+            longitude: parseFloat(latlon.lon),
             label: 'Information ',
             category: 'Label',
             location: 'Default',
@@ -396,8 +388,8 @@ var createTextIcon = function () {
         var mapLabelInfo = {
             buildingId: mainBldgID,
             floorId: currentFloorId,
-            latitude: parseFloat(toFixed(latlon.lat, 4)),
-            longitude: parseFloat(toFixed(latlon.lon, 4)),
+            latitude: parseFloat(latlon.lat),
+            longitude: parseFloat(latlon.lon),
             label: 'Information',
             fontSize: 26,
             category: 'Label',
@@ -470,9 +462,13 @@ var onAmbiarcLoaded = function() {
 // creates the right-click menu over the map
 var onRightMouseDown = function(event) {
 
+    console.log("RIGHT MOUSE DOWN:");
+    console.log(event);
+
     if(isFloorSelectorEnabled || currentFloorId == 'Exterior'){
         return;
     }
+
 
     $(poiMenuSelector).css('top', $(window).height() - event.detail.pixelY + "px");
     $(poiMenuSelector).css('left', event.detail.pixelX + "px");
@@ -675,12 +671,6 @@ var addElementToPoiList = function(mapLabelId, mapLabelName, mapLabelInfo, times
         fillDetails(mapLabelInfo);
         ambiarc.focusOnMapLabel(mapLabelId, mapLabelId);
 
-        // $('.poi-list-panel').addClass('invisible');
-        // $('.poi-list-panel').addClass('invisible');
-        // $('.poi-list-body').addClass('invisible');
-        // $('.colors-panel').addClass('invisible');
-        // $('.poi-details-panel').removeClass('invisible');
-
         showPoiDetails();
     });
 };
@@ -754,8 +744,8 @@ var fillDetails = function(mapLabelInfo){
     $('#poi-type').val(mapLabelInfo.type);
     $('#poi-bulding-id').val(mapLabelInfo.buildingId);
     $('.poi-floor-id[data-bldgid = "'+mapLabelInfo.buildingId+'"]').val(mapLabelInfo.floorId);
-    $('#poi-label-latitude').val(mapLabelInfo.latitude);
-    $('#poi-label-longitude').val(mapLabelInfo.longitude);
+    $('#poi-label-latitude').val(parseFloat(toFixed(mapLabelInfo.latitude, 4)));
+    $('#poi-label-longitude').val(parseFloat(toFixed(mapLabelInfo.longitude, 4)));
     $('#poi-tooltips-toggle').prop('checked', mapLabelInfo.showToolTip);
     $('#poi-tooltip-title').val(mapLabelInfo.tooltipTitle);
     $('#poi-tooltip-body').val(mapLabelInfo.tooltipBody);
@@ -1446,19 +1436,12 @@ var setLightTheme = function(){
 
 var setCustomTheme = function(){
 
-    console.log("SET CUSTOM THEMES!!!!");
-    console.log("colors in scene!!");
-    console.log(colorsInScene);
-
     $('#custom-theme-list').removeClass('invisible');
 
     $.each(colorsInScene, function(key, value){
         ambiarc.setColorByCategory(key, value);
     });
 }
-
-
-
 
 
 var importFileHandler = function(evt){
@@ -1503,8 +1486,16 @@ var fillGeoData = function(properties){
         var mapLabelInfo = feature.properties;
         mapLabelInfo.longitude = parseFloat(feature.geometry.coordinates[0]);
         mapLabelInfo.latitude = parseFloat(feature.geometry.coordinates[1]);
+
         $.each(feature.user_properties, function(prop, val){
-            mapLabelInfo[prop] = val;
+            if(prop === 'longitude' || prop === 'latitude') {
+                console.log("LATITUDE!!!!!!!!!!!1");
+                mapLabelInfo[prop] = parseFloat(toFixed(val, 4));
+            }
+            else {
+                mapLabelInfo[prop] = val;
+            }
+
         });
 
         console.log("READY FOR IMPORT:");
@@ -1522,13 +1513,14 @@ var toFixed = function(num, fixed) {
     return num.toString().match(re)[0];
 }
 
+
 var downloadObjectAsJson = function (exportObj, exportName){
     var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj));
     var downloadAnchorNode = document.createElement('a');
-    downloadAnchorNode.setAttribute("href",     dataStr);
-    downloadAnchorNode.setAttribute("download", exportName + ".json");
-    downloadAnchorNode.click();
-    downloadAnchorNode.remove();
+        downloadAnchorNode.setAttribute("href",     dataStr);
+        downloadAnchorNode.setAttribute("download", exportName + ".json");
+        downloadAnchorNode.click();
+        downloadAnchorNode.remove();
 };
 
 
@@ -1536,11 +1528,11 @@ var repositionLabel = function(){
 
     ambiarc.getMapPositionAtCursor(ambiarc.coordType.gps, (latlon) => {
 
-        var latitude = parseFloat(toFixed(latlon.lat, 4));
-        var longitude = parseFloat(toFixed(latlon.lon, 4));
+        var latitude = parseFloat(latlon.lat);
+        var longitude = parseFloat(latlon.lon);
 
-        $('#poi-label-latitude').val(latitude);
-        $('#poi-label-longitude').val(longitude);
+        $('#poi-label-latitude').val(parseFloat(toFixed(latlon.lat, 4)));
+        $('#poi-label-longitude').val(parseFloat(toFixed(latlon.lon, 4)));
 
         updatePoiDetails(['longitude', 'latitude'], [longitude, latitude]);
     });
@@ -1567,11 +1559,6 @@ var showInactivePoints = function(){
 
 var initColorPickers = function(){
     $('.colorpicker_field').each(function(i, el){
-        console.log("each colorpicker:");
-        console.log(i);
-        console.log(el);
-
         $(el).colorpicker();
-
-    })
-}
+    });
+};
