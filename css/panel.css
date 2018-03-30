@@ -157,7 +157,11 @@ input {
     border: 1px solid lightgrey;
     padding: 10px;
     cursor: pointer;
-    min-height: 75px;
+    min-height: 6rem;
+}
+
+.poi-item-wrapper {
+    padding: 1px 10px;
 }
 
 #listPoiTemplate,
@@ -172,7 +176,7 @@ input {
 
 .poi-list-item.row,
 .custom-theme-list.row {
-    margin: 2px;
+    margin: 1px;
     margin-left: 0;
     margin-right: 0;
 }
