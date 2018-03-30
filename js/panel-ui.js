@@ -1547,7 +1547,7 @@ var toFixed = function(num, fixed) {
 
 
 var downloadObjectAsJson = function (exportObj, exportName){
-    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj));
+    var dataStr = "data:data:text/plain;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj, null, 4));
     var downloadAnchorNode = document.createElement('a');
         downloadAnchorNode.setAttribute("href",     dataStr);
         downloadAnchorNode.setAttribute("download", exportName + ".json");
