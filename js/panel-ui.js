@@ -849,6 +849,9 @@ var fillBuildingsList = function(){
         mainBldgID = buildings[0];
         currentBuildingId = buildings[0];
         currentFloorId = 'Exterior';
+
+
+
         $.each(buildings, function(id, bldgValue){
 
             var bldgListItem = document.createElement('option');
