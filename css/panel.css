@@ -102,7 +102,7 @@ input[type='checkbox'] {
 .panel-body {
     font-size: 1.1rem;
     position: relative;
-    overflow-y: auto;
+    overflow-y: scroll;
     border-top-right-radius: 0;
     border-top-left-radius: 0;
     padding-left: 0px!important;
@@ -456,7 +456,12 @@ input[type='checkbox'] {
 
 .panel-body-row.icons-list-panel {
     height: 100%;
-    overflow: auto;
+    overflow-y: scroll;
+}
+
+.panel-body-row .icons-container {
+    overflow: hidden;
+    margin-bottom: 0;
 }
 
 .icon-btn-wrapper {
