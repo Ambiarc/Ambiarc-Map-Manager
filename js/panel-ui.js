@@ -7,12 +7,15 @@ var poiMenuSelector;
 var isFloorSelectorEnabled = false;
 // tracked references to POI's
 var poisInScene = [];
-// global lobal state indicating the current sleected floor
-// var currentFloorId = 'L002';
-var currentLabelId, ambiarc, fr, parsedJson;
+// current active building
+var currentBuildingId;
 // key vlue on input field click
 var pairFocusKey;
+//bootstrap menu
+var menu;
+var currentLabelId, ambiarc, fr, parsedJson;
 
+//default color values for custom color theme
 var colorsInScene = {
     'Wall' : '#01abba',
     'Room' : '#01abba',
@@ -25,12 +28,7 @@ var colorsInScene = {
     'Non-Public' : '#01abba'
 };
 
-var currentBuildingId;
-
-$('#ambiarcIframe').on('mousedown', function(){
-    console.log("mouse down!!");
-});
-
+//list of mapLabel regular properties (non key-value section pairs vvalues)
 var regularFeatures = [
     'label',
     'fontSize',
@@ -57,7 +55,7 @@ $(document).ready(function() {
 
     var $body = $(document.body);
 
-    var menu = new BootstrapMenu('#bootstrap', {
+    menu = new BootstrapMenu('#bootstrap', {
         actions: [
             {
                 name: 'Label',
@@ -455,6 +453,7 @@ var onAmbiarcLoaded = function() {
     ambiarc.registerForEvent(ambiarc.eventLabel.FloorSelectorFloorFocusChanged, onFloorSelectorFocusChanged);
     ambiarc.registerForEvent(ambiarc.eventLabel.MapLabelSelected, mapLabelClickHandler);
     ambiarc.registerForEvent(ambiarc.eventLabel.CameraMotionCompleted, cameraCompletedHandler);
+    ambiarc.registerForEvent(ambiarc.eventLabel.CameraMotionStarted, cameraStartedHandler);
 
     ambiarc.poiList = {};
 
@@ -1139,6 +1138,11 @@ var cameraCompletedHandler = function(event){
         showInactivePoints();
     }
 };
+
+
+var cameraStartedHandler = function(){
+    menu.close();
+}
 
 
 var importData = function(){
