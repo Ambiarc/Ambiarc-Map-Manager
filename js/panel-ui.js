@@ -934,19 +934,31 @@ var emptyDetailsData = function(){
 
 var updatePoiDetails = function(changedKey, changedValue){
 
+    console.log("update poi details");
+
     // If it's pair (longitude and latitude)
     if (typeof changedKey == 'object') {
 
         for(var i=0; i<changedKey.length; i++){
             ambiarc.poiList[currentLabelId][changedKey[i]] = changedValue[i];
         }
+
+        if(changedKey != 'floorId'){
+
+            ambiarc.poiList[currentLabelId].floorId = currentFloorId;
+            var newFloorId = currentFloorId;
+        }
     }
     else {
-        //applying changed value to ambiarc.poiList object for current label
+
         ambiarc.poiList[currentLabelId][changedKey] = changedValue;
+
     }
 
     var labelProperties = ambiarc.poiList[currentLabelId];
+    if(newFloorId){
+        labelProperties.floorId = newFloorId;
+    }
 
     //storing object clone for undo functionality
     var cloneObj = jQuery.extend({}, labelProperties);
@@ -968,6 +980,10 @@ var updatePoiDetails = function(changedKey, changedValue){
         $('#select-icon-group').fadeOut();
     }
 
+    console.log("before update:");
+    console.log(ambiarc.poiList[currentLabelId]);
+    console.log(currentFloorId);
+
     ambiarc.updateMapLabel(currentLabelId, labelProperties.type, labelProperties);
 
     var listItem = $('#'+currentLabelId);
@@ -977,6 +993,7 @@ var updatePoiDetails = function(changedKey, changedValue){
 
     updatePoiList();
     toggleSaveButton();
+    hideInactivePoints();
 
     if(ambiarc.poiList[currentLabelId].floorId != currentFloorId){
         console.log("FOCUSING!!");
@@ -1588,6 +1605,11 @@ if(!immediate)var immediate = false;
     $.each(ambiarc.poiList, function(id, obj){
         if(id != currentLabelId) {
             ambiarc.hideMapLabel(id, immediate);
+        }
+        else {
+            if(obj.floorId == currentFloorId){
+                ambiarc.showMapLabel(id, immediate)
+            }
         }
     })
 }
