@@ -554,6 +554,7 @@ var mapLabelClickHandler = function(event) {
     console.log(event);
 
     if(!ambiarc.poiList[event.detail]){
+        ambiarc.viewFloorSelector(mainBldgID);
         return;
     }
 
