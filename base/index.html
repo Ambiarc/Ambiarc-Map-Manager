@@ -28,512 +28,525 @@
 </head>
 
 <body style="pointer-events: none">
-<div id="bootstrap" hidden>
 
-    <div class="container-fluid" style="z-index:100;">
-        <div class="panel-section">
+<div id="main_container" class="container-fluid" style="z-index:100;">
+    <div class="panel-section invisible">
 
-            <div class="separate-block row buttons_row">
-                <div id="import-btn" class="col-sm imp-exp-btn">
-                    Import
-                </div>
-                <input type="file" id="import-file" class="import-poi-file">
+        <div class="separate-block row buttons_row">
+            <div id="import-btn" class="col-sm imp-exp-btn">
+                Import
+            </div>
+            <input type="file" id="import-file" class="import-poi-file">
 
-                <div id="export-btn" class="col-sm imp-exp-btn">
-                    Export
-                </div>
-
-                <div id="new-scene-btn" class="col-sm imp-exp-btn">
-                    New scene
-                </div>
+            <div id="export-btn" class="col-sm imp-exp-btn">
+                Export
             </div>
 
-            <div class="separate-block row buttons_row">
-                <div class="col-sm imp-exp-btn map_view">
-                    Map view
-                </div>
+            <div id="new-scene-btn" class="col-sm imp-exp-btn" data-toggle="modal" data-target="#exampleModal">
+                New Scene
+            </div>
+        </div>
 
-                <div class="col-sm imp-exp-btn select_wrapper" style="pointer-events: all">
-                    <select id="bldg-floor-select"></select>
-                </div>
+        <div class="separate-block row buttons_row">
+            <div class="col-sm imp-exp-btn map_view">
+                Map view
             </div>
 
+            <div class="col-sm imp-exp-btn select_wrapper" style="pointer-events: all">
+                <select id="bldg-floor-select"></select>
+            </div>
+        </div>
 
 
-            <!-- main panel -->
-            <div id="main-panel" class="separate-block row poi-list-panel" style="pointer-events: all">
+        <!-- main panel -->
+        <div id="main-panel" class="separate-block row poi-list-panel" style="pointer-events: all">
 
-                <!-- poi list view -->
-                <div id="points-section-button" class="header-button col-sm btn btn-default btn-primary btn-selected">
-                    Points of Interest
-                </div>
-
-                <div id="colors-section-button" class="header-button col-sm btn btn-default">
-                    Map Colors
-                </div>
+            <!-- poi list view -->
+            <div id="points-section-button" class="header-button col-sm btn btn-default btn-primary btn-selected">
+                Points of Interest
             </div>
 
-            <div class="row panel-body-row poi-list-body">
-                <div class="panel-body panel panel-default poi-container">
-                     <div class="init-poi-text col-sm">
-                        <p>Right click the map to add a point of interest.</p>
-                     </div>
-                    <div class="sorting-section">
-                        <div class="row" style="text-align: center; margin: 0;">
-                            <div class="col-sm-12">
-                                <label class="sort-label">Sort by:</label>
-                            </div>
-                        </div>
+            <div id="colors-section-button" class="header-button col-sm btn btn-default">
+                Map Colors
+            </div>
+        </div>
 
-                        <div class="row" style="text-align: center; margin: 0;">
-
-                            <!-- poi list view -->
-                            <div style="width: 90%;margin: auto;">
-                                <div class="filter-by-name sort-button col-sm-4 btn btn-default">
-                                    Name
-                                </div>
-
-                                <div class="filter-by-location sort-button col-sm-4 btn btn-default">
-                                    Location
-                                </div>
-
-                                <div class="filter-by-time sort-button col-sm-4 btn btn-default btn-primary btn-selected">
-                                    Time Added
-                                </div>
-                            </div>
-
+        <div class="row panel-body-row poi-list-body">
+            <div class="panel-body panel panel-default poi-container">
+                <div class="init-poi-text col-sm">
+                    <p>Right click the map to add a point of interest.</p>
+                </div>
+                <div class="sorting-section">
+                    <div class="row" style="text-align: center; margin: 0;">
+                        <div class="col-sm-12">
+                            <label class="sort-label">Sort by:</label>
                         </div>
                     </div>
 
-                    <ul id="listPoiContainer" class="list-group">
-                    </ul>
-                </div>
+                    <div class="row" style="text-align: center; margin: 0;">
 
-            </div>
+                        <!-- poi list view -->
+                        <div style="width: 90%;margin: auto;">
+                            <div class="filter-by-name sort-button col-sm-4 btn btn-default">
+                                Name
+                            </div>
 
+                            <div class="filter-by-location sort-button col-sm-4 btn btn-default">
+                                Location
+                            </div>
 
-            <!--colors panel-->
-            <div class="row panel-body-row colors-panel invisible" style="pointer-events: all">
-                <div class="panel-body panel panel-default poi-container">
-
-                    <div class="themes-section">
-                        <div class="row" style="text-align: center; margin: 0;">
-                            <div class="col-sm-12">
-                                <label class="sort-label">Theme:</label>
+                            <div class="filter-by-time sort-button col-sm-4 btn btn-default btn-primary btn-selected">
+                                Time Added
                             </div>
                         </div>
 
-                        <div class="row" style="text-align: center; margin: 0;">
+                    </div>
+                </div>
 
-                            <!-- colors view -->
-                            <div style="width: 90%;margin: auto;">
-                                <div class="light-theme-btn sort-button col-sm-4 btn btn-default btn-primary btn-selected">
-                                    Light
-                                </div>
+                <ul id="listPoiContainer" class="list-group">
+                </ul>
+            </div>
 
-                                <div class="dark-theme-btn sort-button col-sm-4 btn btn-default">
-                                    Dark
-                                </div>
+        </div>
 
-                                <div class="custom-theme-btn sort-button col-sm-4 btn btn-default">
-                                    Custom
-                                </div>
-                            </div>
 
+        <!--colors panel-->
+        <div class="row panel-body-row colors-panel invisible" style="pointer-events: all">
+            <div class="panel-body panel panel-default poi-container">
+
+                <div class="themes-section">
+                    <div class="row" style="text-align: center; margin: 0;">
+                        <div class="col-sm-12">
+                            <label class="sort-label">Theme:</label>
                         </div>
                     </div>
 
-                    <ul id="custom-theme-list" class="list-group invisible">
+                    <div class="row" style="text-align: center; margin: 0;">
 
-                        <li class="custom-theme-list row colorpicker-element" data-colorpicker-id="1" data-key="Wall">
-                            <div class="form-group">
-                                <p class="col-sm-4 col-form-label">Wall</p>
-                                <div class="input-group colorpicker-component colorpicker_field col-sm-8" title="Using horizontal option">
-                                    <input type="text" class="form-control input-lg colorpicker_value" value="#01abba"/>
-                                    <span class="input-group-addon"><i></i></span>
-                                </div>
+                        <!-- colors view -->
+                        <div style="width: 90%;margin: auto;">
+                            <div class="light-theme-btn sort-button col-sm-4 btn btn-default btn-primary btn-selected">
+                                Light
                             </div>
-                        </li>
 
-                        <li class="custom-theme-list row colorpicker-element" data-colorpicker-id="2" data-key="Room">
-                            <div class="form-group">
-                                <p class="col-sm-4 col-form-label">Room</p>
-                                <div class="input-group colorpicker-component colorpicker_field col-sm-8" title="Using horizontal option">
-                                    <input type="text" class="form-control input-lg colorpicker_value" value="#01abba"/>
-                                    <span class="input-group-addon"><i></i></span>
-                                </div>
+                            <div class="dark-theme-btn sort-button col-sm-4 btn btn-default">
+                                Dark
                             </div>
-                        </li>
 
-                        <li class="custom-theme-list row colorpicker-element" data-colorpicker-id="3" data-key="Restroom">
-                            <div class="form-group">
-                                <p class="col-sm-4 col-form-label">Restroom</p>
-                                <div class="input-group colorpicker-component colorpicker_field col-sm-8" title="Using horizontal option">
-                                    <input type="text" class="form-control input-lg colorpicker_value" value="#01abba"/>
-                                    <span class="input-group-addon"><i></i></span>
-                                </div>
+                            <div class="custom-theme-btn sort-button col-sm-4 btn btn-default">
+                                Custom
                             </div>
-                        </li>
+                        </div>
 
-                        <li class="custom-theme-list row colorpicker-element" data-colorpicker-id="4" data-key="Walkway">
-                            <div class="form-group">
-                                <p class="col-sm-4 col-form-label">Walkway</p>
-                                <div class="input-group colorpicker-component colorpicker_field col-sm-8" title="Using horizontal option">
-                                    <input type="text" class="form-control input-lg colorpicker_value" value="#01abba"/>
-                                    <span class="input-group-addon"><i></i></span>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li class="custom-theme-list row colorpicker-element" data-colorpicker-id="5" data-key="Stair">
-                            <div class="form-group">
-                                <p class="col-sm-4 col-form-label">Stair</p>
-                                <div class="input-group colorpicker-component colorpicker_field col-sm-8" title="Using horizontal option">
-                                    <input type="text" class="form-control input-lg colorpicker_value" value="#01abba"/>
-                                    <span class="input-group-addon"><i></i></span>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li class="custom-theme-list row colorpicker-element" data-colorpicker-id="6"  data-key="Elevator">
-                            <div class="form-group">
-                                <p class="col-sm-4 col-form-label">Elevator</p>
-                                <div class="input-group colorpicker-component colorpicker_field col-sm-8" title="Using horizontal option">
-                                    <input type="text" class="form-control input-lg colorpicker_value" value="#01abba"/>
-                                    <span class="input-group-addon"><i></i></span>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li class="custom-theme-list row colorpicker-element" data-colorpicker-id="7" data-key="Escalator">
-                            <div class="form-group">
-                                <p class="col-sm-4 col-form-label">Escalator</p>
-                                <div class="input-group colorpicker-component colorpicker_field col-sm-8" title="Using horizontal option">
-                                    <input type="text" class="form-control input-lg colorpicker_value" value="#01abba"/>
-                                    <span class="input-group-addon"><i></i></span>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li class="custom-theme-list row colorpicker-element" data-colorpicker-id="8" data-key="Ramp">
-                            <div class="form-group">
-                                <p class="col-sm-4 col-form-label">Ramp</p>
-                                <div class="input-group colorpicker-component colorpicker_field col-sm-8" title="Using horizontal option">
-                                    <input type="text" class="form-control input-lg colorpicker_value" value="#01abba"/>
-                                    <span class="input-group-addon"><i></i></span>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li class="custom-theme-list row colorpicker-element" data-colorpicker-id="9" data-key="Non-Public">
-                            <div class="form-group">
-                                <p class="col-sm-4 col-form-label">Non-Public</p>
-                                <div class="input-group colorpicker-component colorpicker_field col-sm-8" title="Using horizontal option">
-                                    <input type="text" class="form-control input-lg colorpicker_value" value="#01abba"/>
-                                    <span class="input-group-addon"><i></i></span>
-                                </div>
-                            </div>
-                        </li>
-
-                    </ul>
-
+                    </div>
                 </div>
 
+                <ul id="custom-theme-list" class="list-group invisible">
+
+                    <li class="custom-theme-list row colorpicker-element" data-colorpicker-id="1" data-key="Wall">
+                        <div class="form-group">
+                            <p class="col-sm-4 col-form-label">Wall</p>
+                            <div class="input-group colorpicker-component colorpicker_field col-sm-8"
+                                 title="Using horizontal option">
+                                <input type="text" class="form-control input-lg colorpicker_value" value="#01abba"/>
+                                <span class="input-group-addon"><i></i></span>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="custom-theme-list row colorpicker-element" data-colorpicker-id="2" data-key="Room">
+                        <div class="form-group">
+                            <p class="col-sm-4 col-form-label">Room</p>
+                            <div class="input-group colorpicker-component colorpicker_field col-sm-8"
+                                 title="Using horizontal option">
+                                <input type="text" class="form-control input-lg colorpicker_value" value="#01abba"/>
+                                <span class="input-group-addon"><i></i></span>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="custom-theme-list row colorpicker-element" data-colorpicker-id="3" data-key="Restroom">
+                        <div class="form-group">
+                            <p class="col-sm-4 col-form-label">Restroom</p>
+                            <div class="input-group colorpicker-component colorpicker_field col-sm-8"
+                                 title="Using horizontal option">
+                                <input type="text" class="form-control input-lg colorpicker_value" value="#01abba"/>
+                                <span class="input-group-addon"><i></i></span>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="custom-theme-list row colorpicker-element" data-colorpicker-id="4" data-key="Walkway">
+                        <div class="form-group">
+                            <p class="col-sm-4 col-form-label">Walkway</p>
+                            <div class="input-group colorpicker-component colorpicker_field col-sm-8"
+                                 title="Using horizontal option">
+                                <input type="text" class="form-control input-lg colorpicker_value" value="#01abba"/>
+                                <span class="input-group-addon"><i></i></span>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="custom-theme-list row colorpicker-element" data-colorpicker-id="5" data-key="Stairs">
+                        <div class="form-group">
+                            <p class="col-sm-4 col-form-label">Stair</p>
+                            <div class="input-group colorpicker-component colorpicker_field col-sm-8"
+                                 title="Using horizontal option">
+                                <input type="text" class="form-control input-lg colorpicker_value" value="#01abba"/>
+                                <span class="input-group-addon"><i></i></span>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="custom-theme-list row colorpicker-element" data-colorpicker-id="6" data-key="Elevator">
+                        <div class="form-group">
+                            <p class="col-sm-4 col-form-label">Elevator</p>
+                            <div class="input-group colorpicker-component colorpicker_field col-sm-8"
+                                 title="Using horizontal option">
+                                <input type="text" class="form-control input-lg colorpicker_value" value="#01abba"/>
+                                <span class="input-group-addon"><i></i></span>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="custom-theme-list row colorpicker-element" data-colorpicker-id="7" data-key="Escalator">
+                        <div class="form-group">
+                            <p class="col-sm-4 col-form-label">Escalator</p>
+                            <div class="input-group colorpicker-component colorpicker_field col-sm-8"
+                                 title="Using horizontal option">
+                                <input type="text" class="form-control input-lg colorpicker_value" value="#01abba"/>
+                                <span class="input-group-addon"><i></i></span>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="custom-theme-list row colorpicker-element" data-colorpicker-id="8" data-key="Ramp">
+                        <div class="form-group">
+                            <p class="col-sm-4 col-form-label">Ramp</p>
+                            <div class="input-group colorpicker-component colorpicker_field col-sm-8"
+                                 title="Using horizontal option">
+                                <input type="text" class="form-control input-lg colorpicker_value" value="#01abba"/>
+                                <span class="input-group-addon"><i></i></span>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="custom-theme-list row colorpicker-element" data-colorpicker-id="9" data-key="Non-Public">
+                        <div class="form-group">
+                            <p class="col-sm-4 col-form-label">Non-Public</p>
+                            <div class="input-group colorpicker-component colorpicker_field col-sm-8"
+                                 title="Using horizontal option">
+                                <input type="text" class="form-control input-lg colorpicker_value" value="#01abba"/>
+                                <span class="input-group-addon"><i></i></span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
             </div>
+        </div>
 
 
-            <!-- poi details panel -->
-            <div id="details-panel" class="separate-block row poi-details-panel invisible" style="pointer-events: all">
+        <!-- poi details panel -->
+        <div id="details-panel" class="separate-block row poi-details-panel invisible" style="pointer-events: all">
 
-                <!-- poi list view -->
-                <div id="details-header" class="row">
-                    <div class="header-button col-sm-5 btn btn-default btn-success back-to-list">
-                        <div class="poi-icon poi-menu-left"></div>
-                        <span>Back to list</span>
-                    </div>
-
-                    <div id="undo-actions" class="header-button col-sm-4 btn btn-basic ml-2">
-                        <div class="poi-icon poi-undo"></div>
-                        <span>Undo</span>
-                    </div>
-
-                    <div class="btn col-sm header-button pull-right saved-btn invisible">
-                        <span>Saved</span>
-                    </div>
-
+            <!-- poi list view -->
+            <div id="details-header" class="row">
+                <div class="header-button col-sm-5 btn btn-default btn-success back-to-list">
+                    <span class="fa fa-angle-left mr-1"
+                          style="font-size: 2.2rem;vertical-align: middle;line-height: 2.2rem;"></span>
+                    <span style="vertical-align: middle;line-height: 3rem;">Back to list</span>
                 </div>
 
+                <div id="undo-actions" class="header-button col-sm-4 btn btn-basic ml-2">
+                    <span class="fa fa-undo mr-1"
+                          style="font-size: 1.4rem; vertical-align: middle;line-height: 1.4rem;"></span>
+                    <span style="vertical-align: middle;line-height: 3rem;">Undo</span>
+                </div>
+                <div class="btn col-sm header-button pull-right saved-btn invisible">
+                    <span>Saved</span>
+                </div>
             </div>
+        </div>
 
-            <div class="row panel-body-row poi-details-panel invisible">
-                <div class="panel-body panel panel-default poi-container">
+        <div class="row panel-body-row poi-details-panel invisible">
+            <div class="panel-body panel panel-default poi-container">
+
+                <div class="row">
+                    <div class="col-sm form-group">
+                        <label class="poi-details-label">POI Name</label>
+                        <input type="text" id="poi-title" class="poi-details-name poi-details-input form-control"/>
+                    </div>
+                </div>
+
+                <div class="panel-group">
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label class="poi-details-label">POI Type</label>
+                            <select id="poi-type" class="poi-details-select form-control">
+                                <option value="Text">Text only</option>
+                                <option value="Icon">Icon only</option>
+                                <option value="IconWithText">Text + Icon</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label class="poi-details-label">Font Size</label>
+                            <input id="poi-font-size" type="text" class="poi-details-input form-control"/>
+                        </div>
+                    </div>
+
+                    <div id="select-icon-group" class="panel-group">
+                        <div class="row">
+                            <div id="poi-select-icon" class="form-inline input-group col-sm-8">
+                                <div class="col-sm-3">
+                                    <div id="poi-icon-image" class="poi-icon-image"></div>
+                                </div>
+                                <div class="col-sm-9 icon-btn-wrapper">
+                                    <div class="btn btn-primary" id="poi-select-button">
+                                        Select New Icon
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <label class="centered-label">- or -</label>
+                        </div>
+
+                        <div class="row">
+                            <div id="poi-browse-icons" class="form-inline justify-content-center col-sm-8">
+                                <button class="browse-button input-group-addon col-sm-4">Browse</button>
+                                <div id="poi-browse-text" class="form-control col-sm-6 mr-1" name="msg"
+                                     placeholder="Additional Info" style="height: 25px;"></div>
+                                <div class="poi-icon help-icon poi-question" data-toggle="tooltip"
+                                     title="Icons should be designed and uploaded at 128px by 128px as transparent or non-transparent PNG format only."></div>
+                            </div>
+                            <input type="file" id="icon-file-hidden" class="custom-file-input">
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="panel-group">
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label class="poi-details-label">Building ID</label>
+                            <select id="poi-bulding-id" type="text" class="poi-details-input form-control"></select>
+                        </div>
+                        <div id="poi-floor-lists" class="form-group col-sm-6">
+                            <label class="poi-details-label">Floor ID</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label class="poi-details-label">Latitude</label>
+                            <input id="poi-label-latitude" type="text" class="poi-details-input form-control"/>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="poi-details-label">Longitude</label>
+                            <input id="poi-label-longitude" type="text" class="poi-details-input form-control"/>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="notification-text col-sm-12">
+                            <p>*Right click anywhere on the map to reposition</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-group">
+                    <div class="row">
+                        <div class="form-group form-inline col-sm">
+                            <input id="poi-tooltips-toggle" class="mr-1 mt-0" type="checkbox">
+                            <span class="mr-1">Tooltip Callout</span>
+                            <div id="tooltip_hint" class="poi-icon help-icon poi-question" data-toggle="tooltip"
+                                 title="Callouts are areas of information that may expand out of an icon or label."></div>
+                        </div>
+                    </div>
 
                     <div class="row">
                         <div class="col-sm form-group">
-                            <label class="poi-details-label">POI Name</label>
-                            <input type="text" id="poi-title" class="poi-details-name poi-details-input form-control" />
+                            <label class="poi-details-label">Tooltip title</label>
+                            <input id="poi-tooltip-title" type="text" class="poi-details-input form-control"/>
                         </div>
                     </div>
 
-                    <div class="panel-group">
-                        <div class="row">
-                            <div class="form-group col-sm-6">
-                                <label class="poi-details-label">POI Type</label>
-                                <select id="poi-type" class="poi-details-select form-control">
-                                    <option value="Text">Text only</option>
-                                    <option value="Icon">Icon only</option>
-                                    <option value="IconWithText">Both</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="form-group col-sm-6">
-                                <label class="poi-details-label">Font Size</label>
-                                <input id="poi-font-size" type="text" class="poi-details-input form-control" />
-                            </div>
-                        </div>
-
-
-                        <div id="select-icon-group" class="panel-group">
-                            <div class="row">
-                                <div id="poi-select-icon" class="form-inline input-group col-sm-8">
-                                    <div class="col-sm-4">
-                                        <div id="poi-icon-image" class="poi-icon-image"></div>
-                                    </div>
-                                    <div class="col-sm-8 icon-btn-wrapper">
-                                        <div class="btn btn-primary" id="poi-select-button">
-                                            Select New Icon
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <label class="centered-label">- or -</label>
-                            </div>
-
-                            <div class="row">
-                                <div id="poi-browse-icons" class="input-group col-sm-8">
-                                    <button class="browse-button input-group-addon col-sm-4">Browse</button>
-                                    <div id="poi-browse-text" class="form-control col-sm-8" name="msg" placeholder="Additional Info" style="height: 25px;"></div>
-                                </div>
-                                <input type="file" id="icon-file-hidden" class="custom-file-input">
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="panel-group">
-                        <div class="row">
-                            <div class="form-group col-sm-6">
-                                <label class="poi-details-label">Building ID</label>
-                                <select id="poi-bulding-id" type="text" class="poi-details-input form-control"></select>
-                            </div>
-                            <div id="poi-floor-lists" class="form-group col-sm-6">
-                                <label class="poi-details-label">Floor ID</label>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="form-group col-sm-6">
-                                <label class="poi-details-label">Latitude</label>
-                                <input id="poi-label-latitude" type="text" class="poi-details-input form-control" />
-                            </div>
-                            <div class="form-group col-sm-6">
-                                <label class="poi-details-label">Longitude</label>
-                                <input id="poi-label-longitude" type="text" class="poi-details-input form-control" />
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="notification-text col-sm-12">
-                                <p>*Right click anywhere on the map to reposition</p>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                    <div class="panel-group">
-                        <div class="row">
-                            <div class="form-group col-sm">
-                                <input id="poi-tooltips-toggle" class="align-bottom" type="checkbox">
-                                <span class="">Tooltip Callout</span>
-                                <div class="poi-icon help-icon poi-question"></div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-sm form-group">
-                                <label class="poi-details-label">Tooltip title</label>
-                                <input id="poi-tooltip-title" type="text" class="poi-details-input form-control" />
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-sm form-group">
-                                <label class="poi-details-label">Tooltip body</label>
-                                <textarea id="poi-tooltip-body" class="tooltip-body form-control"></textarea>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="panel-group">
-                        <div class="row">
-                            <!--<div class="col-sm-4 form-group">-->
-                                <!--<label class="poi-details-label">Key</label>-->
-                                <!--<input id="poi-new-key" type="text" class="poi-details-input form-control">-->
-                            <!--</div>-->
-
-                            <!--<div class="col-sm-4 form-group no-right-padding">-->
-                                <!--<label class="poi-details-label">Value</label>-->
-                                <!--<input id="poi-new-value" type="text" class="poi-details-input form-control">-->
-                            <!--</div>-->
-
-                            <!--<div class="col-sm-4 list-icon-wrapper form-icon align-bottom row" style="height: 60px;padding: 0;">-->
-                                <!--<img class="poi-icon poi-hashtag input-icon align-bottom" style="">-->
-                                <!--<img class="poi-icon poi-quotes input-icon align-bottom" style="">-->
-                                <!--<img class="poi-icon poi-trashcan align-bottom" style="width: 20px;height: 20px;margin-left: 5px;"></div>-->
-                        </div>
-
-                        <div class="row">
-                            <ul id="poi-key-value-list">
-                                <!--<li class="row pair-key-row">-->
-                                    <!--<div class="col-sm-4 form-group">-->
-                                        <!--<label class="poi-details-label">Key</label>-->
-                                        <!--<input type="text" class="poi-details-input form-control poi-new-key">-->
-                                    <!--</div>-->
-                                    <!--<div class="col-sm-4 form-group no-right-padding">-->
-                                        <!--<label class="poi-details-label">Value <span class="pair-type">(string)</span></label>-->
-                                        <!--<input type="text" data-type="string" class="poi-details-input form-control poi-new-value">-->
-                                    <!--</div>-->
-                                    <!--<div class="col-sm-4 list-icon-wrapper form-icon align-bottom row">-->
-                                        <!--<img class="poi-icon poi-hashtag input-icon align-bottom value-to-number">-->
-                                        <!--<img class="poi-icon poi-quotes input-icon align-bottom value-to-string">-->
-                                        <!--<img class="poi-icon poi-trashcan delete-pair align-bottom" style="width: 20px;height: 20px;margin-left: 5px;">-->
-                                    <!--</div>-->
-                                <!--</li>-->
-                            </ul>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <div id="poi-add-pair" class="btn btn-default btn-primary">
-                                    Add New Pair
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="row last-row">
-                        <div class="col-sm">
-                            <input id="poi-creation-show" type="checkbox" class="align-bottom">
-                            <span>Show On Creation</span>
-                            <div class="poi-icon help-icon poi-question"></div>
-                        </div>
-                    </div>
-
-                    <div class="row" id="delete-point-section">
-                        <div id="poi-delete" class="col-sm-4 btn btn-danger center-block">
-                            Delete POI
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <!-- icons panel -->
-            <div id="icons-panel" class="separate-block row icons-list-panel invisible" style="pointer-events: all">
-
-
-                <div id="icons-list-header" class="row">
-
-                    <div class="col-sm-6">
-                        <div id="save-icon-select" class="header-button btn btn-success col-10">Save</div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div id="cancel-icon-select" class="header-button col-10 btn btn-basic">Cancel</div>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="row panel-body-row icons-list-panel invisible">
-                <div class="panel-body panel panel-default icons-container">
                     <div class="row">
+                        <div class="col-sm form-group">
+                            <label class="poi-details-label">Tooltip body</label>
+                            <textarea id="poi-tooltip-body" class="tooltip-body form-control"></textarea>
+                        </div>
+                    </div>
+                </div>
 
-                        <div class="col-sm-4"><img data-image="Baggage" class="icon-sample " src="../css/icons/ic_admin_baggage.png"></div>
-                        <div class="col-sm-4"><img data-image="Bicycle" class="icon-sample" src="../css/icons/ic_admin_bicycle.png"></div>
-                        <div class="col-sm-4"><img data-image="Boat" class="icon-sample" src="../css/icons/ic_admin_boat.png"></div>
-                        <div class="col-sm-4"><img data-image="Bus" class="icon-sample" src="../css/icons/ic_admin_bus.png"></div>
-                        <div class="col-sm-4"><img data-image="Camera" class="icon-sample" src="../css/icons/ic_admin_camera.png"></div>
-                        <div class="col-sm-4"><img data-image="Campsite" class="icon-sample" src="../css/icons/ic_admin_campsite.png"></div>
-                        <div class="col-sm-4"><img data-image="Charging" class="icon-sample" src="../css/icons/ic_admin_charging.png"></div>
-                        <div class="col-sm-4"><img data-image="Coat Check" class="icon-sample" src="../css/icons/ic_admin_coat_check.png"></div>
-                        <div class="col-sm-4"><img data-image="Currency Exchange" class="icon-sample" src="../css/icons/ic_admin_currency_exchange.png"></div>
-                        <div class="col-sm-4"><img data-image="ATM" class="icon-sample" src="../css/icons/ic_admin_dollar.png"></div>
-                        <!--<div class="col-sm-4"><img data-image=" " class="icon-sample" src="../css/icons/ic_admin_elevator_down.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image=" " class="icon-sample" src="../css/icons/ic_admin_elevator_up.png"></div>-->
-                        <!--<div class="col-sm-4"><img data-image=" " class="icon-sample" src="../css/icons/ic_admin_elevator_v1.png"></div>-->
-                        <div class="col-sm-4"><img data-image="Elevator" class="icon-sample" src="../css/icons/ic_admin_elevator_v2.png"></div>
-                        <div class="col-sm-4"><img data-image="Entrance" class="icon-sample" src="../css/icons/ic_admin_entrance.png"></div>
-                        <div class="col-sm-4"><img data-image="Escalator" class="icon-sample" src="../css/icons/ic_admin_escalator.png"></div>
-                        <div class="col-sm-4"><img data-image="Exit" class="icon-sample" src="../css/icons/ic_admin_exit.png"></div>
-                        <div class="col-sm-4"><img data-image="Food" class="icon-sample" src="../css/icons/ic_admin_food.png"></div>
-                        <div class="col-sm-4"><img data-image="Gas" class="icon-sample" src="../css/icons/ic_admin_gasoline.png"></div>
-                        <div class="col-sm-4"><img data-image="Shop" class="icon-sample" src="../css/icons/ic_admin_gift.png"></div>
-                        <div class="col-sm-4"><img data-image="Hair" class="icon-sample" src="../css/icons/ic_admin_hair.png"></div>
-                        <div class="col-sm-4"><img data-image="Hiking" class="icon-sample" src="../css/icons/ic_admin_hiking.png"></div>
-                        <div class="col-sm-4"><img data-image="Information" class="icon-sample" src="../css/icons/ic_admin_info_v1.png"></div>
-                        <div class="col-sm-4"><img data-image="Information" class="icon-sample selected-icon" src="../css/icons/ic_admin_info_v2.png"></div>
-                        <div class="col-sm-4"><img data-image="Mail" class="icon-sample" src="../css/icons/ic_admin_mail.png"></div>
-                        <div class="col-sm-4"><img data-image="Meditation" class="icon-sample" src="../css/icons/ic_admin_meditation.png"></div>
-                        <div class="col-sm-4"><img data-image="Mothers Room" class="icon-sample" src="../css/icons/ic_admin_mothers_room.png"></div>
-                        <div class="col-sm-4"><img data-image="Parking" class="icon-sample" src="../css/icons/ic_admin_parking.png"></div>
-                        <div class="col-sm-4"><img data-image="Question" class="icon-sample" src="../css/icons/ic_admin_question.png"></div>
-                        <div class="col-sm-4"><img data-image="Restroom" class="icon-sample" src="../css/icons/ic_admin_restroom_all.png"></div>
-                        <div class="col-sm-4"><img data-image="Restroom Mens" class="icon-sample" src="../css/icons/ic_admin_restroom_mens.png"></div>
-                        <div class="col-sm-4"><img data-image="Restroom Womens" class="icon-sample" src="../css/icons/ic_admin_restroom_womens.png"></div>
-                        <div class="col-sm-4"><img data-image="Stairs" class="icon-sample" src="../css/icons/ic_admin_stairs.png"></div>
-                        <div class="col-sm-4"><img data-image="Star" class="icon-sample" src="../css/icons/ic_admin_star.png"></div>
-                        <div class="col-sm-4"><img data-image="Table" class="icon-sample" src="../css/icons/ic_admin_table.png"></div>
-                        <div class="col-sm-4"><img data-image="Telephone" class="icon-sample" src="../css/icons/ic_admin_telephone.png"></div>
-                        <div class="col-sm-4"><img data-image="Theater" class="icon-sample" src="../css/icons/ic_admin_theater_v1.png"></div>
-                        <div class="col-sm-4"><img data-image="Baggage" class="icon-sample" src="../css/icons/ic_admin_theater_v2.png"></div>
-                        <div class="col-sm-4"><img data-image="Tickets" class="icon-sample" src="../css/icons/ic_admin_tickets.png"></div>
-                        <div class="col-sm-4"><img data-image="Walkway" class="icon-sample" src="../css/icons/ic_admin_walkway.png"></div>
-                        <div class="col-sm-4"><img data-image="Water" class="icon-sample" src="../css/icons/ic_admin_water.png"></div>
-                        <div class="col-sm-4"><img data-image="Artwork" class="icon-sample" src="../css/icons/ic_artwork.png"></div>
-                        <div class="col-sm-4"><img data-image="Building" class="icon-sample" src="../css/icons/ic_building.png"></div>
-                        <div class="col-sm-4"><img data-image="Closed" class="icon-sample" src="../css/icons/ic_closed.png"></div>
-                        <div class="col-sm-4"><img data-image="Dog" class="icon-sample" src="../css/icons/ic_dog.png"></div>
+                <div class="panel-group">
+                    <div class="row"></div>
+                    <div class="row">
+                        <ul id="poi-key-value-list"></ul>
+                    </div>
 
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div id="poi-add-pair" class="btn btn-default btn-primary">
+                                Add New Pair
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row last-row">
+                    <div class="col-sm form-group form-inline">
+                        <input id="poi-creation-show" type="checkbox" class="mr-1 mt-0">
+                        <span class="mr-1">Show On Creation</span>
+                        <div data-toggle="tooltip"
+                             title="If selected this map label will instantly appear after the map loads. Otherwise, this map label will remain in a hidden state until activated!"
+                             class="poi-icon help-icon poi-question"></div>
+                    </div>
+                </div>
+
+                <div class="row" id="delete-point-section">
+                    <div id="poi-delete" class="col-sm-4 btn btn-danger center-block">
+                        Delete POI
                     </div>
                 </div>
             </div>
+        </div>
 
+        <!-- icons panel -->
+        <div id="icons-panel" class="separate-block row icons-list-panel invisible" style="pointer-events: all">
+
+
+            <div id="icons-list-header" class="row">
+
+                <div class="col-sm-6">
+                    <div id="save-icon-select" class="header-button btn btn-success col-10">Save</div>
+                </div>
+                <div class="col-sm-6">
+                    <div id="cancel-icon-select" class="header-button col-10 btn btn-basic">Cancel</div>
+                </div>
 
             </div>
         </div>
-    </div>
+
+        <div class="row panel-body-row icons-list-panel invisible">
+            <div class="panel-body panel panel-default icons-container">
+                <div class="row">
+
+                    <div class="col-sm-4"><img data-image="Baggage" class="icon-sample "
+                                               src="../css/icons/ic_admin_baggage.png"></div>
+                    <div class="col-sm-4"><img data-image="Bicycle" class="icon-sample"
+                                               src="../css/icons/ic_admin_bicycle.png"></div>
+                    <div class="col-sm-4"><img data-image="Boat" class="icon-sample"
+                                               src="../css/icons/ic_admin_boat.png"></div>
+                    <div class="col-sm-4"><img data-image="Bus" class="icon-sample" src="../css/icons/ic_admin_bus.png">
+                    </div>
+                    <div class="col-sm-4"><img data-image="Camera" class="icon-sample"
+                                               src="../css/icons/ic_admin_camera.png"></div>
+                    <div class="col-sm-4"><img data-image="Campsite" class="icon-sample"
+                                               src="../css/icons/ic_admin_campsite.png"></div>
+                    <div class="col-sm-4"><img data-image="Charging" class="icon-sample"
+                                               src="../css/icons/ic_admin_charging.png"></div>
+                    <div class="col-sm-4"><img data-image="Coat Check" class="icon-sample"
+                                               src="../css/icons/ic_admin_coat_check.png"></div>
+                    <div class="col-sm-4"><img data-image="Currency Exchange" class="icon-sample"
+                                               src="../css/icons/ic_admin_currency_exchange.png"></div>
+                    <div class="col-sm-4"><img data-image="ATM" class="icon-sample"
+                                               src="../css/icons/ic_admin_dollar.png"></div>
+                    <!--<div class="col-sm-4"><img data-image=" " class="icon-sample" src="../css/icons/ic_admin_elevator_down.png"></div>-->
+                    <!--<div class="col-sm-4"><img data-image=" " class="icon-sample" src="../css/icons/ic_admin_elevator_up.png"></div>-->
+                    <!--<div class="col-sm-4"><img data-image=" " class="icon-sample" src="../css/icons/ic_admin_elevator_v1.png"></div>-->
+                    <div class="col-sm-4"><img data-image="Elevator" class="icon-sample"
+                                               src="../css/icons/ic_admin_elevator_v2.png"></div>
+                    <div class="col-sm-4"><img data-image="Entrance" class="icon-sample"
+                                               src="../css/icons/ic_admin_entrance.png"></div>
+                    <div class="col-sm-4"><img data-image="Escalator" class="icon-sample"
+                                               src="../css/icons/ic_admin_escalator.png"></div>
+                    <div class="col-sm-4"><img data-image="Exit" class="icon-sample"
+                                               src="../css/icons/ic_admin_exit.png"></div>
+                    <div class="col-sm-4"><img data-image="Food" class="icon-sample"
+                                               src="../css/icons/ic_admin_food.png"></div>
+                    <div class="col-sm-4"><img data-image="Gas" class="icon-sample"
+                                               src="../css/icons/ic_admin_gasoline.png"></div>
+                    <div class="col-sm-4"><img data-image="Shop" class="icon-sample"
+                                               src="../css/icons/ic_admin_gift.png"></div>
+                    <div class="col-sm-4"><img data-image="Hair" class="icon-sample"
+                                               src="../css/icons/ic_admin_hair.png"></div>
+                    <div class="col-sm-4"><img data-image="Hiking" class="icon-sample"
+                                               src="../css/icons/ic_admin_hiking.png"></div>
+                    <div class="col-sm-4"><img data-image="Information" class="icon-sample"
+                                               src="../css/icons/ic_admin_info_v1.png"></div>
+                    <div class="col-sm-4"><img data-image="Information" class="icon-sample selected-icon"
+                                               src="../css/icons/ic_admin_info_v2.png"></div>
+                    <div class="col-sm-4"><img data-image="Mail" class="icon-sample"
+                                               src="../css/icons/ic_admin_mail.png"></div>
+                    <div class="col-sm-4"><img data-image="Meditation" class="icon-sample"
+                                               src="../css/icons/ic_admin_meditation.png"></div>
+                    <div class="col-sm-4"><img data-image="Mothers Room" class="icon-sample"
+                                               src="../css/icons/ic_admin_mothers_room.png"></div>
+                    <div class="col-sm-4"><img data-image="Parking" class="icon-sample"
+                                               src="../css/icons/ic_admin_parking.png"></div>
+                    <div class="col-sm-4"><img data-image="Question" class="icon-sample"
+                                               src="../css/icons/ic_admin_question.png"></div>
+                    <div class="col-sm-4"><img data-image="Restroom" class="icon-sample"
+                                               src="../css/icons/ic_admin_restroom_all.png"></div>
+                    <div class="col-sm-4"><img data-image="Restroom Mens" class="icon-sample"
+                                               src="../css/icons/ic_admin_restroom_mens.png"></div>
+                    <div class="col-sm-4"><img data-image="Restroom Womens" class="icon-sample"
+                                               src="../css/icons/ic_admin_restroom_womens.png"></div>
+                    <div class="col-sm-4"><img data-image="Stairs" class="icon-sample"
+                                               src="../css/icons/ic_admin_stairs.png"></div>
+                    <div class="col-sm-4"><img data-image="Star" class="icon-sample"
+                                               src="../css/icons/ic_admin_star.png"></div>
+                    <div class="col-sm-4"><img data-image="Table" class="icon-sample"
+                                               src="../css/icons/ic_admin_table.png"></div>
+                    <div class="col-sm-4"><img data-image="Telephone" class="icon-sample"
+                                               src="../css/icons/ic_admin_telephone.png"></div>
+                    <div class="col-sm-4"><img data-image="Theater" class="icon-sample"
+                                               src="../css/icons/ic_admin_theater_v1.png"></div>
+                    <div class="col-sm-4"><img data-image="Baggage" class="icon-sample"
+                                               src="../css/icons/ic_admin_theater_v2.png"></div>
+                    <div class="col-sm-4"><img data-image="Tickets" class="icon-sample"
+                                               src="../css/icons/ic_admin_tickets.png"></div>
+                    <div class="col-sm-4"><img data-image="Walkway" class="icon-sample"
+                                               src="../css/icons/ic_admin_walkway.png"></div>
+                    <div class="col-sm-4"><img data-image="Water" class="icon-sample"
+                                               src="../css/icons/ic_admin_water.png"></div>
+                    <div class="col-sm-4"><img data-image="Artwork" class="icon-sample"
+                                               src="../css/icons/ic_artwork.png"></div>
+                    <div class="col-sm-4"><img data-image="Building" class="icon-sample"
+                                               src="../css/icons/ic_building.png"></div>
+                    <div class="col-sm-4"><img data-image="Closed" class="icon-sample" src="../css/icons/ic_closed.png">
+                    </div>
+                    <div class="col-sm-4"><img data-image="Dog" class="icon-sample" src="../css/icons/ic_dog.png"></div>
+
+                </div>
+            </div>
+        </div>
 
 
-    <!-- points of interest list element template -->
-    <div id="listPoiTemplate">
-        <li class="poi-list-item row">
-            <div class="col-sm1 list-icon-wrapper">
-                <span class="glyphicon list-poi-icon"></span>
-            </div>
-            <div class="col-sm">
-                <label class="list-poi-label"></label>
-                <span class="list-poi-bldg"></span>
-                <span class="list-poi-floor"></span>
-                <p class="list-poi-dtime"></p>
-            </div>
-        </li>
     </div>
+    <div id="bootstrap" hidden></div>
+</div>
+
+
+<!-- points of interest list element template -->
+<div id="listPoiTemplate">
+    <li class="poi-list-item row">
+        <div class="col-sm1 list-icon-wrapper">
+            <span class="glyphicon list-poi-icon"></span>
+        </div>
+        <div class="col-sm">
+            <label class="list-poi-label"></label>
+            <span class="list-poi-bldg"></span>
+            <span class="list-poi-floor"></span>
+            <p class="list-poi-dtime"></p>
+        </div>
+    </li>
+</div>
 
 
 <div id="pairKeyValueTemplate">
@@ -547,17 +560,12 @@
             <input type="text" data-type="string" class="poi-details-input form-control poi-new-value">
         </div>
         <div class="col-sm-4 list-icon-wrapper form-icon align-bottom row">
-            <!--<img class="poi-icon poi-hashtag input-icon align-bottom value-to-number">-->
-            <!--<img class="poi-icon poi-quotes input-icon align-bottom value-to-string">-->
-            <!--<img class="poi-icon poi-trashcan delete-pair align-bottom" style="width: 20px;height: 20px;margin-left: 5px;">-->
             <div class="key-value-icon fa fa-hashtag value-to-number"></div>
             <div class="key-value-icon fa fa-quote-right value-to-string selected-value-type"></div>
             <div class="key-value-icon fa fa-trash delete-pair"></div>
         </div>
     </li>
 </div>
-
-
 
 
 </div>
@@ -584,6 +592,32 @@
         </ul>
     </div>
 </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Clear Map Data?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                All of this map's label, icon, and theme data will be cleared permanently.
+                If you would like to save this map and all of it's data, please make sure you have exported it first.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary confirm-delete-scene">New Scene</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 </body>
 
 </html>

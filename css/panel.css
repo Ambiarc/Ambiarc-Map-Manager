@@ -1,3 +1,7 @@
+#main_container {
+    height: 100%;
+}
+
 input {
     height: 25px;
 }
@@ -8,7 +12,11 @@ input {
 }
 
 .btn {
-    font-size: 1rem;
+    font-size: 1.1rem;
+}
+
+input[type='checkbox'] {
+    height: auto!important;
 }
 
 .panel-section {
@@ -17,7 +25,7 @@ input {
     min-height: 100%;
     display: flex;
     flex-direction: column;
-    pointer-events: all
+    pointer-events: all;
 }
 
 .panel-group {
@@ -94,7 +102,7 @@ input {
 .panel-body {
     font-size: 1.1rem;
     position: relative;
-    overflow-y: auto;
+    overflow-y: scroll;
     border-top-right-radius: 0;
     border-top-left-radius: 0;
     padding-left: 0px!important;
@@ -157,7 +165,11 @@ input {
     border: 1px solid lightgrey;
     padding: 10px;
     cursor: pointer;
-    min-height: 75px;
+    min-height: 6rem;
+}
+
+.poi-item-wrapper {
+    padding: 1px 10px;
 }
 
 #listPoiTemplate,
@@ -172,7 +184,7 @@ input {
 
 .poi-list-item.row,
 .custom-theme-list.row {
-    margin: 2px;
+    margin: 1px;
     margin-left: 0;
     margin-right: 0;
 }
@@ -283,7 +295,7 @@ input {
 
 .poi-details-panel span {
     color: #9f9e9e;
-    font-size: 12px;
+    font-size: 1.1rem;
     font-weight: 400;
 }
 
@@ -379,6 +391,8 @@ input {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
 }
 
 #poi-browse-icons {
@@ -398,8 +412,8 @@ input {
 }
 
 .poi-icon-image {
-    width: 35px;
-    height: 35px;
+    width: 3rem;
+    height: 3rem;
 }
 
 #poi-select-icon {
@@ -442,7 +456,12 @@ input {
 
 .panel-body-row.icons-list-panel {
     height: 100%;
-    overflow: auto;
+    overflow-y: scroll;
+}
+
+.panel-body-row .icons-container {
+    overflow: hidden;
+    margin-bottom: 0;
 }
 
 .icon-btn-wrapper {
@@ -542,4 +561,15 @@ input {
 .browse-button {
     width: 50px;
     height: 25px;
+}
+
+.back-to-list,
+#undo-actions {
+    padding: 0;
+    vertical-align: middle;
+    line-height: 3rem;
+}
+
+.init-poi-text p{
+    font-size: 1.4rem;
 }

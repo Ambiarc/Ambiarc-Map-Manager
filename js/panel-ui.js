@@ -7,12 +7,15 @@ var poiMenuSelector;
 var isFloorSelectorEnabled = false;
 // tracked references to POI's
 var poisInScene = [];
-// global lobal state indicating the current sleected floor
-// var currentFloorId = 'L002';
-var currentLabelId, ambiarc, fr, parsedJson;
+// current active building
+var currentBuildingId;
 // key vlue on input field click
 var pairFocusKey;
+//bootstrap menu
+var menu;
+var currentLabelId, ambiarc, fr, parsedJson;
 
+//default color values for custom color theme
 var colorsInScene = {
     'Wall' : '#01abba',
     'Room' : '#01abba',
@@ -25,13 +28,7 @@ var colorsInScene = {
     'Non-Public' : '#01abba'
 };
 
-var currentBuildingId;
-var movingMouse;
-
-$('#ambiarcIframe').on('mousedown', function(){
-    console.log("mouse down!!");
-});
-
+//list of mapLabel regular properties (non key-value section pairs vvalues)
 var regularFeatures = [
     'label',
     'fontSize',
@@ -53,9 +50,12 @@ var regularFeatures = [
 // Creating the right-click menu
 $(document).ready(function() {
 
+
+    $('[data-toggle="tooltip"]').tooltip();
+
     var $body = $(document.body);
 
-    var menu = new BootstrapMenu('#bootstrap', {
+    menu = new BootstrapMenu('#bootstrap', {
         actions: [
             {
                 name: 'Label',
@@ -95,7 +95,7 @@ $(document).ready(function() {
     $('#bldg-floor-select').on('change', function(){
 
         if($(this).val() == 'Exterior'){
-            ambiarc.viewFloorSelector(mainBldgID);
+            ambiarc.viewFloorSelector(mainBldgID, 1000);
             return;
         }
 
@@ -113,27 +113,12 @@ $(document).ready(function() {
     $('.colorpicker_value').on('change', function(){
 
         var item = $(this).closest('.row');
-
-        console.log("this:");
-        console.log($(this));
-
-        console.log("item:");
-        console.log(item);
         var key = $(item).attr('data-key');
         var value = $(this).val();
 
-        console.log("key:");
-        console.log(key);
-        console.log("value:");
-        console.log(value);
+        colorsInScene[key] = value;
 
         ambiarc.setColorByCategory(key, value);
-    });
-
-    $('.color-sample').on('click', function(){
-        console.log("triggering click!!");
-        var item = $(this).closest('.colorpicker-element');
-        $(item).find('.colorpicker_field').trigger('click');
     });
 
     $('.filter-by-location').on('click', sortByLocation);
@@ -196,9 +181,9 @@ $(document).ready(function() {
 
     $('#import-btn').on('click', importData);
     $('#export-btn').on('click', exportData);
-    $('#new-scene-btn').on('click', newScene);
+    $('.confirm-delete-scene').on('click', newScene);
 
-    $('#poi-browse-icons').on('click', function(){
+    $('.browse-button,#poi-browse-text').on('click', function(){
         $('#icon-file-hidden').trigger('click');
     });
 
@@ -248,8 +233,6 @@ $(document).ready(function() {
     });
 
     $('#poi-creation-show').on('change', function(){
-       // console.log("clicked showOnCreation!!");
-       // console.log($(this).is(':checked'));
         updatePoiDetails('showOnCreation', $(this).is(':checked'));
     });
 
@@ -349,8 +332,8 @@ var createTextLabel = function () {
         var mapLabelInfo = {
             buildingId: mainBldgID,
             floorId: currentFloorId,
-            latitude: parseFloat(toFixed(latlon.lat, 4)),
-            longitude: parseFloat(toFixed(latlon.lon, 4)),
+            latitude: parseFloat(latlon.lat),
+            longitude: parseFloat(latlon.lon),
             label: 'Ambiarc Text Label: ' + poisInScene.length,
             fontSize: 26,
             category: 'Label',
@@ -379,8 +362,8 @@ var createIconLabel = function () {
         var mapLabelInfo = {
             buildingId: mainBldgID,
             floorId: currentFloorId,
-            latitude: parseFloat(toFixed(latlon.lat, 4)),
-            longitude: parseFloat(toFixed(latlon.lon, 4)),
+            latitude: parseFloat(latlon.lat),
+            longitude: parseFloat(latlon.lon),
             label: 'Information ',
             category: 'Label',
             location: 'Default',
@@ -406,8 +389,8 @@ var createTextIcon = function () {
         var mapLabelInfo = {
             buildingId: mainBldgID,
             floorId: currentFloorId,
-            latitude: parseFloat(toFixed(latlon.lat, 4)),
-            longitude: parseFloat(toFixed(latlon.lon, 4)),
+            latitude: parseFloat(latlon.lat),
+            longitude: parseFloat(latlon.lon),
             label: 'Information',
             fontSize: 26,
             category: 'Label',
@@ -470,19 +453,29 @@ var onAmbiarcLoaded = function() {
     ambiarc.registerForEvent(ambiarc.eventLabel.FloorSelectorFloorFocusChanged, onFloorSelectorFocusChanged);
     ambiarc.registerForEvent(ambiarc.eventLabel.MapLabelSelected, mapLabelClickHandler);
     ambiarc.registerForEvent(ambiarc.eventLabel.CameraMotionCompleted, cameraCompletedHandler);
+    ambiarc.registerForEvent(ambiarc.eventLabel.CameraMotionStarted, cameraStartedHandler);
 
     ambiarc.poiList = {};
 
     fillBuildingsList();
     $('#bootstrap').removeAttr('hidden');
     $('#controls-section').fadeIn();
+    $('.panel-section').removeClass('invisible');
+
+    document.addEventListener("contextmenu", function(e){
+        e.preventDefault();
+    }, false);
 }
 // creates the right-click menu over the map
 var onRightMouseDown = function(event) {
 
+    console.log("RIGHT MOUSE DOWN:");
+    console.log(event);
+
     if(isFloorSelectorEnabled || currentFloorId == 'Exterior'){
         return;
     }
+
 
     $(poiMenuSelector).css('top', $(window).height() - event.detail.pixelY + "px");
     $(poiMenuSelector).css('left', event.detail.pixelX + "px");
@@ -561,14 +554,16 @@ var mapLabelClickHandler = function(event) {
     console.log(event);
 
     if(!ambiarc.poiList[event.detail]){
+        ambiarc.viewFloorSelector(mainBldgID);
         return;
     }
 
     $('.poi-list-panel').addClass('invisible');
-    $('.icons-list-panel').addClass('invisible');
     $('.icons-list-body').addClass('invisible');
     $('.colors-panel').addClass('invisible');
     $('.poi-details-panel').removeClass('invisible');
+    $('.poi-list-body').addClass('invisible');
+    $('.icons-list-panel').addClass('invisible');
 
     if(event.detail == currentLabelId){
         return;
@@ -684,12 +679,6 @@ var addElementToPoiList = function(mapLabelId, mapLabelName, mapLabelInfo, times
         fillDetails(mapLabelInfo);
         ambiarc.focusOnMapLabel(mapLabelId, mapLabelId);
 
-        // $('.poi-list-panel').addClass('invisible');
-        // $('.poi-list-panel').addClass('invisible');
-        // $('.poi-list-body').addClass('invisible');
-        // $('.colors-panel').addClass('invisible');
-        // $('.poi-details-panel').removeClass('invisible');
-
         showPoiDetails();
     });
 };
@@ -729,8 +718,8 @@ var sortPoiList = function(array){
 var addFloorToFloor = function(fID, bID, name) {
     var item = $("#floorListTemplate").clone().removeClass("invisible").appendTo($("#floorContainer"));
     item.children("a.floorName").text("" + name).on("click", function() {
-        // var ambiarc = $("#ambiarcIframe")[0].contentWindow.Ambiarc;
-        // clicking on the floor selector list item will tell Ambiarc to isolate that floor
+        var ambiarc = $("#ambiarcIframe")[0].contentWindow.Ambiarc;
+        console.log( $("#currentFloor"));
         if (fID != undefined) {
             ambiarc.focusOnFloor(bID, fID);
             $("#currentFloor").text(name);
@@ -740,6 +729,7 @@ var addFloorToFloor = function(fID, bID, name) {
         }
     });
 };
+
 
 var fillDetails = function(mapLabelInfo){
 
@@ -763,8 +753,8 @@ var fillDetails = function(mapLabelInfo){
     $('#poi-type').val(mapLabelInfo.type);
     $('#poi-bulding-id').val(mapLabelInfo.buildingId);
     $('.poi-floor-id[data-bldgid = "'+mapLabelInfo.buildingId+'"]').val(mapLabelInfo.floorId);
-    $('#poi-label-latitude').val(mapLabelInfo.latitude);
-    $('#poi-label-longitude').val(mapLabelInfo.longitude);
+    $('#poi-label-latitude').val(parseFloat(toFixed(mapLabelInfo.latitude, 4)));
+    $('#poi-label-longitude').val(parseFloat(toFixed(mapLabelInfo.longitude, 4)));
     $('#poi-tooltips-toggle').prop('checked', mapLabelInfo.showToolTip);
     $('#poi-tooltip-title').val(mapLabelInfo.tooltipTitle);
     $('#poi-tooltip-body').val(mapLabelInfo.tooltipBody);
@@ -856,11 +846,13 @@ var fillBuildingsList = function(){
     $('#poi-bulding-id').append(bldgListItem);
     $('#bldg-floor-select').append(bldgListItem);
 
-
     ambiarc.getAllBuildings(function(buildings){
         mainBldgID = buildings[0];
         currentBuildingId = buildings[0];
         currentFloorId = 'Exterior';
+
+
+
         $.each(buildings, function(id, bldgValue){
 
             var bldgListItem = document.createElement('option');
@@ -884,6 +876,7 @@ var fillBuildingsList = function(){
                         floorItem.value = floorValue.id;
                         floorItem.textContent = floorValue.id;
 
+
                     $(floorList).append(floorItem);
 
 
@@ -900,7 +893,8 @@ var fillBuildingsList = function(){
                 //To do: add display/hide list conditioning when more than 1 building....
 
             });
-        })
+        });
+
     })
 }
 
@@ -934,10 +928,14 @@ var emptyDetailsData = function(){
     $('#poi-key-value-list').html('');
     $('#icon-file-hidden').val('');
     $('#poi-browse-text').val('');
+
+
 }
 
 
 var updatePoiDetails = function(changedKey, changedValue){
+
+    console.log("update poi details");
 
     // If it's pair (longitude and latitude)
     if (typeof changedKey == 'object') {
@@ -945,13 +943,23 @@ var updatePoiDetails = function(changedKey, changedValue){
         for(var i=0; i<changedKey.length; i++){
             ambiarc.poiList[currentLabelId][changedKey[i]] = changedValue[i];
         }
+
+        if(changedKey != 'floorId'){
+
+            ambiarc.poiList[currentLabelId].floorId = currentFloorId;
+            var newFloorId = currentFloorId;
+        }
     }
     else {
-        //applying changed value to ambiarc.poiList object for current label
+
         ambiarc.poiList[currentLabelId][changedKey] = changedValue;
+
     }
 
     var labelProperties = ambiarc.poiList[currentLabelId];
+    if(newFloorId){
+        labelProperties.floorId = newFloorId;
+    }
 
     //storing object clone for undo functionality
     var cloneObj = jQuery.extend({}, labelProperties);
@@ -973,6 +981,10 @@ var updatePoiDetails = function(changedKey, changedValue){
         $('#select-icon-group').fadeOut();
     }
 
+    console.log("before update:");
+    console.log(ambiarc.poiList[currentLabelId]);
+    console.log(currentFloorId);
+
     ambiarc.updateMapLabel(currentLabelId, labelProperties.type, labelProperties);
 
     var listItem = $('#'+currentLabelId);
@@ -982,6 +994,7 @@ var updatePoiDetails = function(changedKey, changedValue){
 
     updatePoiList();
     toggleSaveButton();
+    hideInactivePoints();
 
     if(ambiarc.poiList[currentLabelId].floorId != currentFloorId){
         console.log("FOCUSING!!");
@@ -1132,9 +1145,12 @@ var updateFloorId = function(floorId){
 };
 
 
-var cameraCompletedHandler = function(){
+var cameraCompletedHandler = function(event){
 
-    console.log("CAMERA MOTION COMPLETED!!");
+    if(event.detail == 1000){
+        ambiarc.focusOnFloor(mainBldgID);
+        return;
+    }
 
     if(typeof currentLabelId !== 'undefined'){
         hideInactivePoints(true);
@@ -1143,6 +1159,11 @@ var cameraCompletedHandler = function(){
         showInactivePoints();
     }
 };
+
+
+var cameraStartedHandler = function(){
+    menu.close();
+}
 
 
 var importData = function(){
@@ -1208,13 +1229,25 @@ var exportData = function(){
 
 var newScene = function(){
 
-    var r = confirm("Creating new scene will remove all points of interest from map and panel!");
-    if (r == true) {
-        destroyAllLabels();
-        emptyDetailsData();
-        $('#bldg-floor-select').val('Exterior');
-        ambiarc.viewFloorSelector(mainBldgID);
-    }
+    $('#exampleModal').modal('hide')
+
+    destroyAllLabels();
+    emptyDetailsData();
+
+    $.each(colorsInScene, function(key, value){
+        ambiarc.setColorByCategory(key, value);
+
+        $('.colorpicker-element[data-key="'+key+'"]')
+            .find('.colorpicker_value')
+            .val(value)
+            .trigger('change');
+    });
+
+    setLightTheme();
+    $('#bldg-floor-select').val('Exterior');
+
+    //1000 is id for setting focus to exterior
+    ambiarc.viewFloorSelector(mainBldgID, 1000);
 };
 
 
@@ -1235,6 +1268,17 @@ var destroyAllLabels = function(){
 
      ambiarc.poiList = {};
      poisInScene = [];
+     colorsInScene = {
+        'Wall' : '#01abba',
+        'Room' : '#01abba',
+        'Restroom' : '#01abba',
+        'Walkway' : '#01abba',
+        'Stairs' : '#01abba',
+        'Elevator' : '#01abba',
+        'Escalator' : '#01abba',
+        'Ramp' : '#01abba',
+        'Non-Public' : '#01abba'
+    };
 
     updatePoiList();
     showPoiList();
@@ -1453,16 +1497,12 @@ var setLightTheme = function(){
 
 
 var setCustomTheme = function(){
+
     $('#custom-theme-list').removeClass('invisible');
 
     $.each(colorsInScene, function(key, value){
-        console.log("each color in scene:");
-        console.log(key);
-        console.log("value:");
-        console.log(value);
         ambiarc.setColorByCategory(key, value);
     });
-
 }
 
 
@@ -1508,8 +1548,16 @@ var fillGeoData = function(properties){
         var mapLabelInfo = feature.properties;
         mapLabelInfo.longitude = parseFloat(feature.geometry.coordinates[0]);
         mapLabelInfo.latitude = parseFloat(feature.geometry.coordinates[1]);
+
         $.each(feature.user_properties, function(prop, val){
-            mapLabelInfo[prop] = val;
+            if(prop === 'longitude' || prop === 'latitude') {
+                console.log("LATITUDE!!!!!!!!!!!1");
+                mapLabelInfo[prop] = parseFloat(toFixed(val, 4));
+            }
+            else {
+                mapLabelInfo[prop] = val;
+            }
+
         });
 
         console.log("READY FOR IMPORT:");
@@ -1527,13 +1575,14 @@ var toFixed = function(num, fixed) {
     return num.toString().match(re)[0];
 }
 
+
 var downloadObjectAsJson = function (exportObj, exportName){
-    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj));
+    var dataStr = "data:data:text/plain;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj, null, 4));
     var downloadAnchorNode = document.createElement('a');
-    downloadAnchorNode.setAttribute("href",     dataStr);
-    downloadAnchorNode.setAttribute("download", exportName + ".json");
-    downloadAnchorNode.click();
-    downloadAnchorNode.remove();
+        downloadAnchorNode.setAttribute("href",     dataStr);
+        downloadAnchorNode.setAttribute("download", exportName + ".json");
+        downloadAnchorNode.click();
+        downloadAnchorNode.remove();
 };
 
 
@@ -1541,11 +1590,11 @@ var repositionLabel = function(){
 
     ambiarc.getMapPositionAtCursor(ambiarc.coordType.gps, (latlon) => {
 
-        var latitude = parseFloat(toFixed(latlon.lat, 4));
-        var longitude = parseFloat(toFixed(latlon.lon, 4));
+        var latitude = parseFloat(latlon.lat);
+        var longitude = parseFloat(latlon.lon);
 
-        $('#poi-label-latitude').val(latitude);
-        $('#poi-label-longitude').val(longitude);
+        $('#poi-label-latitude').val(parseFloat(toFixed(latlon.lat, 4)));
+        $('#poi-label-longitude').val(parseFloat(toFixed(latlon.lon, 4)));
 
         updatePoiDetails(['longitude', 'latitude'], [longitude, latitude]);
     });
@@ -1557,6 +1606,11 @@ if(!immediate)var immediate = false;
     $.each(ambiarc.poiList, function(id, obj){
         if(id != currentLabelId) {
             ambiarc.hideMapLabel(id, immediate);
+        }
+        else {
+            if(obj.floorId == currentFloorId){
+                ambiarc.showMapLabel(id, immediate)
+            }
         }
     })
 }
@@ -1572,11 +1626,6 @@ var showInactivePoints = function(){
 
 var initColorPickers = function(){
     $('.colorpicker_field').each(function(i, el){
-        console.log("each colorpicker:");
-        console.log(i);
-        console.log(el);
-
         $(el).colorpicker();
-
-    })
-}
+    });
+};
