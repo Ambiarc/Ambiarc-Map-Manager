@@ -1,3 +1,7 @@
+html {
+    font-size: 12px;
+}
+
 #main_container {
     height: 100%;
 }
@@ -20,7 +24,7 @@ input[type='checkbox'] {
 }
 
 .panel-section {
-    max-width: 250px;
+    max-width: 300px;
     margin-left: 30px;
     min-height: 100%;
     display: flex;
@@ -43,14 +47,14 @@ input[type='checkbox'] {
 }
 
 .panel-section .buttons_row {
-    max-width: 95%;
+    /*max-width: 95%;*/
 }
 
 .imp-exp-new ul {
     padding-left: 0;
     list-style: none;
     text-align: center;
-    font-size: 0.8rem;
+    font-size: 1rem;
     font-weight: normal;
     display: flex;
 }
@@ -122,7 +126,7 @@ input[type='checkbox'] {
 }
 
 .controls-btn {
-    font-size: 25px;
+    font-size: 2.1rem;
     background-color: #ffffff;
     border-radius: 50%;
     width: 35px;
@@ -269,7 +273,7 @@ input[type='checkbox'] {
 }
 
 #icons-list-header .btn {
-    font-size: 12px;
+    font-size: 1rem;
 }
 
 .poi-details-panel .row {
@@ -280,22 +284,29 @@ input[type='checkbox'] {
 .poi-details-panel input,
 .poi-details-panel select {
     height: 25px;
+    padding: 4px;
+}
+
+.poi-details-panel textarea {
+    padding-left: 4px;
 }
 
 .poi-details-panel select {
-    /*height: 20px!important;*/
-    /*padding: 0;*/
+    height: 25px!important;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 0px;
 }
 
 .poi-details-panel label {
     color: #9f9e9e;
-    font-size: 12px;
+    font-size: 1rem;
     font-weight: 400;
 }
 
 .poi-details-panel span {
     color: #9f9e9e;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 400;
 }
 
@@ -346,6 +357,10 @@ input[type='checkbox'] {
     cursor: pointer;
     display: inline-block;
     float: left;
+}
+
+.header-button * {
+    cursor: pointer;
 }
 
 .btn-success {
@@ -484,7 +499,7 @@ input[type='checkbox'] {
 }
 
 .pair-type {
-    font-size: 8px!important;
+    font-size: 1rem!important;
 }
 
 .sorting-section {
@@ -506,13 +521,13 @@ input[type='checkbox'] {
 
 .sort-label {
     color: #9f9e9e;
-    font-size: 12px;
+    font-size: 1rem;
     font-weight: 400;
 }
 
 .notification-text {
     color: #7ac7e5;
-    font-size: 10px;
+    font-size: 1rem;
 }
 
 .key-value-icon {
@@ -520,7 +535,7 @@ input[type='checkbox'] {
     color: #000000;
     padding: 4px;
     margin: 1px;
-    font-size: 15px!important;
+    font-size: 1.2rem!important;
     cursor: pointer;
     padding-top: 5px;
     padding-bottom: 5px;
@@ -559,8 +574,10 @@ input[type='checkbox'] {
 }
 
 .browse-button {
-    width: 50px;
+    width: auto;
     height: 25px;
+    padding-left: 5px!important;
+    padding-right: 5px!important;
 }
 
 .back-to-list,

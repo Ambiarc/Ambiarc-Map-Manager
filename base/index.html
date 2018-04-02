@@ -252,15 +252,17 @@
             <!-- poi list view -->
             <div id="details-header" class="row">
                 <div class="header-button col-sm-5 btn btn-default btn-success back-to-list">
-                    <span class="fa fa-angle-left mr-1"
-                          style="font-size: 2.2rem;vertical-align: middle;line-height: 2.2rem;"></span>
-                    <span style="vertical-align: middle;line-height: 3rem;">Back to list</span>
+                    <label style="height: 100%;margin: 0;vertical-align: middle;">
+                        <span class="fa fa-angle-left mr-2" style="font-size: 1.5rem;/* vertical-align: middle; */line-height: 2.4rem;display: inline-block;height: 100%;float: left;"></span>
+                        <span style="line-height: 2.4rem;display: inline-block;height: 100%;vertical-align: middle;float: left;">Back to list</span>
+                    </label>
                 </div>
 
                 <div id="undo-actions" class="header-button col-sm-4 btn btn-basic ml-2">
-                    <span class="fa fa-undo mr-1"
-                          style="font-size: 1.4rem; vertical-align: middle;line-height: 1.4rem;"></span>
-                    <span style="vertical-align: middle;line-height: 3rem;">Undo</span>
+                    <label style="height: 100%;margin: 0;">
+                        <span class="fa fa-undo mr-2" style="font-size: 1.1rem;/* vertical-align: middle; */line-height: 2.4rem;float: left;/* font-weight: 100; */"></span>
+                        <span style="float: left;/* vertical-align: middle; */line-height: 2.4rem;">Undo</span>
+                    </label>
                 </div>
                 <div class="btn col-sm header-button pull-right saved-btn invisible">
                     <span>Saved</span>
@@ -316,7 +318,7 @@
                         </div>
 
                         <div class="row">
-                            <div id="poi-browse-icons" class="form-inline justify-content-center col-sm-8">
+                            <div id="poi-browse-icons" class="form-inline justify-content-center col-sm-10">
                                 <button class="browse-button input-group-addon col-sm-4">Browse</button>
                                 <div id="poi-browse-text" class="form-control col-sm-6 mr-1" name="msg"
                                      placeholder="Additional Info" style="height: 25px;"></div>
