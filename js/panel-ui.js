@@ -148,11 +148,19 @@ $(document).ready(function() {
         $(this).addClass('btn-primary').addClass('btn-selected');
     });
 
-    $('.sort-button').on('click', function(){
 
+    // marking/unmarking selected sort buttons
+    $('.sort-button').on('click', function(){
         $('.sort-button').removeClass('selected').removeClass('btn-primary').removeClass('btn-selected');
         $(this).addClass('btn-primary').addClass('btn-selected');
     });
+
+    // marking/unmarking selected color theme buttons
+    $('.theme-btn').on('click', function(){
+        $('.theme-btn').removeClass('selected').removeClass('btn-primary').removeClass('btn-selected');
+        $(this).addClass('btn-primary').addClass('btn-selected');
+    });
+
 
     $('.poi-details-panel').find('.back-to-list').on('click', showPoiList);
 
@@ -312,7 +320,7 @@ var showPoiList = function(){
     $('.colors-panel').addClass('invisible');
     $('.poi-list-panel').removeClass('invisible');
     $('.poi-list-body').removeClass('invisible');
-    $('.poi-list-panel').find('.btn-selected').removeClass('btn-selected').removeClass('btn-primary');
+    $('.poi-list-panel').find('.header-button.btn-selected').removeClass('btn-selected').removeClass('btn-primary');
     $('.poi-list-panel').find('#points-section-button').addClass('btn-selected').addClass('btn-primary');
 
     showInactivePoints();
