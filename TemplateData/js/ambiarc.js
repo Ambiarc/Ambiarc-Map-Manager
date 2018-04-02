@@ -36,9 +36,6 @@
     };
     this.createMapLabel = function(mapLabelType, mabelLabelInfo, idCallback) {
 
-      console.log("function creating map label:");
-      console.log(mabelLabelInfo);
-
       this.messageQueue.push(idCallback);
       var json = JSON.stringify({
         mapLabelType: mapLabelType,
@@ -47,9 +44,6 @@
       gameInstance.SendMessage('Ambiarc', 'CreateMapLabel', json);
     };
     this.updateMapLabel = function(mapLabelId, mapLabelType, mapLabelInfo) {
-
-      console.log("UPDATE MAP LABEL FUNCTION!!");
-      console.log(mapLabelInfo);
 
       var json = JSON.stringify({
         mapLabelId: mapLabelId,

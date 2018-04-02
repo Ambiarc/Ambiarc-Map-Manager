@@ -1152,6 +1152,13 @@ var cameraCompletedHandler = function(event){
         return;
     }
 
+    $.each(ambiarc.poiList, function(id, properties){
+
+        if(properties.floorId == currentFloorId){
+            ambiarc.updateMapLabel(id, properties.type, properties);
+        }
+    })
+
     if(typeof currentLabelId !== 'undefined'){
         hideInactivePoints(true);
     }
@@ -1544,20 +1551,16 @@ var importFileHandler = function(evt){
 
 var fillGeoData = function(properties){
 
+    console.log("FILL GEO DATA!!!!");
+    console.log(properties);
+
     $.each(properties.features, function(i, feature){
         var mapLabelInfo = feature.properties;
         mapLabelInfo.longitude = parseFloat(feature.geometry.coordinates[0]);
         mapLabelInfo.latitude = parseFloat(feature.geometry.coordinates[1]);
 
         $.each(feature.user_properties, function(prop, val){
-            if(prop === 'longitude' || prop === 'latitude') {
-                console.log("LATITUDE!!!!!!!!!!!1");
-                mapLabelInfo[prop] = parseFloat(toFixed(val, 4));
-            }
-            else {
                 mapLabelInfo[prop] = val;
-            }
-
         });
 
         console.log("READY FOR IMPORT:");
