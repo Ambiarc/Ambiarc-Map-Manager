@@ -480,7 +480,7 @@ var onRightMouseDown = function(event) {
     console.log("RIGHT MOUSE DOWN:");
     console.log(event);
 
-    if(isFloorSelectorEnabled || currentFloorId == 'Exterior'){
+    if(isFloorSelectorEnabled){
         return;
     }
 
@@ -530,7 +530,7 @@ var onFloorSelected = function(event) {
 var onEnteredFloorSelector = function(event) {
 
     var buildingId = event.detail;
-    currentFloorId = undefined;
+    currentFloorId = null;
     if (!isFloorSelectorEnabled) {
         isFloorSelectorEnabled = true;
         $("#levels-dropdown").addClass('open');
@@ -541,7 +541,7 @@ var onEnteredFloorSelector = function(event) {
 // closes the floor menu when a floor selector mode was exited
 var onExitedFloorSelector = function(event) {
     var buildingId = event.detail;
-    currentFloorId = undefined;
+    currentFloorId = null;
     if (isFloorSelectorEnabled) {
         $("#levels-dropdown").removeClass('open');
         $("#levels-dropdown-button").attr('aria-expanded', false);
@@ -857,8 +857,7 @@ var fillBuildingsList = function(){
     ambiarc.getAllBuildings(function(buildings){
         mainBldgID = buildings[0];
         currentBuildingId = buildings[0];
-        currentFloorId = 'Exterior';
-
+        currentFloorId = null;
 
 
         $.each(buildings, function(id, bldgValue){
@@ -1160,20 +1159,56 @@ var cameraCompletedHandler = function(event){
         return;
     }
 
-    $.each(ambiarc.poiList, function(id, properties){
 
-        if(properties.floorId == currentFloorId){
-            ambiarc.updateMapLabel(id, properties.type, properties);
-        }
-    })
 
     if(typeof currentLabelId !== 'undefined'){
         hideInactivePoints(true);
     }
     else {
         showInactivePoints();
+
+        if(currentFloorId !== null && currentFloorId !== undefined){
+            //floor
+            hideExteriorPoints();
+        }
+        else {
+            //exterior
+            showExteriorPoints();
+        }
+
     }
 };
+
+
+var showExteriorPoints = function(){
+
+    console.log("show exterior points!");
+
+    $.each(ambiarc.poiList, function(id, properties){
+
+        if(properties.floorId == null){
+            ambiarc.showMapLabel(id);
+        }
+    });
+}
+
+
+var hideExteriorPoints = function(){
+
+    console.log("hide exterior points!");
+
+    $.each(ambiarc.poiList, function(id, properties){
+
+        console.log("each id:");
+        console.log(id);
+        console.log("each properties:");
+        console.log(properties);
+
+        if(properties.floorId == null){
+            ambiarc.hideMapLabel(id);
+        }
+    });
+}
 
 
 var cameraStartedHandler = function(){
