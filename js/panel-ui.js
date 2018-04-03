@@ -518,7 +518,10 @@ var onFloorSelected = function(event) {
     var floorInfo = event.detail;
     currentFloorId = floorInfo.floorId;
 
-    $('#bldg-floor-select').val(currentBuildingId+'::'+currentFloorId);
+    if(currentFloorId !== null){
+        $('#bldg-floor-select').val(currentBuildingId+'::'+currentFloorId);
+    }
+    else $('#bldg-floor-select').val('Exterior');
     if (isFloorSelectorEnabled) {
         $("#levels-dropdown").removeClass('open');
         $("#levels-dropdown-button").attr('aria-expanded', false);
@@ -685,7 +688,15 @@ var addElementToPoiList = function(mapLabelId, mapLabelName, mapLabelInfo, times
         ambiarc.history.push(initState);
 
         fillDetails(mapLabelInfo);
-        ambiarc.focusOnMapLabel(mapLabelId, mapLabelId);
+
+        if($(this).find('.list-poi-floor').html() == ''){
+            console.log("EMPTY STRING!!");
+            ambiarc.focusOnMapLabel(mapLabelId, 100);
+        }
+        else {
+            ambiarc.focusOnMapLabel(mapLabelId);
+        }
+
 
         showPoiDetails();
     });
@@ -740,6 +751,9 @@ var addFloorToFloor = function(fID, bID, name) {
 
 
 var fillDetails = function(mapLabelInfo){
+
+    console.log("FILL DETAILS!!");
+    console.log(mapLabelInfo);
 
     emptyDetailsData();
 
@@ -1154,9 +1168,18 @@ var updateFloorId = function(floorId){
 
 var cameraCompletedHandler = function(event){
 
+
+
     if(event.detail == 1000){
         ambiarc.focusOnFloor(mainBldgID);
+        currentFloorId = null;
+        $('#bldg-floor-select').val('Exterior');
         return;
+    }
+
+    if(event.detail == 100){
+        console.log("CATCHING 100! ");
+        $('#bldg-floor-select').val('Exterior');
     }
 
 
@@ -1594,9 +1617,6 @@ var importFileHandler = function(evt){
 
 var fillGeoData = function(properties){
 
-    console.log("FILL GEO DATA!!!!");
-    console.log(properties);
-
     $.each(properties.features, function(i, feature){
         var mapLabelInfo = feature.properties;
         mapLabelInfo.longitude = parseFloat(feature.geometry.coordinates[0]);
@@ -1634,6 +1654,8 @@ var downloadObjectAsJson = function (exportObj, exportName){
 
 var repositionLabel = function(){
 
+    console.log("REPOSITION LABEL!!");
+
     ambiarc.getMapPositionAtCursor(ambiarc.coordType.gps, (latlon) => {
 
         var latitude = parseFloat(latlon.lat);
@@ -1643,6 +1665,8 @@ var repositionLabel = function(){
         $('#poi-label-longitude').val(parseFloat(toFixed(latlon.lon, 4)));
 
         updatePoiDetails(['longitude', 'latitude'], [longitude, latitude]);
+        updatePoiDetails('floorId', currentFloorId);
+        fillDetails(ambiarc.poiList[currentLabelId]);
     });
 }
 
@@ -1658,7 +1682,13 @@ if(!immediate)var immediate = false;
                 ambiarc.showMapLabel(id, immediate)
             }
         }
-    })
+    });
+    if(ambiarc.poiList[currentLabelId].floorId !== currentFloorId){
+        ambiarc.hideMapLabel(currentLabelId);
+    }
+    else {
+        ambiarc.showMapLabel(currentLabelId);
+    }
 }
 
 
