@@ -763,13 +763,15 @@ var fillDetails = function(mapLabelInfo){
         $('#poi-title').val(mapLabelInfo.label);
         $('#poi-font-size').val(mapLabelInfo.fontSize);
         $('#poi-title').attr("disabled", false);
-        $('#poi-font-size').attr("disabled", false);
+        // $('#poi-font-size').attr("disabled", false);
+        $('#poi-font-size').show();
     }
     else {
         $('#poi-title').val('');
         $('#poi-font-size').val('');
         $('#poi-title').attr("disabled", true);
-        $('#poi-font-size').attr("disabled", true);
+        // $('#poi-font-size').attr("disabled", true);
+        $('#poi-font-size').hide();
     }
 
     $('#poi-type').val(mapLabelInfo.type);
@@ -988,17 +990,19 @@ var updatePoiDetails = function(changedKey, changedValue){
 
     if($('#poi-type').val() == 'Icon'){
         $('#poi-title').attr("disabled", true);
-        $('#poi-font-size').attr("disabled", true);
+        // $('#poi-font-size').attr("disabled", true);
+        $('#poi-font-size').fadeOut();
         $('#select-icon-group').fadeIn();
     }
     if($('#poi-type').val() == 'IconWithText'){
         $('#select-icon-group').fadeIn();
         $('#poi-title').attr("disabled", false);
-        $('#poi-font-size').attr("disabled", false);
+        // $('#poi-font-size').attr("disabled", false);
+        $('#poi-font-size').fadeIn();
     }
     if($('#poi-type').val() == 'Text'){
         $('#poi-title').attr("disabled", false);
-        $('#poi-font-size').attr("disabled", false);
+        $('#poi-font-size').fadeIn();
         $('#select-icon-group').fadeOut();
     }
 
