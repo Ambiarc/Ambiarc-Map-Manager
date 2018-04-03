@@ -373,6 +373,7 @@ var createIconLabel = function () {
             latitude: parseFloat(latlon.lat),
             longitude: parseFloat(latlon.lon),
             label: 'Information ',
+            fontSize: 26,
             category: 'Label',
             location: 'Default',
             partialPath: 'Information',
@@ -990,18 +991,21 @@ var updatePoiDetails = function(changedKey, changedValue){
 
     if($('#poi-type').val() == 'Icon'){
         $('#poi-title').attr("disabled", true);
-        // $('#poi-font-size').attr("disabled", true);
+        $('#poi-title').val(labelProperties.label);
         $('#poi-font-size').fadeOut();
         $('#select-icon-group').fadeIn();
     }
     if($('#poi-type').val() == 'IconWithText'){
         $('#select-icon-group').fadeIn();
         $('#poi-title').attr("disabled", false);
-        // $('#poi-font-size').attr("disabled", false);
+        $('#poi-title').val(labelProperties.label);
         $('#poi-font-size').fadeIn();
+        $('#poi-font-size').val(labelProperties.fontSize);
     }
     if($('#poi-type').val() == 'Text'){
         $('#poi-title').attr("disabled", false);
+        $('#poi-title').val(labelProperties.label);
+        $('#poi-font-size').val(labelProperties.fontSize);
         $('#poi-font-size').fadeIn();
         $('#select-icon-group').fadeOut();
     }
@@ -1465,7 +1469,7 @@ var saveNewIcon = function(){
     ambiarc.poiList[currentLabelId].base64 = base64String;
     ambiarc.poiList[currentLabelId].partialPath = imgIcon;
     ambiarc.poiList[currentLabelId].location = 'Default';
-    ambiarc.poiList[currentLabelId].label = imgIcon;
+    ambiarc.poiList[currentLabelId].label = (ambiarc.poiList[currentLabelId].type == 'Icon') ? imgIcon : ambiarc.poiList[currentLabelId].label;
     $('#poi-icon-image').css('background-image','url("'+base64String+'")');
     $('#poi-icon-image').attr('data-image',imgIcon);
     $('#icon-file-hidden').val('');
