@@ -1124,11 +1124,8 @@ var valueToString = function(){
 var cameraCompletedHandler = function(event){
 
     if(event.detail == -1) {
-        console.log("returning!!!!");
         return;
     }
-
-    hideAllIcons();
 
     // listening for exterior camera movement
     if(event.detail == 1000){
@@ -1142,7 +1139,6 @@ var cameraCompletedHandler = function(event){
 
     //listening for focusing on exterior point camera movement
     else if(event.detail == 100){
-        console.log("EXTERIOR POINT!!");
         $('#bldg-floor-select').val('Exterior');
         showPoiDetails();
         visibilityHandler();
@@ -1150,17 +1146,9 @@ var cameraCompletedHandler = function(event){
 
     //focus on maplabel completed!!
     else if(event.detail == 200){
-        console.log("MAPLABEL COMPLETED");
         showPoiDetails();
         visibilityHandler();
     }
-
-    // focus on floor completed
-    else if(event.detail == 300){
-        console.log("FLOOR COMPLETED!!");
-        visibilityHandler();
-    }
-
 };
 
 // hiding all icons on selected floor until animation completes
