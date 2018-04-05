@@ -122,7 +122,7 @@ $(document).ready(function() {
         var buildingId = parsedValue[0];
         var floorId = parsedValue[1];
 
-        ambiarc.focusOnFloor(buildingId, floorId)
+        ambiarc.focusOnFloor(buildingId, floorId, 300);
     });
 
 
@@ -188,7 +188,7 @@ $(document).ready(function() {
         ambiarc.updateMapLabel(currentLabelId, ambiarc.poiList[currentLabelId].type, ambiarc.poiList[currentLabelId]);
 
         if(ambiarc.poiList[currentLabelId].floorId != currentFloorId){
-            ambiarc.focusOnFloor(ambiarc.poiList[currentLabelId].buildingId, ambiarc.poiList[currentLabelId].floorId);
+            ambiarc.focusOnFloor(ambiarc.poiList[currentLabelId].buildingId, ambiarc.poiList[currentLabelId].floorId, 300);
         }
     });
 
@@ -598,12 +598,12 @@ var mapLabelClickHandler = function(event) {
 
 var firstFloorSelected = function(pId) {
     var ambiarc = $("#ambiarcIframe")[0].contentWindow.Ambiarc;
-    ambiarc.focusOnFloor(mainBldgID, 'L002');
+    ambiarc.focusOnFloor(mainBldgID, 'L002', 300);
 };
 
 var secondFloorSelected = function(pId) {
     var ambiarc = $("#ambiarcIframe")[0].contentWindow.Ambiarc;
-    ambiarc.focusOnFloor(mainBldgID, 'L003');
+    ambiarc.focusOnFloor(mainBldgID, 'L003', 300);
 };
 
 var listPoiClosed = function(mapLabelId) {
@@ -693,10 +693,10 @@ var addElementToPoiList = function(mapLabelId, mapLabelName, mapLabelInfo, times
             ambiarc.focusOnMapLabel(mapLabelId, 100);
         }
         else {
-            ambiarc.focusOnMapLabel(mapLabelId);
+            ambiarc.focusOnMapLabel(mapLabelId, 200);
         }
 
-        showPoiDetails();
+        // showPoiDetails();
     });
 };
 
@@ -942,6 +942,8 @@ var emptyDetailsData = function(){
 
 var updatePoiDetails = function(changedKey, changedValue){
 
+    console.log("UPDATING CURRENT LABEL...");
+
     // If it's pair (longitude and latitude)
     if (typeof changedKey == 'object') {
         for(var i=0; i<changedKey.length; i++){
@@ -1000,7 +1002,7 @@ var updatePoiDetails = function(changedKey, changedValue){
     hideInactivePoints();
 
     if(ambiarc.poiList[currentLabelId].floorId != currentFloorId){
-        ambiarc.focusOnFloor(ambiarc.poiList[currentLabelId].buildingId, ambiarc.poiList[currentLabelId].floorId);
+        ambiarc.focusOnFloor(ambiarc.poiList[currentLabelId].buildingId, ambiarc.poiList[currentLabelId].floorId, 300);
     }
 };
 
@@ -1116,55 +1118,67 @@ var valueToString = function(){
     }
 
     ambiarc.poiList[currentLabelId][key] = value.toString();
-}
-
-var updateFloorId = function(floorId){
-
-    var newLabel = ambiarc.poiList[currentLabelId];
-        newLabel.floorId = floorId;
-
-    ambiarc.destroyMapLabel(currentLabelId);
-
-    if(currentFloorId !== floorId){
-        ambiarc.registerForEvent(ambiarc.eventLabel.CameraMotionCompleted, cameraCompletedHandler);
-        ambiarc.focusOnFloor(newLabel.buildingId, newLabel.floorId, 1000);
-    }
-    else {
-        ambiarc.createMapLabel(newLabel.type, newLabel, function(labelId){
-            mapLabelCreatedCallback(labelId, newLabel.label, newLabel);
-            deletePoiData(currentLabelId);
-            currentLabelId = parseInt(labelId);
-            fillDetails(newLabel);
-            updatePoiList();
-        });
-    }
 };
 
 
 var cameraCompletedHandler = function(event){
 
-    // listening for exterior camera movement
-    if(event.detail == 1000){
-        ambiarc.focusOnFloor(mainBldgID);
-        currentFloorId = null;
-        $('#bldg-floor-select').val('Exterior');
+    if(event.detail == -1) {
+        console.log("returning!!!!");
         return;
     }
 
-    //listening for focusting on exterior point camera movement
-    if(event.detail == 100){
+    hideAllIcons();
+
+    // listening for exterior camera movement
+    if(event.detail == 1000){
+        console.log("EXTERIOR FLOOR!!");
+        ambiarc.focusOnFloor(mainBldgID, null, 300);
+        currentFloorId = null;
         $('#bldg-floor-select').val('Exterior');
+        visibilityHandler();
+        return;
     }
 
-    if(typeof currentLabelId !== 'undefined'){
-        hideInactivePoints(true);
+    //listening for focusing on exterior point camera movement
+    else if(event.detail == 100){
+        console.log("EXTERIOR POINT!!");
+        $('#bldg-floor-select').val('Exterior');
+        showPoiDetails();
+        visibilityHandler();
+    }
+
+    //focus on maplabel completed!!
+    else if(event.detail == 200){
+        console.log("MAPLABEL COMPLETED");
+        showPoiDetails();
+        visibilityHandler();
+    }
+
+    // focus on floor completed
+    else if(event.detail == 300){
+        console.log("FLOOR COMPLETED!!");
+        visibilityHandler();
+    }
+
+};
+
+// hiding all icons on selected floor until animation completes
+var hideAllIcons = function(){
+    $.each(ambiarc.poiList, function(id, properties){
+        ambiarc.hideMapLabel(id, false);
+    });
+};
+
+
+var visibilityHandler = function(){
+    if(currentLabelId != undefined){
+        hideInactivePoints();
     }
     else {
         showInactivePoints();
-
         //floor
         if(currentFloorId !== null && currentFloorId !== undefined){ hideExteriorPoints(); }
-
         //exterior
         else { showExteriorPoints(); }
     }
@@ -1174,7 +1188,6 @@ var cameraCompletedHandler = function(event){
 var showExteriorPoints = function(){
 
     $.each(ambiarc.poiList, function(id, properties){
-
         if(properties.floorId == null){ ambiarc.showMapLabel(id); }
     });
 };
@@ -1184,7 +1197,7 @@ var hideExteriorPoints = function(){
 
     $.each(ambiarc.poiList, function(id, properties){
         if(properties.floorId == null){
-            ambiarc.hideMapLabel(id);
+            ambiarc.hideMapLabel(id, false);
         }
     });
 };
