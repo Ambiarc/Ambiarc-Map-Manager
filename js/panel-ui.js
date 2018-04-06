@@ -224,8 +224,13 @@ $(document).ready(function() {
         updatePoiDetails('fontSize', $(this).val())
     });
 
-    $('#poi-bulding-id').on('change', function(){
-        updatePoiDetails('buildingId', $(this).val())
+    // triggering exterior mode works only with setting floor id to null
+    $('body').on('change', '#poi-bulding-id', function(){
+        if($(this).val() === 'Exterior'){
+            updatePoiDetails('floorId', null);
+            return;
+        }
+        updatePoiDetails('buildingId', $(this).val());
     });
 
     $('#poi-label-latitude').on('change', function(){
@@ -261,8 +266,7 @@ $(document).ready(function() {
     $('#poi-add-pair').on('click', addNewPair);
 
     $('body').on('keyup', '.poi-new-value', function(e){
-        console.log("key up!!");
-        console.log($(this).val());
+
         var item = $(this).closest('.pair-key-row');
         var inputVal = $(this).val();
 
@@ -292,10 +296,6 @@ $(document).ready(function() {
         // updateFloorId($(this).val());
     });
 
-    $('body').on('change', '#poi-bulding-id', function(){
-        updatePoiDetails('floorId', $(this).val());
-    });
-
     $('#poi-delete').on('click', function(){
         ambiarc.destroyMapLabel(currentLabelId);
         deletePoiData(currentLabelId);
@@ -311,7 +311,6 @@ $(document).ready(function() {
 
 
 var showColorsPanel = function(){
-    console.log("SHOW COLORS PANEL!!");
     $('.poi-details-panel').addClass('invisible');
     $('.icons-list-panel').addClass('invisible');
     $('.poi-list-body').addClass('invisible');
@@ -320,7 +319,6 @@ var showColorsPanel = function(){
 
 
 var showPoiList = function(){
-    console.log("SHO POI LIST!");
     emptyDetailsData();
     $('.poi-details-panel').addClass('invisible');
     $('.icons-list-panel').addClass('invisible');
@@ -689,7 +687,6 @@ var addElementToPoiList = function(mapLabelId, mapLabelName, mapLabelInfo, times
         fillDetails(mapLabelInfo);
 
         if($(this).find('.list-poi-floor').html() == ''){
-            console.log("EMPTY STRING!!");
             ambiarc.focusOnMapLabel(mapLabelId, 100);
         }
         else {
@@ -747,11 +744,12 @@ var addFloorToFloor = function(fID, bID, name) {
 };
 
 
-var fillDetails = function(mapLabelInfo){
+var fillDetails = function(){
 
     emptyDetailsData();
 
     var mapLabelInfo = ambiarc.poiList[currentLabelId];
+    var buildingId = (mapLabelInfo.floorId == null) ? 'Exterior' : mapLabelInfo.buildingId;
 
     if(mapLabelInfo.type == 'Text' || mapLabelInfo.type == 'IconWithText'){
         $('#poi-title').val(mapLabelInfo.label);
@@ -769,7 +767,7 @@ var fillDetails = function(mapLabelInfo){
     }
 
     $('#poi-type').val(mapLabelInfo.type);
-    $('#poi-bulding-id').val(mapLabelInfo.buildingId);
+    $('#poi-bulding-id').val(buildingId);
     $('.poi-floor-id[data-bldgid = "'+mapLabelInfo.buildingId+'"]').val(mapLabelInfo.floorId);
     $('#poi-label-latitude').val(parseFloat(toFixed(mapLabelInfo.latitude, 4)));
     $('#poi-label-longitude').val(parseFloat(toFixed(mapLabelInfo.longitude, 4)));
@@ -904,6 +902,14 @@ var fillBuildingsList = function(){
 
             });
         });
+
+        var exteriorListItem = document.createElement('option');
+            exteriorListItem.clasName = 'bldg-list-item';
+            exteriorListItem.value = 'Exterior';
+            exteriorListItem.textContent = 'Exterior';
+
+        $('#poi-bulding-id').prepend(exteriorListItem);
+
     });
 };
 
@@ -941,8 +947,6 @@ var emptyDetailsData = function(){
 
 
 var updatePoiDetails = function(changedKey, changedValue){
-
-    console.log("UPDATING CURRENT LABEL...");
 
     // If it's pair (longitude and latitude)
     if (typeof changedKey == 'object') {
@@ -999,8 +1003,8 @@ var updatePoiDetails = function(changedKey, changedValue){
 
     updatePoiList();
     toggleSaveButton();
-    hideInactivePoints();
-
+    // hideInactivePoints();
+    fillDetails();
     if(ambiarc.poiList[currentLabelId].floorId != currentFloorId){
         ambiarc.focusOnFloor(ambiarc.poiList[currentLabelId].buildingId, ambiarc.poiList[currentLabelId].floorId, 300);
     }
@@ -1123,13 +1127,22 @@ var valueToString = function(){
 
 var cameraCompletedHandler = function(event){
 
+    console.log("camera completed handler!!");
+    console.log(event);
+
+    if(currentFloorId == null){
+        $('#bldg-floor-select').val('Exterior');
+    }
+    else {
+        $('#bldg-floor-select').val(currentBuildingId+'::'+currentFloorId);
+    }
+
     if(event.detail == -1) {
         return;
     }
 
     // listening for exterior camera movement
     if(event.detail == 1000){
-        console.log("EXTERIOR FLOOR!!");
         ambiarc.focusOnFloor(mainBldgID, null, 300);
         currentFloorId = null;
         $('#bldg-floor-select').val('Exterior');
@@ -1605,6 +1618,7 @@ var repositionLabel = function(){
 };
 
 var hideInactivePoints = function(immediate){
+
 if(!immediate)var immediate = false;
     $.each(ambiarc.poiList, function(id, obj){
         if(id != currentLabelId) {
