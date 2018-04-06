@@ -437,7 +437,6 @@
         <div class="row panel-body-row icons-list-panel invisible">
             <div class="panel-body panel panel-default icons-container">
                 <div class="row">
-
                     <div class="col-sm-4"><img data-image="Baggage" class="icon-sample "
                                                src="../css/icons/ic_admin_baggage.png"></div>
                     <div class="col-sm-4"><img data-image="Bicycle" class="icon-sample"
@@ -528,8 +527,6 @@
                 </div>
             </div>
         </div>
-
-
     </div>
     <div id="bootstrap" hidden></div>
 </div>
@@ -570,13 +567,9 @@
 </div>
 
 
-</div>
-
-</div>
-<iframe src="map.html" id="ambiarcIframe" style="width:100%; height:100%; border:none; top:
-0; z-index:-1; position:fixed; pointer-events: all;">
-    Your browser doesn't support iframes
-</iframe>
+<!--<iframe src="map.html" id="ambiarcIframe">-->
+    <!--Your browser doesn't support iframes-->
+<!--</iframe>-->
 
 <div>
     <div id="controls-section" style="pointer-events: all">
@@ -621,5 +614,27 @@
 
 
 </body>
+
+<script>
+
+    var getMapName = function(name){
+        var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+        if (results==null){
+            return null;
+        }
+        else{
+            return decodeURI(results[1]) || 0;
+        }
+    };
+
+    var mapFolder = getMapName('map');
+    var mapUrl =  (mapFolder !== null) ? mapFolder+'/map.html' : 'defaultMap.html';
+    var ambiarcIframe = document.createElement('iframe');
+        ambiarcIframe.id = 'ambiarcIframe';
+        ambiarcIframe.src = mapUrl;
+
+    $('#pairKeyValueTemplate').after(ambiarcIframe);
+
+</script>
 
 </html>
