@@ -137,6 +137,23 @@ $(document).ready(function() {
         ambiarc.setColorByCategory(key, value);
     });
 
+     $('.env_top_colorpicker_value').on('change', function(){
+
+        var top = $(".env_top_colorpicker_value").val();
+        var bottom = $(".env_bottom_colorpicker_value").val();
+
+        ambiarc.setSkyColor(top, bottom);
+    });
+
+    $('.env_bottom_colorpicker_value').on('change', function(){
+
+        var top = $(".env_top_colorpicker_value").val();
+        var bottom = $(".env_bottom_colorpicker_value").val();
+
+        ambiarc.setSkyColor(top, bottom);
+    });
+
+
     $('.filter-by-location').on('click', sortByLocation);
     $('.filter-by-name').on('click', sortByName);
     $('.filter-by-time').on('click', sortByTime);
@@ -1277,6 +1294,11 @@ var newScene = function(){
 
         $('.colorpicker-element[data-key="'+key+'"]')
             .find('.colorpicker_value')
+            .val(value)
+            .trigger('change');
+
+        $('.colorpicker-element[data-key="'+key+'"]')
+            .find('.env_colorpicker_value')
             .val(value)
             .trigger('change');
     });

@@ -34,19 +34,15 @@
       this.messageQueue.push(callback);
       gameInstance.SendMessage('Ambiarc', 'GetMapPositionAtCursor', coordType);
     };
-    this.createMapLabel = function(mapLabelType, maplLabelInfo, idCallback) {
+    this.createMapLabel = function(mapLabelType, mabelLabelInfo, idCallback) {
       this.messageQueue.push(idCallback);
       var json = JSON.stringify({
         mapLabelType: mapLabelType,
-        mapLabelInfo: maplLabelInfo
+        mapLabelInfo: mabelLabelInfo
       });
       gameInstance.SendMessage('Ambiarc', 'CreateMapLabel', json);
     };
     this.updateMapLabel = function(mapLabelId, mapLabelType, mapLabelInfo) {
-
-    //  console.log("updating map label!");
-     // console.log(mapLabelInfo);
-
       var json = JSON.stringify({
         mapLabelId: mapLabelId,
         mapLabelType: mapLabelType,
@@ -84,7 +80,6 @@
         mapLabelId: mapLabelId,
         cameraMotionId: cameraMotionId
       });
-     // console.log(json);
       gameInstance.SendMessage('Ambiarc', 'FocusOnMapLabel', json);
     };
     this.focusOnFloor = function(buildingId, floorId, cameraMotionId, requireFloorFocus, instant) {
@@ -123,11 +118,18 @@
       });
       gameInstance.SendMessage('Ambiarc', 'SetColorByCategory', json);
     };
-    this.setSkyColor = function(skyColor, equatorColor, groundColor) {
+    this.setLightColor = function(skyColor, equatorColor, groundColor) {
       var json = JSON.stringify({
         skyColor: skyColor,
         equatorColor: equatorColor,
         groundColor: groundColor
+      });
+      gameInstance.SendMessage('Ambiarc', 'SetLightColor', json);
+    };
+    this.setSkyColor = function(topColor, bottomColor) {
+      var json = JSON.stringify({
+        topColor: topColor,
+        bottomColor: bottomColor
       });
       gameInstance.SendMessage('Ambiarc', 'SetSkyColor', json);
     };
