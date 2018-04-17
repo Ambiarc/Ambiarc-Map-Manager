@@ -35,6 +35,10 @@
       gameInstance.SendMessage('Ambiarc', 'GetMapPositionAtCursor', coordType);
     };
     this.createMapLabel = function(mapLabelType, maplLabelInfo, idCallback) {
+
+      console.log("createMapLabel function");
+      console.log(maplLabelInfo);
+
       this.messageQueue.push(idCallback);
       var json = JSON.stringify({
         mapLabelType: mapLabelType,
@@ -44,8 +48,8 @@
     };
     this.updateMapLabel = function(mapLabelId, mapLabelType, mapLabelInfo) {
 
-    //  console.log("updating map label!");
-     // console.log(mapLabelInfo);
+      console.log("updating map label!");
+      console.log(mapLabelInfo);
 
       var json = JSON.stringify({
         mapLabelId: mapLabelId,
@@ -84,7 +88,6 @@
         mapLabelId: mapLabelId,
         cameraMotionId: cameraMotionId
       });
-     // console.log(json);
       gameInstance.SendMessage('Ambiarc', 'FocusOnMapLabel', json);
     };
     this.focusOnFloor = function(buildingId, floorId, cameraMotionId, requireFloorFocus, instant) {
