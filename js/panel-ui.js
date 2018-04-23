@@ -114,7 +114,9 @@ $(document).ready(function() {
     $('#bldg-floor-select').on('change', function(){
 
         if($(this).val() == 'Exterior'){
-            ambiarc.viewFloorSelector(mainBldgID, 1000);
+            //ambiarc.viewFloorSelector(mainBldgID, 1000);
+            console.log("VALE**");
+            ambiarc.ExitBuilding();
             return;
         }
 
@@ -359,7 +361,7 @@ var createTextLabel = function () {
     ambiarc.getMapPositionAtCursor(ambiarc.coordType.gps, (latlon) => {
 
         var mapLabelInfo = {
-            buildingId: mainBldgID,
+            buildingId: currentBuildingId,
             floorId: currentFloorId,
             latitude: parseFloat(latlon.lat),
             longitude: parseFloat(latlon.lon),
@@ -389,7 +391,7 @@ var createIconLabel = function () {
     ambiarc.getMapPositionAtCursor(ambiarc.coordType.gps, (latlon) => {
 
         var mapLabelInfo = {
-            buildingId: mainBldgID,
+            buildingId: currentBuildingId,
             floorId: currentFloorId,
             latitude: parseFloat(latlon.lat),
             longitude: parseFloat(latlon.lon),
@@ -417,7 +419,7 @@ var createTextIcon = function () {
     ambiarc.getMapPositionAtCursor(ambiarc.coordType.gps, (latlon) => {
 
         var mapLabelInfo = {
-            buildingId: mainBldgID,
+            buildingId: currentBuildingId,
             floorId: currentFloorId,
             latitude: parseFloat(latlon.lat),
             longitude: parseFloat(latlon.lon),
@@ -554,6 +556,7 @@ var onFloorSelected = function(event) {
 var onEnteredFloorSelector = function(event) {
 
     var buildingId = event.detail;
+    currentBuildingId = buildingId;
     currentFloorId = null;
     if (!isFloorSelectorEnabled) {
         isFloorSelectorEnabled = true;

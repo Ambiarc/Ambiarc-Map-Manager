@@ -174,6 +174,9 @@
       });
       gameInstance.SendMessage('Ambiarc', 'TweenZoomCamera', json);
     }
+    this.ExitBuilding = function() {
+      gameInstance.SendMessage('Ambiarc', 'ExitBuilding');
+    }
     this.registerForEvent = function(eventLabel, cb) {
       var validLabel = this.eventLabel.hasOwnProperty(eventLabel);
       if (validLabel === false) {
