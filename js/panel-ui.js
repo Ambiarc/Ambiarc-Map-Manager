@@ -1127,8 +1127,8 @@ var valueToString = function(){
 
 var cameraCompletedHandler = function(event){
 
-    console.log("camera completed handler!!");
-    console.log(event);
+  //  console.log("camera completed handler!!");
+   // console.log(event);
 
     if(currentFloorId == null){
         $('#bldg-floor-select').val('Exterior');
