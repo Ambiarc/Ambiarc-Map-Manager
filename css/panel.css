@@ -609,3 +609,11 @@ label.poi-details-id {
     position:fixed;
     pointer-events: all;
 }
+
+.version-num {
+    position: absolute;
+    top: 15px;
+    right: 30px;
+    font-weight: bold;
+    color: #616161;
+}

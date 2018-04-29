@@ -518,6 +518,7 @@ var onAmbiarcLoaded = function() {
 
     fillBuildingsList();
     $('#bootstrap').removeAttr('hidden');
+    $('.version-num').removeAttr('hidden');
     $('#controls-section').fadeIn();
     $('.panel-section').removeClass('invisible');
 
