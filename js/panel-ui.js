@@ -677,7 +677,7 @@ var addElementToPoiList = function(mapLabelId, mapLabelName, mapLabelInfo, times
     $(item).find('.list-poi-label').html(mapLabelName);
     $(item).find('.list-poi-bldg').html(bldg);
     $(item).find('.list-poi-floor').html(floorNum);
-    $(item).find('.list-poi-id').html('ID: '+ labelId);
+    $(item).find('.list-poi-id').html('ID '+ labelId);
     $(item).find('.list-poi-dtime').html('Added <span date-timestamp="'+timestamp+'" class="addedDate">'+fullDate+'</span> at '+fullTime);
 
 
