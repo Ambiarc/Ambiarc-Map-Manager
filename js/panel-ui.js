@@ -46,6 +46,7 @@ var colorsInScene = {
 
 //list of mapLabel regular properties (non key-value section pairs values)
 var regularFeatures = [
+    'mapLabelId',
     'label',
     'fontSize',
     'base64',
