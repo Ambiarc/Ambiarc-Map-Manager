@@ -456,9 +456,10 @@ var createTextIcon = function () {
 var mapLabelCreatedCallback = function(labelId, labelName, mapLabelInfo) {
     // push reference of POI to list
     poisInScene.push(labelId);
+    mapLabelInfo.mapLabelId = labelId;
     ambiarc.poiList[labelId] = mapLabelInfo;
     addElementToPoiList(labelId, labelName, mapLabelInfo);
-}
+};
 
 // HTML floor selector clicked action, this method will place the map into floor selector mode when the HTML is active
 var dropdownClicked = function() {
@@ -682,6 +683,7 @@ var addElementToPoiList = function(mapLabelId, mapLabelName, mapLabelInfo, times
         $(item).appendTo($("#listPoiContainer"));
     var bldg = mapLabelInfo.buildingId;
     var floorNum = mapLabelInfo.floorId;
+    var labelId = mapLabelInfo.mapLabelId;
 
     //if no timestamps, take current timestamp. Otherwise, use initial timestamps
     if(!timestamp){
@@ -720,6 +722,7 @@ var addElementToPoiList = function(mapLabelId, mapLabelName, mapLabelInfo, times
     $(item).find('.list-poi-label').html(mapLabelName);
     $(item).find('.list-poi-bldg').html(bldg);
     $(item).find('.list-poi-floor').html(floorNum);
+    $(item).find('.list-poi-id').html('ID: '+ labelId);
     $(item).find('.list-poi-dtime').html('Added <span date-timestamp="'+timestamp+'" class="addedDate">'+fullDate+'</span> at '+fullTime);
 
 
@@ -812,6 +815,7 @@ var fillDetails = function(){
         $('#poi-font-size').hide();
     }
 
+    $('#poi-id').html(mapLabelInfo.mapLabelId);
     $('#poi-type').val(mapLabelInfo.type);
     $('#poi-bulding-id').val(buildingId);
     $('.poi-floor-id[data-bldgid = "'+mapLabelInfo.buildingId+'"]').val(mapLabelInfo.floorId);
@@ -973,6 +977,8 @@ var deletePoiData = function(){
 
 
 var emptyDetailsData = function(){
+
+    $('#poi-id').html('');
     $('#poi-title').val('');
     $('#poi-font-size').val('');
     $('#poi-type').val('Text');
@@ -1046,6 +1052,7 @@ var updatePoiDetails = function(changedKey, changedValue){
         $(listItem).find('.list-poi-label').html(labelProperties.label);
         $(listItem).find('.list-poi-bldg').html('Building '+labelProperties.buildingId);
         $(listItem).find('.list-poi-floor').html('Floor '+labelProperties.floorId);
+        $(listItem).find('.list-poi-id').html('ID '+labelProperties.mapLabelId);
 
     updatePoiList();
     toggleSaveButton();
