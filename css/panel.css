@@ -224,6 +224,13 @@ input[type='checkbox'] {
     margin: 0;
 }
 
+.list-poi-id {
+    color: #595959;
+    font-size: 1.1rem;
+    line-height: 100%;
+    margin: 0;
+}
+
 .invisible {
     display: none!important;
     transition: all 1s;
@@ -312,6 +319,10 @@ input[type='checkbox'] {
 .poi-details-panel,
 .poi-list-panel {
     transition: display 0.5s;
+}
+
+label.poi-details-id {
+    color: #2c7dca;
 }
 
 .poi-details-name {
