@@ -217,15 +217,9 @@ input[type='checkbox'] {
 
 .list-poi-bldg,
 .list-poi-floor,
-.list-poi-dtime {
+.list-poi-dtime,
+. list-poi-id{
     color: #cacaca;
-    font-size: 1.1rem;
-    line-height: 100%;
-    margin: 0;
-}
-
-.list-poi-id {
-    color: #595959;
     font-size: 1.1rem;
     line-height: 100%;
     margin: 0;
