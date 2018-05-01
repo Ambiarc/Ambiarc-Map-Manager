@@ -667,8 +667,23 @@
         ambiarcIframe.id = 'ambiarcIframe';
         ambiarcIframe.src = mapUrl;
 
+        //adding ctrl + click to trigger right click
+        ambiarcIframe.onload = function(){
+            document.getElementById("ambiarcIframe").contentWindow.addEventListener('click', function(e){
+                e.preventDefault();
+                if((e.ctrlKey || e.metaKey)) {
+                    var event = new CustomEvent('RightMouseDown', {
+                        detail: {
+                            pixelX: e.clientX,
+                            pixelY: window.innerHeight - e.clientY
+                        }
+                    });
+                    parent.onRightMouseDown(event)
+                }
+            });
+        };
+
     $('#pairKeyValueTemplate').after(ambiarcIframe);
 
 </script>
-
 </html>
