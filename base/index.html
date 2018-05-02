@@ -669,18 +669,9 @@
 
         //adding ctrl + click to trigger right click
         ambiarcIframe.onload = function(){
-            document.getElementById("ambiarcIframe").contentWindow.addEventListener('click', function(e){
-                e.preventDefault();
-                if((e.ctrlKey || e.metaKey)) {
-                    var event = new CustomEvent('RightMouseDown', {
-                        detail: {
-                            pixelX: e.clientX,
-                            pixelY: window.innerHeight - e.clientY
-                        }
-                    });
-                    parent.onRightMouseDown(event)
-                }
-            });
+            document.getElementById("ambiarcIframe").contentWindow.addEventListener('keydown', keyDownHandler);
+            document.getElementById("ambiarcIframe").contentWindow.addEventListener('keyup', keyUpHandler);
+            document.getElementById("ambiarcIframe").contentWindow.addEventListener('click', bootstrapMenuTrigger);
         };
 
     $('#pairKeyValueTemplate').after(ambiarcIframe);
