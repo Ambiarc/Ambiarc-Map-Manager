@@ -1,6 +1,8 @@
 // default icon image when creatin labels
 var iconDefault;
 
+var ctrlDown = false;
+
 // saved main build reference
 var mainBldgID;
 
@@ -68,6 +70,7 @@ var regularFeatures = [
 $(document).ready(function() {
 
     var $body = $(document.body);
+
     $('[data-toggle="tooltip"]').tooltip();
     initColorPickers();
 
@@ -106,9 +109,13 @@ $(document).ready(function() {
     poiMenuSelector = menu.$menu[0];
 
 
+    $(document).keydown(function(e){
+        if(e.keyCode == 17  || e.which == 17 || e.key == 'Control' || e.code == 'ControlLeft' || e.code == 'ControlRight') ctrlDown = true;
+    });
 
-
-
+    $(document).keyup(function(e){
+        if(e.keyCode == 17  || e.which == 17 || e.key == 'Control' || e.code == 'ControlLeft' || e.code == 'ControlRight') ctrlDown = false;
+    });
 
     //PANEL ELEMENTS HANDLERS
 
@@ -431,24 +438,6 @@ var mapLabelCreatedCallback = function(labelId, labelName, mapLabelInfo) {
     mapLabelInfo.mapLabelId = labelId;
     ambiarc.poiList[labelId] = mapLabelInfo;
     addElementToPoiList(labelId, labelName, mapLabelInfo);
-};
-
-// HTML floor selector clicked action, this method will place the map into floor selector mode when the HTML is active
-var dropdownClicked = function() {
-
-    if (!isFloorSelectorEnabled) {
-        $("#levels-dropdown").addClass('open');
-        $("#levels-dropdown-button").attr('aria-expanded', true);
-        isFloorSelectorEnabled = true;
-    } else {
-        $("#levels-dropdown").removeClass('open');
-        $("#levels-dropdown-button").attr('aria-expanded', false);
-        isFloorSelectorEnabled = false;
-        $("#currentFloor").text("Exterior");
-    }
-
-    //calling viewFloorSelector when in floor selector mode will exit floor selector mode
-    ambiarc.viewFloorSelector(mainBldgID);
 };
 
 // subscribe to the AmbiarcSDK loaded event
@@ -1660,3 +1649,29 @@ var initColorPickers = function(){
         $(el).colorpicker();
     });
 };
+
+var keyDownHandler = function(e){
+    if(e.keyCode == 17  || e.which == 17 || e.key == 'Control' || e.code == 'ControlLeft' || e.code == 'ControlRight'){
+        ctrlDown = true;
+    }
+};
+
+var keyUpHandler = function (e) {
+    if (e.keyCode == 17 || e.which == 17 || e.key == 'Control' || e.code == 'ControlLeft' || e.code == 'ControlRight') {
+        ctrlDown = false;
+    }
+};
+
+var bootstrapMenuTrigger = function(e){
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    if((parent.ctrlDown == true)) {
+        var event = new CustomEvent('RightMouseDown', {
+            detail: {
+                pixelX: e.clientX,
+                pixelY: window.innerHeight - e.clientY
+            }
+        });
+        parent.onRightMouseDown(event)
+    }
+}
