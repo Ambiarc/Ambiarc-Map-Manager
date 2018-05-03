@@ -479,6 +479,9 @@ var iframeLoaded = function() {
 var onAmbiarcLoaded = function() {
     ambiarc = $("#ambiarcIframe")[0].contentWindow.Ambiarc;
 
+   ambiarc.setMapAssetBundleURL('https://s3-us-west-1.amazonaws.com/gk-web-demo/ambiarc/');
+   ambiarc.loadMap('nga');
+
     // Subscribe to various events needed for this application
     ambiarc.registerForEvent(ambiarc.eventLabel.RightMouseDown, onRightMouseDown);
     ambiarc.registerForEvent(ambiarc.eventLabel.FloorSelected, onFloorSelected);
@@ -488,8 +491,19 @@ var onAmbiarcLoaded = function() {
     ambiarc.registerForEvent(ambiarc.eventLabel.MapLabelSelected, mapLabelClickHandler);
     ambiarc.registerForEvent(ambiarc.eventLabel.CameraMotionCompleted, cameraCompletedHandler);
     ambiarc.registerForEvent(ambiarc.eventLabel.CameraMotionStarted, cameraStartedHandler);
+    ambiarc.registerForEvent(ambiarc.eventLabel.StartedLoadingMap, mapStartedLoading);
+    ambiarc.registerForEvent(ambiarc.eventLabel.FinishedLoadingMap, mapFinishedLoading);
 
-    // creating objecct where we will store all our points property values
+    
+};
+
+ var mapStartedLoading = function() {
+
+ }
+
+ var mapFinishedLoading = function() {
+  var ambiarc = $("#ambiarcIframe")[0].contentWindow.Ambiarc;
+ // creating objecct where we will store all our points property values
     ambiarc.poiList = {};
 
     fillBuildingsList();
@@ -500,7 +514,8 @@ var onAmbiarcLoaded = function() {
     $('document').contextmenu(function(e){
         e.preventDefault();
     });
-};
+      ambiarc.hideLoadingScreen();
+ }
 
 // creates the right-click menu over the map
 var onRightMouseDown = function(event) {

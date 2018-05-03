@@ -14,8 +14,11 @@
       CameraRotateCompleted: 'CameraRotateCompleted',
       CameraZoomStarted: 'CameraZoomStarted',
       CameraZoomCompleted: 'CameraZoomCompleted',
+      BuildingExitCompleted: 'BuildingExitCompleted',
       AmbiarcAppInitialized: 'AmbiarcAppInitialized',
-      RightMouseDown: 'RightMouseDown'
+      RightMouseDown: 'RightMouseDown',
+      StartedLoadingMap: 'StartedLoadingMap',
+      FinishedLoadingMap: 'FinishedLoadingMap'
     };
     this.mapLabel = {
       Icon: "Icon",
@@ -166,14 +169,14 @@
         duration: duration
       });
       gameInstance.SendMessage('Ambiarc', 'TweenRotateCamera', json);
-    }
+    };
     this.zoomCamera = function(normalizedZoomIncrement, duration) {
       var json = JSON.stringify({
         zoomIncrement: normalizedZoomIncrement,
         duration: duration
       });
       gameInstance.SendMessage('Ambiarc', 'TweenZoomCamera', json);
-    }
+    };
     this.ExitBuilding = function() {
       gameInstance.SendMessage('Ambiarc', 'ExitBuilding');
     }
@@ -187,6 +190,18 @@
     this.unregisterEvent = function(eventLabel, cb) {
       document.removeEventListener(eventLabel, cb);
     };
+    this.setMapAssetBundleURL = function(url) {
+      gameInstance.SendMessage('Ambiarc', 'SetMapAssetBundleURL', url);
+    }
+    this.loadMap = function(map) {
+      gameInstance.SendMessage('Ambiarc', 'LoadMap', map);
+    };
+    this.hideLoadingScreen = function() {
+      gameInstance.SendMessage('Ambiarc', 'HideLoadingScreen');
+    };
+    this.loadEmbeddedPOIs = function() {
+      gameInstance.SendMessage('Ambiarc', 'LoadEmbeddedPOIs');
+    }
     this.loadRemoteMapLabels = function(url) {
       return fetch(url)
         .then(res => res.json())

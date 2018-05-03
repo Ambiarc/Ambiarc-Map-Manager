@@ -7,23 +7,20 @@
             }, {
                 "category": "Railing",
                 "colorHex": "#A7917900"
-            },{
-                "category": "Elevator",
-                "colorHex": "#EAE0CA00"
-            },{
-                "category": "Escalator",
-                "colorHex": "#EAE0CA00"
-            },{
-                "category": "Ramp",
-                "colorHex": "#EAE0CA00"
-            },{
-                "category": "Stairs",
-                "colorHex": "#EAE0CA00"
             }, {
                 "category": "Wall",
                 "colorHex": "#DDEEFF00"
             }, {
                 "category": "Room",
+                "colorHex": "#FFFFFF00"
+            }, {
+                "category": "Stairs",
+                "colorHex": "#FFFFFF00"
+            }, {
+                "category": "Escalator",
+                "colorHex": "#FFFFFF00"
+            }, {
+                "category": "Ramp",
                 "colorHex": "#FFFFFF00"
             }, {
                 "category": "Walkway",
@@ -48,23 +45,20 @@
             }, {
                 "category": "Railing",
                 "colorHex": "#44444400"
-            },{
-                "category": "Ramp",
-                "colorHex": "#3A3A3A00"
-            },{
-                "category": "Elevator",
-                "colorHex": "#3A3A3A00"
-            },{
-                "category": "Escalator",
-                "colorHex": "#3A3A3A00"
-            },{
-                "category": "Stairs",
-                "colorHex": "#3A3A3A00"
             }, {
                 "category": "Wall",
                 "colorHex": "#515F8B00"
             }, {
                 "category": "Room",
+                "colorHex": "#6C738E00"
+            }, {
+                "category": "Stairs",
+                "colorHex": "#6C738E00"
+            }, {
+                "category": "Escalator",
+                "colorHex": "#6C738E00"
+            }, {
+                "category": "Ramp",
                 "colorHex": "#6C738E00"
             }, {
                 "category": "Walkway",
