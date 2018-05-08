@@ -37,11 +37,12 @@
       this.messageQueue.push(callback);
       gameInstance.SendMessage('Ambiarc', 'GetMapPositionAtCursor', coordType);
     };
-    this.createMapLabel = function(mapLabelType, mabelLabelInfo, idCallback) {
+    this.createMapLabel = function(mapLabelType, maplLabelInfo, idCallback) {
+
       this.messageQueue.push(idCallback);
       var json = JSON.stringify({
         mapLabelType: mapLabelType,
-        mapLabelInfo: mabelLabelInfo
+        mapLabelInfo: maplLabelInfo
       });
       gameInstance.SendMessage('Ambiarc', 'CreateMapLabel', json);
     };
@@ -53,6 +54,30 @@
       });
       gameInstance.SendMessage('Ambiarc', 'UpdateMapLabel', json);
     };
+    this.SmoothUpdateMapLabelPosition = function(mapLabelId, latitude, longitude, duration) {
+      var json = JSON.stringify({
+        mapLabelId: mapLabelId,
+        latitude: latitude,
+        longitude: longitude,
+        duration: duration
+      });
+      gameInstance.SendMessage('Ambiarc', 'SmoothUpdateMapLabelPosition', json);
+    };
+
+    this.StopTrackingMapLabel= function() {
+
+      gameInstance.SendMessage('Ambiarc', 'StopTrackingMapLabel');
+    };
+
+     this.TrackMapLabel= function(mapLabelId, height, followSpeed) {
+      var json = JSON.stringify({
+        mapLabelId: mapLabelId,
+        height: height,
+        followSpeed: followSpeed
+      });
+      gameInstance.SendMessage('Ambiarc', 'StartTrackingMapLabel', json);
+    };
+
     this.destroyMapLabel = function(mapLabelId) {
       gameInstance.SendMessage('Ambiarc', 'DestroyMapLabel', mapLabelId);
     };
@@ -202,8 +227,9 @@
     this.loadEmbeddedPOIs = function() {
       gameInstance.SendMessage('Ambiarc', 'LoadEmbeddedPOIs');
     }
-    this.loadRemoteMapLabels = function(url) {
-      return fetch(url)
+
+    this.loadRemoteMapLabels = function(url, options) {
+      return fetch(url, options)
         .then(res => res.json())
         .then((out) => {
           return new Promise(function(resolve, reject) {
@@ -211,7 +237,7 @@
               element.properties.latitude = element.geometry.coordinates[1];
               element.properties.longitude = element.geometry.coordinates[0];
               window.Ambiarc.createMapLabel(element.properties.type, element.properties, function(id) {
-                 element.properties.id = id;
+                 element.properties.mapLabelId = id;
               })
             });
            resolve(out.features)

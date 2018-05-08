@@ -115,7 +115,6 @@ $(document).ready(function() {
 
         if($(this).val() == 'Exterior'){
             //ambiarc.viewFloorSelector(mainBldgID, 1000);
-            console.log("VALE**");
             ambiarc.ExitBuilding();
             return;
         }
@@ -338,6 +337,9 @@ var showColorsPanel = function(){
 
 
 var showPoiList = function(){
+
+    ambiarc.StopTrackingMapLabel();
+
     emptyDetailsData();
     $('.poi-details-panel').addClass('invisible');
     $('.icons-list-panel').addClass('invisible');
@@ -618,6 +620,8 @@ var mapLabelClickHandler = function(event) {
     }
     currentLabelId = parseInt(event.detail);
 
+   ambiarc.TrackMapLabel(currentLabelId, 80, 50);
+
     var mapLabelInfo = ambiarc.poiList[currentLabelId];
 
     //creating clone of mapLabelInfo object - storing operations for undo
@@ -715,6 +719,7 @@ var addElementToPoiList = function(mapLabelId, mapLabelName, mapLabelInfo, times
     //setting list item click handler
     $(item).on('click', function(){
         currentLabelId = parseInt(mapLabelId);
+         ambiarc.TrackMapLabel(currentLabelId, 80, 50);
         var initState = jQuery.extend({}, ambiarc.poiList[currentLabelId]);
         ambiarc.history = [];
         ambiarc.history.push(initState);
@@ -981,7 +986,7 @@ var emptyDetailsData = function(){
 };
 
 
-var updatePoiDetails = function(changedKey, changedValue){
+var updatePoiDetails = function(changedKey, changedValue, updateSmoothly){
 
     // If it's pair (longitude and latitude)
     if (typeof changedKey == 'object') {
@@ -1029,7 +1034,14 @@ var updatePoiDetails = function(changedKey, changedValue){
         $('#select-icon-group').fadeOut();
     }
 
-    ambiarc.updateMapLabel(currentLabelId, labelProperties.type, labelProperties);
+    if(updateSmoothly)
+    {
+        ambiarc.SmoothUpdateMapLabelPosition(currentLabelId, labelProperties.latitude,labelProperties.longitude, 1);
+
+    }else
+    {
+        ambiarc.updateMapLabel(currentLabelId, labelProperties.type, labelProperties);
+    }
 
     var listItem = $('#'+currentLabelId);
         $(listItem).find('.list-poi-label').html(labelProperties.label);
@@ -1650,9 +1662,9 @@ var repositionLabel = function(){
 
         $('#poi-label-latitude').val(parseFloat(toFixed(latlon.lat, 4)));
         $('#poi-label-longitude').val(parseFloat(toFixed(latlon.lon, 4)));
-
-        updatePoiDetails(['longitude', 'latitude'], [longitude, latitude]);
-        updatePoiDetails('floorId', currentFloorId);
+        console.log("should update smoothly");
+        updatePoiDetails(['longitude', 'latitude'], [longitude, latitude], true);
+        //updatePoiDetails('floorId', currentFloorId);
         fillDetails(ambiarc.poiList[currentLabelId]);
     });
 };
