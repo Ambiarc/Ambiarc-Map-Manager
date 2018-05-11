@@ -482,7 +482,7 @@ var onAmbiarcLoaded = function() {
     ambiarc = $("#ambiarcIframe")[0].contentWindow.Ambiarc;
 
    ambiarc.setMapAssetBundleURL('https://s3-us-west-1.amazonaws.com/gk-web-demo/ambiarc/');
-   ambiarc.loadMap('nga');
+   ambiarc.loadMap('airport');
 
     // Subscribe to various events needed for this application
     ambiarc.registerForEvent(ambiarc.eventLabel.RightMouseDown, onRightMouseDown);
