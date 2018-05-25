@@ -114,7 +114,6 @@ $(document).ready(function() {
     $('#bldg-floor-select').on('change', function(){
 
         if($(this).val() == 'Exterior'){
-            //ambiarc.viewFloorSelector(mainBldgID, 1000);
             ambiarc.ExitBuilding();
             return;
         }
@@ -138,7 +137,7 @@ $(document).ready(function() {
         ambiarc.setColorByCategory(key, value);
     });
 
-     $('.env_top_colorpicker_value').on('change', function(){
+    $('.env_top_colorpicker_value').on('change', function(){
 
         var top = $(".env_top_colorpicker_value").val();
         var bottom = $(".env_bottom_colorpicker_value").val();
@@ -153,7 +152,6 @@ $(document).ready(function() {
 
         ambiarc.setSkyColor(top, bottom);
     });
-
 
     $('.filter-by-location').on('click', sortByLocation);
     $('.filter-by-name').on('click', sortByName);
@@ -337,9 +335,6 @@ var showColorsPanel = function(){
 
 
 var showPoiList = function(){
-
-    ambiarc.StopTrackingMapLabel();
-
     emptyDetailsData();
     $('.poi-details-panel').addClass('invisible');
     $('.icons-list-panel').addClass('invisible');
@@ -379,9 +374,13 @@ var createTextLabel = function () {
             tooltipBody: ''
         };
 
+        if(currentBuildingId == undefined){
+            mapLabelInfo.outside = true;
+        }
         // Add the map label to the map
         ambiarc.createMapLabel(ambiarc.mapLabel.Text, mapLabelInfo, (labelId) => {
             // Callback triggered once the label is added
+            console.log("****"+labelId)
             mapLabelCreatedCallback(labelId, mapLabelInfo.label, mapLabelInfo);
         });
     });
@@ -391,7 +390,7 @@ var createTextLabel = function () {
 // Creates an Icon MapLabel on the map where the current mouse position is
 var createIconLabel = function () {
     ambiarc.getMapPositionAtCursor(ambiarc.coordType.gps, (latlon) => {
-
+      
         var mapLabelInfo = {
             buildingId: currentBuildingId,
             floorId: currentFloorId,
@@ -409,7 +408,13 @@ var createIconLabel = function () {
             tooltipBody: '',
             base64: iconDefault
         };
+
+        if(currentBuildingId == undefined){
+            mapLabelInfo.outside = true;
+        }
+
         ambiarc.createMapLabel(ambiarc.mapLabel.Icon, mapLabelInfo, (labelId) => {
+            console.log("****"+labelId)
             mapLabelCreatedCallback(labelId, mapLabelInfo.label, mapLabelInfo);
         });
     });
@@ -437,7 +442,11 @@ var createTextIcon = function () {
             tooltipBody: '',
             base64: iconDefault
         };
+        if(currentBuildingId == undefined){
+            mapLabelInfo.outside = true;
+        }
         ambiarc.createMapLabel(ambiarc.mapLabel.IconWithText, mapLabelInfo, (labelId) => {
+            console.log("****"+labelId)
             mapLabelCreatedCallback(labelId, mapLabelInfo.label, mapLabelInfo);
         });
     });
@@ -481,9 +490,6 @@ var iframeLoaded = function() {
 var onAmbiarcLoaded = function() {
     ambiarc = $("#ambiarcIframe")[0].contentWindow.Ambiarc;
 
-   ambiarc.setMapAssetBundleURL('https://s3-us-west-1.amazonaws.com/gk-web-demo/ambiarc/');
-   ambiarc.loadMap('airport');
-
     // Subscribe to various events needed for this application
     ambiarc.registerForEvent(ambiarc.eventLabel.RightMouseDown, onRightMouseDown);
     ambiarc.registerForEvent(ambiarc.eventLabel.FloorSelected, onFloorSelected);
@@ -495,17 +501,19 @@ var onAmbiarcLoaded = function() {
     ambiarc.registerForEvent(ambiarc.eventLabel.CameraMotionStarted, cameraStartedHandler);
     ambiarc.registerForEvent(ambiarc.eventLabel.StartedLoadingMap, mapStartedLoading);
     ambiarc.registerForEvent(ambiarc.eventLabel.FinishedLoadingMap, mapFinishedLoading);
-
     
+    ambiarc.setMapAssetBundleURL('https://s3-us-west-1.amazonaws.com/gk-web-demo/ambiarc/');
+    ambiarc.loadMap('nga');
+
 };
 
  var mapStartedLoading = function() {
 
  }
 
- var mapFinishedLoading = function() {
-  var ambiarc = $("#ambiarcIframe")[0].contentWindow.Ambiarc;
- // creating objecct where we will store all our points property values
+  var mapFinishedLoading = function() {
+    // creating objecct where we will store all our points property values
+    ambiarc = $("#ambiarcIframe")[0].contentWindow.Ambiarc;
     ambiarc.poiList = {};
 
     fillBuildingsList();
@@ -516,8 +524,8 @@ var onAmbiarcLoaded = function() {
     $('document').contextmenu(function(e){
         e.preventDefault();
     });
-      ambiarc.hideLoadingScreen();
- }
+    ambiarc.hideLoadingScreen();
+  }
 
 // creates the right-click menu over the map
 var onRightMouseDown = function(event) {
@@ -603,6 +611,8 @@ var onFloorSelectorFocusChanged = function(event) {
 
 var mapLabelClickHandler = function(event) {
 
+
+    console.log("****clicked: "+event.detail)
     if(!ambiarc.poiList[event.detail]){
         ambiarc.viewFloorSelector(mainBldgID);
         return;
@@ -619,8 +629,6 @@ var mapLabelClickHandler = function(event) {
         return;
     }
     currentLabelId = parseInt(event.detail);
-
-   ambiarc.TrackMapLabel(currentLabelId, 80, 50);
 
     var mapLabelInfo = ambiarc.poiList[currentLabelId];
 
@@ -718,8 +726,8 @@ var addElementToPoiList = function(mapLabelId, mapLabelName, mapLabelInfo, times
 
     //setting list item click handler
     $(item).on('click', function(){
+        console.log("*****list clicked: "+mapLabelId)
         currentLabelId = parseInt(mapLabelId);
-         ambiarc.TrackMapLabel(currentLabelId, 80, 50);
         var initState = jQuery.extend({}, ambiarc.poiList[currentLabelId]);
         ambiarc.history = [];
         ambiarc.history.push(initState);
@@ -986,7 +994,7 @@ var emptyDetailsData = function(){
 };
 
 
-var updatePoiDetails = function(changedKey, changedValue, updateSmoothly){
+var updatePoiDetails = function(changedKey, changedValue){
 
     // If it's pair (longitude and latitude)
     if (typeof changedKey == 'object') {
@@ -1034,14 +1042,7 @@ var updatePoiDetails = function(changedKey, changedValue, updateSmoothly){
         $('#select-icon-group').fadeOut();
     }
 
-    if(updateSmoothly)
-    {
-        ambiarc.SmoothUpdateMapLabelPosition(currentLabelId, labelProperties.latitude,labelProperties.longitude, 1);
-
-    }else
-    {
-        ambiarc.updateMapLabel(currentLabelId, labelProperties.type, labelProperties);
-    }
+    ambiarc.updateMapLabel(currentLabelId, labelProperties.type, labelProperties);
 
     var listItem = $('#'+currentLabelId);
         $(listItem).find('.list-poi-label').html(labelProperties.label);
@@ -1324,11 +1325,6 @@ var newScene = function(){
 
         $('.colorpicker-element[data-key="'+key+'"]')
             .find('.colorpicker_value')
-            .val(value)
-            .trigger('change');
-
-        $('.colorpicker-element[data-key="'+key+'"]')
-            .find('.env_colorpicker_value')
             .val(value)
             .trigger('change');
     });
@@ -1662,9 +1658,9 @@ var repositionLabel = function(){
 
         $('#poi-label-latitude').val(parseFloat(toFixed(latlon.lat, 4)));
         $('#poi-label-longitude').val(parseFloat(toFixed(latlon.lon, 4)));
-        console.log("should update smoothly");
-        updatePoiDetails(['longitude', 'latitude'], [longitude, latitude], true);
-        //updatePoiDetails('floorId', currentFloorId);
+
+        updatePoiDetails(['longitude', 'latitude'], [longitude, latitude]);
+        updatePoiDetails('floorId', currentFloorId);
         fillDetails(ambiarc.poiList[currentLabelId]);
     });
 };

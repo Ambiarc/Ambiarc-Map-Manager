@@ -52,6 +52,8 @@
         mapLabelType: mapLabelType,
         mapLabelInfo: mapLabelInfo
       });
+
+      console.log(json);
       gameInstance.SendMessage('Ambiarc', 'UpdateMapLabel', json);
     };
     this.SmoothUpdateMapLabelPosition = function(mapLabelId, latitude, longitude, duration) {
