@@ -503,7 +503,7 @@ var onAmbiarcLoaded = function() {
     ambiarc.registerForEvent(ambiarc.eventLabel.FinishedLoadingMap, mapFinishedLoading);
     
     ambiarc.setMapAssetBundleURL('https://s3-us-west-1.amazonaws.com/gk-web-demo/ambiarc/');
-    ambiarc.loadMap('nga');
+    ambiarc.loadMap('airport');
 
 };
 
@@ -726,7 +726,6 @@ var addElementToPoiList = function(mapLabelId, mapLabelName, mapLabelInfo, times
 
     //setting list item click handler
     $(item).on('click', function(){
-        console.log("*****list clicked: "+mapLabelId)
         currentLabelId = parseInt(mapLabelId);
         var initState = jQuery.extend({}, ambiarc.poiList[currentLabelId]);
         ambiarc.history = [];
