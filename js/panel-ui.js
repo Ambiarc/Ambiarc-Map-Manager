@@ -380,7 +380,6 @@ var createTextLabel = function () {
         // Add the map label to the map
         ambiarc.createMapLabel(ambiarc.mapLabel.Text, mapLabelInfo, (labelId) => {
             // Callback triggered once the label is added
-            console.log("****"+labelId)
             mapLabelCreatedCallback(labelId, mapLabelInfo.label, mapLabelInfo);
         });
     });
