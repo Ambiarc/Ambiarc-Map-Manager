@@ -114,7 +114,7 @@ $(document).ready(function() {
     $('#bldg-floor-select').on('change', function(){
 
         if($(this).val() == 'Exterior'){
-            ambiarc.ExitBuilding();
+            ambiarc.exitBuilding();
             return;
         }
 

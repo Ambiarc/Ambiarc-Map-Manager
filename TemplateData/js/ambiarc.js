@@ -15,6 +15,7 @@
       CameraZoomStarted: 'CameraZoomStarted',
       CameraZoomCompleted: 'CameraZoomCompleted',
       BuildingExitCompleted: 'BuildingExitCompleted',
+      ActionIgnored: 'ActionIgnored',
       AmbiarcAppInitialized: 'AmbiarcAppInitialized',
       RightMouseDown: 'RightMouseDown',
       StartedLoadingMap: 'StartedLoadingMap',
@@ -52,8 +53,6 @@
         mapLabelType: mapLabelType,
         mapLabelInfo: mapLabelInfo
       });
-
-      console.log(json);
       gameInstance.SendMessage('Ambiarc', 'UpdateMapLabel', json);
     };
     this.SmoothUpdateMapLabelPosition = function(mapLabelId, latitude, longitude, duration) {
@@ -204,7 +203,7 @@
       });
       gameInstance.SendMessage('Ambiarc', 'TweenZoomCamera', json);
     };
-    this.ExitBuilding = function() {
+    this.exitBuilding = function() {
       gameInstance.SendMessage('Ambiarc', 'ExitBuilding');
     }
     this.registerForEvent = function(eventLabel, cb) {
