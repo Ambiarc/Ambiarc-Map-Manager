@@ -493,7 +493,7 @@ var onAmbiarcLoaded = function() {
     ambiarc.registerForEvent(ambiarc.eventLabel.FinishedLoadingMap, mapFinishedLoading);
     
     ambiarc.setMapAssetBundleURL('https://s3-us-west-1.amazonaws.com/gk-web-demo/ambiarc/');
-    ambiarc.loadMap('airport');
+    ambiarc.loadMap('mdo');
 
 };
 
