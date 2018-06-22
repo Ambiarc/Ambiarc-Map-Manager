@@ -5,17 +5,17 @@
     <meta charset="UTF-8">
 
     <!--bootstrap resources-->
-    <script src="../TemplateData/js/jquery-2.2.4.min.js"></script>
-    <script src="../TemplateData/js/bootstrap.min.js"></script>
+    <script src="../TemplateData_bak/js/jquery-2.2.4.min.js"></script>
+    <script src="../TemplateData_bak/js/bootstrap.min.js"></script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <!--colorpicker resources-->
-    <link rel="stylesheet" media="all" href="../TemplateData/css/bootstrap-colorpicker.css">
-    <script src="../TemplateData/js/bootstrap-colorpicker.js"></script>
+    <link rel="stylesheet" media="all" href="../TemplateData_bak/css/bootstrap-colorpicker.css">
+    <script src="../TemplateData_bak/js/bootstrap-colorpicker.js"></script>
 
-    <link rel="stylesheet" media="all" href="../TemplateData/css/bootstrap.min.css"/>
+    <link rel="stylesheet" media="all" href="../TemplateData_bak/css/bootstrap.min.css"/>
     <link rel="stylesheet" media="all" href="../css/demo-ui.css"/>
     <link rel="stylesheet" media="all" href="../css/panel.css"/>
     <link rel="stylesheet" media="all" href="../css/icons.css"/>
@@ -651,18 +651,9 @@
 
 <script>
 
-    var getMapName = function(name){
-        var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-        if (results==null){
-            return null;
-        }
-        else{
-            return decodeURI(results[1]) || 0;
-        }
-    };
 
-    var mapFolder = getMapName('map');
-    var mapUrl =  (mapFolder !== null) ? mapFolder+'/map.html' : 'SDK/map.html';
+    
+    var mapUrl =  'SDK/map.html';
     var ambiarcIframe = document.createElement('iframe');
         ambiarcIframe.id = 'ambiarcIframe';
         ambiarcIframe.src = mapUrl;

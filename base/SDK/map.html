@@ -14,7 +14,7 @@
 		<script src="../../TemplateData/js/UnityCompatibility.js"></script>
 		<script>
 
-			var gameInstance = UnityLoader.instantiate("gameContainer", "8ea3fa2bede66bc8d64824235b82c37d.json", {
+			var gameInstance = UnityLoader.instantiate("gameContainer", "ce3c35e078aca343a40834d7f998b991.json", {
 				onProgress: UnityProgress,
 				Module: {
 					onRuntimeInitialized: function () {
@@ -24,11 +24,7 @@
 			});
 		</script>
     </head>
-    <body class="guide-kick-background">
-		<div class="raasTitleContainer" id="raas_title_container">
-			<div class="raasTitle" id="raas_title"></div>
-		</div>
-
+   <body class="guide-kick-background">
 		<div id="gameContainer" hidden="">
 			<canvas id="#canvas"></canvas>
 			<div class="logo Dark">
@@ -48,6 +44,26 @@
       				</div>
     			</div>
   			</div>
+		</div>
+
+		<div id="gk-loading-container" class="gk-loading-container">
+			<div class="ambiarc-logo-container" id="ambiarc-logo-container">
+				<img class="ambiarc-logo" src="../../TemplateData/img/logo_Ambiarc_transparent.png" alt="ambiarc logo">
+			</div>
+			<div class="gap"></div>
+
+			<div id="progressMessageDiv" class="progressMessage">
+				<p id="progressMessage"></p>
+			</div>
+
+			<div id="gk-progress" class="gk-progress">
+				<div id="empty" class="empty"></div>
+				<div id="full" class="full"></div>
+			</div>
+	
+			<div id="progressSpinnerHolder" class="progressSpinnerHolder">
+				<div class="progressSpinner"></div>
+			</div>
 		</div>
     </body>
 </html>

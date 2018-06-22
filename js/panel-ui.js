@@ -492,8 +492,9 @@ var onAmbiarcLoaded = function() {
     ambiarc.registerForEvent(ambiarc.eventLabel.StartedLoadingMap, mapStartedLoading);
     ambiarc.registerForEvent(ambiarc.eventLabel.FinishedLoadingMap, mapFinishedLoading);
     
+    var mapFolder = getMapName('map');
     ambiarc.setMapAssetBundleURL('https://s3-us-west-1.amazonaws.com/gk-web-demo/ambiarc/');
-    ambiarc.loadMap('mdo');
+    ambiarc.loadMap(mapFolder);
 
 };
 
@@ -1721,3 +1722,15 @@ var bootstrapMenuTrigger = function(e){
         parent.onRightMouseDown(event)
     }
 }
+
+
+    var getMapName = function(name){
+        var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+        if (results==null){
+            return null;
+        }
+        else{
+            return decodeURI(results[1]) || 0;
+        }
+    };
+

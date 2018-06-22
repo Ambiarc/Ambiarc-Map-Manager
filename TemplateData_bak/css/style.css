@@ -1,0 +1,110 @@
+.canvas{
+    background-color: black;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.wrapper {
+  width: inherit;
+  height: inherit;
+  /* whatever width you want */
+  display: inline-block;
+  position: relative;
+}
+.wrapper:after {
+  content: '';
+}
+
+.guide-kick-background {
+  background-color: white;
+  background-size: cover;
+  background-attachment:fixed;
+  background-position: center;
+}
+
+.raasTitleContainer {
+  position:absolute;
+  left:0; 
+  right:0; 
+  top:0; 
+  bottom:22%;
+  margin:auto;
+  width: 20%;
+  min-width: 300px;
+  background-repeat: no-repeat;
+  background-image: url("../img/logo_Ambiarc_transparent.png");
+  background-position: center;
+  background-size: 100% auto;
+}
+
+.progressMessage {
+  position:absolute;
+    top:25%; bottom:0;
+  left:0; right:0;
+    margin:auto;
+  height:30px;
+  font-family: Sans-serif;
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: 2px;
+  color: #000;
+}
+
+.progressSpinnerHolder {
+  width: 75px;
+  height: 75px;
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 42%;
+  bottom: 0;
+}
+
+.progressSpinner {
+  border: 9px solid #f3f3f3;
+  border-top: 9px solid #000;
+  border-radius: 50%;
+  width: 75px;
+  height: 75px;
+  animation: spin 2s linear infinite;
+  left:0; 
+  right:0; 
+  top:30%;
+  bottom:0; 
+  margin:auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+#gameContainer canvas {
+    background-color: black;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+#gameContainer {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  padding: 0px;
+  margin: 0px;
+  border: 0px;
+  background: rgb(34, 44, 54);
+}
+
+.webgl-content * {border: 0; margin: 0; padding: 0}
+.webgl-content {position: absolute; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%);}
+
+.gk-progress {height: 10px; width: 25%; min-width: 300px; position:absolute; left:0; right:0; top:30%;  bottom:0; margin:auto;}
+.gk-progress .empty {float: right; width: 100%; height: 100%; display: inline-block; opacity: .5; background-color: #000}
+.gk-progress .full { float: left; width: 0%; height: 100%; display: inline-block; background-color: #000} 
