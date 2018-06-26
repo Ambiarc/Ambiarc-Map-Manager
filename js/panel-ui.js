@@ -1284,7 +1284,7 @@ var exportData = function(){
                 geometry.coordinates[1] = parseFloat(value);
             }
             else if (key == 'base64'){
-                properties.base64 = value;
+               // properties.base64 = value;
             }
             else if(regularFeatures.indexOf(key) > -1){
                 properties[key] = value;
@@ -1611,11 +1611,14 @@ var importFileHandler = function(evt){
         fr.readAsDataURL(file);
     }
 };
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 
-var fillGeoData = function(properties){
+async function fillGeoData(properties){
 
-    $.each(properties.features, function(i, feature){
+    $.each(properties.features, async function(i, feature){
         var mapLabelInfo = feature.properties;
         mapLabelInfo.longitude = parseFloat(feature.geometry.coordinates[0]);
         mapLabelInfo.latitude = parseFloat(feature.geometry.coordinates[1]);
@@ -1623,9 +1626,11 @@ var fillGeoData = function(properties){
         $.each(feature.user_properties, function(prop, val){
                 mapLabelInfo[prop] = val;
         });
+         await sleep(100);
 
         ambiarc.createMapLabel(mapLabelInfo.type, mapLabelInfo,(labelId) => {
             mapLabelCreatedCallback(labelId, mapLabelInfo.label, mapLabelInfo);
+
         });
     });
 };
