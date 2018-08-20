@@ -254,6 +254,7 @@ $(document).ready(function() {
             updatePoiDetails('floorId', null);
             return;
         }
+        updateBuildingFloorSelector();
         updatePoiDetails('buildingId', $(this).val());
     });
 
@@ -939,9 +940,6 @@ var fillBuildingsList = function(){
                         listItem.textContent = bldgValue+': '+floorValue.id;
                     $('#bldg-floor-select').append(listItem);
                 });
-
-                //To do: add display/hide list conditioning when more than 1 building....
-
             });
         });
 
@@ -953,6 +951,8 @@ var fillBuildingsList = function(){
         $('#poi-bulding-id').prepend(exteriorListItem);
 
     });
+
+    updateBuildingFloorSelector();
 };
 
 
@@ -988,6 +988,13 @@ var emptyDetailsData = function(){
     $('#icon-file-hidden').val('');
     $('#poi-browse-text').val('');
 };
+
+
+var updateBuildingFloorSelector = function(){
+    var buildingId = $('#poi-bulding-id').val();
+    $('.poi-floor-id').hide();
+    $('.poi-floor-id[data-bldgid="'+buildingId+'"]').fadeIn();
+}
 
 
 var updatePoiDetails = function(changedKey, changedValue){
