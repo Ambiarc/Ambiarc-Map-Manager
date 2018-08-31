@@ -155,6 +155,17 @@
       });
       gameInstance.SendMessage('Ambiarc', 'SetLightColor', json);
     };
+      this.getBuildingLabelID = function(buildingId, cb) {
+      this.messageQueue.push(cb);
+      gameInstance.SendMessage('Ambiarc', 'GetBuildingLabelID', buildingId);
+    };
+
+    this.ShowTooltipForMapLabel = function(mapLabelId) {
+      var json = JSON.stringify({
+        mapLabelId: mapLabelId,
+      });
+      gameInstance.SendMessage('Ambiarc', 'ShowTooltipForMapLabel', json);
+    };
     this.setSkyColor = function(topColor, bottomColor) {
       var json = JSON.stringify({
         topColor: topColor,

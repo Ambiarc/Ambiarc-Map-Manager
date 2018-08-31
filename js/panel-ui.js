@@ -209,6 +209,7 @@ $(document).ready(function() {
         fillDetails(ambiarc.poiList[currentLabelId]);
 
         //updating map label
+
         ambiarc.updateMapLabel(currentLabelId, ambiarc.poiList[currentLabelId].type, ambiarc.poiList[currentLabelId]);
 
         if(ambiarc.poiList[currentLabelId].floorId != currentFloorId){
@@ -518,6 +519,26 @@ var onAmbiarcLoaded = function() {
         e.preventDefault();
     });
     ambiarc.hideLoadingScreen();
+
+
+        ambiarc.getAllBuildings(function(buildingsArray){
+            buildingsArray.forEach(function(bldgID, i){
+                ambiarc.getBuildingLabelID(bldgID, function(id){
+                    var poiObject = {};
+                    poiObject.label = "test";
+                    poiObject.type = "Icon"
+                    poiObject.location = "URL"
+                    poiObject.partialPath = "/css/icons/ic_expand.png"
+                    poiObject.collapsedIconPartialPath = "/css/icons/ic_expand.png"
+                    poiObject.collapsedIconLocation = "URL"
+
+                    ambiarc.updateMapLabel(id, ambiarc.mapLabel.Icon, poiObject);
+                });
+            });
+        });
+
+
+
   }
 
 // creates the right-click menu over the map
@@ -1045,6 +1066,7 @@ var updatePoiDetails = function(changedKey, changedValue){
         $('#select-icon-group').fadeOut();
     }
 
+
     ambiarc.updateMapLabel(currentLabelId, labelProperties.type, labelProperties);
 
     var listItem = $('#'+currentLabelId);
@@ -1445,7 +1467,6 @@ var showIconsPanel = function(){
 };
 
 var showPoiDetails = function(){
-
     ambiarc.updateMapLabel(currentLabelId, ambiarc.poiList[currentLabelId].type, ambiarc.poiList[currentLabelId]);
 
     $('.poi-details-panel').removeClass('invisible');
@@ -1496,7 +1517,6 @@ var showTempIcon = function(clonedObj){
     clonedObj.base64 = base64String;
     clonedObj.partialPath = imgIcon;
     clonedObj.location = 'Default';
-
     ambiarc.updateMapLabel(currentLabelId, clonedObj.type, clonedObj);
 };
 
