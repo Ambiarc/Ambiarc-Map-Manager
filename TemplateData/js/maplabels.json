@@ -1,0 +1,4529 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "A10",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Information",
+                "showOnCreation": false,
+                "type": "Text",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 1
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29509735107422,
+                    39.71488952636719
+                ]
+            },
+            "user_properties": {
+                "gateId": "A10"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Restroom",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Restroom",
+                "showOnCreation": false,
+                "type": "Icon",
+                "showToolTip": false,
+                "tooltipTitle": "Restroom",
+                "tooltipBody": "",
+                "mapLabelId": 37
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.2978515625,
+                    39.71710205078125
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "ATM",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "ATM",
+                "showOnCreation": false,
+                "type": "Icon",
+                "showToolTip": false,
+                "tooltipTitle": "ATM",
+                "tooltipBody": "",
+                "mapLabelId": 46
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29827117919922,
+                    39.716209411621094
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Camden Food Company",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Food",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 50
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.2988510131836,
+                    39.716182708740234
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Restroom",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Restroom",
+                "showOnCreation": false,
+                "type": "Icon",
+                "showToolTip": false,
+                "tooltipTitle": "Restroom",
+                "tooltipBody": "",
+                "mapLabelId": 57
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.2987060546875,
+                    39.71601867675781
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L001",
+                "label": "Escalator",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Escalator",
+                "showOnCreation": false,
+                "type": "Icon",
+                "showToolTip": false,
+                "tooltipTitle": "Escalator",
+                "tooltipBody": "",
+                "mapLabelId": 63
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29894256591797,
+                    39.71390914916992
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "B12",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Information",
+                "showOnCreation": false,
+                "type": "Text",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 67
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29763793945312,
+                    39.71691131591797
+                ]
+            },
+            "user_properties": {
+                "gateId": "B12"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "EnRoute Spa",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Shop",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 70
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29467010498047,
+                    39.71528244018555
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Elevator",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Elevator",
+                "showOnCreation": false,
+                "type": "Icon",
+                "showToolTip": false,
+                "tooltipTitle": "Elevator",
+                "tooltipBody": "",
+                "mapLabelId": 77
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29793548583984,
+                    39.715091705322266
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "B23",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Information",
+                "showOnCreation": false,
+                "type": "Text",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 101
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29654693603516,
+                    39.718318939208984
+                ]
+            },
+            "user_properties": {
+                "gateId": "B23"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Artizan",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Shop",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 103
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29578399658203,
+                    39.71452331542969
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "A22",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Information",
+                "showOnCreation": false,
+                "type": "Text",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 105
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29349517822266,
+                    39.715911865234375
+                ]
+            },
+            "user_properties": {
+                "gateId": "A22"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Restroom",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Restroom",
+                "showOnCreation": false,
+                "type": "Icon",
+                "showToolTip": false,
+                "tooltipTitle": "Restroom",
+                "tooltipBody": "",
+                "mapLabelId": 106
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29755401611328,
+                    39.71474838256836
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Hair",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Hair",
+                "showOnCreation": false,
+                "type": "Icon",
+                "showToolTip": false,
+                "tooltipTitle": "Hair",
+                "tooltipBody": "",
+                "mapLabelId": 114
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29733276367188,
+                    39.71455001831055
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L001",
+                "label": "ATM",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "ATM",
+                "showOnCreation": false,
+                "type": "Icon",
+                "showToolTip": false,
+                "tooltipTitle": "ATM",
+                "tooltipBody": "",
+                "mapLabelId": 126
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29833984375,
+                    39.71474838256836
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L001",
+                "label": "Baggage",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Baggage",
+                "showOnCreation": false,
+                "type": "Icon",
+                "showToolTip": false,
+                "tooltipTitle": "Baggage",
+                "tooltipBody": "",
+                "mapLabelId": 135
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29761505126953,
+                    39.714420318603516
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L001",
+                "label": "Elevator",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Elevator",
+                "showOnCreation": false,
+                "type": "Icon",
+                "showToolTip": false,
+                "tooltipTitle": "Elevator",
+                "tooltipBody": "",
+                "mapLabelId": 153
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29814147949219,
+                    39.71454620361328
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "JetStream, Rob Fisher",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Artwork",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 160
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.2975845336914,
+                    39.71516036987305
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Escalator",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Escalator",
+                "showOnCreation": false,
+                "type": "Icon",
+                "showToolTip": false,
+                "tooltipTitle": "Escalator",
+                "tooltipBody": "",
+                "mapLabelId": 168
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29795837402344,
+                    39.714866638183594
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L001",
+                "label": "Walkway",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Walkway",
+                "showOnCreation": false,
+                "type": "Icon",
+                "showToolTip": false,
+                "tooltipTitle": "Walkway",
+                "tooltipBody": "",
+                "mapLabelId": 191
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29873657226562,
+                    39.714210510253906
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "A24",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Information",
+                "showOnCreation": false,
+                "type": "Text",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 197
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29347229003906,
+                    39.71601104736328
+                ]
+            },
+            "user_properties": {
+                "gateId": "A24"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "On the TIp of Our Wings",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Artwork",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 203
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29840087890625,
+                    39.7158088684082
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Drop-off: Southwest",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Baggage",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "Drop-off: Southwest",
+                "tooltipBody": "",
+                "mapLabelId": 209
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29876708984375,
+                    39.714874267578125
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Wolfgang Puck Express",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Food",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 223
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29766082763672,
+                    39.716941833496094
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "A21",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Information",
+                "showOnCreation": false,
+                "type": "Text",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 239
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29376220703125,
+                    39.71612548828125
+                ]
+            },
+            "user_properties": {
+                "gateId": "A21"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "A6",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Information",
+                "showOnCreation": false,
+                "type": "Text",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 244
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29568481445312,
+                    39.71450424194336
+                ]
+            },
+            "user_properties": {
+                "gateId": "A6"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "A16",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Information",
+                "showOnCreation": false,
+                "type": "Text",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 259
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29408264160156,
+                    39.7155647277832
+                ]
+            },
+            "user_properties": {
+                "gateId": "A16"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "CNBC Newsstand",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Shop",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 290
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29712677001953,
+                    39.71749496459961
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "USA Today (Newsstand)",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Shop",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 298
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29715728759766,
+                    39.71503448486328
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "King David's Dog",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Food",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 306
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29705810546875,
+                    39.71756362915039
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Evening",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Artwork",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 326
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29475402832031,
+                    39.71542739868164
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Meditation",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Meditation",
+                "showOnCreation": false,
+                "type": "Icon",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 333
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29743957519531,
+                    39.714622497558594
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Flight Wave",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Artwork",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 335
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29668426513672,
+                    39.71489334106445
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "B10",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Information",
+                "showOnCreation": false,
+                "type": "Text",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 342
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29792785644531,
+                    39.71665954589844
+                ]
+            },
+            "user_properties": {
+                "gateId": "B10"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Autumn",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Artwork",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 352
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29718017578125,
+                    39.717567443847656
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L001",
+                "label": "Baggage Claim, Ron Baron",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Artwork",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "Baggage Claim, Ron Baron",
+                "tooltipBody": "",
+                "mapLabelId": 377
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29869842529297,
+                    39.715003967285156
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "B24",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Information",
+                "showOnCreation": false,
+                "type": "Text",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 381
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29637145996094,
+                    39.71822738647461
+                ]
+            },
+            "user_properties": {
+                "gateId": "B24"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Escalator",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Escalator",
+                "showOnCreation": false,
+                "type": "Icon",
+                "showToolTip": false,
+                "tooltipTitle": "Escalator",
+                "tooltipBody": "",
+                "mapLabelId": 385
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29827880859375,
+                    39.714683532714844
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Copper Moon Coffee",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Food",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 390
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29854583740234,
+                    39.71611022949219
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "iStore Boutique",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Shop",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 396
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29846954345703,
+                    39.7165412902832
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L001",
+                "label": "Baggage",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Baggage",
+                "showOnCreation": false,
+                "type": "Icon",
+                "showToolTip": false,
+                "tooltipTitle": "Baggage",
+                "tooltipBody": "",
+                "mapLabelId": 419
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29853820800781,
+                    39.71512222290039
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Indiana Marketplace",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Shop",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 424
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29772186279297,
+                    39.7169189453125
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Ticketing: Southwest",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Tickets",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "Ticketing: Southwest",
+                "tooltipBody": "",
+                "mapLabelId": 429
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29795837402344,
+                    39.71422576904297
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Harry and Izzy's",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Food",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 432
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29624938964844,
+                    39.71416473388672
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Natalie's Candy Jar",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Shop",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 438
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29690551757812,
+                    39.71769332885742
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Broad Ripple Books",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Shop",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 439
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29864501953125,
+                    39.716365814208984
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Sun, Ann Gardner",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Artwork",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 447
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29644775390625,
+                    39.71430587768555
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L001",
+                "label": "Roads to Deliberate Dreams: Indiana's Geniuses, Tinkerers, and Speedsters, Marcus Akinlana",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Artwork",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 469
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.2979507446289,
+                    39.714942932128906
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Vinea (Wine Bar)",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Food",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 478
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.2976303100586,
+                    39.71533203125
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Green Leaf's and Bananas",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Food",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 486
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29512786865234,
+                    39.71525192260742
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "A7",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Information",
+                "showOnCreation": false,
+                "type": "Text",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 499
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.2956771850586,
+                    39.71495819091797
+                ]
+            },
+            "user_properties": {
+                "gateId": "A7"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L001",
+                "label": "Baggage",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Baggage",
+                "showOnCreation": false,
+                "type": "Icon",
+                "showToolTip": false,
+                "tooltipTitle": "Baggage",
+                "tooltipBody": "",
+                "mapLabelId": 513
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29824829101562,
+                    39.71489334106445
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Elevator",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Elevator",
+                "showOnCreation": false,
+                "type": "Icon",
+                "showToolTip": false,
+                "tooltipTitle": "Elevator",
+                "tooltipBody": "",
+                "mapLabelId": 514
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29837799072266,
+                    39.71472930908203
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "002",
+                "floorId": "L003",
+                "label": "Taxi Service",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Information",
+                "showOnCreation": false,
+                "type": "Text",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 516
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29878997802734,
+                    39.71365737915039
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Summer",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Artwork",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 526
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.2965087890625,
+                    39.71821594238281
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "002",
+                "floorId": "L003",
+                "label": "Escalator",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Escalator",
+                "showOnCreation": false,
+                "type": "Icon",
+                "showToolTip": false,
+                "tooltipTitle": "Escalator",
+                "tooltipBody": "",
+                "mapLabelId": 532
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29924774169922,
+                    39.71413040161133
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "B22",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Information",
+                "showOnCreation": false,
+                "type": "Text",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 539
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.2963638305664,
+                    39.7181396484375
+                ]
+            },
+            "user_properties": {
+                "gateId": "B22"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Water",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Artwork",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 542
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29723358154297,
+                    39.71764373779297
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": null,
+                "label": "Cardinals",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Artwork",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 549
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29720306396484,
+                    39.71406173706055
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "ATM",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "ATM",
+                "showOnCreation": false,
+                "type": "Icon",
+                "showToolTip": false,
+                "tooltipTitle": "ATM",
+                "tooltipBody": "",
+                "mapLabelId": 552
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29425811767578,
+                    39.71565246582031
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Restroom",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Restroom",
+                "showOnCreation": false,
+                "type": "Icon",
+                "showToolTip": false,
+                "tooltipTitle": "Restroom",
+                "tooltipBody": "",
+                "mapLabelId": 563
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29713439941406,
+                    39.7177848815918
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Winter",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Artwork",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 612
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29671478271484,
+                    39.71803283691406
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Indiana Flight",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Artwork",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 624
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29681396484375,
+                    39.71811294555664
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Walkway",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Walkway",
+                "showOnCreation": false,
+                "type": "Icon",
+                "showToolTip": false,
+                "tooltipTitle": "Walkway",
+                "tooltipBody": "",
+                "mapLabelId": 654
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29814147949219,
+                    39.71666717529297
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "A15",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Information",
+                "showOnCreation": false,
+                "type": "Text",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 685
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29448699951172,
+                    39.715633392333984
+                ]
+            },
+            "user_properties": {
+                "gateId": "A15"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Granite City",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Food",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 688
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.2941665649414,
+                    39.71582794189453
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L001",
+                "label": "Escalator",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Escalator",
+                "showOnCreation": false,
+                "type": "Icon",
+                "showToolTip": false,
+                "tooltipTitle": "Escalator",
+                "tooltipBody": "",
+                "mapLabelId": 705
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.2991714477539,
+                    39.71408462524414
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "B20",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Information",
+                "showOnCreation": false,
+                "type": "Text",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 713
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29654693603516,
+                    39.71795654296875
+                ]
+            },
+            "user_properties": {
+                "gateId": "B20"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L001",
+                "label": "Escalator",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Escalator",
+                "showOnCreation": false,
+                "type": "Icon",
+                "showToolTip": false,
+                "tooltipTitle": "Escalator",
+                "tooltipBody": "",
+                "mapLabelId": 724
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29805755615234,
+                    39.71479034423828
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Drop-off: Allegiant, American, Frontier, OneJet",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Baggage",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "Allegiant, American, Frontier, OneJet",
+                "tooltipBody": "",
+                "mapLabelId": 727
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.2981948852539,
+                    39.71436309814453
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "A3",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Information",
+                "showOnCreation": false,
+                "type": "Text",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 734
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.2965087890625,
+                    39.71364974975586
+                ]
+            },
+            "user_properties": {
+                "gateId": "A3"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Cafe Patachou",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Food",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 747
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29778289794922,
+                    39.7154655456543
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L001",
+                "label": "Information ",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Information",
+                "showOnCreation": false,
+                "type": "Icon",
+                "showToolTip": false,
+                "tooltipTitle": "Information",
+                "tooltipBody": "",
+                "mapLabelId": 786
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29816436767578,
+                    39.71478271484375
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L001",
+                "label": "Elevator",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Elevator",
+                "showOnCreation": false,
+                "type": "Icon",
+                "showToolTip": false,
+                "tooltipTitle": "Elevator",
+                "tooltipBody": "",
+                "mapLabelId": 792
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29837036132812,
+                    39.7147216796875
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Starbucks",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Food",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 805
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29734802246094,
+                    39.71510314941406
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Noon",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Artwork",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 807
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.293701171875,
+                    39.716094970703125
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Walkway",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Walkway",
+                "showOnCreation": false,
+                "type": "Icon",
+                "showToolTip": false,
+                "tooltipTitle": "Walkway",
+                "tooltipBody": "",
+                "mapLabelId": 811
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29560852050781,
+                    39.71476364135742
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Cultural Crossroads",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Shop",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 816
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29755401611328,
+                    39.715553283691406
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Nature's Table",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Food",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 817
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29745483398438,
+                    39.71488952636719
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "A4",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Information",
+                "showOnCreation": false,
+                "type": "Text",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 840
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29634094238281,
+                    39.713687896728516
+                ]
+            },
+            "user_properties": {
+                "gateId": "A4"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Brookstone",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Shop",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 851
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29712677001953,
+                    39.71510696411133
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "McDonald's",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Food",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 857
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29755401611328,
+                    39.71487045288086
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "B25",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Information",
+                "showOnCreation": false,
+                "type": "Text",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 865
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29645538330078,
+                    39.71826934814453
+                ]
+            },
+            "user_properties": {
+                "gateId": "B25"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": null,
+                "label": "The Birth of Flight",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Artwork",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 866
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29933166503906,
+                    39.715457916259766
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L001",
+                "label": "Escalator",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Escalator",
+                "showOnCreation": false,
+                "type": "Icon",
+                "showToolTip": false,
+                "tooltipTitle": "Escalator",
+                "tooltipBody": "",
+                "mapLabelId": 867
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29829406738281,
+                    39.714599609375
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "A23",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Information",
+                "showOnCreation": false,
+                "type": "Text",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 869
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29365539550781,
+                    39.716148376464844
+                ]
+            },
+            "user_properties": {
+                "gateId": "A23"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Spring",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Artwork",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 873
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29732513427734,
+                    39.717369079589844
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Forever Heather",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Shop",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 894
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29837799072266,
+                    39.716609954833984
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "B21",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Information",
+                "showOnCreation": false,
+                "type": "Text",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 913
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29664611816406,
+                    39.71831130981445
+                ]
+            },
+            "user_properties": {
+                "gateId": "B21"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Cardinal Points",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Artwork",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 924
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.2979507446289,
+                    39.71585464477539
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "A25",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Information",
+                "showOnCreation": false,
+                "type": "Text",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 942
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29356384277344,
+                    39.716064453125
+                ]
+            },
+            "user_properties": {
+                "gateId": "A25"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "The Fan Zone",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Food",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 950
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.2967758178711,
+                    39.71796798706055
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Shapiro's Delicatessen",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Food",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 964
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29719543457031,
+                    39.717411041259766
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "002",
+                "floorId": "L003",
+                "label": "Hotel Courtesy Vehicles",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Information",
+                "showOnCreation": false,
+                "type": "Text",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 978
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29864501953125,
+                    39.71355438232422
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Morning",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Artwork",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 988
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29397583007812,
+                    39.71595764160156
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Just Pop In!",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Shop",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 996
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29827880859375,
+                    39.716339111328125
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Restroom",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Restroom",
+                "showOnCreation": false,
+                "type": "Icon",
+                "showToolTip": false,
+                "tooltipTitle": "Restroom",
+                "tooltipBody": "",
+                "mapLabelId": 1014
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29439544677734,
+                    39.715431213378906
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "The Glory of Sports in Indianapolis",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Artwork",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 1016
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.2962417602539,
+                    39.7143440246582
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "B3",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Information",
+                "showOnCreation": false,
+                "type": "Text",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -337
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.299560546875,
+                    39.71601104736328
+                ]
+            },
+            "user_properties": {
+                "gateId": "B3"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "B4",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Information",
+                "showOnCreation": false,
+                "type": "Text",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -78
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29951477050781,
+                    39.71609878540039
+                ]
+            },
+            "user_properties": {
+                "gateId": "B4"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "B5",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Information",
+                "showOnCreation": false,
+                "type": "Text",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -14
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.2989730834961,
+                    39.71614074707031
+                ]
+            },
+            "user_properties": {
+                "gateId": "B5"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "B6",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Information",
+                "showOnCreation": false,
+                "type": "Text",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -652
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29820251464844,
+                    39.71636962890625
+                ]
+            },
+            "user_properties": {
+                "gateId": "B6"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "B8",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Information",
+                "showOnCreation": false,
+                "type": "Text",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -921
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.298095703125,
+                    39.716495513916016
+                ]
+            },
+            "user_properties": {
+                "gateId": "B8"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "B13",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Information",
+                "showOnCreation": false,
+                "type": "Text",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -681
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29753935791017,
+                    39.71744989746094
+                ]
+            },
+            "user_properties": {
+                "gateId": "B13"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "B14",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Information",
+                "showOnCreation": false,
+                "type": "Text",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -680
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29727935791016,
+                    39.71726989746094
+                ]
+            },
+            "user_properties": {
+                "gateId": "B14"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "B16",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Information",
+                "showOnCreation": false,
+                "type": "Text",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -304
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29680633544922,
+                    39.71767807006836
+                ]
+            },
+            "user_properties": {
+                "gateId": "B16"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "B17",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Information",
+                "showOnCreation": false,
+                "type": "Text",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -976
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29682922363281,
+                    39.71813201904297
+                ]
+            },
+            "user_properties": {
+                "gateId": "B17"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "B15",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Information",
+                "showOnCreation": false,
+                "type": "Text",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -325
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29727935791016,
+                    39.71769332885742
+                ]
+            },
+            "user_properties": {
+                "gateId": "B15"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "B9",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Information",
+                "showOnCreation": false,
+                "type": "Text",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -994
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.2979507446289,
+                    39.71705627441406
+                ]
+            },
+            "user_properties": {
+                "gateId": "B9"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "B7",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Information",
+                "showOnCreation": false,
+                "type": "Text",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -754
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29814910888672,
+                    39.71685028076172
+                ]
+            },
+            "user_properties": {
+                "gateId": "B7"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "A5",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Information",
+                "showOnCreation": false,
+                "type": "Text",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -715
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29633331298828,
+                    39.71383285522461
+                ]
+            },
+            "user_properties": {
+                "gateId": "A5"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "A8",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Information",
+                "showOnCreation": false,
+                "type": "Text",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -617
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29537963867188,
+                    39.7147331237793
+                ]
+            },
+            "user_properties": {
+                "gateId": "A8"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "A11",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Information",
+                "showOnCreation": false,
+                "type": "Text",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -72
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29515075683594,
+                    39.71521759033203
+                ]
+            },
+            "user_properties": {
+                "gateId": "A11"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "A12",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Information",
+                "showOnCreation": false,
+                "type": "Text",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -18
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29484558105469,
+                    39.715049743652344
+                ]
+            },
+            "user_properties": {
+                "gateId": "A12"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "A14",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Information",
+                "showOnCreation": false,
+                "type": "Text",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -100
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29459381103516,
+                    39.71520233154297
+                ]
+            },
+            "user_properties": {
+                "gateId": "A14"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "A20",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Information",
+                "showOnCreation": false,
+                "type": "Text",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -809
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29375457763672,
+                    39.71575927734375
+                ]
+            },
+            "user_properties": {
+                "gateId": "A20"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "A17",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Information",
+                "showOnCreation": false,
+                "type": "Text",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -847
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29397583007812,
+                    39.71599197387695
+                ]
+            },
+            "user_properties": {
+                "gateId": "A17"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Elevator",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Elevator",
+                "showOnCreation": false,
+                "type": "Icon",
+                "showToolTip": false,
+                "tooltipTitle": "Elevator",
+                "tooltipBody": "",
+                "mapLabelId": -50
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29811096191406,
+                    39.714542388916016
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Restroom",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Restroom",
+                "showOnCreation": false,
+                "type": "Icon",
+                "showToolTip": false,
+                "tooltipTitle": "Restroom",
+                "tooltipBody": "",
+                "mapLabelId": -343
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.2982177734375,
+                    39.715248107910156
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Restroom",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Restroom",
+                "showOnCreation": false,
+                "type": "Icon",
+                "showToolTip": false,
+                "tooltipTitle": "Restroom",
+                "tooltipBody": "",
+                "mapLabelId": -146
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.2976303100586,
+                    39.71488571166992
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Restroom",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Restroom",
+                "showOnCreation": false,
+                "type": "Icon",
+                "showToolTip": false,
+                "tooltipTitle": "Restroom",
+                "tooltipBody": "",
+                "mapLabelId": -772
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29794311523438,
+                    39.71513748168945
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Information ",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Information",
+                "showOnCreation": false,
+                "type": "Icon",
+                "showToolTip": false,
+                "tooltipTitle": "Information",
+                "tooltipBody": "",
+                "mapLabelId": -841
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29777526855469,
+                    39.71487808227539
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "ATM",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "ATM",
+                "showOnCreation": false,
+                "type": "Icon",
+                "showToolTip": false,
+                "tooltipTitle": "ATM",
+                "tooltipBody": "",
+                "mapLabelId": -333
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29622650146484,
+                    39.71466064453125
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Mail",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Mail",
+                "showOnCreation": false,
+                "type": "Icon",
+                "showToolTip": false,
+                "tooltipTitle": "Mail",
+                "tooltipBody": "",
+                "mapLabelId": -53
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29839324951172,
+                    39.71585464477539
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Walkway",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Walkway",
+                "showOnCreation": false,
+                "type": "Icon",
+                "showToolTip": false,
+                "tooltipTitle": "Walkway",
+                "tooltipBody": "",
+                "mapLabelId": -531
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29752349853516,
+                    39.717247009277344
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Walkway",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Walkway",
+                "showOnCreation": false,
+                "type": "Icon",
+                "showToolTip": false,
+                "tooltipTitle": "Walkway",
+                "tooltipBody": "",
+                "mapLabelId": -628
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29478454589844,
+                    39.715293884277344
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Drop-off: Air Canada, United",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Baggage",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "Baggage",
+                "tooltipBody": "",
+                "mapLabelId": -310
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29852294921875,
+                    39.71468734741211
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Restroom",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Restroom",
+                "showOnCreation": false,
+                "type": "Icon",
+                "showToolTip": false,
+                "tooltipTitle": "Restroom",
+                "tooltipBody": "",
+                "mapLabelId": -506
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29528045654297,
+                    39.71487045288086
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L001",
+                "label": "Baggage",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Baggage",
+                "showOnCreation": false,
+                "type": "Icon",
+                "showToolTip": false,
+                "tooltipTitle": "Baggage",
+                "tooltipBody": "",
+                "mapLabelId": -799
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29839324951172,
+                    39.715003967285156
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L001",
+                "label": "Baggage",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Baggage",
+                "showOnCreation": false,
+                "type": "Icon",
+                "showToolTip": false,
+                "tooltipTitle": "Baggage",
+                "tooltipBody": "",
+                "mapLabelId": -741
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29789733886719,
+                    39.71464157104492
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L001",
+                "label": "Baggage",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Baggage",
+                "showOnCreation": false,
+                "type": "Icon",
+                "showToolTip": false,
+                "tooltipTitle": "Baggage",
+                "tooltipBody": "",
+                "mapLabelId": -721
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29776763916016,
+                    39.71453094482422
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L001",
+                "label": "Walkway",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Walkway",
+                "showOnCreation": false,
+                "type": "Icon",
+                "showToolTip": false,
+                "tooltipTitle": "Walkway",
+                "tooltipBody": "",
+                "mapLabelId": -832
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29864501953125,
+                    39.7143669128418
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L001",
+                "label": "Information ",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Information",
+                "showOnCreation": false,
+                "type": "Icon",
+                "showToolTip": false,
+                "tooltipTitle": "Information",
+                "tooltipBody": "",
+                "mapLabelId": -201
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29806518554688,
+                    39.71470260620117
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L001",
+                "label": "Telephone",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Telephone",
+                "showOnCreation": false,
+                "type": "Icon",
+                "showToolTip": false,
+                "tooltipTitle": "Telephone",
+                "tooltipBody": "",
+                "mapLabelId": -849
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29810333251953,
+                    39.71457290649414
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "002",
+                "floorId": "L003",
+                "label": "Escalator",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Escalator",
+                "showOnCreation": false,
+                "type": "Icon",
+                "showToolTip": false,
+                "tooltipTitle": "Escalator",
+                "tooltipBody": "",
+                "mapLabelId": -936
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29888153076172,
+                    39.7138557434082
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "002",
+                "floorId": "L003",
+                "label": "Car Rental",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Information",
+                "showOnCreation": false,
+                "type": "Text",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -906
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.2988510131836,
+                    39.71394348144531
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "002",
+                "floorId": "L003",
+                "label": "BlueIndy",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Information",
+                "showOnCreation": false,
+                "type": "Text",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -433
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29926300048828,
+                    39.71403884887695
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "002",
+                "floorId": "L003",
+                "label": "Black Car Service",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Information",
+                "showOnCreation": false,
+                "type": "Text",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -351
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29913330078125,
+                    39.713924407958984
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "002",
+                "floorId": "L003",
+                "label": "Uber & Lyft",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Information",
+                "showOnCreation": false,
+                "type": "Text",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -996
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.2989730834961,
+                    39.71379470825195
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "002",
+                "floorId": "L003",
+                "label": "Scheduled Bus Service",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Information",
+                "showOnCreation": false,
+                "type": "Text",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -444
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29943084716797,
+                    39.71413040161133
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Auntie Anne's",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Food",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -852
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29518127441406,
+                    39.71491241455078
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "96th Street Steakburgers",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Food",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -131
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29534912109375,
+                    39.71507263183594
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Au Bon Pain",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Food",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -753
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29438018798828,
+                    39.7156982421875
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Freshens",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Food",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -287
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29387664794922,
+                    39.71588134765625
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Champps",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Food",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -132
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.2985610961914,
+                    39.71643829345703
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Indianapolis 500 Grill",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Food",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -522
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29794311523438,
+                    39.71535110473633
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Qdoba",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Food",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -711
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29731750488281,
+                    39.71489715576172
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Brickyard Authentics",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Shop",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -793
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.2979507446289,
+                    39.71528244018555
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Civic Center TravelMart",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Shop",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -441
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29786682128906,
+                    39.71541213989258
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Brooks Brothers",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Shop",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -370
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29766845703125,
+                    39.71554183959961
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Lids Locker Room",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Shop",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -440
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29708862304688,
+                    39.71518325805664
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Erwin Pearl",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Shop",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -256
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29608154296875,
+                    39.71459197998047
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Vera Bradley",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Shop",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -499
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29600524902344,
+                    39.71464920043945
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "South Bend Chocolate",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Shop",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -353
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29588317871094,
+                    39.71472930908203
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Hoosier Marketplace",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Shop",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -553
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29549407958984,
+                    39.71497344970703
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Relay Newsstand",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Shop",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -400
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29460144042969,
+                    39.71533966064453
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "The Great Circle Route, Lynn Basa",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Artwork",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -651
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29728698730469,
+                    39.71540069580078
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Autumn Prairie",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Artwork",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -641
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29673767089844,
+                    39.714576721191406
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Forest",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Artwork",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -679
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29533386230469,
+                    39.71491622924805
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Night",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Artwork",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -924
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29487609863281,
+                    39.715362548828125
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Celebration",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Artwork",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": 657
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29560314118862,
+                    39.71491393981967
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Midnight Flight",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Artwork",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -489
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29472351074219,
+                    39.7152214050293
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Night",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Artwork",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -166
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.2943115234375,
+                    39.71556091308594
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Back in Indiana",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Artwork",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -305
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.2938232421875,
+                    39.71581268310547
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Fields",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Artwork",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -550
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29881286621094,
+                    39.71603775024414
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "A Work of HeArt",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Artwork",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -485
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29837036132812,
+                    39.71643829345703
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Flying",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Artwork",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -630
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29798889160156,
+                    39.71674728393555
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Earth",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Artwork",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -4
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29774475097656,
+                    39.71725082397461
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L002",
+                "label": "Streaming",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Artwork",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -412
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29754638671875,
+                    39.71745300292969
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": "L001",
+                "label": "Connections, Electroland",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Artwork",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -650
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.2984619140625,
+                    39.7144660949707
+                ]
+            },
+            "user_properties": {}
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "buildingId": "001",
+                "floorId": null,
+                "label": "Tussle",
+                "fontSize": 26,
+                "category": "Label",
+                "location": "Default",
+                "partialPath": "Artwork",
+                "showOnCreation": false,
+                "type": "IconWithText",
+                "showToolTip": false,
+                "tooltipTitle": "",
+                "tooltipBody": "",
+                "mapLabelId": -354
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.29888916015625,
+                    39.71541976928711
+                ]
+            },
+            "user_properties": {}
+        }
+    ]
+}

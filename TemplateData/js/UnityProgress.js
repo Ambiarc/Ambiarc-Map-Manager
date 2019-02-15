@@ -30,7 +30,8 @@ function UnityProgress(gameInstance, progress) {
 		gameInstance.progressMessage.message.innerHTML = "3D Map Loading ...";
 	}
 	else {
-		gameInstance.progressMessage.message.innerHTML = "3D Map Downloading ... " + (Math.ceil(progress * 100)) + "%";
+		//gameInstance.progressMessage.message.innerHTML = "3D Map Downloading ... " + (Math.ceil(progress * 100)) + "%";
+		gameInstance.progressMessage.message.innerHTML = "3D Map Loading ... ";
 	}
 }
 	
